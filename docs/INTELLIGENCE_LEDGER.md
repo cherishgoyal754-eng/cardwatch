@@ -48,3 +48,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-10-26T16:40:18+05:30`
 - **Verification Note**: Logged exclusion of Paytm, Mobikwik, and Cred wallet loading transactions from 5% cashback earning.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-10-26 18:22:33] docs(ledger): catalog Amex Platinum Travel Taj voucher booking validity and renewal perks
+- **Date**: `2026-10-26T18:22:33+05:30`
+- **Verification Note**: Verified Taj experience voucher distribution timelines upon reaching ₹4,00,000 annual milestone.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
