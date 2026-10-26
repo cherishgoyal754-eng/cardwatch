@@ -38,3 +38,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-10-26T12:35:10+05:30`
 - **Verification Note**: Verified EDGE Miles transfer limits to Singapore KrisFlyer, Accor, and United MileagePlus programs.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-10-26 14:52:45] docs(ledger): record ICICI Bank quarterly lounge spend criteria across Sapphiro and Emeralde
+- **Date**: `2026-10-26T14:52:45+05:30`
+- **Verification Note**: Indexed ICICI Bank policy requiring minimum ₹35,000 calendar quarter spend for complimentary lounge access.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
