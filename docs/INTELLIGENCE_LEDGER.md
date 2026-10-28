@@ -78,3 +78,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-10-27T18:22:33+05:30`
 - **Verification Note**: Verified Taj experience voucher distribution timelines upon reaching ₹4,00,000 annual milestone.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-10-28 10:14:22] docs(ledger): index HDFC Bank SmartBuy daily reward capping on utility MCCs
+- **Date**: `2026-10-28T10:14:22+05:30`
+- **Verification Note**: Documented HDFC SmartBuy daily cap of 2,000 points on utility bill payments and partner portal terms.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
