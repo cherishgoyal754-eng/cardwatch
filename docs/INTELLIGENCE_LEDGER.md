@@ -183,3 +183,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-01T10:14:22+05:30`
 - **Verification Note**: Documented HDFC SmartBuy daily cap of 2,000 points on utility bill payments and partner portal terms.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-01 12:35:10] docs(ledger): audit Axis Atlas EDGE Miles conversion partner caps and annual tier reset
+- **Date**: `2026-11-01T12:35:10+05:30`
+- **Verification Note**: Verified EDGE Miles transfer limits to Singapore KrisFlyer, Accor, and United MileagePlus programs.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
