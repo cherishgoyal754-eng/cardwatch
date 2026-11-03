@@ -243,3 +243,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-03T14:52:45+05:30`
 - **Verification Note**: Indexed ICICI Bank policy requiring minimum ₹35,000 calendar quarter spend for complimentary lounge access.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-03 16:40:18] docs(ledger): update SBI Card Cashback excluded merchant categories for digital wallets
+- **Date**: `2026-11-03T16:40:18+05:30`
+- **Verification Note**: Logged exclusion of Paytm, Mobikwik, and Cred wallet loading transactions from 5% cashback earning.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
