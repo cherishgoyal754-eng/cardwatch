@@ -1352,28 +1352,38 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 6529',
     joiningFee: 500,
     annualFee: 500,
-    annualFeeWaiverCondition: 'Waived on ₹50,000 annual spend',
+    annualFeeWaiverCondition: 'Waived on spending ₹3,50,000 in an anniversary year',
     isLifetimeFree: false,
     minSalaryMonthly: 20000,
     minCibilScore: 710,
     status: 'active',
-    headlineBenefit: '4% Valueback on Fuel at IndianOil Outlets + UPI QR Code Payment Access',
-    cashbackRate: '20 EDGE Points per ₹100 spent at IndianOil outlets (4% valueback) + 1% fuel surcharge waiver',
-    rewardPointValue: '1 EDGE Point = ₹0.20 (convertible to IndianOil fuel points or catalogue)',
+    headlineBenefit: '4% Fuel Valueback at IndianOil Outlets • 100% First Fuel Cashback • RuPay UPI Integration',
+    cashbackRate: '20 EDGE Points / ₹100 on IndianOil Fuel (4% valueback, cap 1,000 pts/mo) • 5 pts/₹100 Online • 1 pt/₹100 Others',
+    rewardPointValue: '1 EDGE Point = ₹0.20 (redeemable for IndianOil fuel vouchers or catalogue merchandise)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% waiver on fuel purchases between ₹400 and ₹4,000',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver on transactions between ₹400 and ₹4,000 (capped at ₹50 per statement cycle)',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'No airport lounge access included.',
+    loungeSpendCondition: 'No airport lounge access included with this fuel-focused card.',
     loungeNetwork: 'None',
-    merchantExclusions: ['Non-IOCL petrol pumps earn regular 1x points', 'Wallet load', 'Rent'],
-    cappingDetails: '4% fuel valueback capped at ₹250 per month (spends up to ₹4,000 at IOCL pumps).',
-    officialCircularUrl: 'https://www.axisbank.com/retail/cards/credit-card/indianoil-axis-bank-credit-card',
-    lastVerifiedDate: 'Nov 03, 2024',
+    merchantExclusions: ['Non-IOCL petrol pumps earn base 1 pt/₹100', 'Wallet loads', 'Rent', 'Government utilities', 'Cash advances'],
+    cappingDetails: '20 EDGE points/₹100 on IndianOil fuel capped at 1,00,000 / 1,000 points/month (up to ₹5,000 fuel spend/mo); 5 EDGE points/₹100 on online shopping capped at 250 points/month (up to ₹5,000 online spend/mo); 1 point/₹100 on other spends.',
+    officialCircularUrl: 'https://www.axis.bank.in/cards/credit-card/indianoil-axis-bank-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.4,
-    popularityIndex: 88,
+    popularityIndex: 90,
     changeHistory: [
+      {
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified 4% Fuel Valueback, Welcome Benefit & ₹3.5L Waiver',
+        summary: '20 EDGE points/₹100 on IndianOil fuel (capped at 1,000 pts/mo), 100% valueback welcome benefit (up to 1,250 points / ₹250) on first fuel txn within 30 days, 5 pts/₹100 online (max 250 pts), 1 pt/₹100 other retail, 10% BMS discount (up to ₹100/mo), ₹50/cycle fuel waiver cap, ₹3.5 Lakh annual fee waiver threshold.',
+        oldValue: 'Older ₹50k fee waiver threshold and uncapped online rewards',
+        newValue: '20 pts/₹100 fuel (cap 1k pts), 5 pts/₹100 online (cap 250 pts), ₹3.5L spend waiver, RuPay UPI integration',
+        officialRef: 'Axis Bank IndianOil Credit Card Terms & Conditions',
+        severity: 'low'
+      },
       {
         date: 'Sep 10, 2024',
         type: 'enhancement',
@@ -1386,7 +1396,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       }
     ],
     tags: ['fuel', 'upi', 'entry-level', 'cashback'],
-    suitableFor: ['Daily bike and car commuters using IndianOil pumps', 'UPI QR code Scan & Pay via credit', 'Low annual fee with easy spend waiver']
+    suitableFor: [
+      'Fuel Savings: 20 EDGE REWARD Points per ₹100 spent (4% valueback) at IndianOil outlets on transactions between ₹400 and ₹4,000 (capped at 1,000 points / ₹5,000 fuel spend per month)',
+      'Welcome Benefit: 100% valueback (up to 1,250 EDGE REWARD Points / ₹250) on your first fuel transaction within 30 days of card issuance',
+      'Online Shopping: 5 EDGE REWARD Points per ₹100 spent online (capped at 250 points / ₹5,000 online spend per month)',
+      'Other Retail Spends: 1 EDGE REWARD Point per ₹100 on all other eligible retail transactions',
+      'Fuel Surcharge Waiver: 1% fuel surcharge waiver on transactions between ₹400 and ₹4,000 (capped at ₹50 per statement cycle)',
+      'Entertainment & Dining: 10% instant discount on BookMyShow ticket bookings (up to ₹100 per month) and Dining Delights restaurant privileges',
+      'RuPay UPI Payments: Seamlessly link to UPI apps (Google Pay, PhonePe, Paytm, BHIM) for daily merchant QR scan & pay',
+      'Annual Fee Waiver: ₹500 + GST annual fee waived upon achieving ₹3,50,000 annual spend in a card membership year'
+    ]
   }
 ];
 
@@ -1711,6 +1730,14 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
       subline: 'Earn 20% rewards on flights, stays, trains, buses, visas, and experiences booked via Scapia app (5 Coins = ₹1 with zero redemption caps).',
       hasBogo: false,
       score: 6,
+    };
+  }
+  if (id === 'axis-indianoil') {
+    return {
+      headline: '10% Instant Discount on BookMyShow (Up to ₹100 / Month)',
+      subline: 'Get 10% instant discount on movie ticket bookings via BookMyShow up to ₹100 per card per calendar month.',
+      hasBogo: false,
+      score: 5,
     };
   }
   return {
@@ -2163,6 +2190,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Standard Lost Card Liability & Fraud Protection Cover',
       score: 8,
+    };
+  }
+  if (id === 'axis-indianoil') {
+    return {
+      headline: '4% Fuel Valueback at IndianOil + 100% First Fuel Cashback + RuPay UPI',
+      subline: '₹500 annual fee (waived on ₹3.5L spend), 20 EDGE points/₹100 (4% valueback) on IndianOil fuel (capped at 1,000 pts/mo), 100% valueback welcome on first fuel spend (up to 1,250 pts / ₹250), 5 pts/₹100 on online shopping (max 250 pts/mo), 1% fuel surcharge waiver (cap ₹50/cycle), 10% off BookMyShow (up to ₹100/mo), and RuPay UPI scan & pay.',
+      perks: [
+        '4% Fuel Valueback: 20 EDGE REWARD Points per ₹100 spent at IndianOil outlets (capped at 1,000 pts / ₹5,000 fuel spend/month)',
+        'Welcome Benefit: 100% valueback (up to 1,250 points / ₹250) on first fuel txn within 30 days',
+        'Online Shopping: 5 EDGE Points per ₹100 on online spends (capped at 250 pts / ₹5,000 online spend/month)',
+        'All Other Spends: 1 EDGE Point per ₹100 spent on eligible retail transactions',
+        'Fuel Surcharge Waiver: 1% waiver on ₹400–₹4,000 transactions (capped at ₹50 per statement cycle)',
+        'BookMyShow: 10% instant discount on movie ticket bookings (up to ₹100 per calendar month)',
+        'RuPay UPI Enabled: Link seamlessly to Google Pay, PhonePe, Paytm, and BHIM for daily QR payments',
+        'Annual Fee Waived on spending ₹3,50,000 or more in an anniversary year'
+      ],
+      insurance: 'Lost Card Liability Protection & Standard Fraud Protection',
+      score: 7,
     };
   }
   return {

@@ -206,6 +206,18 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const regularPoints = (otherSpend / 150) * 1;
       monthlyPoints = acceleratedPoints + regularPoints;
       monthlyCashbackRupees = monthlyPoints * 0.25;
+    } else if (targetCard.id === 'axis-indianoil') {
+      // 20 EDGE points / ₹100 on IndianOil fuel (capped at 1,000 pts/mo = ₹5,000 fuel spend)
+      // 5 EDGE points / ₹100 on online shopping (capped at 250 pts/mo = ₹5,000 online spend)
+      // 1 EDGE point / ₹100 on other eligible retail spends (1 pt = ₹0.20)
+      const fuelSpend = Math.min(5000, spends.fuel);
+      const fuelPoints = Math.min(1000, (fuelSpend / 100) * 20);
+      const onlineSpend = Math.min(5000, spends.onlineShopping);
+      const onlinePoints = Math.min(250, (onlineSpend / 100) * 5);
+      const otherSpend = Math.max(0, totalMonthlySpend - fuelSpend - onlineSpend);
+      const otherPoints = (otherSpend / 100) * 1;
+      monthlyPoints = fuelPoints + onlinePoints + otherPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.20;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -229,6 +241,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'swiggy-hdfc') waiverLimit = 200000;
     else if (targetCard.id === 'hsbc-live-plus') waiverLimit = 200000;
     else if (targetCard.id === 'sbi-simplysave') waiverLimit = 100000;
+    else if (targetCard.id === 'axis-indianoil') waiverLimit = 350000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 
     const isWaived = targetCard.isLifetimeFree || totalAnnualSpend >= waiverLimit;

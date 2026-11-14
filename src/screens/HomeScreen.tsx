@@ -241,6 +241,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 { id: 'hsbc-live-plus', name: 'HSBC Live+' },
                 { id: 'sbi-simplysave', name: 'SBI SimplySAVE' },
                 { id: 'idfc-first-millennia', name: 'IDFC Millennia (LTF)' },
+                { id: 'axis-indianoil', name: 'IndianOil Axis (RuPay)' },
               ].map(item => (
                 <button
                   key={item.id}

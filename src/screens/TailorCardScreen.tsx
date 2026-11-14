@@ -50,6 +50,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   else if (card.id === 'swiggy-hdfc') feeWaiverThreshold = 200000;
   else if (card.id === 'hsbc-live-plus') feeWaiverThreshold = 200000;
   else if (card.id === 'sbi-simplysave') feeWaiverThreshold = 100000;
+  else if (card.id === 'axis-indianoil') feeWaiverThreshold = 350000;
   else if (card.id === 'tata-neu-infinity') feeWaiverThreshold = 300000;
   else if (card.id === 'icici-sapphiro') feeWaiverThreshold = 600000;
   else if (card.id === 'amex-plat-travel') feeWaiverThreshold = 99999999;
@@ -180,6 +181,17 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     const incAnnual = Math.max(0, yearlySpend - 240000);
     const pts = ((baseAnnual * 0.6) / 150) * 3 + ((baseAnnual * 0.4) / 150) * 1 + (incAnnual / 150) * 10;
     grossAnnualRewards = Math.round(pts * 0.25 + 1200);
+  } else if (card.id === 'axis-indianoil') {
+    // 20 EDGE points / ₹100 on IndianOil fuel (capped at 1,000 pts/mo = 12,000 pts/yr)
+    // 5 EDGE points / ₹100 on online (capped at 250 pts/mo = 3,000 pts/yr)
+    // 1 EDGE point / ₹100 on other retail; 1 EDGE point = ₹0.20
+    const fuelSpend = Math.min(60000, yearlySpend * 0.35);
+    const fuelPts = Math.min(12000, (fuelSpend / 100) * 20);
+    const onlineSpend = Math.min(60000, yearlySpend * 0.35);
+    const onlinePts = Math.min(3000, (onlineSpend / 100) * 5);
+    const otherSpend = Math.max(0, yearlySpend - fuelSpend - onlineSpend);
+    const otherPts = (otherSpend / 100) * 1;
+    grossAnnualRewards = Math.round((fuelPts + onlinePts + otherPts) * 0.20);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }
