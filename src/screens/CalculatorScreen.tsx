@@ -105,7 +105,8 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.grocery * 0.05) + (spends.offline * 0.015);
       monthlyPoints = monthlyCashbackRupees;
     } else if (targetCard.id === 'icici-amazon-pay') {
-      monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.utilities * 0.02) + (spends.offline * 0.01);
+      // 5% Prime on Amazon shopping & travel bookings, 2% utilities/bills/partners, 1% elsewhere
+      monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.flightsHotels * 0.05) + (spends.utilities * 0.02) + (spends.offline * 0.01);
       monthlyPoints = monthlyCashbackRupees;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;

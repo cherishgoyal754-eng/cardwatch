@@ -389,24 +389,24 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 3319',
     joiningFee: 0,
     annualFee: 0,
-    annualFeeWaiverCondition: 'Lifetime Free unconditionally for all applicants',
+    annualFeeWaiverCondition: 'Nil Joining Fee & Nil Annual Fee (Unconditionally Lifetime Free)',
     isLifetimeFree: true,
-    minSalaryMonthly: 20000,
+    minSalaryMonthly: 30000,
     minCibilScore: 700,
     status: 'active',
-    headlineBenefit: '5% Unlimited Cashback for Prime Members + 100% Lifetime Free',
-    cashbackRate: '5% Amazon Prime, 3% Non-Prime, 2% Bill Payments, 1% All other spends',
-    rewardPointValue: 'Direct 1:1 auto-credited into Amazon Pay balance monthly',
-    forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% fuel surcharge waiver at all petrol pumps in India',
+    headlineBenefit: 'Lifetime Free (₹0) • 5% Unlimited Amazon & Travel Cashback • 1.99% Low Forex Markup',
+    cashbackRate: '5% on Amazon (Prime) / 3% (Non-Prime) • 2% on Amazon Pay & 100+ Partners • 1% Other Spends',
+    rewardPointValue: '1 Reward Point = ₹1.00 directly auto-credited monthly into Amazon Pay Balance',
+    forexMarkup: 1.99,
+    fuelSurchargeWaiver: '1% fuel surcharge waiver across all petrol pumps in India',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'No airport lounge access included.',
+    loungeSpendCondition: 'No airport lounge access included. Card is 100% optimized for zero fees and direct Amazon Pay cashback.',
     loungeNetwork: 'None',
-    merchantExclusions: ['Gold purchase, wallet top-up, EMI processing fee'],
-    cappingDetails: 'NO CAPPING on cashback! 5% is truly unlimited.',
-    officialCircularUrl: 'https://www.icicibank.com/personal-banking/cards/credit-card/amazon-pay-credit-card',
-    lastVerifiedDate: 'Nov 11, 2024',
+    merchantExclusions: ['Gold purchases', 'Wallet top-up (Amazon Pay load)', 'EMI processing fee', 'Cash advances'],
+    cappingDetails: 'NO CAPPING on cashback! 5% on Amazon (Prime) and 1% on all other spends is truly unlimited.',
+    officialCircularUrl: 'https://www.icici.bank.in/personal-banking/cards/credit-card/amazon-pay-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.8,
     popularityIndex: 98,
@@ -422,8 +422,18 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         severity: 'positive'
       }
     ],
-    tags: ['lifetime-free', 'cashback', 'shopping', 'grocery'],
-    suitableFor: ['First credit card seekers', 'Heavy Amazon shoppers', 'Zero fee seekers']
+    tags: ['lifetime-free', 'cashback', 'shopping', 'grocery', 'travel'],
+    suitableFor: [
+      'Zero Fees: Nil joining fee and nil annual fee (Unconditionally Lifetime Free)',
+      '5% unlimited cashback for Amazon Prime members on Amazon shopping & travel bookings (flights/hotels)',
+      '3% cashback for non-Prime members on Amazon shopping & flight/hotel bookings',
+      '2% cashback on digital categories, utility bills, gift cards, and 100+ partner merchants',
+      '1% cashback on all other eligible spends wherever Visa is accepted',
+      'Low 1.99% foreign currency markup fee on international transactions',
+      'Automatic monthly conversion of rewards directly into your Amazon Pay Balance (no redemption fees)',
+      '1% fuel surcharge waiver across petrol pumps in India',
+      'Eligibility: Indian citizen, minimum age 21, minimum monthly income ~₹30,000'
+    ]
   },
   {
     id: 'tata-neu-infinity',
@@ -1692,11 +1702,20 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'icici-amazon-pay') {
     return {
-      headline: 'Lifetime Free (₹0) + 5% Auto-Cashback on Amazon Prime Spends',
-      subline: 'Unconditional ₹0 annual fee forever, 5% unlimited cashback credited directly into Amazon Pay balance without redemption charges, fuel surcharge waiver.',
-      perks: ['Unconditional Lifetime Free (₹0)', '5% Unlimited Amazon Cashback', 'Direct Amazon Pay Balance Credit', 'Zero Redemption Fees'],
-      insurance: 'Standard Chip & PIN Fraud Protection',
-      score: 7,
+      headline: 'Lifetime Free (₹0) + 5% Amazon & Travel Cashback + 1.99% Forex + Auto-Credit',
+      subline: 'Unconditional ₹0 joining & annual fee forever, 5% unlimited cashback for Prime (3% non-Prime) on Amazon shopping, flights & hotel bookings, 2% on bills & 100+ partner merchants, 1% elsewhere, 1.99% discounted forex markup, 1% fuel surcharge waiver, and automatic monthly conversion into Amazon Pay balance.',
+      perks: [
+        'Unconditional Lifetime Free (₹0 Joining Fee & ₹0 Annual Fee)',
+        '5% Unlimited Cashback on Amazon Shopping & Flight/Hotel Bookings (Prime Members)',
+        '3% Cashback on Amazon Shopping & Travel Bookings (Non-Prime Members)',
+        '2% Cashback on Digital Categories, Utility Bills, Gift Cards & 100+ Partner Merchants',
+        '1% Cashback on All Other Spends Wherever Visa is Accepted',
+        'Discounted 1.99% Foreign Currency Markup Fee',
+        'Automatic Monthly Credit Directly into Amazon Pay Balance (Zero Redemption Fees)',
+        '1% Fuel Surcharge Waiver across all petrol pumps in India'
+      ],
+      insurance: 'Standard Chip & PIN Fraud Protection + Zero Lost Card Liability',
+      score: 8,
     };
   }
   if (id === 'indusind-tiger') {
