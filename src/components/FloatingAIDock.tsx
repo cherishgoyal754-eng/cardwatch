@@ -49,7 +49,7 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
           { label: "Dubai & Overseas", detail: "0% Forex cards (Scapia / Niyo) to avoid 4.13% bank surcharge.", tag: "0% Forex" },
           { label: "Airport Lounges", detail: "HDFC Regalia Gold 3 → 2 cuts; spend threshold criteria.", tag: "Lounge" },
           { label: "Amex vs Diners", detail: "Centurion global access vs 33.3% SmartBuy reward yield.", tag: "Compare" },
-          { label: "Lifetime Free", detail: "ICICI Amazon Pay, Scapia, and IDFC FIRST Wealth conditions.", tag: "LTF" },
+          { label: "Lifetime Free", detail: "IndusInd Tiger, Scapia, ICICI Amazon Pay, and IDFC FIRST Wealth (₹0 fee forever).", tag: "LTF" },
         ],
       },
       sources: ["Official Bank Regulatory Filings", "Technofino Community Guidelines", "RBI Circulars 2024-2025"],

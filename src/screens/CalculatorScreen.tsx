@@ -73,6 +73,15 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const otherCashback = Math.max(0, otherSpend) * 0.01;
       monthlyCashbackRupees = onlineCashback + otherCashback;
       monthlyPoints = monthlyCashbackRupees;
+    } else if (targetCard.id === 'indusind-tiger') {
+      // IndusInd Tiger: Lifetime Free (₹0 fee)
+      // Up to 6X accelerated rewards per ₹100 spent (milestones, 1 RP = ₹0.40 or 1:1 Air India miles)
+      const acceleratedSpend = Math.min(83333, (spends.onlineShopping + spends.flightsHotels));
+      const acceleratedPoints = Math.min(5000, (acceleratedSpend / 100) * 6);
+      const otherSpend = Math.max(0, totalMonthlySpend - acceleratedSpend - spends.fuel);
+      const regularPoints = (otherSpend / 100) * 1.5;
+      monthlyPoints = acceleratedPoints + regularPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.40;
     } else if (targetCard.id === 'scapia-federal') {
       // 20% rewards on Scapia app travel bookings (flights/stays/experiences)
       // 10% rewards on Visa spends, 5% on RuPay UPI (5 Coins = ₹1)
@@ -112,6 +121,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     let isLoungeUnlocked = true;
     if (targetCard.domesticLoungesPerQuarter === 0) isLoungeUnlocked = false;
     else if (targetCard.id === 'hdfc-regalia-gold') isLoungeUnlocked = quarterlySpend >= 60000;
+    else if (targetCard.id === 'indusind-tiger') isLoungeUnlocked = true; // 2 domestic lounges/quarter complimentary via card
     else if (targetCard.id === 'scapia-federal') isLoungeUnlocked = totalMonthlySpend >= 20000;
 
     const netAnnualProfit = annualGrossCash + feeSaved - feeToPay;

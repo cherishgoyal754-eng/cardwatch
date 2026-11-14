@@ -222,9 +222,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="flex items-center gap-2 overflow-x-auto pb-1">
               {[
                 { id: 'hdfc-regalia-gold', name: 'HDFC Regalia Gold' },
+                { id: 'indusind-tiger', name: 'IndusInd Tiger (LTF)' },
+                { id: 'scapia-federal', name: 'Scapia Federal' },
                 { id: 'axis-magnus', name: 'Axis Magnus' },
                 { id: 'sbi-cashback', name: 'SBI Cashback' },
-                { id: 'scapia-federal', name: 'Scapia Federal' },
               ].map(item => (
                 <button
                   key={item.id}

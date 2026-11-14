@@ -93,6 +93,15 @@ const DEFAULT_BILLING_DATA: Record<string, Omit<CardBillingInfo, 'cardId'>> = {
     daysRemaining: 11,
     isPaid: false,
   },
+  'indusind-tiger': {
+    creditLimit: 350000,
+    usedAmount: 48500,
+    billAmount: 21300,
+    minimumDue: 1065,
+    dueDate: '28 Nov 2026',
+    daysRemaining: 14,
+    isPaid: false,
+  },
 };
 
 function getInitialBillingForCard(cardId: string, card?: CreditCard): CardBillingInfo {
