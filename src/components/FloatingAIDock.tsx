@@ -2,6 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard } from '../types';
 import { sound } from '../utils/audio';
+import { CREDIT_CARDS_DATA } from '../data/cards';
+import {
+  CARDWATCH_AI_SYSTEM_ROLE,
+  processCardwatchAIQuery,
+} from '../utils/cardwatchAI';
 import {
   Sparkles,
   Send,
@@ -32,6 +37,7 @@ interface Message {
 export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
   comparisonCount,
   onOpenCompare,
+  cards = CREDIT_CARDS_DATA,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputQuery, setInputQuery] = useState('');
@@ -42,22 +48,22 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
     {
       id: 'init-1',
       sender: 'ai',
-      text: "Hi! I am your CARDWATCH Credit Card AI Advisor. How can I assist you with lounge access rules, devaluation updates, 0% forex cards for Dubai, or comparing cards?",
+      text: "Hi! I am CARDWATCH AI, India's most accurate credit card intelligence assistant. Ask me to calculate your reward points on any spend (e.g. 'How many points will I get if I spend ₹10,000 using my Scapia credit card?'), compare cards head-to-head, track devaluations, or analyze your monthly spending.",
       mindMapNodes: {
-        title: "Verified Intelligence Topics",
+        title: "CARDWATCH Verified Intelligence Core",
         items: [
-          { label: "Dubai & Overseas", detail: "0% Forex cards (Scapia / Niyo) to avoid 4.13% bank surcharge.", tag: "0% Forex" },
-          { label: "Airport Lounges", detail: "HDFC Regalia Gold 3 → 2 cuts; spend threshold criteria.", tag: "Lounge" },
-          { label: "Amex vs Diners", detail: "Centurion global access vs 33.3% SmartBuy reward yield.", tag: "Compare" },
-          { label: "Lifetime Free", detail: "IndusInd Tiger, Scapia, ICICI Amazon Pay, and IDFC FIRST Wealth (₹0 fee forever).", tag: "LTF" },
+          { label: "Reward Calculator", detail: "Step-by-step mathematical calculation with caps & MCC exclusions.", tag: "Calculator" },
+          { label: "Card Comparison", detail: "Head-to-head comparison across rates, fees, forex, and lounges.", tag: "Compare" },
+          { label: "Devaluation Tracker", detail: "Official regulatory updates, cuts, and lounge spend rules.", tag: "Devaluation" },
+          { label: "Spend Optimizer", detail: "Categorized analysis of groceries, travel, dining & online spends.", tag: "Optimization" },
         ],
       },
-      sources: ["Official Bank Regulatory Filings", "Technofino Community Guidelines", "RBI Circulars 2024-2025"],
+      sources: ["Official Bank Regulatory Filings", "Bank Cardholder Charters", "CARDWATCH Verified Database (Nov 2026)"],
     },
   ]);
 
   const quickPrompts = [
-    "Which card is best for ₹50k monthly spend?",
+    "How many points will I get if I spend ₹10,000 using my Scapia credit card?",
     "Which card has 0% forex for Dubai?",
     "Why was Regalia lounge cut from 3 to 2?",
     "Compare American Express vs HDFC Diners Black",
@@ -93,92 +99,17 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
       sound.playSuccess();
       setIsTyping(false);
 
-      const lower = text.toLowerCase();
-      let aiMsg: Message;
-
-      if (lower.includes('dubai') || lower.includes('forex') || lower.includes('overseas')) {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: "When traveling to Dubai (AED) or shopping overseas, standard bank cards levy a 3.5% markup + 18% GST (approx 4.13% surcharge), costing you ₹4,130 on every ₹1 Lakh. Here is your action plan:",
-          mindMapNodes: {
-            title: "Dubai & Forex Optimization Strategy",
-            items: [
-              { label: "Primary Zero-Forex Card", detail: "Federal Scapia Credit Card (0% Forex markup, Visa live rate).", tag: "Zero Markup" },
-              { label: "Super-Premium Backup", detail: "HDFC Infinia / Diners Black (2% forex markup but 3.3%-10% reward yield).", tag: "High Yield" },
-              { label: "Dubai Lounges", detail: "Marhaba & Ahlan Lounges at DXB Terminal 1, 2, 3 via Priority Pass.", tag: "Lounge" },
-              { label: "DCC Warning", detail: "Always bill in AED local currency. Never let POS convert to INR.", tag: "Critical" },
-            ],
-          },
-          sources: ["Scapia Federal Schedule of Charges", "Technofino Forex Matrix"],
-        };
-      } else if (lower.includes('regalia') || lower.includes('lounge') || lower.includes('hdfc')) {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: "HDFC Regalia Gold provides 3 complimentary domestic airport lounge visits per calendar quarter upon spending ₹60,000 or more in the preceding calendar quarter, plus 6 international visits per calendar year via Priority Pass.",
-          mindMapNodes: {
-            title: "HDFC & Domestic Lounge Rule Map",
-            items: [
-              { label: "Regalia Gold", detail: "3 visits/qtr on ₹60,000 previous quarter spend + 6 Intl via Priority Pass.", tag: "Accessible" },
-              { label: "Infinia & Diners Black", detail: "Unlimited domestic and international lounge visits without spend condition.", tag: "Uncapped" },
-              { label: "Scapia Federal", detail: "Unlimited domestic lounges + ₹1,000 dining privileges on ₹20,000 monthly spend.", tag: "Accessible" },
-              { label: "Priority Pass Alert", detail: "Do NOT swipe Priority Pass inside Indian domestic terminals ($32 fee).", tag: "Warning" },
-            ],
-          },
-          sources: ["HDFC Bank Circular HDFC/CARD/Q3-REV", "DreamFolks Lounge Network Update"],
-        };
-      } else if (lower.includes('amex') || lower.includes('diners') || lower.includes('compare')) {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: "American Express Platinum vs HDFC Diners Club Black Metal is the premier super-premium duel:",
-          mindMapNodes: {
-            title: "Amex Platinum vs HDFC Diners Club Black",
-            items: [
-              { label: "Lounge Privilege", detail: "Amex gives Centurion + Priority Pass with 2 guests. Diners gives 1,300+ lounges with 1 add-on guest.", tag: "Amex Lead" },
-              { label: "Reward Velocity", detail: "Diners Black yields up to 33.3% on SmartBuy. Amex gives 1 MR/₹40 and 5X multiplier.", tag: "Diners Lead" },
-              { label: "Annual Fee", detail: "Amex is ₹60,000 non-waivable. Diners Black is ₹10,000 waivable on ₹8L spend.", tag: "Fee Diff" },
-              { label: "Acceptance", detail: "Diners runs on Discover/Pulse network. Amex has proprietary global network.", tag: "Network" },
-            ],
-          },
-          sources: ["Amex Platinum Charter", "HDFC Diners Black Terms 2024"],
-        };
-      } else if (lower.includes('spend') || lower.includes('50k') || lower.includes('yearly') || lower.includes('monthly') || lower.includes('lakh')) {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: "Here is CARDWATCH's mathematical card referral judged by expected monthly and yearly spend brackets:",
-          mindMapNodes: {
-            title: "Spend-Based Credit Card Match Radar",
-            items: [
-              { label: "Under ₹25k/mo (< ₹3L/yr)", detail: "SBI Cashback (5% online up to ₹2k/cycle cap) & Amazon Pay ICICI (LTF). Fees waived or ₹0.", tag: "Entry Spender" },
-              { label: "₹40k–₹80k/mo (₹5L–₹10L/yr)", detail: "HDFC Regalia Gold (₹4L spend waives ₹2,500 fee + unlocks quarterly lounges) & Scapia (0% forex).", tag: "Balanced Spender" },
-              { label: "₹1L+/mo (₹12L+/yr)", detail: "HDFC Infinia Metal (₹10L spend waives ₹12,500 fee; yields ₹70,000+ flight vouchers via SmartBuy).", tag: "High Spender" },
-              { label: "₹2.5L+/mo (₹30L+/yr)", detail: "American Express Platinum (Luxury Taj/Marriott hotel elite status + Centurion Lounges) & Infinia.", tag: "Ultra HNI" },
-            ],
-          },
-          sources: ["Technofino Spend Benchmark 2024", "r/CreditCardsIndia Spend Matrix", "Official Bank Waiver Criteria"],
-        };
-      } else {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: `Here is the verified intelligence for "${text}" based on official regulatory circulars:`,
-          mindMapNodes: {
-            title: `CARDWATCH Mind Map: "${text}"`,
-            items: [
-              { label: "Recommendation", detail: "Review fee waiver thresholds and merchant reward exclusions before applying.", tag: "Insight" },
-              { label: "Lounge Rule", detail: "Verify previous quarter spend before attempting lounge entry at the airport.", tag: "Verification" },
-              { label: "Reward Capping", detail: "Utility and rent payments now incur 1% surcharges with 0% reward points across banks.", tag: "Surcharge Alert" },
-            ],
-          },
-          sources: ["Official Bank Regulatory Notices", "r/CreditCardsIndia Megathread", "Technofino Community"],
-        };
-      }
+      const aiResponse = processCardwatchAIQuery(text, cards);
+      const aiMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        sender: 'ai',
+        text: aiResponse.text,
+        mindMapNodes: aiResponse.mindMapNodes,
+        sources: aiResponse.sources,
+      };
 
       setMessages(prev => [...prev, aiMsg]);
-    }, 750);
+    }, 600);
   };
 
   return (
@@ -346,7 +277,7 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`p-3.5 rounded-2xl max-w-[85%] font-medium leading-relaxed shadow-xs ${
+                    className={`p-3.5 rounded-2xl max-w-[85%] font-medium leading-relaxed shadow-xs whitespace-pre-wrap ${
                       msg.sender === 'user'
                         ? 'bg-emerald-600 text-white font-bold rounded-tr-none'
                         : 'bg-emerald-50/80 text-slate-900 border border-emerald-200 rounded-tl-none'

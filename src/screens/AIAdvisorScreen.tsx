@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { sound } from '../utils/audio';
+import { CREDIT_CARDS_DATA } from '../data/cards';
+import { processCardwatchAIQuery } from '../utils/cardwatchAI';
 import {
   Bot,
   Send,
@@ -66,60 +68,17 @@ export const AIAdvisorScreen: React.FC = () => {
       sound.playSuccess();
       setIsTyping(false);
 
-      let aiMsg: Message;
-      const lower = query.toLowerCase();
-
-      if (lower.includes('dubai') || lower.includes('forex') || lower.includes('overseas')) {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: "For a trip to Dubai (AED) or any foreign country, using regular credit cards charges you 3.5% + 18% GST (4.13% penalty). Here is the verified community-backed recommendation:",
-          mindMapNodes: {
-            title: "Mind Map: Dubai / International Card Strategy",
-            items: [
-              { label: "Primary Swipe", detail: "Federal Bank Scapia (Zero Forex markup, 100% Visa exchange rate).", tag: "0% Markup" },
-              { label: "Luxury Backup", detail: "HDFC Infinia (2% forex markup, but yields 3.3% - 10% returns via SmartBuy).", tag: "Reward Yield" },
-              { label: "ATM Cash Abroad", detail: "Niyo Global Equitas Debit Card for zero forex ATM withdrawals.", tag: "ATM Cash" },
-              { label: "Critical Rule", detail: "Always swipe in local currency (AED), never accept machine DCC conversion into INR.", tag: "Warning" },
-            ],
-          },
-          sources: ["Technofino Forex Comparison Matrix", "Scapia Visa Official Schedule of Charges"],
-        };
-      } else if (lower.includes('lounge') || lower.includes('regalia') || lower.includes('hdfc')) {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: "HDFC Regalia Gold provides 3 complimentary domestic lounge visits per calendar quarter upon spending ₹60,000 in the preceding calendar quarter, along with 6 international visits per year via Priority Pass.",
-          mindMapNodes: {
-            title: "Mind Map: Lounge Access Navigation",
-            items: [
-              { label: "HDFC Regalia Gold", detail: "3 visits/quarter on ₹60,000 previous quarter spend + 6 Intl via Priority Pass.", tag: "Accessible" },
-              { label: "Uncapped Lounges", detail: "HDFC Infinia Metal & ICICI Emeralde Private remain without spend conditions.", tag: "Super Premium" },
-              { label: "Affordable Lounges", detail: "Federal Scapia gives unlimited lounges & ₹1,000 dining perks with ₹20,000 monthly spend threshold.", tag: "Accessible" },
-              { label: "Priority Pass Tip", detail: "Never use Priority Pass at Indian domestic airports (charges $32 + GST).", tag: "Important" },
-            ],
-          },
-          sources: ["HDFC Bank Circular HDFC/CARD/Q3-REV", "Reddit r/CreditCardsIndia Megathread"],
-        };
-      } else {
-        aiMsg = {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: `Based on current bank circulars and user experiences on Technofino and Reddit, here is the verified breakdown for: "${query}":`,
-          mindMapNodes: {
-            title: `Mind Map: Intelligence for "${query}"`,
-            items: [
-              { label: "Top Pick", detail: "HDFC Regalia Gold / Tata Neu Infinity for broad utility and reward velocity.", tag: "Primary" },
-              { label: "Devaluation Guard", detail: "Check quarterly spend criteria before swiping for lounge access.", tag: "Alert" },
-              { label: "Reward Optimization", detail: "Never swipe on rent or utility via third-party apps to avoid 1% surcharges.", tag: "Strategy" },
-            ],
-          },
-          sources: ["Reddit r/CreditCardsIndia", "Technofino Discussions", "Official Bank Regulatory Filings"],
-        };
-      }
+      const aiResponse = processCardwatchAIQuery(query, CREDIT_CARDS_DATA);
+      const aiMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        sender: 'ai',
+        text: aiResponse.text,
+        mindMapNodes: aiResponse.mindMapNodes,
+        sources: aiResponse.sources,
+      };
 
       setMessages(prev => [...prev, aiMsg]);
-    }, 900);
+    }, 700);
   };
 
   return (
@@ -170,7 +129,7 @@ export const AIAdvisorScreen: React.FC = () => {
 
               <div className={`max-w-2xl space-y-3.5 ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
                 <div
-                  className={`p-4 rounded-2xl text-xs sm:text-sm leading-relaxed font-medium ${
+                  className={`p-4 rounded-2xl text-xs sm:text-sm leading-relaxed font-medium whitespace-pre-wrap ${
                     msg.sender === 'user'
                       ? 'bg-emerald-600 text-white font-bold rounded-tr-none shadow-sm'
                       : 'bg-emerald-50/70 text-slate-900 border border-emerald-200 rounded-tl-none shadow-sm'
