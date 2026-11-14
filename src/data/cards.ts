@@ -148,7 +148,7 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
   },
   {
     id: 'sbi-cashback',
-    name: 'SBI Cashback Credit Card',
+    name: 'Cashback SBI Card',
     bank: 'SBI Card',
     bankLogoText: 'SBI CARD',
     tier: 'Entry Level',
@@ -157,53 +157,73 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 1042',
     joiningFee: 999,
     annualFee: 999,
-    annualFeeWaiverCondition: 'Waived on annual online spend of ₹2,00,000',
+    annualFeeWaiverCondition: 'Waived on annual spend of ₹2,00,000 or more in an anniversary year',
     isLifetimeFree: false,
     minSalaryMonthly: 30000,
     minCibilScore: 720,
     status: 'active',
-    headlineBenefit: '5% Flat Unlimited Cashback on All Online Spends (Capped at ₹5,000/mo)',
-    cashbackRate: '5% on online e-commerce websites; 1% on offline spends',
-    rewardPointValue: 'Direct statement credit (₹1 Cashback = ₹1 Statement Credit)',
+    headlineBenefit: '5% Online Cashback (Capped at ₹2,000/cycle) • 1% Offline Cashback • Auto-Credit in 2 Days',
+    cashbackRate: '5% on online purchases without merchant restrictions • 1% on offline spends',
+    rewardPointValue: 'Direct statement credit auto-credited within 2 working days of next statement generation',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% waiver (₹500 to ₹3,000 spend)',
+    fuelSurchargeWaiver: '1% waiver on fuel transactions between ₹500 and ₹3,000 (up to ₹100 per statement cycle)',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'No complimentary lounge access. Entire benefit is optimized for pure cash cashback.',
+    loungeSpendCondition: 'No complimentary lounge access. Entire card proposition is optimized for pure direct cash cashback.',
     loungeNetwork: 'None',
     merchantExclusions: [
+      'Fuel transactions (beyond surcharge waiver)',
+      'Wallet load (Amazon Pay, Paytm, Mobikwik)',
       'Rent payments & property management',
-      'Wallet loading (Amazon Pay, Paytm)',
-      'School/college fee payments & utilities',
-      'Jewellery purchases & precious metals',
-      'Government and tax transactions'
+      'Insurance premium payments',
+      'Utility bill payments & government services',
+      'Jewelry purchases & precious metals',
+      'School & education fees / college payments'
     ],
-    cappingDetails: 'Maximum ₹5,000 cashback per billing cycle (on ₹1,00,000 eligible online spend).',
-    officialCircularUrl: 'https://www.sbicard.com/en/personal/credit-cards/rewards/cashback-sbi-card.page',
-    lastVerifiedDate: 'Nov 08, 2024',
+    cappingDetails: '5% online cashback capped at ₹2,000 per statement cycle; 1% offline cashback capped at ₹2,000 per statement cycle; 1% fuel surcharge waiver capped at ₹100 per cycle.',
+    officialCircularUrl: 'https://www.sbicard.com/en/personal/credit-cards/cashback-sbi-card.html',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.7,
     popularityIndex: 96,
     recentChangeAlert: {
-      badge: 'Merchant Category Exclusions Expanded',
-      effectiveDate: 'Sep 15, 2024',
+      badge: 'Online Cashback Capped at ₹2,000/Cycle',
+      effectiveDate: 'Apr 01, 2026',
       isDevaluation: true,
-      description: 'Cashback removed on educational fees, transit passes and government utility platforms.'
+      description: 'Monthly online cashback revised to a cap of ₹2,000 per statement cycle (on ₹40,000 spend), and offline cashback capped at ₹2,000 per cycle.'
     },
     changeHistory: [
       {
+        date: 'Apr 01, 2026',
+        type: 'devaluation',
+        title: 'Cashback Monthly Cap Revised to ₹2,000',
+        summary: 'SBI Card revised maximum online cashback to ₹2,000 per statement cycle, with offline cashback also capped at ₹2,000 per cycle.',
+        oldValue: 'Maximum ₹5,000 cashback per billing cycle',
+        newValue: 'Maximum ₹2,000 online cashback + ₹2,000 offline cashback per cycle',
+        officialRef: 'SBI Card Cashback Policy Revision 2026',
+        severity: 'high'
+      },
+      {
         date: 'Sep 15, 2024',
         type: 'restriction',
-        title: 'Education & Utility Excluded from 5% Cashback',
-        summary: 'School/tuition fees and railway tickets booked outside standard gateways excluded from cashback category.',
-        oldValue: '5% cashback applied across most e-payments',
-        newValue: 'Merchant code 8211, 8220 (Schools/Colleges) earn 0% cashback',
+        title: 'Education, Utilities & Insurance Excluded',
+        summary: 'Cashback removed on educational fees, utilities, insurance, rent, wallet loads, and jewelry.',
+        oldValue: 'Cashback applied across broader merchant categories',
+        newValue: 'Strict exclusions on fuel, wallets, rent, insurance, utilities, jewelry, and school fees',
         officialRef: 'SBI Card Notification Circular SBIC/REV/2024',
         severity: 'high'
       }
     ],
     tags: ['cashback', 'shopping', 'grocery', 'dining'],
-    suitableFor: ['Online shopping on Amazon/Flipkart/Swiggy', 'Zero hassle statement cashback', 'Everyday shoppers']
+    suitableFor: [
+      '5% cashback on online purchases without merchant restrictions (capped at ₹2,000/statement cycle)',
+      '1% cashback on offline spends (capped at ₹2,000/statement cycle)',
+      'Auto-credited directly to SBI Card account within 2 working days of next statement generation',
+      '1% fuel surcharge waiver on transactions between ₹500 and ₹3,000 (up to ₹100/cycle)',
+      'Nil add-on card fee',
+      'Annual fee of ₹999 waived on spending ₹2,00,000 or more in an anniversary year',
+      'Foreign currency markup: 3.5% + GST'
+    ]
   },
   {
     id: 'scapia-federal',
@@ -1672,11 +1692,18 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'sbi-cashback') {
     return {
-      headline: '5% Direct Statement Cashback on All Online Merchants in India',
-      subline: 'Direct statement cashback up to ₹5,000/month across virtually all online transactions, fuel surcharge waiver, annual fee waived on ₹2 Lakh spend.',
-      perks: ['5% Direct Statement Credit', 'Covers All Online Shopping', 'No Merchant Restrictions', 'Fuel Surcharge Waiver'],
-      insurance: 'Lost Card Liability Protection',
-      score: 7,
+      headline: '5% Online & 1% Offline Cashback + Auto-Credit in 2 Days + ₹2k Cap',
+      subline: '5% cashback on online purchases without merchant restrictions (capped at ₹2,000/cycle), 1% offline cashback (capped at ₹2,000/cycle), automatically credited within 2 working days of next statement generation, 1% fuel surcharge waiver, annual fee waived on ₹2 Lakh spend.',
+      perks: [
+        '5% Cashback on All Online Spends (No Merchant Restrictions, Capped at ₹2,000/cycle)',
+        '1% Cashback on Offline Spends (Capped at ₹2,000/cycle)',
+        'Auto-Credit to SBI Card Account within 2 Working Days of Next Statement',
+        '1% Fuel Surcharge Waiver on ₹500–₹3,000 transactions (up to ₹100/cycle)',
+        'Nil Add-on Card Fee',
+        'Annual Fee Waived on spending ₹2,00,000 or more in an anniversary year'
+      ],
+      insurance: 'Lost Card Liability Protection Cover',
+      score: 8,
     };
   }
   return {

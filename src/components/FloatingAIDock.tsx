@@ -152,7 +152,7 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
           mindMapNodes: {
             title: "Spend-Based Credit Card Match Radar",
             items: [
-              { label: "Under ₹25k/mo (< ₹3L/yr)", detail: "SBI Cashback (5% online up to ₹5k cap) & Amazon Pay ICICI (LTF). Fees waived or ₹0.", tag: "Entry Spender" },
+              { label: "Under ₹25k/mo (< ₹3L/yr)", detail: "SBI Cashback (5% online up to ₹2k/cycle cap) & Amazon Pay ICICI (LTF). Fees waived or ₹0.", tag: "Entry Spender" },
               { label: "₹40k–₹80k/mo (₹5L–₹10L/yr)", detail: "HDFC Regalia Gold (₹4L spend waives ₹2,500 fee + unlocks quarterly lounges) & Scapia (0% forex).", tag: "Balanced Spender" },
               { label: "₹1L+/mo (₹12L+/yr)", detail: "HDFC Infinia Metal (₹10L spend waives ₹12,500 fee; yields ₹70,000+ flight vouchers via SmartBuy).", tag: "High Spender" },
               { label: "₹2.5L+/mo (₹30L+/yr)", detail: "American Express Platinum (Luxury Taj/Marriott hotel elite status + Centurion Lounges) & Infinia.", tag: "Ultra HNI" },

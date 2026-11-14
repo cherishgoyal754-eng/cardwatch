@@ -68,9 +68,9 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       monthlyPoints = travelPoints + regularPoints;
       monthlyCashbackRupees = monthlyPoints * 1.0;
     } else if (targetCard.id === 'sbi-cashback') {
-      const onlineCashback = Math.min(5000, spends.onlineShopping * 0.05);
+      const onlineCashback = Math.min(2000, spends.onlineShopping * 0.05); // Capped at ₹2,000/statement cycle
       const otherSpend = totalMonthlySpend - spends.onlineShopping - spends.fuel - spends.utilities;
-      const otherCashback = Math.max(0, otherSpend) * 0.01;
+      const otherCashback = Math.min(2000, Math.max(0, otherSpend) * 0.01); // Capped at ₹2,000/statement cycle
       monthlyCashbackRupees = onlineCashback + otherCashback;
       monthlyPoints = monthlyCashbackRupees;
     } else if (targetCard.id === 'indusind-tiger') {

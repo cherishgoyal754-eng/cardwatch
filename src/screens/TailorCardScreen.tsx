@@ -87,10 +87,10 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   // 3. Rewards Simulation at this spend level
   let grossAnnualRewards = 0;
   if (card.id === 'sbi-cashback') {
-    // 5% on online up to ₹5k/mo cap (₹60k/yr) + 1% elsewhere
+    // 5% on online up to ₹2k/mo cap (₹24k/yr) + 1% offline (₹24k/yr cap)
     const onlineSpend = yearlySpend * 0.65;
-    const onlineCashback = Math.min(60000, onlineSpend * 0.05);
-    const otherCashback = (yearlySpend - onlineSpend) * 0.01;
+    const onlineCashback = Math.min(24000, onlineSpend * 0.05);
+    const otherCashback = Math.min(24000, (yearlySpend - onlineSpend) * 0.01);
     grossAnnualRewards = Math.round(onlineCashback + otherCashback);
   } else if (card.id === 'hdfc-infinia-metal') {
     // 3.3% base up to 10-33% on flights via SmartBuy (average ~5.5% realistic blended)

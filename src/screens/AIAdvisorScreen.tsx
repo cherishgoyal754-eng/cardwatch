@@ -29,7 +29,7 @@ export const AIAdvisorScreen: React.FC = () => {
         items: [
           { label: "Airport Lounge Wave", detail: "HDFC, ICICI, SBI have moved to ₹50k-₹100k quarterly spend thresholds.", tag: "Devaluation" },
           { label: "Zero Forex King", detail: "Scapia Federal offers 0% markup + unlimited lounge if spending targets met.", tag: "Forex" },
-          { label: "Cashback Champions", detail: "SBI Cashback (5% online up to ₹5k) & ICICI Amazon Pay (5% uncapped for Prime).", tag: "Cashback" },
+          { label: "Cashback Champions", detail: "SBI Cashback (5% online up to ₹2k/cycle) & ICICI Amazon Pay (5% uncapped for Prime).", tag: "Cashback" },
           { label: "UPI on RuPay", detail: "Tata Neu Infinity gives 1.5% NeuCoins on scan-and-pay UPI transactions.", tag: "UPI" },
         ],
       },
