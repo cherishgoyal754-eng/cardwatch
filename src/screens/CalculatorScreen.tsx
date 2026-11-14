@@ -140,6 +140,11 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const incrementalPoints = (incrementalSpend / 150) * 10;
       monthlyPoints = basePoints + incrementalPoints;
       monthlyCashbackRupees = monthlyPoints * 0.25;
+    } else if (targetCard.id === 'kiwi-axis-rupay') {
+      // 2 EDGE points per ₹200 (or up to 1.5% cashback on UPI QR Scan & Pay)
+      const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel);
+      monthlyCashbackRupees = eligibleSpend * 0.015;
+      monthlyPoints = (eligibleSpend / 200) * 2;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;

@@ -228,6 +228,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 { id: 'indusind-tiger', name: 'IndusInd Tiger (LTF)' },
                 { id: 'idfc-first-wealth', name: 'IDFC FIRST Wealth (LTF)' },
                 { id: 'icici-amazon-pay', name: 'Amazon Pay ICICI (LTF)' },
+                { id: 'kiwi-axis-rupay', name: 'Kiwi Axis Kwik (LTF)' },
                 { id: 'icici-sapphiro', name: 'ICICI Sapphiro' },
                 { id: 'tata-neu-infinity', name: 'Tata Neu Infinity' },
                 { id: 'amex-plat-travel', name: 'Amex Plat Travel' },

@@ -823,50 +823,66 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
   },
   {
     id: 'kiwi-axis-rupay',
-    name: 'Kiwi Axis Bank Virtual RuPay Credit Card',
+    name: 'Axis Bank Kwik Credit Card',
     bank: 'Axis Bank / Kiwi',
-    bankLogoText: 'KIWI RUPAY',
+    bankLogoText: 'AXIS KWIK RUPAY',
     tier: 'Entry Level',
     network: 'RuPay',
     cardStyle: 'aurum',
     cardNumberPreview: '•••• 1983',
     joiningFee: 0,
     annualFee: 0,
-    annualFeeWaiverCondition: 'Lifetime Free unconditionally',
+    annualFeeWaiverCondition: 'Nil Joining Fee & Nil Annual Fee (Unconditionally Lifetime Free)',
     isLifetimeFree: true,
     minSalaryMonthly: 25000,
     minCibilScore: 710,
     status: 'active',
-    headlineBenefit: 'Flat 2% Cashback on UPI QR Code Payments + Instant Digital Issuance',
-    cashbackRate: '2% on Scan & Pay at merchant QR codes; 0.5% on regular online',
-    rewardPointValue: 'Direct Kiwi Kiwis (1 Kiwi = ₹0.25 to ₹1.00 via Neon)',
+    headlineBenefit: 'Lifetime Free Virtual RuPay • Credit on UPI • 2 EDGE Points per ₹200 • Instant Issuance',
+    cashbackRate: '2 EDGE Points per ₹200 spent (UPI/Online/Offline) • Accelerated rewards with Kiwi Neon',
+    rewardPointValue: '1 EDGE Reward Point = ₹0.20 to ₹0.40 (or direct cashback in Kiwi app)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: 'No waiver',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver on transactions between ₹400 and ₹4,000 (capped at ₹150/cycle)',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'No airport lounge access included.',
+    loungeSpendCondition: 'No airport lounge access included. Card is 100% focused on zero fees and UPI scan & pay transactions.',
     loungeNetwork: 'None',
-    merchantExclusions: ['Peer-to-peer personal transfers (P2P)', 'Rent payments'],
-    cappingDetails: 'Max 1,000 Kiwis per billing cycle on standard tier.',
-    officialCircularUrl: 'https://gokiwi.in/',
-    lastVerifiedDate: 'Nov 04, 2024',
+    merchantExclusions: ['Fuel', 'Wallet loads', 'Rental transactions (1% fee, max ₹1,500)', 'Cash withdrawals', 'Insurance', 'Government services', 'UPI under ₹2,000'],
+    cappingDetails: 'Standard UPI credit limit up to ₹1,000/day (utilities up to ₹2,000, card limit up to ₹1 Lakh/day). Redemption fee: Nil (<300 pts), ₹49 (300-10k pts), ₹99 (>10k pts).',
+    officialCircularUrl: 'https://www.axis.bank.in/cards/credit-card/axis-bank-kwik-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.4,
-    popularityIndex: 89,
+    rating: 4.5,
+    popularityIndex: 91,
+    recentChangeAlert: {
+      badge: 'Lifetime Free Verified',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: 'Zero joining & annual fee with instant virtual RuPay UPI issuance via Kiwi app.'
+    },
     changeHistory: [
       {
-        date: 'Jul 15, 2024',
-        type: 'policy_update',
-        title: 'Neon Subscription Integration',
-        summary: 'Kiwi introduced Neon tier giving 2% flat cashback on UPI merchant payments.',
-        oldValue: '0.5% base UPI cashback',
-        newValue: '2% boosted UPI cashback with Neon streak',
-        officialRef: 'Kiwi Terms v2.4',
-        severity: 'positive'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Official Fees, Fuel Waiver & Rewards',
+        summary: 'Lifetime Free (₹0), 2 EDGE Points per ₹200, 1% fuel waiver (₹400–₹4,000 capped at ₹150/mo), 1% rental fee (max ₹1,500), 3.6% monthly APR, instant Video KYC issuance.',
+        oldValue: 'Older benefit definitions',
+        newValue: '2 EDGE points per ₹200, 1% fuel waiver, 3.5% forex, Lifetime Free',
+        officialRef: 'Axis Bank & Kiwi User Guide',
+        severity: 'low'
       }
     ],
     tags: ['lifetime-free', 'upi', 'cashback', 'shopping'],
-    suitableFor: ['Tea stalls, grocery & daily UPI payments', 'Anyone wanting credit on Google Pay/PhonePe/Kiwi', 'Zero fee']
+    suitableFor: [
+      'Joining & Annual Fee: ₹0 (Nil joining & nil annual fee, 100% Lifetime Free)',
+      'Credit on UPI: Virtual RuPay credit card issued instantly in the Kiwi app for merchant (P2M) QR code scan & pay',
+      'Rewards Program: Earns 2 EDGE Reward Points per ₹200 spent (excludes fuel, wallet, rent, cash, insurance, govt & UPI under ₹2,000)',
+      'Accelerated Returns: Standard cashback or upgrade options via Kiwi Neon membership for accelerated UPI rewards',
+      '1% Fuel Surcharge Waiver on transactions between ₹400 and ₹4,000 (capped at ₹150 per statement cycle)',
+      'UPI Limits: Standard UPI limit up to ₹1,000/day, utilities/insurance up to ₹2,000, and general card limit up to ₹1,00,000/day',
+      'Charges: 3.6% monthly finance charges (52.86% p.a.), 1% rent transaction fee (max ₹1,500), 3.5% foreign currency markup',
+      'Instant Issuance: 100% digital onboarding via Kiwi app with PAN and Video KYC',
+      'Eligibility: Age 21+, Indian resident, minimum monthly income of ₹25,000'
+    ]
   },
   {
     id: 'flipkart-axis',
@@ -1894,6 +1910,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Lost Card Liability Protection Cover',
       score: 8,
+    };
+  }
+  if (id === 'kiwi-axis-rupay') {
+    return {
+      headline: 'Lifetime Free (₹0) + Credit on UPI + 2 EDGE Points/₹200 + Kiwi Neon Boost',
+      subline: '100% virtual RuPay credit card, unconditional ₹0 joining & annual fee, 2 EDGE points per ₹200 on UPI/offline/online, 1% fuel surcharge waiver, Kiwi Neon cashback multipliers, and instant digital Video KYC issuance.',
+      perks: [
+        'Unconditional Lifetime Free (₹0 Joining Fee & ₹0 Annual Fee)',
+        'Virtual RuPay Credit Card issued instantly inside the Kiwi App',
+        'Scan & Pay at all merchant (P2M) UPI QR codes via Kiwi, Google Pay, PhonePe, Paytm',
+        '2 EDGE Reward Points per ₹200 spent (excl. fuel, wallet, rent & UPI under ₹2,000)',
+        'Kiwi Neon Membership upgrade for accelerated flat cashback on UPI spends',
+        '1% Fuel Surcharge Waiver on transactions between ₹400 and ₹4,000 (up to ₹150/cycle)',
+        'Standard UPI daily limits up to ₹1,000/day, utilities up to ₹2,000, card limit up to ₹1 Lakh/day',
+        'Instant digital approval with Video KYC in minutes'
+      ],
+      insurance: 'Standard RuPay Digital Fraud & Zero Lost Card Liability Protection',
+      score: 7,
     };
   }
   return {
