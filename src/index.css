@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    overflow-x: hidden;
+  }
+}
+
+/* Animations */
+@keyframes float-hero-green {
+  0%, 100% {
+    transform: translateY(0px) rotate(-6deg) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-4deg) scale(1.02);
+  }
+}
+
+@keyframes float-hero-white {
+  0%, 100% {
+    transform: translateY(0px) rotate(6deg) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) rotate(8deg) scale(1.02);
+  }
+}
+
+@keyframes float-smooth {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-smooth-delayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-emerald {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.04);
+  }
+}
+
+.animate-float-green {
+  animation: float-hero-green 7s ease-in-out infinite;
+}
+
+.animate-float-white {
+  animation: float-hero-white 6s ease-in-out infinite 0.7s;
+}
+
+.animate-float-smooth {
+  animation: float-smooth 5s ease-in-out infinite;
+}
+
+.animate-float-smooth-delayed {
+  animation: float-smooth-delayed 6s ease-in-out infinite 1s;
+}
+
+.animate-pulse-emerald {
+  animation: pulse-emerald 4s ease-in-out infinite;
+}
+
+.glow-emerald-card {
+  box-shadow: 0 16px 40px -10px rgba(5, 150, 105, 0.25), 0 0 25px rgba(16, 185, 129, 0.15);
+}
+
+.glow-emerald-subtle {
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
+}
+
+/* Glassmorphic Panels with Pure White & Green Accents */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(16, 185, 129, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: #FFFFFF;
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 20px 40px -12px rgba(16, 185, 129, 0.25);
+  transform: translateY(-3px);
+}
+
+.glass-modal {
+  background: #FFFFFF;
+  border: 2px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 25px 65px -15px rgba(6, 78, 59, 0.2);
+}
+
+/* Premium Credit Card Gradients (Pure White & Emerald Green) */
+.card-gradient-aurum {
+  background: linear-gradient(135deg, #059669 0%, #047857 50%, #064e3b 100%);
+  border: 2px solid rgba(167, 243, 208, 0.7);
+  box-shadow: 0 24px 50px -10px rgba(5, 150, 105, 0.4), 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.card-gradient-white {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 50%, #dcfce7 100%);
+  border: 2px solid rgba(16, 185, 129, 0.6);
+  box-shadow: 0 24px 50px -12px rgba(16, 185, 129, 0.2), 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+.card-gradient-kestrel {
+  background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 55%, #a7f3d0 100%);
+  border: 2px solid rgba(16, 185, 129, 0.5);
+  box-shadow: 0 24px 50px -12px rgba(16, 185, 129, 0.2);
+}
+
+.card-gradient-infinia {
+  background: linear-gradient(135deg, #064e3b 0%, #043d2e 60%, #022c22 100%);
+  border: 2px solid rgba(251, 191, 36, 0.7);
+  box-shadow: 0 25px 50px -10px rgba(6, 78, 59, 0.35);
+}
+
+.card-gradient-scapia {
+  background: linear-gradient(135deg, #0d9488 0%, #059669 50%, #047857 100%);
+  border: 2px solid rgba(110, 231, 183, 0.7);
+  box-shadow: 0 22px 45px -10px rgba(13, 148, 136, 0.35);
+}
+
+.card-gradient-sbi {
+  background: linear-gradient(135deg, #0284c7 0%, #059669 50%, #047857 100%);
+  border: 2px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 22px 45px -10px rgba(2, 132, 199, 0.3);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.6);
+}
