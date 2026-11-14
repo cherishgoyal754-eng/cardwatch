@@ -17,14 +17,14 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     minSalaryMonthly: 150000,
     minCibilScore: 750,
     status: 'active',
-    headlineBenefit: '12 Domestic Lounges/Year + 4 Reward Points per ₹150',
-    cashbackRate: 'Up to 6.6% on Marks & Spencer, Myntra, Nykaa via SmartBuy',
-    rewardPointValue: '1 RP = ₹0.50 on SmartBuy Flight bookings & Gold vouchers',
+    headlineBenefit: '3 Domestic Lounges/Quarter (on ₹60k spend) • 6 Intl Lounges • 5X Rewards on Partners • 2% Forex',
+    cashbackRate: '4 RP per ₹150 spent (Base) • 5X RP on Partner Lifestyle Brands (Myntra, Nykaa, Reliance Digital, M&S)',
+    rewardPointValue: '1 RP = Up to ₹0.65 when redeemed against flights, hotels & exclusive Gold Catalogue',
     forexMarkup: 2.0,
     fuelSurchargeWaiver: '1% waiver on fuel transactions between ₹400 and ₹5,000 (capped at ₹500/month)',
-    domesticLoungesPerQuarter: 2,
+    domesticLoungesPerQuarter: 3,
     internationalLoungesPerYear: 6,
-    loungeSpendCondition: 'DEVALUATION: Requires min ₹1,00,000 spend in previous calendar quarter to unlock complimentary domestic lounge visits for the subsequent quarter.',
+    loungeSpendCondition: '3 complimentary domestic lounge visits per calendar quarter (on spends of ₹60,000 or more in preceding calendar quarter) + 6 international visits per calendar year via Priority Pass',
     loungeNetwork: 'Priority Pass',
     merchantExclusions: [
       'Rental payments (1% fee + no reward points)',
@@ -32,28 +32,28 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       'Wallet loading (Paytm, Mobikwik) excluded',
       'Education fees paid via third-party apps incur 1% fee'
     ],
-    cappingDetails: 'Reward points capped at 2,000 points per day for grocery purchases; SmartBuy daily cap of 5,000 points.',
-    officialCircularUrl: 'https://www.hdfcbank.com/personal/pay/cards/credit-cards/regalia-gold-credit-card',
-    lastVerifiedDate: 'Nov 02, 2024',
+    cappingDetails: 'Reward points capped at 2,000 points per day for grocery purchases; 5X accelerated rewards on partner brands (Myntra, Nykaa, Reliance Digital, Marks & Spencer).',
+    officialCircularUrl: 'https://www.hdfc.bank.in/credit-cards/regalia-gold-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.5,
+    rating: 4.6,
     popularityIndex: 94,
     recentChangeAlert: {
-      badge: 'Lounge Spend Criteria Added',
-      effectiveDate: 'Dec 01, 2024',
-      isDevaluation: true,
-      description: 'Lounge access is no longer unconditional. Cardholders must spend ₹1 Lakh in the previous calendar quarter to unlock 2 lounge visits.'
+      badge: 'Lounge Spend Criteria: ₹60,000/Quarter',
+      effectiveDate: '2024',
+      isDevaluation: false,
+      description: '3 complimentary domestic lounge visits per calendar quarter unlock on spending ₹60,000 or more in the preceding calendar quarter.'
     },
     changeHistory: [
       {
-        date: 'Dec 01, 2024',
-        type: 'devaluation',
-        title: 'Lounge Spend Threshold Introduced',
-        summary: 'Cardholders must now spend ₹1 Lakh in previous calendar quarter to unlock complimentary lounge access for next quarter.',
-        oldValue: '12 Complimentary Domestic Lounge visits per year (Unconditional)',
-        newValue: '2 Domestic Lounge visits per quarter ONLY after ₹1,00,000 quarter spend',
-        officialRef: 'HDFC Circular: HDFC/CC/2024/REV-L09',
-        severity: 'critical'
+        date: 'Oct 01, 2024',
+        type: 'policy_update',
+        title: 'Domestic Lounge Access Requirement: ₹60,000 Spend',
+        summary: 'Cardholders receive 3 complimentary domestic lounge visits per quarter upon spending ₹60,000 in preceding calendar quarter, plus 6 Priority Pass international visits per year.',
+        oldValue: 'Spend ₹1,00,000 in previous calendar quarter for 2 visits',
+        newValue: '3 complimentary visits per quarter on spends of ₹60,000+ in preceding calendar quarter',
+        officialRef: 'HDFC Regalia Gold Benefit Guide 2024',
+        severity: 'medium'
       },
       {
         date: 'Aug 01, 2024',
@@ -67,7 +67,17 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       }
     ],
     tags: ['lounge', 'dining', 'travel', 'shopping', 'premium'],
-    suitableFor: ['Frequent domestic travelers', 'People spending ₹1L+ per quarter', 'SmartBuy flight bookers']
+    suitableFor: [
+      'Base earn rate of 4 Reward Points per ₹150 spent',
+      '5X Reward Points on select partner lifestyle brands (Myntra, Nykaa, Reliance Digital, Marks & Spencer)',
+      '1 RP valued up to ₹0.65 when redeemed against flights, hotels, or Gold Catalogue',
+      '3 complimentary domestic lounge visits per quarter on ₹60,000 preceding quarter spend',
+      '6 complimentary international lounge visits per year via Priority Pass',
+      'Complimentary Swiggy One & MMT Black/Gold memberships upon hitting spending thresholds (₹1 Lakh in 90 days)',
+      'Milestone vouchers worth ₹1,500 every quarter on ₹1.5 Lakh spend + ₹5,000 flight vouchers on ₹5L & ₹7.5L spend',
+      '2% discounted foreign currency markup on all overseas transactions',
+      'Comprehensive insurance: ₹1 Cr air death, ₹15 Lakh overseas hospitalization, ₹10 Lakh credit liability'
+    ]
   },
   {
     id: 'hdfc-infinia-metal',
@@ -1350,8 +1360,8 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'hdfc-regalia-gold') {
     return {
-      headline: '₹1,500 Quarterly Milestone Vouchers (PVR / BookMyShow)',
-      subline: 'Earn ₹1,500 gift vouchers every quarter upon spending ₹1.5 Lakh, redeemable directly on PVR or BookMyShow.',
+      headline: '₹1,500 Quarterly Milestone Vouchers (BookMyShow / Partner Brands)',
+      subline: 'Earn ₹1,500 vouchers every quarter upon spending ₹1.5 Lakh (redeemable for BookMyShow, Myntra, Nykaa, etc.) + ₹5,000 flight vouchers on ₹5L & ₹7.5L spend.',
       hasBogo: false,
       score: 7,
     };
@@ -1530,6 +1540,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       subline: 'Complimentary annual subscriptions on milestone spend (Club Marriott, Swiggy One, Amazon Prime, Forbes, MMT Black), 2X weekend dining reward points, ₹2 Crore air accident cover.',
       perks: ['Milestone Subscriptions (Prime, Swiggy One)', '2X Weekend Dining Reward Points', '₹2 Cr Air Accident Insurance', 'Diners Global Airport Network'],
       insurance: '₹2 Crore Air Accident Cover',
+      score: 9,
+    };
+  }
+  if (id === 'hdfc-regalia-gold') {
+    return {
+      headline: 'Swiggy One & MMT Black + ₹1.5k Quarterly Vouchers + ₹1 Cr Insurance + 2% Forex',
+      subline: 'Complimentary Swiggy One & MMT Black/Gold memberships (on ₹1L in 90 days), ₹1,500 quarterly milestone vouchers on ₹1.5L spend, ₹5,000 flight vouchers at ₹5L/₹7.5L milestones, 2% foreign currency markup, and comprehensive travel insurance.',
+      perks: [
+        'Swiggy One & MMT Black/Gold Memberships (₹1L spend in 90 days)',
+        '₹1,500 Milestone Vouchers every quarter on ₹1.5 Lakh spend',
+        '₹5,000 Flight/Reward Vouchers on ₹5 Lakh and ₹7.5 Lakh annual spends',
+        '3 Domestic Lounges/qtr (on ₹60k spend) + 6 International Lounges (Priority Pass)',
+        '5X Reward Points on Partner Brands (Myntra, Nykaa, Reliance Digital, M&S)',
+        '1 RP valued up to ₹0.65 on flights, hotels & exclusive Gold Catalogue',
+        '2% Foreign Currency Markup on all international transactions',
+        'Annual fee waived on ₹4 Lakh spend in an anniversary year'
+      ],
+      insurance: '₹1 Crore Air Death + ₹15 Lakh Overseas Hospitalization + ₹10 Lakh Credit Liability',
       score: 9,
     };
   }

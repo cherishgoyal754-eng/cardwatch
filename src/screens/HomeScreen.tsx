@@ -183,7 +183,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <span className="text-xs text-emerald-700 font-bold">• Effective Dec 1, 2024</span>
               </div>
               <p className="text-sm sm:text-base font-bold text-slate-900 mt-0.5">
-                <strong className="text-emerald-700">HDFC Regalia Gold:</strong> Airport lounge access now requires ₹1 Lakh spend in the previous quarter. Unconditional entries discontinued.
+                <strong className="text-emerald-700">HDFC Regalia Gold:</strong> 3 domestic airport lounge visits per calendar quarter unlock on ₹60,000 spend in preceding quarter + 6 international visits via Priority Pass.
               </p>
             </div>
           </div>

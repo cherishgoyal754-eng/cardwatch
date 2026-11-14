@@ -50,11 +50,11 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     let monthlyCashbackRupees = 0;
 
     if (targetCard.id === 'hdfc-regalia-gold') {
-      const travelPoints = (spends.flightsHotels / 150) * 20;
+      const travelPoints = (spends.flightsHotels / 150) * 20; // 5X RP on partner brands & travel
       const regularSpend = totalMonthlySpend - spends.flightsHotels - spends.fuel;
       const regularPoints = (Math.max(0, regularSpend) / 150) * 4;
       monthlyPoints = travelPoints + regularPoints;
-      monthlyCashbackRupees = monthlyPoints * 0.50;
+      monthlyCashbackRupees = monthlyPoints * 0.65; // Up to ₹0.65 on flights, hotels & Gold Catalogue
     } else if (targetCard.id === 'hdfc-infinia-metal') {
       const travelPoints = Math.min(10000, (spends.flightsHotels / 150) * 25);
       const regularSpend = totalMonthlySpend - spends.flightsHotels - spends.fuel;
@@ -111,7 +111,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     // Lounge check
     let isLoungeUnlocked = true;
     if (targetCard.domesticLoungesPerQuarter === 0) isLoungeUnlocked = false;
-    else if (targetCard.id === 'hdfc-regalia-gold') isLoungeUnlocked = quarterlySpend >= 100000;
+    else if (targetCard.id === 'hdfc-regalia-gold') isLoungeUnlocked = quarterlySpend >= 60000;
     else if (targetCard.id === 'scapia-federal') isLoungeUnlocked = totalMonthlySpend >= 20000;
 
     const netAnnualProfit = annualGrossCash + feeSaved - feeToPay;

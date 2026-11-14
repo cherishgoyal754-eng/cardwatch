@@ -116,11 +116,11 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
         aiMsg = {
           id: (Date.now() + 1).toString(),
           sender: 'ai',
-          text: "HDFC Regalia Gold underwent a major devaluation: domestic lounge access was slashed from 3 to 2 visits per quarter, and now requires a minimum ₹1,00,000 spend in the preceding calendar quarter to unlock complimentary access.",
+          text: "HDFC Regalia Gold provides 3 complimentary domestic airport lounge visits per calendar quarter upon spending ₹60,000 or more in the preceding calendar quarter, plus 6 international visits per calendar year via Priority Pass.",
           mindMapNodes: {
             title: "HDFC & Domestic Lounge Rule Map",
             items: [
-              { label: "Regalia Gold", detail: "Reduced to 2 visits/qtr. Requires ₹1 Lakh previous quarter spend.", tag: "Strict Spend" },
+              { label: "Regalia Gold", detail: "3 visits/qtr on ₹60,000 previous quarter spend + 6 Intl via Priority Pass.", tag: "Accessible" },
               { label: "Infinia & Diners Black", detail: "Unlimited domestic and international lounge visits without spend condition.", tag: "Uncapped" },
               { label: "Scapia Federal", detail: "Unlimited domestic lounges + ₹1,000 dining privileges on ₹20,000 monthly spend.", tag: "Accessible" },
               { label: "Priority Pass Alert", detail: "Do NOT swipe Priority Pass inside Indian domestic terminals ($32 fee).", tag: "Warning" },

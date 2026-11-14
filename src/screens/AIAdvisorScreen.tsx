@@ -89,11 +89,11 @@ export const AIAdvisorScreen: React.FC = () => {
         aiMsg = {
           id: (Date.now() + 1).toString(),
           sender: 'ai',
-          text: "Banks have heavily restricted airport lounge access. HDFC Regalia Gold reduced domestic lounge visits from 3 to 2 per calendar quarter and mandated ₹1,00,000 spend in the preceding quarter for activation.",
+          text: "HDFC Regalia Gold provides 3 complimentary domestic lounge visits per calendar quarter upon spending ₹60,000 in the preceding calendar quarter, along with 6 international visits per year via Priority Pass.",
           mindMapNodes: {
             title: "Mind Map: Lounge Access Navigation",
             items: [
-              { label: "HDFC Regalia Gold", detail: "Now 2 visits/quarter, requires ₹1 Lakh previous quarter spend.", tag: "Strict Spend" },
+              { label: "HDFC Regalia Gold", detail: "3 visits/quarter on ₹60,000 previous quarter spend + 6 Intl via Priority Pass.", tag: "Accessible" },
               { label: "Uncapped Lounges", detail: "HDFC Infinia Metal & ICICI Emeralde Private remain without spend conditions.", tag: "Super Premium" },
               { label: "Affordable Lounges", detail: "Federal Scapia gives unlimited lounges & ₹1,000 dining perks with ₹20,000 monthly spend threshold.", tag: "Accessible" },
               { label: "Priority Pass Tip", detail: "Never use Priority Pass at Indian domestic airports (charges $32 + GST).", tag: "Important" },

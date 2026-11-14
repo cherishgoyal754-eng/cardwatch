@@ -65,8 +65,8 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   if (card.domesticLoungesPerQuarter === 0 || card.loungeNetwork === 'None') {
     isLoungeUnlocked = false;
   } else if (card.id === 'hdfc-regalia-gold') {
-    loungeSpendThreshold = 100000; // ₹1L/quarter
-    isLoungeUnlocked = quarterlySpend >= 100000;
+    loungeSpendThreshold = 60000; // ₹60k/quarter
+    isLoungeUnlocked = quarterlySpend >= 60000;
   } else if (card.id === 'scapia-federal') {
     loungeSpendThreshold = 60000; // ₹20k/month = ₹60k/quarter
     isLoungeUnlocked = monthlySpend >= 20000;
