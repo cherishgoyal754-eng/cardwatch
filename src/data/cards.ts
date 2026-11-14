@@ -951,29 +951,29 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     network: 'Visa',
     cardStyle: 'aurum',
     cardNumberPreview: '•••• 9010',
-    joiningFee: 499,
-    annualFee: 499,
-    annualFeeWaiverCondition: 'Waived on ₹1,50,000 annual spend',
-    isLifetimeFree: false,
+    joiningFee: 0,
+    annualFee: 0,
+    annualFeeWaiverCondition: 'Unconditionally Lifetime Free (₹0 Joining & Annual Fee)',
+    isLifetimeFree: true,
     minSalaryMonthly: 60000,
     minCibilScore: 740,
     status: 'active',
-    headlineBenefit: 'Earn up to 6 Accelerated Reward Points on every ₹100 • 1.50% Discounted Forex Mark-up Fee',
-    cashbackRate: 'Earn up to 6 Accelerated Reward Points on every ₹100',
-    rewardPointValue: '1 Reward Point = ₹0.40 on statement credit, vouchers & travel booking',
+    headlineBenefit: 'Lifetime Free (₹0) • Earn up to 6X Accelerated Rewards per ₹100 • 1.50% Discounted Forex Markup',
+    cashbackRate: 'Earn up to 6X accelerated reward points per ₹100 spent (capped/scaled based on monthly or annual spend milestones)',
+    rewardPointValue: '1 Reward Point = ₹0.40 for cash credit, or redeemable for airmiles (including 1:1 transfer ratio to Air India Maharaja Club)',
     forexMarkup: 1.5,
-    fuelSurchargeWaiver: '1% waiver on transactions between ₹400 and ₹4,000',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver on transactions between ₹400 and ₹4,000',
     domesticLoungesPerQuarter: 2,
     internationalLoungesPerYear: 2,
-    loungeSpendCondition: '2 Complimentary Domestic Lounge Access in a quarter via Credit Card and 2 International Lounge Access in a year via Priority Pass',
-    loungeNetwork: 'Priority Pass',
+    loungeSpendCondition: '8 domestic airport lounge visits per year (2 per quarter) via Credit Card + 2 international airport lounge visits per year via Priority Pass',
+    loungeNetwork: 'Domestic Lounge Program + Priority Pass',
     merchantExclusions: ['Rent payments', 'Wallet load', 'Government payments'],
     cappingDetails: 'Accelerated reward points capped at 5,000 points per statement cycle.',
-    officialCircularUrl: 'https://www.indusind.com/in/en/personal/cards/credit-cards/tiger-credit-card.html',
+    officialCircularUrl: 'https://www.indusind.bank.in/in/en/personal/cards/credit-card/tiger-credit-card.html',
     lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.7,
-    popularityIndex: 92,
+    rating: 4.8,
+    popularityIndex: 94,
     changeHistory: [
       {
         date: 'Sep 01, 2024',
@@ -986,13 +986,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         severity: 'positive'
       }
     ],
-    tags: ['travel', 'rewards', 'shopping', 'lounge'],
+    tags: ['lifetime-free', 'travel', 'rewards', 'shopping', 'lounge'],
     suitableFor: [
-      'Earn up to 6 Accelerated Reward Points on every ₹100',
-      'International travelers seeking 1.50% Discounted Forex Mark-up Fee',
-      '2 Complimentary Domestic Lounge Access in a quarter + 2 International via Priority Pass',
-      'Golfers seeking 1 Complimentary Game or Lesson per Quarter',
-      'One complimentary movie ticket upto ₹500 on BookMyShow every 6 months in a financial year'
+      'Lifetime Free (₹0 Joining Fee & ₹0 Annual Fee)',
+      'Earn up to 6X accelerated reward points per ₹100 spent (scaled on milestones)',
+      '1 Reward Point = ₹0.40 cash credit or 1:1 airmile transfer to Air India Maharaja Club',
+      '8 domestic airport lounge visits per year (2 per quarter) + 2 international via Priority Pass',
+      'Discounted foreign currency mark-up fee of 1.50%',
+      '1 complimentary golf game or lesson per quarter (4 per year) booked via Apexlynx',
+      '1 complimentary BookMyShow movie ticket (up to ₹500) every 6 months',
+      '1% fuel surcharge waiver on transactions between ₹400 and ₹4,000'
     ]
   },
   {
@@ -1321,7 +1324,7 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   if (id === 'indusind-tiger') {
     return {
       headline: '1 Complimentary Ticket up to ₹500 on BookMyShow (Every 6 Months)',
-      subline: 'One complimentary movie ticket upto ₹500 on BookMyShow every 6 months in a financial year.',
+      subline: '1 complimentary BookMyShow movie ticket (up to ₹500) every 6 months in a financial year (2 tickets per year).',
       hasBogo: false,
       score: 8,
     };
@@ -1451,10 +1454,10 @@ export function getCardGolfBenefit(card: { id: string; name?: string; bank?: str
   }
   if (id === 'indusind-tiger') {
     return {
-      headline: '1 Complimentary Game or Lesson per Quarter',
-      subline: 'Golf - 1 Complimentary Game or Lesson per Quarter across leading golf clubs in India via IndusInd Golf concierge.',
+      headline: '1 Complimentary Game or Lesson per Quarter (4 / Year)',
+      subline: '1 complimentary golf game or lesson per quarter (4 per year) booked via Apexlynx across leading golf clubs in India.',
       roundsPerQuarter: 1,
-      score: 6,
+      score: 7,
     };
   }
   if (id === 'hdfc-regalia-gold') {
@@ -1576,17 +1579,20 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'indusind-tiger') {
     return {
-      headline: '1.50% Discounted Forex + Priority Pass + Golf & Movie Privileges',
-      subline: '1.50% Discounted Forex Mark-up Fee, 2 Complimentary Domestic Lounge Access in a quarter via Credit Card, 2 International Lounge Access in a year via Priority Pass, 1 Golf Game/Lesson per quarter, and 1 Complimentary BookMyShow ticket up to ₹500 every 6 months in a financial year.',
+      headline: 'Lifetime Free + 1.50% Forex + 1:1 Air India Airmiles + Golf & Movies',
+      subline: 'Unconditionally Lifetime Free (₹0), 1.50% discounted forex markup, 1:1 airmile transfer to Air India Maharaja Club, 8 domestic + 2 Priority Pass lounges, Apexlynx golf, and BookMyShow movie tickets.',
       perks: [
-        'Earn up to 6 Accelerated Reward Points on every ₹100',
-        '1.50% Discounted Forex Mark-up Fee',
-        'Golf - 1 Complimentary Game or Lesson per Quarter',
-        '2 Domestic Lounges/qtr via Card + 2 Intl Lounges/yr (Priority Pass)',
-        'One complimentary movie ticket upto ₹500 on BookMyShow every 6 months in a financial year'
+        'Lifetime Free: ₹0 Joining Fee & ₹0 Annual Fee',
+        'Earn up to 6X Accelerated Reward Points per ₹100 spent',
+        '1:1 Airmile Transfer to Air India Maharaja Club (or ₹0.40 Cash Credit)',
+        '1.50% Discounted Foreign Currency Markup Fee',
+        '8 Domestic Lounges/yr (2/qtr) via Card + 2 International via Priority Pass',
+        '1 Complimentary Golf Game or Lesson per Quarter (4/yr) via Apexlynx',
+        '1 Complimentary BookMyShow Movie Ticket (up to ₹500) every 6 Months',
+        '1% Fuel Surcharge Waiver on transactions between ₹400 and ₹4,000'
       ],
-      insurance: 'Complimentary Personal Air Accident Cover',
-      score: 8,
+      insurance: 'Complimentary Personal Air Accident Insurance Cover',
+      score: 9,
     };
   }
   if (id === 'sbi-cashback') {
