@@ -103,6 +103,16 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const acceleratedPoints = (acceleratedSpend / 200) * 35;
       monthlyPoints = travelPoints + basePoints + acceleratedPoints;
       monthlyCashbackRupees = monthlyPoints * 0.40; // 5:2 ratio to partner air miles (₹1/mile = ₹0.40/pt)
+    } else if (targetCard.id === 'axis-atlas') {
+      // 5 EDGE Miles / ₹100 on travel (flights/hotels) capped at ₹2,00,000 spend/mo
+      // 2 EDGE Miles / ₹100 on other eligible retail spends (excluding fuel, utilities)
+      // 1 EDGE Mile = ₹1.00 on Travel EDGE, or up to 1:2 transfer to 20+ airline/hotel partners (~₹1.50+ value)
+      const travelSpend = Math.min(200000, spends.flightsHotels);
+      const travelMiles = (travelSpend / 100) * 5;
+      const otherEligible = Math.max(0, totalMonthlySpend - travelSpend - spends.fuel - spends.utilities);
+      const generalMiles = (otherEligible / 100) * 2;
+      monthlyPoints = travelMiles + generalMiles;
+      monthlyCashbackRupees = monthlyPoints * 1.50; // Valued at ₹1.50 per EDGE Mile (1:2 partner miles transfer)
     } else if (targetCard.id === 'tata-neu-infinity') {
       monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.grocery * 0.05) + (spends.offline * 0.015);
       monthlyPoints = monthlyCashbackRupees;
@@ -172,6 +182,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'amex-plat-travel') waiverLimit = 99999999;
     else if (targetCard.id === 'amex-platinum') waiverLimit = 99999999;
     else if (targetCard.id === 'axis-magnus') waiverLimit = 2500000;
+    else if (targetCard.id === 'axis-atlas') waiverLimit = 99999999;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 
     const isWaived = targetCard.isLifetimeFree || totalAnnualSpend >= waiverLimit;

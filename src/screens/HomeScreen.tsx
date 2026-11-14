@@ -235,6 +235,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 { id: 'scapia-federal', name: 'Scapia Federal' },
                 { id: 'axis-magnus', name: 'Axis Magnus' },
                 { id: 'sbi-cashback', name: 'SBI Cashback' },
+                { id: 'axis-atlas', name: 'Axis ATLAS' },
                 { id: 'flipkart-axis', name: 'Flipkart Axis' },
               ].map(item => (
                 <button

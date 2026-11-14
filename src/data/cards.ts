@@ -958,28 +958,38 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 0000',
     joiningFee: 5000,
     annualFee: 5000,
-    annualFeeWaiverCondition: 'Tier progression based on milestone spends (Silver, Gold, Platinum)',
+    annualFeeWaiverCondition: 'Tier progression based on milestone spends (Silver, Gold, Platinum with up to 10,000 bonus EDGE Miles)',
     isLifetimeFree: false,
     minSalaryMonthly: 125000,
     minCibilScore: 750,
     status: 'active',
-    headlineBenefit: '5 EDGE Miles per ₹100 on Airlines & Hotels (1:2 Miles Transfer Ratio)',
-    cashbackRate: 'Up to 10% value back on direct airline and hotel transactions',
-    rewardPointValue: '1 EDGE Mile = 2 Airline/Hotel Miles (Singapore Krisflyer, Accor, Qatar, Turkish)',
+    headlineBenefit: '5 EDGE Miles/₹100 on Travel • 1:2 Partner Miles Transfer • Tier-Based Lounges (Up to 18 Domestic / 12 Intl)',
+    cashbackRate: '5 EDGE Miles / ₹100 on Airlines, Hotels & Travel EDGE (capped at ₹2L spend/mo) • 2 EDGE Miles / ₹100 General',
+    rewardPointValue: '1 EDGE Mile = ₹1.00 on Travel EDGE, or up to 1:2 ratio to 20+ partner airlines & hotels (10%–15% effective return)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% waiver between ₹400 and ₹4,000',
-    domesticLoungesPerQuarter: 2,
-    internationalLoungesPerYear: 4,
-    loungeSpendCondition: 'Includes complimentary domestic & international lounge visits per tier status.',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver on transactions between ₹400 and ₹4,000 (up to ₹400/month)',
+    domesticLoungesPerQuarter: 4,
+    internationalLoungesPerYear: 12,
+    loungeSpendCondition: 'Tier-based: Silver (up to ₹7.5L): 8 domestic & 4 intl/yr; Gold (₹7.5L–₹15L): 12 domestic & 6 intl/yr; Platinum (>₹15L): 18 domestic & 12 intl/yr.',
     loungeNetwork: 'DreamFolks',
-    merchantExclusions: ['Rent payments', 'Wallet upload', 'Government utilities', 'Gold/Jewellery'],
-    cappingDetails: 'Monthly cap on 5x accelerated travel category is 10,000 EDGE Miles per billing cycle.',
-    officialCircularUrl: 'https://www.axisbank.com/retail/cards/credit-card/axis-bank-atlas-credit-card',
-    lastVerifiedDate: 'Nov 01, 2024',
+    merchantExclusions: ['Rent', 'Fuel', 'Utilities', 'Insurance', 'Wallet reloads', 'Government payments', 'Gold/Jewellery'],
+    cappingDetails: '5 EDGE Miles/₹100 on travel capped at ₹2,00,000 spend/month (10,000 EDGE Miles/mo); 1 EDGE Mile = ₹1 on Travel EDGE or up to 1:2 partner conversion.',
+    officialCircularUrl: 'https://www.axis.bank.in/cards/credit-card/axis-bank-atlas-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.8,
-    popularityIndex: 93,
+    popularityIndex: 94,
     changeHistory: [
+      {
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified EDGE Miles Rates & Tier Structures',
+        summary: '5 EDGE Miles/₹100 on travel (capped at ₹2L/mo spend), 2 EDGE Miles/₹100 general, 1:2 partner transfer across 20+ partners, Silver/Gold/Platinum tiers with up to 18 domestic & 12 international lounge visits.',
+        oldValue: 'Uncapped travel rewards & legacy lounge access definitions',
+        newValue: '5 EDGE Miles/₹100 travel (capped at ₹2L spend/mo), 2 EDGE Miles/₹100 general, Silver (8 domestic/4 intl), Gold (12/6), Platinum (18/12) tiers',
+        officialRef: 'Axis Bank ATLAS Credit Card Page',
+        severity: 'low'
+      },
       {
         date: 'Apr 20, 2024',
         type: 'devaluation',
@@ -991,8 +1001,18 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         severity: 'critical'
       }
     ],
-    tags: ['travel', 'super-premium', 'rewards', 'shopping'],
-    suitableFor: ['Frequent domestic & international flyers', 'Direct airline & hotel bookings', 'Accor & Singapore KrisFlyer fans']
+    tags: ['travel', 'super-premium', 'rewards', 'air-miles'],
+    suitableFor: [
+      'Travel Spends: 5 EDGE Miles per ₹100 spent on Airlines, Hotels, and Axis Bank Travel EDGE Portal (capped at ₹2,00,000 spend/month)',
+      'General Spends: 2 EDGE Miles per ₹100 spent on all other eligible purchases',
+      'Redemption - Travel EDGE: 1 EDGE Mile = ₹1.00 directly on flight & hotel bookings',
+      'Redemption - 1:2 Partner Transfer: Transfer to 20+ partner airlines & hotels at up to a 1:2 ratio (yielding 10%–15% effective return)',
+      'Silver Tier (Spends up to ₹7.5 Lakhs): 2,500 welcome EDGE Miles, 2,500 milestone EDGE Miles at ₹3L spend, 8 domestic & 4 international lounge visits/year',
+      'Gold Tier (Spends ₹7.5L – ₹15 Lakhs): 2,500 tier reward EDGE Miles, 2,500 milestone EDGE Miles at ₹7.5L spend, 12 domestic & 6 international lounge visits/year',
+      'Platinum Tier (Spends above ₹15 Lakhs): 5,000 tier reward EDGE Miles, 5,000 milestone EDGE Miles at ₹15L spend, 18 domestic & 12 international lounge visits/year',
+      'Exclusions: Zero EDGE Miles on rent, fuel, utilities, insurance, wallet reloads, government payments, or gold/jewelry purchases',
+      'Annual Fee: ₹5,000 + GST (Milestone & tier bonus EDGE miles more than offset the fee)'
+    ]
   },
   {
     id: 'swiggy-hdfc',
@@ -1793,11 +1813,20 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'axis-atlas') {
     return {
-      headline: '1:2 Mile Transfers to 20+ Airlines + Tier Upgrades + ₹2.5 Cr Cover',
-      subline: 'Industry-leading 1:2 mile conversion to Singapore KrisFlyer, Qatar Airways, Accor ALL, Marriott Bonvoy, United MileagePlus, up to 10,000 tier bonus miles, ₹2.5 Crore travel insurance.',
-      perks: ['1:2 Airline Mile Transfer (20+ Airlines)', 'Accor ALL 1:2 Hotel Transfer', 'Silver / Gold Tier Elite Upgrades', '₹2.5 Cr Air Accident Cover'],
-      insurance: '₹2.5 Crore Travel Insurance',
-      score: 8,
+      headline: '5 EDGE Miles/₹100 Travel + 1:2 Partner Transfer (20+ Partners) + Tier Lounges',
+      subline: '5 EDGE Miles per ₹100 on travel (capped at ₹2L spend/mo), 2 EDGE Miles/₹100 general, 1:2 partner conversion to 20+ airline/hotel programs (Accor, Singapore KrisFlyer, Qatar), Silver/Gold/Platinum tiers with up to 18 domestic & 12 intl lounge visits, and ₹2.5 Crore air accident cover.',
+      perks: [
+        'Travel Accelerated Earn: 5 EDGE Miles per ₹100 spent on Airlines, Hotels, and Travel EDGE (capped at ₹2,00,000 spend/mo)',
+        'General Spends: 2 EDGE Miles per ₹100 on all eligible retail spends',
+        '1:2 Partner Transfer Ratio: Transfer to 20+ partner airlines & hotels (10%–15% effective return)',
+        'Travel EDGE Redemption: 1 EDGE Mile = ₹1.00 directly on flight & hotel bookings',
+        'Silver Tier (Spends < ₹7.5L): 2,500 welcome miles + 2,500 milestone miles at ₹3L + 8 domestic & 4 intl lounge visits/year',
+        'Gold Tier (Spends ₹7.5L–₹15L): 2,500 tier miles + 2,500 milestone miles at ₹7.5L + 12 domestic & 6 intl lounge visits/year',
+        'Platinum Tier (Spends > ₹15L): 5,000 tier miles + 5,000 milestone miles at ₹15L + 18 domestic & 12 intl lounge visits/year',
+        'Exclusions: Zero EDGE Miles on rent, fuel, utilities, insurance, wallet reloads, government payments, or gold/jewelry'
+      ],
+      insurance: '₹2.5 Crore Air Accident Insurance + Travel Inconvenience Protection',
+      score: 9,
     };
   }
   if (id === 'icici-sapphiro') {

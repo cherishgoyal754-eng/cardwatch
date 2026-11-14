@@ -46,6 +46,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   else if (card.id === 'hdfc-diners-black') feeWaiverThreshold = 800000;
   else if (card.id === 'sbi-cashback') feeWaiverThreshold = 200000;
   else if (card.id === 'axis-magnus') feeWaiverThreshold = 2500000;
+  else if (card.id === 'axis-atlas') feeWaiverThreshold = 99999999;
   else if (card.id === 'tata-neu-infinity') feeWaiverThreshold = 300000;
   else if (card.id === 'icici-sapphiro') feeWaiverThreshold = 600000;
   else if (card.id === 'amex-plat-travel') feeWaiverThreshold = 99999999;
@@ -72,9 +73,9 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   } else if (card.id === 'scapia-federal' || card.id === 'idfc-first-wealth') {
     loungeSpendThreshold = 60000; // ₹20k/month = ₹60k/quarter
     isLoungeUnlocked = monthlySpend >= 20000;
-  } else if (card.id === 'indusind-tiger') {
+  } else if (card.id === 'indusind-tiger' || card.id === 'axis-atlas') {
     loungeSpendThreshold = 0;
-    isLoungeUnlocked = true; // 2 domestic lounges/quarter complimentary via card
+    isLoungeUnlocked = true; // Complimentary lounge visits included per tier/card
   } else if (card.id === 'hdfc-infinia-metal' || card.id === 'hdfc-diners-black' || card.id === 'amex-platinum') {
     loungeSpendThreshold = 0;
     isLoungeUnlocked = true; // Unconditional lounges
@@ -118,6 +119,20 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   } else if (card.id === 'axis-magnus') {
     // 12 pts/₹200 base (2.4%) + 35 pts/₹200 on spend > ₹1.5L/mo (7%) + 5X on Travel EDGE = blended ~4.2%
     grossAnnualRewards = Math.round(yearlySpend * 0.042);
+  } else if (card.id === 'axis-atlas') {
+    // 5 EDGE Miles / ₹100 on travel (up to ₹2L/mo = ₹24L/yr) + 2 EDGE Miles / ₹100 general
+    // Valued at 1:2 partner airline/hotel transfer (~10-15% return on travel, ~4-6% on general)
+    // Plus milestone EDGE Miles: 2,500 at ₹3L, 2,500 at ₹7.5L, 5,000 at ₹15L
+    const travelSpend = yearlySpend * 0.40;
+    const generalSpend = yearlySpend * 0.60;
+    const cappedTravel = Math.min(2400000, travelSpend);
+    const travelMiles = (cappedTravel / 100) * 5;
+    const generalMiles = (generalSpend / 100) * 2;
+    let milestoneMiles = 0;
+    if (yearlySpend >= 1500000) milestoneMiles = 10000;
+    else if (yearlySpend >= 750000) milestoneMiles = 5000;
+    else if (yearlySpend >= 300000) milestoneMiles = 2500;
+    grossAnnualRewards = Math.round((travelMiles + generalMiles + milestoneMiles) * 1.50);
   } else if (card.id === 'amex-plat-travel') {
     // 1 MR / ₹50 base + milestone bonus points + ₹10,000 Taj voucher on ₹4L spend
     grossAnnualRewards = yearlySpend >= 400000
