@@ -196,47 +196,66 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 7721',
     joiningFee: 0,
     annualFee: 0,
-    annualFeeWaiverCondition: 'Lifetime Free unconditionally',
+    annualFeeWaiverCondition: 'Nil Joining Fee & Nil Annual Fee (Unconditionally Lifetime Free)',
     isLifetimeFree: true,
     minSalaryMonthly: 25000,
     minCibilScore: 710,
     status: 'active',
-    headlineBenefit: 'Zero Forex Markup + Unlimited Domestic Lounge Access (on ₹10k spend)',
-    cashbackRate: '10% Scapia Coins on all online and offline spends; 20% on Scapia Travel app',
-    rewardPointValue: '5 Scapia Coins = ₹1 on flights and hotels booked via Scapia app',
+    headlineBenefit: 'Zero Forex Markup across 180+ Countries • Unlimited Lounges (on ₹20k spend) • Dual Visa & RuPay Cards',
+    cashbackRate: '20% on Scapia Travel app, 10% on Visa spends, 5% on RuPay UPI (₹500+)',
+    rewardPointValue: '5 Scapia Coins = ₹1 on travel bookings via Scapia app (No Redemption Cap)',
     forexMarkup: 0.0,
-    fuelSurchargeWaiver: 'No surcharge waiver on fuel',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver on applicable transactions',
     domesticLoungesPerQuarter: 'Unlimited',
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'Requires minimum ₹10,000 spend in the current billing cycle to unlock domestic lounge visits.',
+    loungeSpendCondition: 'Unlimited domestic airport lounge access + airport dining/shopping privileges (worth up to ₹1,000) unlock upon spending ₹20,000 in preceding/monthly billing cycle',
     loungeNetwork: 'DreamFolks',
     merchantExclusions: ['Rent payments', 'Wallet load', 'Cash withdrawals'],
-    cappingDetails: 'Coins never expire; minimum spend of ₹10,000 required every cycle for lounge.',
+    cappingDetails: 'Scapia Coins have a fixed value (5 Coins = ₹1) with no redemption cap on the Scapia app; ₹20,000 monthly cycle spend unlocks unlimited domestic lounge access + up to ₹1,000 airport dining/shopping privileges.',
     officialCircularUrl: 'https://www.scapia.cards/',
-    lastVerifiedDate: 'Nov 05, 2024',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.6,
-    popularityIndex: 91,
+    rating: 4.8,
+    popularityIndex: 94,
     recentChangeAlert: {
-      badge: 'Lounge Spend Raised from ₹5k to ₹10k',
-      effectiveDate: 'Aug 01, 2024',
+      badge: 'Lounge Qualification Revised to ₹20,000',
+      effectiveDate: 'Sep 01, 2024',
       isDevaluation: true,
-      description: 'Monthly spend criteria to unlock lounge access was increased from ₹5,000 to ₹10,000.'
+      description: 'Monthly spend criteria to unlock unlimited domestic lounge access and airport dining/shopping privileges (up to ₹1,000) was updated to ₹20,000 in preceding billing cycle.'
     },
     changeHistory: [
       {
-        date: 'Aug 01, 2024',
-        type: 'devaluation',
-        title: 'Lounge Qualification Spend Doubled',
-        summary: 'Monthly billing cycle spend requirement increased to control lounge overcrowding.',
-        oldValue: 'Spend ₹5,000 in monthly statement cycle',
-        newValue: 'Spend ₹10,000 in monthly statement cycle',
-        officialRef: 'Scapia In-App Policy Update 2024',
+        date: 'Sep 01, 2024',
+        type: 'policy_update',
+        title: 'Lounge Spend Criteria Updated to ₹20,000 + Dining Privileges',
+        summary: 'Monthly spend requirement to unlock unlimited domestic lounge access and up to ₹1,000 airport dining/shopping privileges updated to ₹20,000 in preceding cycle.',
+        oldValue: 'Spend ₹10,000 in monthly statement cycle',
+        newValue: 'Spend ₹20,000 in preceding/monthly billing cycle (includes airport dining/shopping up to ₹1,000)',
+        officialRef: 'Scapia Terms of Service Revision 2024',
         severity: 'medium'
+      },
+      {
+        date: 'Aug 01, 2024',
+        type: 'enhancement',
+        title: 'Dual Card Issuance (Visa + RuPay UPI)',
+        summary: 'One application provides a Visa card for general/international 0% forex spends and a RuPay card for UPI payments.',
+        oldValue: 'Single Visa physical card only',
+        newValue: 'Dual cards: Visa for international/general + RuPay for UPI (5% rewards on ₹500+)',
+        officialRef: 'Scapia Product Blog 2024',
+        severity: 'positive'
       }
     ],
-    tags: ['forex', 'travel', 'lounge', 'lifetime-free', 'dining'],
-    suitableFor: ['Dubai & International trips (0% forex)', 'Zero annual fee lovers', 'Domestic airport lounge access']
+    tags: ['forex', 'travel', 'lounge', 'lifetime-free', 'rupay', 'upi', 'rewards'],
+    suitableFor: [
+      'Zero Fees: Nil joining fee, nil annual fee, and zero forex markup across 180+ countries',
+      'Dual Cards: Visa card for international spending & RuPay card for UPI transactions',
+      '20% rewards on travel bookings (flights, stays, trains, buses, visas, experiences) on Scapia app',
+      '10% rewards on eligible online and offline spends on the Visa card',
+      '5% rewards on eligible UPI/online/offline spends of ₹500 or more on RuPay card',
+      'Earned Scapia Coins have fixed value (5 Coins = ₹1) with no redemption cap on Scapia app',
+      'Unlimited domestic airport lounges + up to ₹1,000 airport dining/shopping on ₹20,000 spend',
+      '1% fuel surcharge waiver on applicable transactions'
+    ]
   },
   {
     id: 'axis-magnus',
@@ -1395,10 +1414,10 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'scapia-federal') {
     return {
-      headline: 'Up to 20% Scapia Coins on Travel & Events',
-      subline: 'Earn accelerated Scapia Coins redeemable for experiences, events, and flights on the Scapia app.',
+      headline: '20% Scapia Coins on Travel Experiences, Events & Bookings',
+      subline: 'Earn 20% rewards on flights, stays, trains, buses, visas, and experiences booked via Scapia app (5 Coins = ₹1 with zero redemption caps).',
       hasBogo: false,
-      score: 5,
+      score: 6,
     };
   }
   return {
@@ -1552,11 +1571,20 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'scapia-federal') {
     return {
-      headline: '100% Zero Forex Markup + Lifetime Free + In-App Travel Portal',
-      subline: 'Save 3.5%–4.13% on every international spend with true 0% forex markup, instant credit line on travel bookings, zero joining fee & zero annual fee forever.',
-      perks: ['100% Zero Forex Markup (0%)', 'Lifetime Free (₹0)', 'Instant Travel Booking Coins', 'Zero Forex ATM Cash Withdrawal'],
+      headline: 'Zero Fees & 0% Forex + Dual Visa/RuPay + 20% Travel Rewards + Lounge Privileges',
+      subline: 'Nil joining and annual fee forever, zero forex markup across 180+ countries, dual cards (Visa for general/international & RuPay for UPI), 20% rewards on Scapia app travel, unlimited domestic lounge access + ₹1,000 airport dining/shopping on ₹20k spend.',
+      perks: [
+        'Zero Fees: Nil Joining Fee & Nil Annual Fee Forever',
+        'Zero Forex Markup across 180+ Countries',
+        'Dual Cards: Visa for 0% Forex + RuPay for UPI Transactions',
+        '20% Rewards on Scapia App (Flights, Stays, Trains, Buses, Visas, Experiences)',
+        '10% Rewards on Visa & 5% on RuPay UPI Spends (₹500+)',
+        'Fixed Coin Value: 5 Scapia Coins = ₹1 (No Redemption Cap)',
+        'Unlimited Domestic Lounge Access + ₹1,000 Airport Dining/Shopping (on ₹20k spend)',
+        '1% Fuel Surcharge Waiver on applicable transactions'
+      ],
       insurance: 'Comprehensive In-Flight Travel Cover',
-      score: 8,
+      score: 9,
     };
   }
   if (id === 'tata-neu-infinity') {

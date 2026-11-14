@@ -74,11 +74,13 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       monthlyCashbackRupees = onlineCashback + otherCashback;
       monthlyPoints = monthlyCashbackRupees;
     } else if (targetCard.id === 'scapia-federal') {
-      const travelCoins = spends.flightsHotels * 0.10;
-      const otherSpend = totalMonthlySpend - spends.flightsHotels - spends.fuel;
-      const otherCoins = Math.max(0, otherSpend) * 0.02;
+      // 20% rewards on Scapia app travel bookings (flights/stays/experiences)
+      // 10% rewards on Visa spends, 5% on RuPay UPI (5 Coins = ₹1)
+      const travelCoins = spends.flightsHotels * 1.0; // 20% value back = 1 coin per ₹1 spent (5 coins = ₹1)
+      const otherSpend = Math.max(0, totalMonthlySpend - spends.flightsHotels - spends.fuel);
+      const otherCoins = otherSpend * 0.10; // 10% Scapia Coins
       monthlyPoints = travelCoins + otherCoins;
-      monthlyCashbackRupees = monthlyPoints * 0.20;
+      monthlyCashbackRupees = monthlyPoints * 0.20; // 5 Coins = ₹1
     } else if (targetCard.id === 'tata-neu-infinity') {
       monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.grocery * 0.05) + (spends.offline * 0.015);
       monthlyPoints = monthlyCashbackRupees;
@@ -110,7 +112,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     let isLoungeUnlocked = true;
     if (targetCard.domesticLoungesPerQuarter === 0) isLoungeUnlocked = false;
     else if (targetCard.id === 'hdfc-regalia-gold') isLoungeUnlocked = quarterlySpend >= 100000;
-    else if (targetCard.id === 'scapia-federal') isLoungeUnlocked = totalMonthlySpend >= 10000;
+    else if (targetCard.id === 'scapia-federal') isLoungeUnlocked = totalMonthlySpend >= 20000;
 
     const netAnnualProfit = annualGrossCash + feeSaved - feeToPay;
     const netReturnRate = totalAnnualSpend > 0 ? ((netAnnualProfit / totalAnnualSpend) * 100).toFixed(1) : '0.0';

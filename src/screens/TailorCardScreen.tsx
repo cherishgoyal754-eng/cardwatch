@@ -68,8 +68,8 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     loungeSpendThreshold = 100000; // ₹1L/quarter
     isLoungeUnlocked = quarterlySpend >= 100000;
   } else if (card.id === 'scapia-federal') {
-    loungeSpendThreshold = 30000; // ₹10k/month = ₹30k/quarter
-    isLoungeUnlocked = monthlySpend >= 10000;
+    loungeSpendThreshold = 60000; // ₹20k/month = ₹60k/quarter
+    isLoungeUnlocked = monthlySpend >= 20000;
   } else if (card.id === 'hdfc-infinia-metal' || card.id === 'hdfc-diners-black' || card.id === 'amex-platinum') {
     loungeSpendThreshold = 0;
     isLoungeUnlocked = true; // Unconditional lounges
@@ -100,8 +100,8 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     // 5% Amazon + 1% other = blended 2.6%
     grossAnnualRewards = Math.round(yearlySpend * 0.026);
   } else if (card.id === 'scapia-federal') {
-    // 10% on flights + 2% coins = blended 3.2%
-    grossAnnualRewards = Math.round(yearlySpend * 0.032);
+    // 20% on Scapia app travel + 10% Visa / 5% RuPay = blended 4.0%
+    grossAnnualRewards = Math.round(yearlySpend * 0.040);
   } else if (card.id === 'tata-neu-infinity') {
     grossAnnualRewards = Math.round(yearlySpend * 0.035);
   } else if (card.id === 'axis-magnus') {

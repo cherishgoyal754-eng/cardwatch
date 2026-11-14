@@ -122,7 +122,7 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
             items: [
               { label: "Regalia Gold", detail: "Reduced to 2 visits/qtr. Requires ₹1 Lakh previous quarter spend.", tag: "Strict Spend" },
               { label: "Infinia & Diners Black", detail: "Unlimited domestic and international lounge visits without spend condition.", tag: "Uncapped" },
-              { label: "Scapia Federal", detail: "Domestic lounges available on minimum ₹10,000 monthly spend.", tag: "Low Spend" },
+              { label: "Scapia Federal", detail: "Unlimited domestic lounges + ₹1,000 dining privileges on ₹20,000 monthly spend.", tag: "Accessible" },
               { label: "Priority Pass Alert", detail: "Do NOT swipe Priority Pass inside Indian domestic terminals ($32 fee).", tag: "Warning" },
             ],
           },

@@ -95,7 +95,7 @@ export const AIAdvisorScreen: React.FC = () => {
             items: [
               { label: "HDFC Regalia Gold", detail: "Now 2 visits/quarter, requires ₹1 Lakh previous quarter spend.", tag: "Strict Spend" },
               { label: "Uncapped Lounges", detail: "HDFC Infinia Metal & ICICI Emeralde Private remain without spend conditions.", tag: "Super Premium" },
-              { label: "Affordable Lounges", detail: "Federal Scapia gives lounges with ₹10,000 monthly spend threshold.", tag: "Low Spend" },
+              { label: "Affordable Lounges", detail: "Federal Scapia gives unlimited lounges & ₹1,000 dining perks with ₹20,000 monthly spend threshold.", tag: "Accessible" },
               { label: "Priority Pass Tip", detail: "Never use Priority Pass at Indian domestic airports (charges $32 + GST).", tag: "Important" },
             ],
           },
