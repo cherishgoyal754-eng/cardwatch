@@ -221,6 +221,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* Card selector pills */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1">
               {[
+                { id: 'amex-platinum', name: 'Amex Platinum (Metal)' },
                 { id: 'hdfc-infinia-metal', name: 'HDFC Infinia (Invite-Only)' },
                 { id: 'hdfc-regalia-gold', name: 'HDFC Regalia Gold' },
                 { id: 'indusind-tiger', name: 'IndusInd Tiger (LTF)' },

@@ -121,6 +121,14 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel - spends.utilities);
       monthlyPoints = eligibleSpend / 50;
       monthlyCashbackRupees = eligibleSpend * 0.07;
+    } else if (targetCard.id === 'amex-platinum') {
+      // 1 MR / ₹40 base, 3X on overseas (flights/hotels), up to 20X Rewards Multiplier
+      const intlSpend = spends.flightsHotels;
+      const baseSpend = Math.max(0, totalMonthlySpend - intlSpend - spends.fuel);
+      const intlPoints = (intlSpend / 40) * 3;
+      const basePoints = (baseSpend / 40) * 1;
+      monthlyPoints = intlPoints + basePoints;
+      monthlyCashbackRupees = monthlyPoints * 0.50;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -137,6 +145,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'tata-neu-infinity') waiverLimit = 300000;
     else if (targetCard.id === 'icici-sapphiro') waiverLimit = 600000;
     else if (targetCard.id === 'amex-plat-travel') waiverLimit = 99999999;
+    else if (targetCard.id === 'amex-platinum') waiverLimit = 99999999;
     else if (targetCard.id === 'axis-magnus') waiverLimit = 2500000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 

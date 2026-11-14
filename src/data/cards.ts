@@ -629,56 +629,67 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
   },
   {
     id: 'amex-platinum',
-    name: 'American Express Platinum Card',
+    name: 'American Express Platinum Charge Card',
     bank: 'American Express',
     bankLogoText: 'AMERICAN EXPRESS',
     tier: 'Super Premium',
     network: 'Amex',
     cardStyle: 'amex-platinum',
     cardNumberPreview: '•••• 7997',
-    joiningFee: 60000,
-    annualFee: 60000,
-    annualFeeWaiverCondition: 'Strictly non-waivable super-premium metal charge card',
+    joiningFee: 66000,
+    annualFee: 66000,
+    annualFeeWaiverCondition: '₹66,000 + GST (Strictly non-waivable metal charge card; ₹35,000 renewal vouchers on ₹20L annual spend)',
     isLifetimeFree: false,
-    minSalaryMonthly: 300000,
+    minSalaryMonthly: 208333,
     minCibilScore: 780,
     status: 'active',
-    headlineBenefit: 'Centurion & Global Lounge Collection + Fine Hotels & Resorts VIP Upgrades + 24x7 Dedicated Concierge Desk',
-    cashbackRate: '1 MR per ₹40; 3X on overseas spends; 5X via Amex Reward Multiplier portal',
-    rewardPointValue: '1 MR = ₹0.50 on Taj Vouchers, Marriott Bonvoy & Airline Partners',
+    headlineBenefit: 'Metal Charge Card • Up to ₹60k Welcome Gift • 1,550+ Global Lounges • 5-Star Hotel Gold Tiers & FHR',
+    cashbackRate: '1 MR per ₹40; 3X on overseas spends; up to 20X via Rewards Multiplier partners',
+    rewardPointValue: '1 MR = up to ₹0.50 (Taj vouchers, Marriott Bonvoy, air miles & statement credit)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '0% convenience fee at all HPCL & BPCL fuel stations',
+    fuelSurchargeWaiver: '0% convenience fee at select HPCL & BPCL fuel stations',
     domesticLoungesPerQuarter: 'Unlimited',
     internationalLoungesPerYear: 'Unlimited',
-    loungeSpendCondition: 'Complimentary unlimited access to American Express Centurion Lounges, Priority Pass, Delta Sky Clubs, and Eurostar lounges worldwide with 2 guests.',
-    loungeNetwork: 'Priority Pass',
-    merchantExclusions: ['Fuel, Cash advances, and Utilities excluded from base points'],
-    cappingDetails: '5X points capped at 25,000 bonus points per month via Reward Multiplier.',
+    loungeSpendCondition: 'Unlimited complimentary access to 1,550+ airport lounges worldwide (Centurion, Priority Pass, Delta Sky Clubs, Escape) across 140+ countries.',
+    loungeNetwork: 'Centurion & Priority Pass (1,550+ Lounges)',
+    merchantExclusions: ['Fuel', 'Cash advances', 'Utilities excluded from base points'],
+    cappingDetails: 'Charge card with no pre-set spending limit. Welcome gift vouchers up to ₹60,000 via Taj, Luxe, or Postcard.',
     officialCircularUrl: 'https://www.americanexpress.com/in/charge-cards/platinum-card/',
-    lastVerifiedDate: 'Nov 12, 2024',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.9,
     popularityIndex: 98,
     recentChangeAlert: {
-      badge: 'ENHANCEMENT: Fine Hotels & Resorts Credit',
-      effectiveDate: 'Jan 01, 2025',
+      badge: 'Official Fee & Perks Verified',
+      effectiveDate: 'Active',
       isDevaluation: false,
-      description: 'Added ₹30,000 annual Taj Hotel credit and instant Marriott Gold Elite & Hilton Honors Gold VIP statuses.'
+      description: '₹66,000 annual fee with up to ₹60,000 welcome gift vouchers and 1,550+ global lounges.'
     },
     changeHistory: [
       {
-        date: 'Oct 01, 2024',
-        type: 'enhancement',
-        title: 'New Metal Form Factor & Global Lounge Upgrade',
-        summary: 'Card engineered with stainless steel core with Centurion engraving and unlimited Priority Pass guest access.',
-        oldValue: 'Plastic card with limited lounge guest allowances',
-        newValue: 'All-metal precision engraved Centurion charge card',
-        officialRef: 'Amex India Platinum Charter 2024',
-        severity: 'positive'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Official Fee, Eligibility & Luxury Benefits',
+        summary: '₹66,000 annual fee, ₹25L salaried / ₹15L self-employed eligibility, up to ₹60k welcome gift, 1,550+ global lounges, 5 hotel elite statuses, FHR benefits, 1 MR/₹40, 3X intl, up to 20X multiplier.',
+        oldValue: 'Older ₹60,000 fee figures',
+        newValue: '₹66k + GST fee, ₹25L/₹15L income, ₹60k welcome vouchers, 1,550+ lounges',
+        officialRef: 'American Express India Official Portal',
+        severity: 'low'
       }
     ],
     tags: ['premium', 'lounge', 'travel', 'dining', 'golf'],
-    suitableFor: ['HNIs & CXOs seeking global Centurion lounge access', 'International travelers wanting 5-star hotel upgrades', 'Luxury diners wanting dedicated table concierge']
+    suitableFor: [
+      'Annual Fee: ₹66,000 plus applicable taxes (all-metal charge card with no pre-set credit limit)',
+      'Eligibility: Minimum annual income of ₹25 Lakhs for salaried or ₹15 Lakhs for self-employed individuals',
+      'Welcome Gift: Vouchers worth up to ₹60,000 via Taj, Luxe, or Postcard Hotels upon fee realization',
+      'Renewal Benefit: Vouchers & benefits worth up to ₹35,000 upon spending ₹20 Lakhs in a year',
+      'Global Lounges: Complimentary access to 1,550+ airport lounges globally across 140+ countries (Centurion, Priority Pass, Delta, Escape)',
+      'Fine Hotels & Resorts: Curated stay benefits valued around ₹44,300 (room upgrades, early check-in, 4pm checkout, $100 property credit)',
+      'Complimentary Hotel Status Tiers: Marriott Bonvoy Gold Elite, Hilton Honors Gold Elite, Radisson Rewards, Taj Epicure, ALL Accor+ Explorer',
+      'Rewards Program: 1 Membership Rewards point per ₹40 spent, 3X points on international spends, up to 20X via Rewards Multiplier partners',
+      'Dining & Concierge: EazyDiner Prime membership (up to 50% off at 1,800+ restaurants) and 24/7 dedicated Centurion concierge desk',
+      'Insurance Coverage: Complimentary air accident insurance up to ₹5 Crore and overseas medical insurance up to USD 50,000'
+    ]
   },
   {
     id: 'hdfc-diners-black',
@@ -1634,10 +1645,20 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'amex-platinum') {
     return {
-      headline: 'Taj Epicure + Marriott Gold + Fine Hotels & Resorts + ₹5 Cr Cover',
-      subline: 'Centurion 24x7 Global Concierge, Taj Epicure, Marriott Bonvoy Gold Elite, Hilton Honors Gold, Radisson Rewards, Fine Hotels & Resorts ($100 property credit, free breakfast for 2, 4pm checkout), ₹5 Crore travel accident insurance.',
-      perks: ['Taj Epicure Preferred', 'Marriott Bonvoy Gold Elite', 'Hilton Honors Gold', 'Fine Hotels & Resorts ($100 credit + breakfast)', '₹5 Cr Travel Accident Cover'],
-      insurance: '₹5 Crore Air Accident + Overseas Medical Cover',
+      headline: '₹60k Welcome Vouchers + 1,550+ Global Lounges + 5 Hotel Status Tiers + FHR (~₹44.3k) + ₹5 Cr Insurance',
+      subline: 'Metal charge card with no pre-set limit, ₹66,000 fee, up to ₹60k welcome vouchers (Taj/Luxe/Postcard), 1,550+ global lounges (Centurion, Priority Pass, Delta), Marriott & Hilton Gold status, FHR benefits valued ~₹44,300, EazyDiner Prime, and 24/7 dedicated Centurion concierge.',
+      perks: [
+        'Welcome Gift: Vouchers worth up to ₹60,000 via Taj, Luxe, or Postcard Hotels',
+        'Renewal Benefit: Vouchers & benefits worth up to ₹35,000 upon spending ₹20 Lakhs/yr',
+        'Global Lounges: Unlimited access to 1,550+ lounges worldwide across 140+ countries with guests',
+        'Fine Hotels & Resorts (FHR): Stay privileges valued at ~₹44,300 (room upgrades, $100 credit, 4pm checkout)',
+        'Complimentary 5-Star Elite Status: Marriott Bonvoy Gold, Hilton Honors Gold, Radisson Rewards, Taj Epicure, ALL Accor+ Explorer',
+        'Rewards: 1 MR per ₹40, 3X International, up to 20X via Rewards Multiplier partners',
+        'Dining & Lifestyle: EazyDiner Prime membership (up to 50% off) + 24/7 Dedicated Concierge',
+        'Golf Privileges: Unlimited complimentary golf games & coaching across premier global greens',
+        'Eligibility: Salaried: ₹25 Lakhs p.a. (~₹2.08L/mo) | Self-Employed: ₹15 Lakhs p.a. (~₹1.25L/mo)'
+      ],
+      insurance: '₹5 Crore Accidental Air Death Cover + USD 50,000 Overseas Medical Insurance',
       score: 10,
     };
   }

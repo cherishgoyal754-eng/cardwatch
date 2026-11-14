@@ -124,8 +124,9 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
       ? Math.round(yearlySpend * 0.02 + 10000 + 40000 * 0.4)
       : Math.round(yearlySpend * 0.02);
   } else if (card.id === 'amex-platinum') {
-    // 2.5% points + ₹45,000 luxury vouchers & Taj/Marriott gold tiers
-    grossAnnualRewards = Math.round(yearlySpend * 0.028 + 45000);
+    // 1 MR / ₹40 (2.5% value) + ₹44,300 Fine Hotels & Resorts privileges + ₹35,000 renewal vouchers on ₹20L spend
+    const milestoneBonus = yearlySpend >= 2000000 ? 35000 : 0;
+    grossAnnualRewards = Math.round(yearlySpend * 0.025 + 44300 + milestoneBonus);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }
