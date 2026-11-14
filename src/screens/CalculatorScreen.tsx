@@ -163,6 +163,17 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const otherCashback = otherSpend * 0.01;
       monthlyCashbackRupees = flipkartCashback + partnerCashback + otherCashback;
       monthlyPoints = monthlyCashbackRupees;
+    } else if (targetCard.id === 'swiggy-hdfc') {
+      // 10% on Swiggy App (Food, Instamart, Dineout) min ₹249, capped at ₹1,500/billing cycle
+      // 5% on select online categories (apparel, electronics, cabs, etc.) min ₹100, capped at ₹1,500/billing cycle
+      // 1% on other eligible retail spends min ₹100, capped at ₹500/billing cycle
+      const swiggySpend = spends.dining + spends.grocery;
+      const swiggyCashback = Math.min(1500, swiggySpend * 0.10);
+      const onlineCashback = Math.min(1500, spends.onlineShopping * 0.05);
+      const otherSpend = Math.max(0, totalMonthlySpend - swiggySpend - spends.onlineShopping - spends.fuel - spends.utilities);
+      const otherCashback = Math.min(500, otherSpend * 0.01);
+      monthlyCashbackRupees = swiggyCashback + onlineCashback + otherCashback;
+      monthlyPoints = monthlyCashbackRupees;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -183,6 +194,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'amex-platinum') waiverLimit = 99999999;
     else if (targetCard.id === 'axis-magnus') waiverLimit = 2500000;
     else if (targetCard.id === 'axis-atlas') waiverLimit = 99999999;
+    else if (targetCard.id === 'swiggy-hdfc') waiverLimit = 200000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 
     const isWaived = targetCard.isLifetimeFree || totalAnnualSpend >= waiverLimit;

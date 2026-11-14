@@ -1025,28 +1025,38 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 7712',
     joiningFee: 500,
     annualFee: 500,
-    annualFeeWaiverCondition: 'Waived on ₹2,00,000 annual spend',
+    annualFeeWaiverCondition: 'Waived on ₹2,00,000 spend in an anniversary year',
     isLifetimeFree: false,
     minSalaryMonthly: 25000,
     minCibilScore: 720,
     status: 'active',
-    headlineBenefit: '10% Cashback on Swiggy (Food, Instamart, Dineout) + 5% Top Online Merchants',
-    cashbackRate: '10% on Swiggy app, 5% on Amazon, Flipkart, Myntra, Nykaa, 1% other spends',
-    rewardPointValue: 'Direct Swiggy Money cashback automatically credited every cycle',
+    headlineBenefit: '10% on Swiggy (Food/Instamart/Dineout) • 5% Select Online • 3-Mo Swiggy One',
+    cashbackRate: '10% on Swiggy (cap ₹1,500/mo) • 5% select online spends (cap ₹1,500/mo) • 1% other retail (cap ₹500/mo)',
+    rewardPointValue: 'Cashback credited directly as Swiggy Money in your linked Swiggy account balance',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: 'No waiver',
+    fuelSurchargeWaiver: 'No fuel surcharge waiver',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'No airport lounge access included.',
+    loungeSpendCondition: 'No airport lounge access included with this card.',
     loungeNetwork: 'None',
-    merchantExclusions: ['Rent', 'Wallet loads', 'Fuel', 'Government payments'],
-    cappingDetails: '10% Swiggy cashback capped at ₹1,500/month; 5% online capped at ₹1,500/month.',
-    officialCircularUrl: 'https://www.hdfcbank.com/personal/pay/cards/credit-cards/swiggy-hdfc-bank-credit-card',
-    lastVerifiedDate: 'Nov 03, 2024',
+    merchantExclusions: ['Rent', 'Wallet loads', 'Fuel', 'Jewelry', 'Government transactions', 'EMI transactions', 'Swiggy Money/Liquor/Minis'],
+    cappingDetails: '10% Swiggy capped at ₹1,500/cycle (min txn ₹249); 5% online capped at ₹1,500/cycle (min txn ₹100); 1% other retail capped at ₹500/cycle (min txn ₹100). Total monthly cashback cap: ₹3,500.',
+    officialCircularUrl: 'https://www.hdfc.bank.in/credit-cards/swiggy-hdfc-bank-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.7,
-    popularityIndex: 95,
+    rating: 4.8,
+    popularityIndex: 96,
     changeHistory: [
+      {
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Cashback Tiers, Caps & Welcome Swiggy One',
+        summary: '10% on Swiggy (min ₹249, capped at ₹1,500/cycle), 5% select online (min ₹100, capped at ₹1,500/cycle), 1% other spends (min ₹100, capped at ₹500/cycle), complimentary 3-month Swiggy One membership, ₹2 Lakh annual fee waiver.',
+        oldValue: 'Generic cashback overview without category min transaction limits and caps',
+        newValue: '10% Swiggy (cap ₹1.5k, min ₹249), 5% online (cap ₹1.5k, min ₹100), 1% other (cap ₹500), 3-mo Swiggy One, waived on ₹2L spend',
+        officialRef: 'HDFC Bank Swiggy Credit Card Official Portal',
+        severity: 'low'
+      },
       {
         date: 'Jun 20, 2024',
         type: 'enhancement',
@@ -1058,8 +1068,17 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         severity: 'positive'
       }
     ],
-    tags: ['cashback', 'dining', 'shopping', 'entry-level'],
-    suitableFor: ['Daily Swiggy Food & Instamart ordering', 'Online shopping at Amazon/Myntra/Flipkart', 'High cashback for low annual fee']
+    tags: ['cashback', 'dining', 'shopping', 'grocery', 'entry-level'],
+    suitableFor: [
+      'Swiggy App Spends: 10% cashback on Food Ordering, Instamart, and Dineout on the Swiggy App (min txn ₹249, capped at ₹1,500 per billing cycle)',
+      'Select Online Shopping: 5% cashback on apparel, electronics, department stores, personal care, local cabs, home décor, pet supplies & pharmacies (min txn ₹100, capped at ₹1,500 per billing cycle)',
+      'All Other Retail Spends: 1% cashback on other eligible spends (min txn ₹100, capped at ₹500 per billing cycle)',
+      'Welcome Benefit: Complimentary 3-month Swiggy One membership upon card activation (with extended perks on Swiggy BLCK/Ornge variants)',
+      'Direct Credit: Accumulated cashback automatically credited as Swiggy Money in your linked Swiggy app wallet',
+      'Exclusions: Zero cashback on rent, wallet loads, fuel, jewelry, government transactions, EMI, cash advances, and Swiggy Money/Liquor/Minis',
+      'Annual Fee: ₹500 + GST (Waived upon spending ₹2,00,000 or more in an anniversary year)',
+      'Security & Credit: Up to 50 days of interest-free credit and zero lost-card liability protection'
+    ]
   },
   {
     id: 'hsbc-live-plus',
@@ -1590,6 +1609,14 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
       score: 7,
     };
   }
+  if (id === 'swiggy-hdfc') {
+    return {
+      headline: '10% Cashback on Swiggy Dineout & Experiences',
+      subline: 'Earn 10% cashback on Swiggy Dineout table bookings and restaurant experiences (min ₹249, capped at ₹1,500/billing cycle).',
+      hasBogo: false,
+      score: 6,
+    };
+  }
   if (id === 'flipkart-axis') {
     return {
       headline: '4% Unlimited Cashback on Preferred Entertainment Partners',
@@ -1973,6 +2000,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Standard RuPay Digital Fraud & Zero Lost Card Liability Protection',
       score: 7,
+    };
+  }
+  if (id === 'swiggy-hdfc') {
+    return {
+      headline: '10% Swiggy + 5% Online Shopping + Free 3-Month Swiggy One Membership',
+      subline: '₹500 annual fee (waived on ₹2L spend), 10% on Swiggy Food/Instamart/Dineout (up to ₹1,500/mo), 5% on top online categories (up to ₹1,500/mo), 1% on other retail (up to ₹500/mo), 3-month complimentary Swiggy One, and zero lost card liability.',
+      perks: [
+        '10% Cashback on Swiggy Food, Instamart & Dineout (min ₹249, capped at ₹1,500/billing cycle)',
+        '5% Cashback on Top Online Brands (apparel, electronics, cabs, pharmacies; min ₹100, capped at ₹1,500/billing cycle)',
+        '1% Cashback on All Other Retail Spends (min ₹100, capped at ₹500/billing cycle)',
+        'Welcome Benefit: Complimentary 3-month Swiggy One membership upon card activation',
+        'Direct Credit: Cashback automatically credited to linked Swiggy Money wallet balance',
+        'Annual Fee Waived on spending ₹2,00,000 or more in an anniversary year',
+        'Up to 50 days interest-free credit period from transaction date',
+        'Zero Lost Card Liability Protection upon immediate reporting to HDFC Bank'
+      ],
+      insurance: 'Zero Lost Card Liability & Standard Fraud Protection',
+      score: 8,
     };
   }
   if (id === 'flipkart-axis') {

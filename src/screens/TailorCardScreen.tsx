@@ -47,6 +47,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   else if (card.id === 'sbi-cashback') feeWaiverThreshold = 200000;
   else if (card.id === 'axis-magnus') feeWaiverThreshold = 2500000;
   else if (card.id === 'axis-atlas') feeWaiverThreshold = 99999999;
+  else if (card.id === 'swiggy-hdfc') feeWaiverThreshold = 200000;
   else if (card.id === 'tata-neu-infinity') feeWaiverThreshold = 300000;
   else if (card.id === 'icici-sapphiro') feeWaiverThreshold = 600000;
   else if (card.id === 'amex-plat-travel') feeWaiverThreshold = 99999999;
@@ -148,6 +149,15 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     const incAnnual = Math.max(0, yearlySpend - 240000);
     const pts = (baseAnnual / 150) * 3 + (incAnnual / 150) * 10;
     grossAnnualRewards = Math.round(pts * 0.25 + 6000);
+  } else if (card.id === 'swiggy-hdfc') {
+    // 10% on Swiggy (cap ₹1,500/mo = ₹18,000/yr), 5% select online (cap ₹1,500/mo = ₹18,000/yr), 1% other (cap ₹500/mo = ₹6,000/yr)
+    const swiggySpend = yearlySpend * 0.25;
+    const onlineSpend = yearlySpend * 0.45;
+    const otherSpend = Math.max(0, yearlySpend - swiggySpend - onlineSpend);
+    const swiggyCashback = Math.min(18000, swiggySpend * 0.10);
+    const onlineCashback = Math.min(18000, onlineSpend * 0.05);
+    const otherCashback = Math.min(6000, otherSpend * 0.01);
+    grossAnnualRewards = Math.round(swiggyCashback + onlineCashback + otherCashback);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }
