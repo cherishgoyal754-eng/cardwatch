@@ -132,7 +132,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           // If profile table trigger hasn't run yet, provision local object
           setProfile({
             id: userId,
-            fullName: user?.user_metadata?.full_name || 'CARDWATCH Member',
+            fullName: user?.user_metadata?.full_name || 'Cherish Goyal',
             email,
             role: 'customer',
             isVerified: Boolean(user?.email_confirmed_at),
@@ -152,7 +152,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       // Graceful fallback
       setProfile({
         id: userId,
-        fullName: 'CARDWATCH Member',
+        fullName: 'Cherish Goyal',
         email,
         role: 'customer',
         isVerified: true,

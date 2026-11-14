@@ -107,7 +107,7 @@ export const App: React.FC = () => {
 
   // Active user profile object derived from session
   const activeUserProfile: UserProfile = {
-    name: profile?.fullName || user?.email?.split('@')[0] || (isGuest ? 'Guest Explorer' : 'CARDWATCH Member'),
+    name: profile?.fullName || 'Cherish Goyal',
     phone: '+91 98765 43210',
     salaryMonthly: 120000,
     cibilScore: 780,

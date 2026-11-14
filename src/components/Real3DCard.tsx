@@ -40,7 +40,7 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return {
       front: '/cards/indusind-tiger-front.png',
       back: '/cards/indusind-tiger-back.png',
-      hasPreprintedName: true,
+      hasPreprintedName: false,
       isVertical: true,
     };
   }
@@ -180,7 +180,7 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return {
       front: '/cards/flipkart-axis-front.png',
       back: '/cards/axis-flipkart-back.png',
-      hasPreprintedName: true,
+      hasPreprintedName: false,
       isVertical: false,
     };
   }
@@ -200,7 +200,7 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return {
       front: '/cards/icici-amazon-pay-front.png',
       back: '/cards/icici-amazon-pay-back.png',
-      hasPreprintedName: true,
+      hasPreprintedName: false,
       isVertical: false,
     };
   }
@@ -381,19 +381,17 @@ export const Real3DCard: React.FC<Real3DCardProps> = ({
               />
             </div>
 
-            {/* Embossed Cardholder Name & Digits overlay (if not preprinted on card) */}
-            {!visuals.hasPreprintedName && (
-              <div className="relative z-20 flex justify-between items-end p-5 sm:p-6 h-full pointer-events-none">
-                <div className="text-left drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
-                  <p className="font-mono text-[11px] sm:text-xs tracking-[0.2em] font-bold text-slate-100/90 drop-shadow">
-                    {showMaskedDetails ? card.cardNumberPreview : '•••• •••• •••• 4821'}
-                  </p>
-                  <p className="text-[10px] sm:text-xs font-black tracking-wider uppercase mt-0.5 text-white drop-shadow">
-                    {cardholderName}
-                  </p>
-                </div>
+            {/* Embossed Cardholder Name & Digits overlay on Every Card */}
+            <div className="relative z-20 flex justify-between items-end p-5 sm:p-6 h-full pointer-events-none">
+              <div className="text-left drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                <p className="font-mono text-[11px] sm:text-xs tracking-[0.2em] font-bold text-slate-100/90 drop-shadow">
+                  {showMaskedDetails ? card.cardNumberPreview : '•••• •••• •••• 4821'}
+                </p>
+                <p className="text-[10px] sm:text-xs font-black tracking-wider uppercase mt-0.5 text-white drop-shadow">
+                  {cardholderName}
+                </p>
               </div>
-            )}
+            </div>
 
             {/* Specular Glare Reflection Line (Constantly moving across real card surface in 3D) */}
             <motion.div
@@ -424,8 +422,8 @@ export const Real3DCard: React.FC<Real3DCardProps> = ({
             </div>
 
             {/* Interactive CVV / Masked overlay in signature area */}
-            <div className="relative z-20 flex justify-between items-center px-6 pt-24 pointer-events-none opacity-0 hover:opacity-100 transition-opacity">
-              <div className="font-serif italic text-slate-800 text-xs font-bold drop-shadow">
+            <div className="relative z-20 flex justify-between items-center px-6 pt-24 pointer-events-none">
+              <div className="font-serif italic text-slate-800 text-xs font-bold drop-shadow bg-white/70 px-2 py-0.5 rounded">
                 {cardholderName}
               </div>
               <div className="font-mono text-xs font-black text-slate-900 bg-white/90 px-1.5 py-0.5 rounded shadow">
