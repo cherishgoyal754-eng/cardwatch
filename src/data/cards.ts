@@ -1091,28 +1091,38 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 3819',
     joiningFee: 999,
     annualFee: 999,
-    annualFeeWaiverCondition: 'Waived on ₹2,00,000 annual spend',
+    annualFeeWaiverCondition: 'Waived on spending ₹2,00,000 in a card anniversary year',
     isLifetimeFree: false,
     minSalaryMonthly: 50000,
     minCibilScore: 730,
     status: 'active',
-    headlineBenefit: 'Flat 10% Accelerated Cashback on Dining, Food Delivery & Grocery Spends',
-    cashbackRate: '10% on Dining & Food delivery (Swiggy, Zomato) & Groceries (Blinkit, Zepto, Instamart), 1.5% other spends',
-    rewardPointValue: 'Direct statement credit cashback (₹1 = ₹1 statement offset)',
-    forexMarkup: 3.5,
+    headlineBenefit: '10% on Dining, Groceries & Utilities (Cap ₹1,200/mo) • 1.5% Unlimited Others • 1.99% Forex',
+    cashbackRate: '10% on Dining, Food Delivery, Groceries & Utilities (cap ₹1,200/mo) • 1.5% Unlimited Other Spends',
+    rewardPointValue: 'Automatic direct statement credit within 45 days (₹1 = ₹1 statement offset)',
+    forexMarkup: 1.99,
     fuelSurchargeWaiver: 'No fuel waiver',
     domesticLoungesPerQuarter: 1,
-    internationalLoungesPerYear: 0,
-    loungeSpendCondition: '1 complimentary domestic airport lounge visit per calendar quarter.',
+    internationalLoungesPerYear: 1,
+    loungeSpendCondition: 'Up to 2 domestic airport lounge visits per year (max 1 per half-year) + 1 international lounge visit per year.',
     loungeNetwork: 'Visa Lounge',
-    merchantExclusions: ['Fuel', 'Rent', 'Wallet loads', 'Jewellery', 'Government utilities'],
-    cappingDetails: '10% accelerated dining/grocery cashback capped at ₹1,000 per billing month.',
-    officialCircularUrl: 'https://www.hsbc.co.in/credit-cards/products/live-plus/',
-    lastVerifiedDate: 'Nov 02, 2024',
+    merchantExclusions: ['Fuel', 'Rent', 'Wallet loads', 'Jewellery', 'Government payments', 'Cash advances', 'EMI transactions'],
+    cappingDetails: '10% accelerated cashback on dining, food delivery, grocery shopping, general shopping, and utilities capped at ₹1,200 per month; unlimited 1.5% on other retail spends.',
+    officialCircularUrl: 'https://www.hsbc.bank.in/credit-cards/products/live-plus/',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.8,
-    popularityIndex: 94,
+    popularityIndex: 95,
     changeHistory: [
+      {
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified 10% Accelerated Cashback, 1.99% Forex & Lounges',
+        summary: '10% cashback on dining, food delivery, groceries, shopping & utilities (capped at ₹1,200/mo), unlimited 1.5% on other spends, 1.99% low forex markup, 2 domestic + 1 international lounge visit/yr, BOGO on BookMyShow & District, ₹2 Lakh annual fee waiver.',
+        oldValue: 'Generic dining-only summary with 3.5% forex and 0 international lounges',
+        newValue: '10% on dining/groceries/utilities (cap ₹1,200/mo), 1.5% unlimited, 1.99% low forex, 2 domestic + 1 intl lounge, BOGO movies & events',
+        officialRef: 'HSBC Live+ Credit Card Official Benefits Page',
+        severity: 'low'
+      },
       {
         date: 'Jun 24, 2024',
         type: 'enhancement',
@@ -1124,8 +1134,18 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         severity: 'positive'
       }
     ],
-    tags: ['dining', 'cashback', 'shopping'],
-    suitableFor: ['Dining enthusiasts and Zomato/Swiggy orders', 'Supermarket & quick-commerce grocery buyers (Blinkit/Zepto)', 'Direct statement balance deduction']
+    tags: ['dining', 'cashback', 'grocery', 'shopping', 'low-forex'],
+    suitableFor: [
+      '10% Accelerated Cashback on Dining, food delivery, grocery shopping, general shopping, and utility bill payments (capped at ₹1,200 per month)',
+      '1.5% Unlimited Cashback on all other eligible retail transactions without any upper cap',
+      'Automatic Statement Credit: Cashback credited automatically to card account within 45 days (no redemption portal or voucher fees)',
+      'Entertainment & Events: Buy 1 Get 1 Free (BOGO) ticket offers on movies and live events via BookMyShow and District',
+      'Airport Lounge Access: Up to 2 complimentary domestic lounge visits per year (max 1 per half-year) + 1 complimentary international lounge visit per year',
+      'Low 1.99% Foreign Exchange Markup Fee on overseas and cross-currency purchases (Visa Infinite benefits)',
+      'The Live+ Reserve: Access to curated chef’s menus, complimentary beverages, and luxury lifestyle experiences',
+      'Annual Fee: ₹999 + GST (Waived upon spending ₹2,00,000 or more in a card membership year)',
+      'Eligibility: Salaried: Age 18–65, min income ₹6,00,000/yr (₹50k/mo); Self-Employed: Age 25–65, min income ₹12,00,000/yr in specified cities'
+    ]
   },
   {
     id: 'sbi-simplysave',
@@ -1617,6 +1637,14 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
       score: 6,
     };
   }
+  if (id === 'hsbc-live-plus') {
+    return {
+      headline: 'Buy 1 Get 1 Free on BookMyShow & District (Movies & Live Events)',
+      subline: 'Enjoy BOGO ticket offers on movies and live events booked via BookMyShow and District platforms.',
+      hasBogo: true,
+      score: 8,
+    };
+  }
   if (id === 'flipkart-axis') {
     return {
       headline: '4% Unlimited Cashback on Preferred Entertainment Partners',
@@ -2018,6 +2046,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Zero Lost Card Liability & Standard Fraud Protection',
       score: 8,
+    };
+  }
+  if (id === 'hsbc-live-plus') {
+    return {
+      headline: '10% Dining & Grocery + 1.5% Unlimited + 1.99% Forex + The Live+ Reserve',
+      subline: '₹999 annual fee (waived on ₹2L spend), 10% on dining/food delivery/grocery/utilities (capped at ₹1,200/mo), 1.5% unlimited on other spends, automatic statement credit within 45 days, 1.99% low forex markup, BOGO movie tickets on BookMyShow & District, 2 domestic + 1 international lounge/yr, and curated Live+ Reserve experiences.',
+      perks: [
+        '10% Accelerated Cashback on Dining, Food Delivery, Grocery & Utilities (capped at ₹1,200/month)',
+        '1.5% Unlimited Cashback on all other eligible retail transactions',
+        'Automatic Direct Statement Credit within 45 days with zero redemption fees',
+        'Low 1.99% Foreign Exchange Markup Fee on international spends (Visa Infinite)',
+        'BOGO Movie & Live Event Tickets via BookMyShow and District',
+        'Complimentary Airport Lounges: Up to 2 domestic visits/yr (1/half-year) + 1 international visit/yr',
+        'The Live+ Reserve: Access to curated chef’s menus, complimentary beverages, and luxury lifestyle experiences',
+        'Annual Fee Waived on spending ₹2,00,000 or more in an anniversary year'
+      ],
+      insurance: 'Complimentary Lost Card Liability & Travel Protection Cover',
+      score: 9,
     };
   }
   if (id === 'flipkart-axis') {

@@ -48,6 +48,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   else if (card.id === 'axis-magnus') feeWaiverThreshold = 2500000;
   else if (card.id === 'axis-atlas') feeWaiverThreshold = 99999999;
   else if (card.id === 'swiggy-hdfc') feeWaiverThreshold = 200000;
+  else if (card.id === 'hsbc-live-plus') feeWaiverThreshold = 200000;
   else if (card.id === 'tata-neu-infinity') feeWaiverThreshold = 300000;
   else if (card.id === 'icici-sapphiro') feeWaiverThreshold = 600000;
   else if (card.id === 'amex-plat-travel') feeWaiverThreshold = 99999999;
@@ -158,6 +159,13 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     const onlineCashback = Math.min(18000, onlineSpend * 0.05);
     const otherCashback = Math.min(6000, otherSpend * 0.01);
     grossAnnualRewards = Math.round(swiggyCashback + onlineCashback + otherCashback);
+  } else if (card.id === 'hsbc-live-plus') {
+    // 10% on dining/grocery/utilities (capped at ₹1,200/mo = ₹14,400/yr), 1.5% unlimited other spends + BOGO BookMyShow
+    const acceleratedSpend = yearlySpend * 0.40;
+    const otherSpend = Math.max(0, yearlySpend - acceleratedSpend);
+    const acceleratedCashback = Math.min(14400, acceleratedSpend * 0.10);
+    const otherCashback = otherSpend * 0.015;
+    grossAnnualRewards = Math.round(acceleratedCashback + otherCashback);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }

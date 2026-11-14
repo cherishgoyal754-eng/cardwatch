@@ -174,6 +174,15 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const otherCashback = Math.min(500, otherSpend * 0.01);
       monthlyCashbackRupees = swiggyCashback + onlineCashback + otherCashback;
       monthlyPoints = monthlyCashbackRupees;
+    } else if (targetCard.id === 'hsbc-live-plus') {
+      // 10% on Dining, Food Delivery, Grocery & Utilities capped at ₹1,200/mo
+      // 1.5% Unlimited on all other eligible retail spends (excluding fuel)
+      const acceleratedSpend = spends.dining + spends.grocery + spends.utilities;
+      const acceleratedCashback = Math.min(1200, acceleratedSpend * 0.10);
+      const otherSpend = Math.max(0, totalMonthlySpend - acceleratedSpend - spends.fuel);
+      const otherCashback = otherSpend * 0.015;
+      monthlyCashbackRupees = acceleratedCashback + otherCashback;
+      monthlyPoints = monthlyCashbackRupees;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -195,6 +204,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'axis-magnus') waiverLimit = 2500000;
     else if (targetCard.id === 'axis-atlas') waiverLimit = 99999999;
     else if (targetCard.id === 'swiggy-hdfc') waiverLimit = 200000;
+    else if (targetCard.id === 'hsbc-live-plus') waiverLimit = 200000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 
     const isWaived = targetCard.isLifetimeFree || totalAnnualSpend >= waiverLimit;

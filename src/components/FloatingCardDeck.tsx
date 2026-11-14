@@ -27,6 +27,7 @@ export const FloatingCardDeck: React.FC<FloatingCardDeckProps> = ({
     { id: 'sbi-cashback', label: 'SBI Cashback' },
     { id: 'tata-neu-infinity', label: 'Tata Neu' },
     { id: 'swiggy-hdfc', label: 'Swiggy HDFC' },
+    { id: 'hsbc-live-plus', label: 'HSBC Live+' },
     { id: 'axis-atlas', label: 'Axis ATLAS' },
     { id: 'hdfc-diners-black', label: 'Diners Black' },
   ];
