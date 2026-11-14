@@ -56,11 +56,11 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       monthlyPoints = travelPoints + regularPoints;
       monthlyCashbackRupees = monthlyPoints * 0.65; // Up to ₹0.65 on flights, hotels & Gold Catalogue
     } else if (targetCard.id === 'hdfc-infinia-metal') {
-      const travelPoints = Math.min(10000, (spends.flightsHotels / 150) * 25);
+      const travelPoints = Math.min(10000, (spends.flightsHotels / 150) * 50); // up to 10X RP on flights & hotels via SmartBuy (capped at 10k bonus RP/mo)
       const regularSpend = totalMonthlySpend - spends.flightsHotels - spends.fuel;
-      const regularPoints = (Math.max(0, regularSpend) / 150) * 5;
+      const regularPoints = (Math.max(0, regularSpend) / 150) * 5; // 5 RP per ₹150 base (~3.33%)
       monthlyPoints = travelPoints + regularPoints;
-      monthlyCashbackRupees = monthlyPoints * 1.0;
+      monthlyCashbackRupees = monthlyPoints * 1.0; // 1 RP = ₹1.00
     } else if (targetCard.id === 'hdfc-diners-black') {
       const travelPoints = Math.min(7500, (spends.flightsHotels / 150) * 20);
       const regularSpend = totalMonthlySpend - spends.flightsHotels - spends.fuel;

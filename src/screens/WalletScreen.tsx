@@ -93,6 +93,15 @@ const DEFAULT_BILLING_DATA: Record<string, Omit<CardBillingInfo, 'cardId'>> = {
     daysRemaining: 11,
     isPaid: false,
   },
+  'hdfc-infinia-metal': {
+    creditLimit: 1000000,
+    usedAmount: 185000,
+    billAmount: 62400,
+    minimumDue: 3120,
+    dueDate: '20 Nov 2026',
+    daysRemaining: 6,
+    isPaid: false,
+  },
   'indusind-tiger': {
     creditLimit: 350000,
     usedAmount: 48500,

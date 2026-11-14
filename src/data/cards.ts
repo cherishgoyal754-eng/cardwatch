@@ -81,7 +81,7 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
   },
   {
     id: 'hdfc-infinia-metal',
-    name: 'HDFC Infinia Metal Edition',
+    name: 'HDFC Bank Infinia Credit Card Metal Edition',
     bank: 'HDFC Bank',
     bankLogoText: 'HDFC BANK',
     tier: 'Super Premium',
@@ -90,19 +90,19 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 8890',
     joiningFee: 12500,
     annualFee: 12500,
-    annualFeeWaiverCondition: 'Waived on spending ₹10,00,000 in previous year',
+    annualFeeWaiverCondition: 'Waived on spending ₹10,00,000 or more in an anniversary year',
     isLifetimeFree: false,
-    minSalaryMonthly: 300000,
+    minSalaryMonthly: 500000,
     minCibilScore: 780,
     status: 'active',
-    headlineBenefit: '3.3% to 33.3% Reward Rate via SmartBuy + Unlimited Global Lounges',
-    cashbackRate: '33.3% on Hotels, 16.6% on Flights via SmartBuy portal',
-    rewardPointValue: '1 RP = ₹1.00 for Apple products, Tanishq & Flight/Hotel bookings',
+    headlineBenefit: 'Invite-Only • Up to 33.3% Reward Rate via SmartBuy • Unlimited Global Lounges • 2% Forex',
+    cashbackRate: '5 RP per ₹150 spent (~3.33% Base) • Up to 10X RP (33.3%) on SmartBuy Flights & Hotels',
+    rewardPointValue: '1 RP = ₹1.00 on Flights, Hotels, Apple, Tanishq, or 1:1 Air Mile Transfer',
     forexMarkup: 2.0,
     fuelSurchargeWaiver: '1% waiver across all fuel stations in India',
     domesticLoungesPerQuarter: 'Unlimited',
-    internationalLoungesPerYear: 'Unlimited (Primary + Add-on Priority Pass)',
-    loungeSpendCondition: '100% Unconditional unlimited lounge access across India & 1,300+ global airports for primary and add-on cardholders.',
+    internationalLoungesPerYear: 'Unlimited (Primary + Add-on via Priority Pass)',
+    loungeSpendCondition: 'Unlimited complimentary domestic and international airport lounge access for primary and add-on cardholders via Priority Pass (Strictly 0 spend threshold)',
     loungeNetwork: 'Priority Pass',
     merchantExclusions: [
       'Wallet reloads & gift cards',
@@ -110,8 +110,8 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       'Rental payment 1% convenience charge'
     ],
     cappingDetails: 'SmartBuy bonus rewards capped at 10,000 points per calendar month; 15,000 points per month overall across accelerated partners.',
-    officialCircularUrl: 'https://www.hdfcbank.com/personal/pay/cards/credit-cards/infinia-credit-card',
-    lastVerifiedDate: 'Nov 10, 2024',
+    officialCircularUrl: 'https://www.hdfc.bank.in/credit-cards/infinia-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.9,
     popularityIndex: 99,
@@ -134,7 +134,17 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       }
     ],
     tags: ['lounge', 'travel', 'dining', 'golf', 'premium', 'forex'],
-    suitableFor: ['High Net-worth Individuals', 'Luxury travel & 5-star hotel bookings', 'Golf enthusiasts']
+    suitableFor: [
+      'Invite-only super-premium status (High net-worth relationship, ₹5L+ net monthly salary, or existing card upgrade with ₹8L+ limit)',
+      '12,500 Reward Points upon fee realization and card activation + complimentary Club Marriott membership',
+      'Base reward rate of 5 Reward Points per ₹150 spent (~3.33% return on eligible spends)',
+      'Up to 10X Reward Points via HDFC SmartBuy for flights and hotels (returns up to 33.3%)',
+      '1 Reward Point = ₹1 when redeemed for flights, hotels, Apple/Tanishq, or 1:1 air mile transfer',
+      'Unlimited complimentary domestic and international airport lounge access for primary and add-on cardholders via Priority Pass',
+      'Low 2% foreign currency markup fee',
+      'Unlimited complimentary golf games worldwide, Swiggy Dineout discounts, and ITC Hotels 1+1 buffet/stay benefits',
+      'Comprehensive insurance: ₹3 Cr air accident cover, ₹50 Lakh overseas hospitalization, ₹9 Lakh lost card liability'
+    ]
   },
   {
     id: 'sbi-cashback',
@@ -1527,10 +1537,19 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'hdfc-infinia-metal') {
     return {
-      headline: 'Club Marriott + 1:1 Airline Miles + 24x7 Concierge + ₹3 Cr Cover',
-      subline: 'Complimentary Club Marriott membership (up to 20% off stays and dining across APAC), 1:1 reward points transfer to Singapore KrisFlyer / Air France / British Airways / Accor, ₹3 Crore accidental air death cover, ₹50 Lakh emergency medical.',
-      perks: ['Club Marriott APAC Membership', '1:1 Airline Mile Transfers', '₹3 Cr Accidental Air Death Cover', '₹50 Lakh Emergency Medical Evacuation', '24x7 Global Concierge'],
-      insurance: '₹3 Crore Accidental Death + ₹50 Lakh Medical Cover',
+      headline: 'Club Marriott + 12.5k Points + ITC 1+1 + Unlimited Golf & Lounges + ₹3 Cr Cover',
+      subline: '12,500 Reward Points upon fee realization & renewal, complimentary Club Marriott membership, unlimited domestic & international lounges for primary & add-on via Priority Pass, unlimited golf games, ITC Hotels 1+1 buffet/stay benefits, Swiggy Dineout discounts, 1:1 air miles, 2% forex markup, and ₹3 Crore air accident insurance.',
+      perks: [
+        'Welcome / Renewal: 12,500 Reward Points + Club Marriott Membership',
+        'Unlimited Complimentary Global Lounges (Primary & Add-on via Priority Pass)',
+        'Base ~3.33% Return (5 RP / ₹150) & Up to 10X (33.3%) on SmartBuy Flights & Hotels',
+        '1 RP = ₹1 on Flights, Hotels, Apple, Tanishq or 1:1 Air Mile Transfer',
+        'Unlimited Complimentary Golf Games in India & Worldwide',
+        'ITC Hotels 1+1 Buffet / Stay Privileges & Swiggy Dineout Discounts',
+        'Low 2% Foreign Currency Markup Fee',
+        'Annual Fee Waived on ₹10 Lakh Spend in Anniversary Year'
+      ],
+      insurance: '₹3 Crore Air Accident Cover + ₹50 Lakh Overseas Hospitalization + ₹9 Lakh Lost Card Liability',
       score: 10,
     };
   }
