@@ -702,47 +702,59 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 8012',
     joiningFee: 10000,
     annualFee: 10000,
-    annualFeeWaiverCondition: 'Waived on spends of ₹8 Lakhs or more in preceding 12 months',
+    annualFeeWaiverCondition: 'Waived if you spend ₹8 Lakh or more in an anniversary year',
     isLifetimeFree: false,
-    minSalaryMonthly: 200000,
+    minSalaryMonthly: 250000,
     minCibilScore: 780,
     status: 'active',
-    headlineBenefit: 'Unlimited Domestic & International Lounges (Primary + Add-on Guest) + 33.3% SmartBuy Flight/Hotel Rewards',
-    cashbackRate: '5 Reward Points per ₹150; 10X (33.3%) on SmartBuy Flights, Hotels, and Apple purchases',
-    rewardPointValue: '1 Reward Point = ₹1.00 on Flights and Hotels booked via HDFC SmartBuy portal',
+    headlineBenefit: 'Unlimited Global Lounges (Primary + Add-on) • 10k Bonus Points/Quarter (on ₹4L spend) • 2X Weekend Dining',
+    cashbackRate: '5 RP / ₹150 (3.33%) • 2X Weekend Dining (6.66%) • Up to 10X SmartBuy Hotels (33.3%) & 5X Flights',
+    rewardPointValue: '1 Reward Point = up to ₹1.00 (SmartBuy flights & hotels or 1:1 air miles conversion)',
     forexMarkup: 2.0,
     fuelSurchargeWaiver: '1% fuel surcharge waiver up to ₹1,000 per statement cycle',
     domesticLoungesPerQuarter: 'Unlimited',
     internationalLoungesPerYear: 'Unlimited',
-    loungeSpendCondition: 'Unlimited complimentary domestic and international airport lounge access for primary cardholder PLUS add-on guest across 1,300+ lounges globally.',
-    loungeNetwork: 'DreamFolks',
-    merchantExclusions: ['Rental payments (1% fee + zero reward points)', 'Government transactions & property tax', 'Wallet loading transactions'],
-    cappingDetails: 'Daily 10X SmartBuy points capped at 2,500 RP per day; monthly SmartBuy cap is 7,500 RP.',
-    officialCircularUrl: 'https://www.hdfcbank.com/personal/pay/cards/credit-cards/diners-club-black',
-    lastVerifiedDate: 'Nov 11, 2024',
+    loungeSpendCondition: 'Unlimited complimentary airport lounge access worldwide for primary and add-on cardholders.',
+    loungeNetwork: 'Diners Club Global Lounge Network',
+    merchantExclusions: ['Rental payments (1% fee + zero reward points)', 'Government transactions & property tax', 'Wallet load'],
+    cappingDetails: '10,000 bonus RP every quarter on ₹4 Lakh spend; SmartBuy daily/monthly caps apply; 1 RP = up to ₹1.',
+    officialCircularUrl: 'https://www.hdfc.bank.in/credit-cards/diners-club-black-metal-edition-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.9,
     popularityIndex: 97,
     recentChangeAlert: {
-      badge: 'SMARTBUY UPDATE: Daily Cap Adjusted',
-      effectiveDate: 'Sep 01, 2024',
-      isDevaluation: true,
-      description: 'Daily SmartBuy 10X bonus points capped at 2,500 points per day to prevent bulk commercial ticketing.'
+      badge: 'Metal Edition Features Verified',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: '10,000 bonus RP every quarter on ₹4 Lakh spend + 2X weekend dining + 2% forex.'
     },
     changeHistory: [
       {
-        date: 'Sep 01, 2024',
-        type: 'devaluation',
-        title: 'SmartBuy 10X Daily Capping',
-        summary: 'Accelerated reward points on flights capped at 2,500 points/day while keeping 33.3% redemption ratio intact.',
-        oldValue: 'No daily limit on 10X points (only 7,500 monthly cap)',
-        newValue: '2,500 RP daily cap + 7,500 RP monthly cap',
-        officialRef: 'HDFC Bank Customer Circular REF:DCB-2024-09',
-        severity: 'medium'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Official Features & Eligibility',
+        summary: '₹10,000 annual fee (waived on ₹8L spend), 2% forex, 10,000 bonus RP/quarter on ₹4L spend, 2X weekend dining, unlimited global lounges for primary + add-on, 6 golf games/qtr, salaried > ₹2.5L/mo, self-employed ITR > ₹30L/yr.',
+        oldValue: 'Older salary and benefit structures',
+        newValue: '₹2.5L/mo salary, ₹30L ITR, 10k points/qtr milestone, 2X weekend dining',
+        officialRef: 'HDFC Bank Diners Club Black Official Portal',
+        severity: 'low'
       }
     ],
     tags: ['premium', 'lounge', 'travel', 'dining', 'golf'],
-    suitableFor: ['High-income earners wanting 33.3% return on flights', 'Couples traveling together needing free guest lounge entry', 'Golf enthusiasts wanting 6 complimentary games/quarter']
+    suitableFor: [
+      'Joining & Renewal Fee: ₹10,000 + GST (waived on spending ₹8 Lakh or more in an anniversary year)',
+      'Foreign Currency Markup: Low 2% foreign currency markup on international transactions',
+      'Base Rewards: 5 Reward Points for every ₹150 spent (effective 3.33% return)',
+      'Weekend Dining: 2X reward points on weekend dining (up to 10 points per ₹150, approx 6.66% return)',
+      'SmartBuy Accelerated: Up to 10X on hotel bookings (up to 33.3% value-back), up to 5X on flight bookings, and 3X points on partner vouchers (Amazon, Flipkart, Myntra)',
+      'Quarterly Milestone Benefit: 10,000 bonus reward points every calendar quarter upon spending ₹4 Lakh or more in that quarter (up to 40,000 bonus RP/year)',
+      'Redemption: 1 Reward Point = up to ₹1 on SmartBuy (flights/hotels) or air miles conversion (1:1 and 2:1 ratios with partner airlines/hotels)',
+      'Airport Lounge Access: Unlimited complimentary airport lounge access worldwide for primary and add-on cardholders',
+      'Golf Program: 6 complimentary golf games per quarter (24 games annually) booked via golf concierge',
+      'Memberships & Perks: Complimentary memberships including Club Marriott; ₹2 Crore air accident cover + ₹50 Lakh overseas emergency hospitalization',
+      'Eligibility: Salaried: Age 21–60, net monthly income > ₹2.5 Lakh | Self-Employed: Age 21–65, annual ITR > ₹30 Lakh'
+    ]
   },
   {
     id: 'idfc-first-wealth',
@@ -1682,11 +1694,21 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'hdfc-diners-black') {
     return {
-      headline: 'Swiggy One & Prime Subscriptions + ₹2 Cr Air Accident Insurance',
-      subline: 'Complimentary annual subscriptions on milestone spend (Club Marriott, Swiggy One, Amazon Prime, Forbes, MMT Black), 2X weekend dining reward points, ₹2 Crore air accident cover.',
-      perks: ['Milestone Subscriptions (Prime, Swiggy One)', '2X Weekend Dining Reward Points', '₹2 Cr Air Accident Insurance', 'Diners Global Airport Network'],
-      insurance: '₹2 Crore Air Accident Cover',
-      score: 9,
+      headline: 'Unlimited Lounges (Primary & Add-on) + 10k Bonus RP/Qtr + 2X Weekend Dining + 6 Golf/Qtr',
+      subline: '₹10,000 fee (waived on ₹8L spend), 2% forex, 10,000 bonus RP every calendar quarter on ₹4L spend, 2X weekend dining (6.66%), up to 10X SmartBuy hotels & 5X flights, unlimited global lounges for primary & add-on, 6 golf games/quarter, Club Marriott, and ₹2 Cr air accident cover.',
+      perks: [
+        'Annual Fee: ₹10,000 + GST (Waived on spending ₹8 Lakh or more in an anniversary year)',
+        'Quarterly Milestone: 10,000 Bonus Reward Points every quarter on ₹4 Lakh spend (up to 40k RP/yr)',
+        'Unlimited Global Airport Lounges worldwide for primary and add-on cardholders',
+        'Base Reward Rate: 5 RP per ₹150 spent (3.33% return) & 1 RP = up to ₹1 on SmartBuy/air miles',
+        'Weekend Dining: 2X Reward Points (up to 10 RP per ₹150, approx 6.66% return)',
+        'SmartBuy Accelerated: Up to 10X on Hotels (33.3%), 5X Flights, 3X on Partner Vouchers (~9.9%)',
+        'Golf Program: 6 complimentary golf games per quarter (24 games annually)',
+        'Low 2% Foreign Currency Markup Fee + taxes',
+        'Eligibility: Salaried: Age 21–60, income > ₹2.5L/mo | Self-Employed: Age 21–65, ITR > ₹30L/yr'
+      ],
+      insurance: '₹2 Crore Air Accident Cover + ₹50 Lakh Overseas Emergency Hospitalization',
+      score: 10,
     };
   }
   if (id === 'hdfc-regalia-gold') {

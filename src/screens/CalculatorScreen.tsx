@@ -65,7 +65,9 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const travelPoints = Math.min(7500, (spends.flightsHotels / 150) * 20);
       const regularSpend = totalMonthlySpend - spends.flightsHotels - spends.fuel;
       const regularPoints = (Math.max(0, regularSpend) / 150) * 5;
-      monthlyPoints = travelPoints + regularPoints;
+      // 10,000 bonus RP every quarter on ₹4 Lakh spend (~3,333 RP/month if spend >= ₹1,33,333/mo)
+      const milestonePoints = (totalMonthlySpend >= 133333) ? 3333 : 0;
+      monthlyPoints = travelPoints + regularPoints + milestonePoints;
       monthlyCashbackRupees = monthlyPoints * 1.0;
     } else if (targetCard.id === 'sbi-cashback') {
       const onlineCashback = Math.min(2000, spends.onlineShopping * 0.05); // Capped at ₹2,000/statement cycle
