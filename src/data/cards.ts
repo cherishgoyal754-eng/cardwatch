@@ -767,47 +767,59 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 7289',
     joiningFee: 0,
     annualFee: 0,
-    annualFeeWaiverCondition: 'Lifetime Free unconditionally',
+    annualFeeWaiverCondition: 'Nil Joining Fee & Nil Annual Fee (Unconditionally Lifetime Free)',
     isLifetimeFree: true,
-    minSalaryMonthly: 200000,
+    minSalaryMonthly: 300000,
     minCibilScore: 750,
     status: 'active',
-    headlineBenefit: 'Lifetime Free + 4 Lounges/Quarter (₹20k spend) + Low 1.5% Forex Markup',
-    cashbackRate: '10x reward points on spends above ₹30,000 monthly; 3x on spends below ₹30k',
-    rewardPointValue: '1 RP = ₹0.25 (Never expires, can be used for bill settlement)',
+    headlineBenefit: 'Lifetime Free (₹0) • 10X Rewards Above ₹20k • 1.5% Forex • BOGO Movies & Golf',
+    cashbackRate: '10X RP on incremental spends above ₹20k/mo & birthdays • 3X on spends up to ₹20k',
+    rewardPointValue: '1 Reward Point = ₹0.25 (Points never expire; no redemption fee)',
     forexMarkup: 1.5,
-    fuelSurchargeWaiver: '1% waiver up to ₹300/month',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver up to ₹300 per month',
     domesticLoungesPerQuarter: 4,
     internationalLoungesPerYear: 4,
-    loungeSpendCondition: 'DEVALUATION: Requires spending min ₹20,000 in preceding calendar month to unlock lounge access for current month.',
-    loungeNetwork: 'DreamFolks',
-    merchantExclusions: ['Rent, Govt payments earn 1x reward points only'],
-    cappingDetails: 'Points never expire; low interest rate from 9% to 36% APR.',
-    officialCircularUrl: 'https://www.idfcfirstbank.com/credit-card/wealth',
-    lastVerifiedDate: 'Oct 25, 2024',
+    loungeSpendCondition: 'Complimentary domestic & international airport lounge/spa access (subject to ₹20,000 spend in preceding month).',
+    loungeNetwork: 'DreamFolks / Priority Pass',
+    merchantExclusions: ['Fuel, Cash advances; 3X points on education, wallet load & govt services'],
+    cappingDetails: '10X points activate on monthly spends above ₹20,000; points never expire; ATM cash withdrawals are interest-free until due date.',
+    officialCircularUrl: 'https://www.idfcfirst.bank.in/credit-card/wealth',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.6,
-    popularityIndex: 90,
+    rating: 4.7,
+    popularityIndex: 92,
     recentChangeAlert: {
-      badge: 'Monthly Spend Lounge Rule',
-      effectiveDate: 'May 01, 2024',
-      isDevaluation: true,
-      description: 'Complimentary lounge access now conditioned on ₹20,000 spend in preceding month.'
+      badge: 'Lifetime Free Verified',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: 'Unconditional ₹0 fee forever, 10X points above ₹20,000 spend, and 1.5% forex markup.'
     },
     changeHistory: [
       {
-        date: 'May 01, 2024',
-        type: 'devaluation',
-        title: 'Monthly Lounge Qualifying Spend',
-        summary: 'Lounge access converted from unconditional to monthly ₹20,000 spend criteria.',
-        oldValue: '4 complimentary visits/quarter with no conditions',
-        newValue: '4 visits/quarter unlocked on ₹20,000 previous month spend',
-        officialRef: 'IDFC FIRST Bank CC Revision 2024',
-        severity: 'medium'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Official Features & Income Criteria',
+        summary: 'Lifetime Free (₹0), ₹36L annual income eligibility (~₹3L/mo), 10X points above ₹20k spend, 3X up to ₹20k, 1.5% forex markup, BOGO movies up to ₹250 (2x/mo), 2 golf rounds/mo, interest-free ATM withdrawals.',
+        oldValue: 'Older ₹30k threshold and salary figures',
+        newValue: '10X on spends above ₹20k, ₹36L income eligibility, Lifetime Free',
+        officialRef: 'IDFC FIRST Bank Official Wealth Product Guide',
+        severity: 'low'
       }
     ],
     tags: ['lifetime-free', 'lounge', 'forex', 'travel', 'dining', 'movies'],
-    suitableFor: ['Zero fee super-premium seekers', 'Spa and lounge privileges', 'Overseas travel with 1.5% forex']
+    suitableFor: [
+      'Joining & Annual Fee: ₹0 (Unconditionally Lifetime Free card with no renewal conditions)',
+      'Income Eligibility: Generally targets individuals with an annual income of ₹36 Lakhs or more (~₹3,00,000/month)',
+      'Rewards Program: 10X Reward Points on incremental spends above ₹20,000 per statement cycle and on birthday spends',
+      'Base Rewards: 3X Reward Points on online and offline spends up to ₹20,000 (plus education, wallet load & government services)',
+      'Never-Expiring Points: 1 Reward Point = ₹0.25 (no redemption charges, points never expire)',
+      'Foreign Currency Markup: Low 1.5% (+ GST) foreign currency markup fee on international transactions',
+      'Airport Lounge & Spa: Complimentary domestic and international airport lounge/spa visits (subject to ₹20k monthly spend)',
+      'Movies & Entertainment: Buy-One-Get-One (BOGO) ticket offers up to ₹250 off twice a month',
+      'Golf Privileges: 2 complimentary golf rounds and 2 golf lessons per month (up to 24 annually)',
+      'Interest-Free ATM Cash: Interest-free cash withdrawals from ATMs until due date (advance fee ₹199 + GST)',
+      'Insurance & Protection: Complimentary ₹1 Crore air accident cover, personal accident, lost card liability, and trip cancellation cover (CFAR)'
+    ]
   },
   {
     id: 'kiwi-axis-rupay',
@@ -1456,10 +1468,10 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'idfc-first-wealth') {
     return {
-      headline: 'Buy 1 Get 1 Free on Paytm / BookMyShow (Up to ₹500, 2x / Month)',
-      subline: 'Enjoy 2 complimentary movie tickets per calendar month up to ₹500 per ticket across leading cinema chains in India.',
+      headline: 'Buy 1 Get 1 Free on Movie Tickets (Up to ₹250 Off, 2x / Month)',
+      subline: 'Enjoy Buy-One-Get-One movie ticket offers up to ₹250 off twice a month (save up to ₹500/month) on Paytm or BookMyShow.',
       hasBogo: true,
-      score: 9,
+      score: 8,
     };
   }
   if (id === 'hdfc-diners-black') {
@@ -1777,11 +1789,22 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'idfc-first-wealth') {
     return {
-      headline: 'Lifetime Free + 24x7 Roadside Assistance + ₹1 Cr Personal Cover',
-      subline: 'Unconditional ₹0 joining & annual fee, complimentary 24x7 Roadside Assistance (RSA) worth ₹1,399, ₹1 Crore personal accident insurance, dynamic low APR from 9% to 36%.',
-      perks: ['Unconditional Lifetime Free (₹0)', 'Free 24x7 Roadside Assistance', '₹1 Cr Personal Accident Cover', '9%–36% Dynamic Low APR'],
-      insurance: '₹1 Crore Personal Accident Cover',
-      score: 8,
+      headline: 'Lifetime Free + 10X Points Above ₹20k + 1.5% Forex + BOGO Movies & Golf + ₹1 Cr Insurance',
+      subline: 'Unconditional ₹0 joining & annual fee forever, 10X points on spends above ₹20,000, low 1.5% forex markup, BOGO movie tickets up to ₹250 twice a month, 2 golf rounds/mo, interest-free ATM cash, free roadside assistance, and ₹1 Crore air accident insurance.',
+      perks: [
+        'Unconditional Lifetime Free (₹0 Joining Fee & ₹0 Annual Fee Forever)',
+        'Income Eligibility: Annual income of ₹36 Lakhs or more (~₹3,00,000/month)',
+        '10X Reward Points on incremental spends above ₹20,000 per cycle & on birthdays',
+        '3X Reward Points on spends up to ₹20,000 & never-expiring points (1 RP = ₹0.25)',
+        'Discounted 1.5% Foreign Currency Markup Fee (+ GST)',
+        'Complimentary Domestic & International Airport Lounge & Spa Access',
+        'Buy-One-Get-One Free Movie Tickets up to ₹250 off twice a month',
+        '2 Complimentary Golf Rounds + 2 Lessons per month (up to 24 per year)',
+        'Interest-Free ATM Cash Withdrawals until due date (nominal ₹199 + GST fee)',
+        'Free 24x7 Roadside Assistance (RSA) worth ₹1,399 across India'
+      ],
+      insurance: '₹1 Crore Accidental Air Death Cover + Trip Cancellation Cover (CFAR)',
+      score: 9,
     };
   }
   if (id === 'scapia-federal') {

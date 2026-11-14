@@ -131,6 +131,15 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const basePoints = (baseSpend / 40) * 1;
       monthlyPoints = intlPoints + basePoints;
       monthlyCashbackRupees = monthlyPoints * 0.50;
+    } else if (targetCard.id === 'idfc-first-wealth') {
+      // 3X on spends up to ₹20,000; 10X on incremental spends above ₹20,000 (1 RP = ₹0.25)
+      const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel);
+      const baseSpend = Math.min(20000, eligibleSpend);
+      const incrementalSpend = Math.max(0, eligibleSpend - 20000);
+      const basePoints = (baseSpend / 150) * 3;
+      const incrementalPoints = (incrementalSpend / 150) * 10;
+      monthlyPoints = basePoints + incrementalPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.25;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -161,7 +170,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'hdfc-regalia-gold') isLoungeUnlocked = quarterlySpend >= 60000;
     else if (targetCard.id === 'indusind-tiger') isLoungeUnlocked = true; // 2 domestic lounges/quarter complimentary via card
     else if (targetCard.id === 'axis-magnus') isLoungeUnlocked = quarterlySpend >= 50000;
-    else if (targetCard.id === 'scapia-federal') isLoungeUnlocked = totalMonthlySpend >= 20000;
+    else if (targetCard.id === 'scapia-federal' || targetCard.id === 'idfc-first-wealth') isLoungeUnlocked = totalMonthlySpend >= 20000;
 
     const netAnnualProfit = annualGrossCash + feeSaved - feeToPay;
     const netReturnRate = totalAnnualSpend > 0 ? ((netAnnualProfit / totalAnnualSpend) * 100).toFixed(1) : '0.0';

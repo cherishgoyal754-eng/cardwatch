@@ -69,7 +69,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   } else if (card.id === 'hdfc-regalia-gold') {
     loungeSpendThreshold = 60000; // ₹60k/quarter
     isLoungeUnlocked = quarterlySpend >= 60000;
-  } else if (card.id === 'scapia-federal') {
+  } else if (card.id === 'scapia-federal' || card.id === 'idfc-first-wealth') {
     loungeSpendThreshold = 60000; // ₹20k/month = ₹60k/quarter
     isLoungeUnlocked = monthlySpend >= 20000;
   } else if (card.id === 'indusind-tiger') {
@@ -127,6 +127,12 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     // 1 MR / ₹40 (2.5% value) + ₹44,300 Fine Hotels & Resorts privileges + ₹35,000 renewal vouchers on ₹20L spend
     const milestoneBonus = yearlySpend >= 2000000 ? 35000 : 0;
     grossAnnualRewards = Math.round(yearlySpend * 0.025 + 44300 + milestoneBonus);
+  } else if (card.id === 'idfc-first-wealth') {
+    // 3X up to ₹20k/mo, 10X on incremental + BOGO movie tickets (₹6k/yr)
+    const baseAnnual = Math.min(240000, yearlySpend);
+    const incAnnual = Math.max(0, yearlySpend - 240000);
+    const pts = (baseAnnual / 150) * 3 + (incAnnual / 150) * 10;
+    grossAnnualRewards = Math.round(pts * 0.25 + 6000);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }
