@@ -116,6 +116,11 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const domesticPoints = (otherDomestic / 100) * 2;
       monthlyPoints = utilityPoints + intlPoints + domesticPoints;
       monthlyCashbackRupees = monthlyPoints * 0.25;
+    } else if (targetCard.id === 'amex-plat-travel') {
+      // 1 MR / ₹50 spent + milestone rewards & Taj voucher (~7% blended return on milestones)
+      const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel - spends.utilities);
+      monthlyPoints = eligibleSpend / 50;
+      monthlyCashbackRupees = eligibleSpend * 0.07;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -131,6 +136,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'sbi-cashback') waiverLimit = 200000;
     else if (targetCard.id === 'tata-neu-infinity') waiverLimit = 300000;
     else if (targetCard.id === 'icici-sapphiro') waiverLimit = 600000;
+    else if (targetCard.id === 'amex-plat-travel') waiverLimit = 99999999;
     else if (targetCard.id === 'axis-magnus') waiverLimit = 2500000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 

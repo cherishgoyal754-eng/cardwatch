@@ -566,50 +566,66 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
   },
   {
     id: 'amex-plat-travel',
-    name: 'American Express Platinum Travel',
+    name: 'American Express Platinum Travel Credit Card',
     bank: 'American Express',
     bankLogoText: 'AMEX PLATINUM',
     tier: 'Premium',
     network: 'Amex',
     cardStyle: 'amex',
     cardNumberPreview: '•••• 1009',
-    joiningFee: 3500,
+    joiningFee: 5000,
     annualFee: 5000,
-    annualFeeWaiverCondition: 'Retention offer or milestone spend',
+    annualFeeWaiverCondition: '₹5,000 + GST renewal fee (Offset via milestone bonus MR points & Taj vouchers)',
     isLifetimeFree: false,
-    minSalaryMonthly: 120000,
-    minCibilScore: 760,
+    minSalaryMonthly: 50000,
+    minCibilScore: 740,
     status: 'active',
-    headlineBenefit: 'Earn ₹48,000+ Value in Taj Vouchers & Travel on ₹4 Lakh Annual Spend',
-    cashbackRate: 'Up to 9.5% effective reward rate when achieving ₹4 Lakh annual milestone',
-    rewardPointValue: '40,000 MR points + ₹10,000 Taj Hotels voucher on ₹4L spend',
+    headlineBenefit: '10,000 Welcome MR Points • ₹10,000 Taj Voucher + 40k Bonus MR Points on ₹4L/₹7L Milestones',
+    cashbackRate: '1 MR per ₹50 spent (excl. fuel, utilities, insurance) • Milestone bonus at ₹1.9L, ₹4L & ₹7L',
+    rewardPointValue: '1 MR Point = up to ₹0.50 (Taj vouchers, Marriott Bonvoy & Air Mile transfers)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '0% convenience fee at HPCL pumps',
+    fuelSurchargeWaiver: '0% convenience fee at select HPCL / BPCL pumps in India',
     domesticLoungesPerQuarter: 2,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'Complimentary 8 domestic airport lounges per year (2 per quarter) unconditional.',
-    loungeNetwork: 'Visa Lounge',
-    merchantExclusions: ['Fuel, Insurance, Utilities excluded from base points but count towards milestones'],
-    cappingDetails: 'Milestones activate at ₹1.9 Lakhs and ₹4.0 Lakhs annual calendar spend.',
+    loungeSpendCondition: '8 complimentary domestic airport lounge visits per year (2 per quarter) subject to Amex network criteria.',
+    loungeNetwork: 'Amex Network Lounges',
+    merchantExclusions: ['Fuel', 'Utilities', 'Insurance', 'Cash transactions', 'EMI at POS'],
+    cappingDetails: 'Base points excluded on fuel, insurance & utilities; milestones unlock at ₹1.9L, ₹4L, and ₹7L annual spends.',
     officialCircularUrl: 'https://www.americanexpress.com/in/credit-cards/platinum-travel-credit-card/',
-    lastVerifiedDate: 'Nov 07, 2024',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.7,
-    popularityIndex: 92,
+    popularityIndex: 93,
+    recentChangeAlert: {
+      badge: 'Milestone Tier Update',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: 'Revised fee structure (₹5,000/yr) with higher-value milestone rewards shifting toward ₹7 Lakhs.'
+    },
     changeHistory: [
       {
-        date: 'May 10, 2024',
-        type: 'policy_update',
-        title: 'Taj Voucher Digital Instant Issuance',
-        summary: 'Taj stay vouchers now credited digitally via email within 48 hours of reaching ₹4 Lakh spend.',
-        oldValue: 'Paper vouchers mailed via post (2-3 weeks)',
-        newValue: 'Instant digital e-voucher code',
-        officialRef: 'Amex India Member Circular',
-        severity: 'positive'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Official Fee & Income Thresholds',
+        summary: '₹5,000 annual fee, ₹6 Lakhs annual income eligibility (₹50k/mo), 10k welcome MR points on ₹15k spend in 90 days, 1 MR/₹50 earn rate.',
+        oldValue: 'Older salary & fee structures',
+        newValue: '₹5k annual fee, ₹6L annual income, 1 MR / ₹50, 10k welcome bonus',
+        officialRef: 'American Express India Official Portal',
+        severity: 'low'
       }
     ],
     tags: ['travel', 'lounge', 'dining', 'premium'],
-    suitableFor: ['Couples planning luxury Taj holidays', 'Salaried professionals spending ₹30k-₹40k monthly', 'Travel lovers']
+    suitableFor: [
+      'Annual Fee: ₹5,000 + applicable taxes (same for first year and renewal)',
+      'Eligibility: Age 18+, Indian resident, minimum annual income of ₹6 Lakhs (~₹50,000/month)',
+      'Welcome Benefit: 10,000 Membership Rewards points on spending ₹15,000 within first 90 days of card issuance',
+      'Earn Rate: 1 Membership Rewards Point per ₹50 spent (excludes fuel, insurance, utilities, cash & POS EMI)',
+      'Milestone Rewards: Unlocks 15,000 bonus MR points at ₹1.9 Lakh spend, 25,000 bonus points + ₹10,000 Taj voucher at ₹4 Lakh spend (higher-value tiers shift toward ₹7 Lakhs)',
+      'Domestic Lounge Access: 8 complimentary domestic airport lounge visits per year (2 per quarter)',
+      'Priority Pass: Complimentary Priority Pass membership (standard usage fees apply per visit)',
+      '24/7 Platinum Assist concierge and cardmember support',
+      'Comprehensive zero lost card liability and online fraud protection'
+    ]
   },
   {
     id: 'amex-platinum',
@@ -1597,6 +1613,25 @@ export function getCardGolfBenefit(card: { id: string; name?: string; bank?: str
 export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: string; annualFee?: number }): ExtrasBenefit {
   const id = card.id.toLowerCase();
 
+  if (id === 'amex-plat-travel') {
+    return {
+      headline: '10k Welcome Points + ₹10k Taj Voucher & 40k MR Milestones + 8 Domestic Lounges',
+      subline: '₹5,000 annual fee, 10,000 welcome MR points on ₹15k spend in 90 days, 1 MR per ₹50 spent, milestone bonuses unlocking Taj stay vouchers and bonus points at ₹1.9L, ₹4L, and ₹7L annual spends, 8 domestic airport lounges, and Priority Pass membership.',
+      perks: [
+        'Welcome Benefit: 10,000 Membership Rewards points on spending ₹15,000 in first 90 days',
+        'Milestone Rewards: ₹10,000 Taj Stay/Dining Voucher + 40,000 Bonus MR points on ₹4 Lakh spend',
+        'Higher-tier milestone rewards shifting toward ₹7 Lakhs annual spend',
+        'Earn Rate: 1 MR point per ₹50 spent (excluding fuel, insurance, and utilities)',
+        '8 Complimentary Domestic Airport Lounge visits per year (2 per quarter)',
+        'Complimentary Priority Pass Membership (standard usage fees apply)',
+        '24/7 Dedicated Platinum Assist & Concierge Support',
+        'Online Fraud Protection Guarantee & Zero Lost Card Liability',
+        'Eligibility: Age 18+, Indian resident, min annual income of ₹6 Lakhs (~₹50,000/month)'
+      ],
+      insurance: 'Complimentary Travel & Air Accident Protection Cover',
+      score: 9,
+    };
+  }
   if (id === 'amex-platinum') {
     return {
       headline: 'Taj Epicure + Marriott Gold + Fine Hotels & Resorts + ₹5 Cr Cover',

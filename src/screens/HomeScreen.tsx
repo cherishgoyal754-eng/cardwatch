@@ -227,6 +227,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 { id: 'icici-amazon-pay', name: 'Amazon Pay ICICI (LTF)' },
                 { id: 'icici-sapphiro', name: 'ICICI Sapphiro' },
                 { id: 'tata-neu-infinity', name: 'Tata Neu Infinity' },
+                { id: 'amex-plat-travel', name: 'Amex Plat Travel' },
                 { id: 'scapia-federal', name: 'Scapia Federal' },
                 { id: 'axis-magnus', name: 'Axis Magnus' },
                 { id: 'sbi-cashback', name: 'SBI Cashback' },
