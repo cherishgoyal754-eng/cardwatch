@@ -308,57 +308,75 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 9942',
     joiningFee: 12500,
     annualFee: 12500,
-    annualFeeWaiverCondition: 'Waived on ₹25,00,000 annual spend',
+    annualFeeWaiverCondition: 'Waived on spending ₹25 Lakhs or more in preceding year',
     isLifetimeFree: false,
-    minSalaryMonthly: 250000,
+    minSalaryMonthly: 200000,
     minCibilScore: 760,
     status: 'active',
-    headlineBenefit: 'Unlimited Domestic Lounge Access + 8 Guest Visits with ₹50k Spend',
-    cashbackRate: '12 EDGE Reward points per ₹200 spend; 5:2 conversion to airlines',
-    rewardPointValue: '5 EDGE Points = 2 AirMiles (Singapore Krisflyer, Qatar Airways, Accor)',
+    headlineBenefit: 'Unlimited International Lounges (Priority Pass + 4 Guests) • 35 EDGE Pts > ₹1.5L/mo • 2% Forex',
+    cashbackRate: '12 EDGE pts / ₹200 base • 35 pts / ₹200 on monthly spend > ₹1.5L • 5X (up to 60 pts / ₹200) on Travel EDGE',
+    rewardPointValue: '5 EDGE Reward points = 2 partner air miles (capped at 500,000 pts/yr)',
     forexMarkup: 2.0,
     fuelSurchargeWaiver: '1% waiver on transactions between ₹400 and ₹4,000',
     domesticLoungesPerQuarter: 'Unlimited',
-    internationalLoungesPerYear: 8,
-    loungeSpendCondition: 'Lounge access for primary is unlimited; complimentary 8 guest visits requires spending ₹50,000 in previous 3 months.',
+    internationalLoungesPerYear: 'Unlimited Priority Pass + 4 Guest Visits / Year',
+    loungeSpendCondition: 'Unlimited complimentary international visits via Priority Pass (+ 4 guest visits/yr); Unlimited domestic lounge access subject to min spend of ₹50,000 in previous 3 calendar months',
     loungeNetwork: 'Priority Pass',
-    merchantExclusions: ['Rent, Govt utilities, Fuel, Insurance capped'],
-    cappingDetails: 'EDGE Miles transfer capped at 5,00,000 points per year per cardholder group.',
-    officialCircularUrl: 'https://www.axisbank.com/retail/cards/credit-card/magnus-credit-card',
-    lastVerifiedDate: 'Oct 28, 2024',
+    merchantExclusions: [
+      'Utilities & electricity payments',
+      'Fuel transactions',
+      'Insurance premium payments',
+      'Gold & jewellery purchases',
+      'Rent payments & property management',
+      'Wallet reload & cash advances'
+    ],
+    cappingDetails: '5:2 partner airline & hotel point transfers capped at 500,000 points per year; excluded categories (utilities, fuel, insurance, gold, rent, wallet) do not earn reward points or count toward milestone spends.',
+    officialCircularUrl: 'https://www.axis.bank.in/cards/credit-card/axis-bank-magnus-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.1,
-    popularityIndex: 88,
+    rating: 4.4,
+    popularityIndex: 90,
     recentChangeAlert: {
-      badge: 'Historic Devaluation Implemented',
-      effectiveDate: 'Sep 01, 2024',
+      badge: 'Domestic Lounge Spend: ₹50,000 in 3 Months',
+      effectiveDate: '2024',
       isDevaluation: true,
-      description: 'Monthly 25,000 bonus EDGE points eliminated for non-Burgundy users; mileage ratio reduced from 5:4 to 5:2.'
+      description: 'Unlimited domestic lounge access requires a minimum spend of ₹50,000 in the previous 3 calendar months.'
     },
     changeHistory: [
       {
         date: 'Sep 01, 2024',
-        type: 'devaluation',
-        title: 'Removal of 25k Monthly Milestone Bonus',
-        summary: 'The 25,000 monthly bonus points for spending ₹1 Lakh has been completely removed for regular Magnus holders.',
-        oldValue: '25,000 bonus EDGE points every month on ₹1L spend',
-        newValue: '0 milestone bonus points (Burgundy exclusive now)',
-        officialRef: 'Axis Bank Notice Ref AX/CC/MAGNUS-SEP24',
-        severity: 'critical'
+        type: 'policy_update',
+        title: 'Accelerated 35 Points Rate & Domestic Lounge Threshold',
+        summary: 'Earn 35 EDGE points per ₹200 on monthly spends > ₹1.5 Lakhs; domestic lounge access requires ₹50,000 spend in preceding 3 months.',
+        oldValue: '25,000 milestone bonus points on ₹1L monthly spend',
+        newValue: '35 EDGE points per ₹200 on spend above ₹1.5L/mo + 5X on Travel EDGE',
+        officialRef: 'Axis Bank Magnus Terms Revision',
+        severity: 'medium'
       },
       {
         date: 'Sep 01, 2024',
         type: 'devaluation',
-        title: 'Airline Partner Transfer Ratio Cut',
-        summary: 'Points conversion ratio slashed by 60%.',
-        oldValue: '5 EDGE Reward points = 4 Airline Miles / Hotel Points',
-        newValue: '5 EDGE Reward points = 2 Airline Miles / Hotel Points',
-        officialRef: 'Axis Bank Notice Ref AX/CC/MAGNUS-SEP24',
+        title: 'Airline Partner Transfer Ratio Revised to 5:2',
+        summary: 'Standard airline mile conversion updated to 5 EDGE Reward points = 2 Partner Air Miles, capped at 500,000 points per year.',
+        oldValue: '5 EDGE Reward points = 4 Airline Miles',
+        newValue: '5 EDGE Reward points = 2 Airline Miles (500k points/yr cap)',
+        officialRef: 'Axis Bank Notice Ref AX/CC/MAGNUS',
         severity: 'critical'
       }
     ],
     tags: ['lounge', 'travel', 'premium', 'dining', 'golf'],
-    suitableFor: ['Axis Burgundy Priority customers', 'International long-haul flyers', 'Airport guest visits']
+    suitableFor: [
+      'Minimum net salary or annual ITR of ₹24 Lakhs per annum',
+      'Welcome benefit: ₹12,500 luxury brand voucher (Luxe, Postcard Hotels, or Yatra)',
+      '12 EDGE REWARD Points per ₹200 spent on regular categories',
+      '35 EDGE REWARD Points per ₹200 spent on incremental monthly spends above ₹1.5 Lakhs',
+      '5X or up to 60 points per ₹200 via Travel EDGE portal',
+      '5 EDGE points = 2 partner air miles (capped at 500,000 points per year)',
+      'Unlimited international lounges with Priority Pass + 4 guest visits per calendar year',
+      'Unlimited domestic lounge access on minimum spend of ₹50,000 in previous 3 calendar months',
+      'Low 2% foreign currency markup fee (3% monthly extended credit interest rate)',
+      'Joining & Annual fee of ₹12,500 waived on spending ₹25 Lakhs in preceding year'
+    ]
   },
   {
     id: 'icici-amazon-pay',
@@ -1602,10 +1620,19 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'axis-magnus') {
     return {
-      headline: '8x VIP Airport Meet & Greet + 8 Free Guest Lounges + ₹4.5 Cr Cover',
-      subline: '8 complimentary VIP airport concierge meet & assist services at 29 Indian airports, 8 international guest lounge visits, 24x7 luxury concierge, ₹4.5 Crore air accident cover.',
-      perks: ['8 VIP Airport Meet & Assist', '8 International Guest Lounges', '₹4.5 Cr Air Accident Insurance', '24x7 Dedicated Luxury Concierge'],
-      insurance: '₹4.5 Crore Air Accident Insurance',
+      headline: '₹12.5k Luxury Voucher + Priority Pass + 4 Free Guests + 35 pts > ₹1.5L + 2% Forex',
+      subline: '₹12,500 luxury brand voucher (Luxe/Postcard/Yatra) on qualifying spend, unlimited Priority Pass international lounges + 4 guest visits/year, unlimited domestic lounges (on ₹50k spend in previous 3 calendar months), 35 EDGE points / ₹200 on spends > ₹1.5L/mo, 5X on Travel EDGE, 5:2 air miles conversion, and 2% forex markup.',
+      perks: [
+        'Welcome: ₹12,500 Luxury Brand Voucher (Luxe, Postcard Hotels, or Yatra)',
+        'Unlimited International Lounges (Priority Pass) + 4 Guest Visits / Year',
+        'Unlimited Domestic Lounges (on ₹50,000 spend in previous 3 calendar months)',
+        '12 EDGE Points / ₹200 Base & 35 Points / ₹200 on Incremental Spends > ₹1.5L/mo',
+        '5X EDGE Points (up to 60 pts / ₹200) via Travel EDGE Portal',
+        '5:2 Standard Airline & Hotel Transfer Ratio (Capped at 500,000 pts/yr)',
+        'Low 2% Foreign Currency Markup Fee (3% Monthly Extended Interest Rate)',
+        'Annual Fee Waived on spending ₹25 Lakhs in preceding year'
+      ],
+      insurance: '₹4.5 Crore Air Accident Cover + Overseas Medical Insurance',
       score: 9,
     };
   }

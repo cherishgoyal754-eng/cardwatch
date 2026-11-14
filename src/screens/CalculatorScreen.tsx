@@ -90,6 +90,17 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const otherCoins = otherSpend * 0.10; // 10% Scapia Coins
       monthlyPoints = travelCoins + otherCoins;
       monthlyCashbackRupees = monthlyPoints * 0.20; // 5 Coins = ₹1
+    } else if (targetCard.id === 'axis-magnus') {
+      // 12 EDGE points / ₹200 base, 35 pts / ₹200 on spend > ₹1.5L/mo, 60 pts / ₹200 on Travel EDGE
+      const travelEdgeSpend = spends.flightsHotels;
+      const travelPoints = (travelEdgeSpend / 200) * 60;
+      const remainingSpend = Math.max(0, totalMonthlySpend - travelEdgeSpend - spends.fuel);
+      const baseSpend = Math.min(150000, remainingSpend);
+      const acceleratedSpend = Math.max(0, remainingSpend - 150000);
+      const basePoints = (baseSpend / 200) * 12;
+      const acceleratedPoints = (acceleratedSpend / 200) * 35;
+      monthlyPoints = travelPoints + basePoints + acceleratedPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.40; // 5:2 ratio to partner air miles (₹1/mile = ₹0.40/pt)
     } else if (targetCard.id === 'tata-neu-infinity') {
       monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.grocery * 0.05) + (spends.offline * 0.015);
       monthlyPoints = monthlyCashbackRupees;
@@ -122,6 +133,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     if (targetCard.domesticLoungesPerQuarter === 0) isLoungeUnlocked = false;
     else if (targetCard.id === 'hdfc-regalia-gold') isLoungeUnlocked = quarterlySpend >= 60000;
     else if (targetCard.id === 'indusind-tiger') isLoungeUnlocked = true; // 2 domestic lounges/quarter complimentary via card
+    else if (targetCard.id === 'axis-magnus') isLoungeUnlocked = quarterlySpend >= 50000;
     else if (targetCard.id === 'scapia-federal') isLoungeUnlocked = totalMonthlySpend >= 20000;
 
     const netAnnualProfit = annualGrossCash + feeSaved - feeToPay;

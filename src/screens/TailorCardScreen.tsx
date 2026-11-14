@@ -111,7 +111,8 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   } else if (card.id === 'tata-neu-infinity') {
     grossAnnualRewards = Math.round(yearlySpend * 0.035);
   } else if (card.id === 'axis-magnus') {
-    grossAnnualRewards = Math.round(yearlySpend * 0.038);
+    // 12 pts/₹200 base (2.4%) + 35 pts/₹200 on spend > ₹1.5L/mo (7%) + 5X on Travel EDGE = blended ~4.2%
+    grossAnnualRewards = Math.round(yearlySpend * 0.042);
   } else if (card.id === 'amex-platinum') {
     // 2.5% points + ₹45,000 luxury vouchers & Taj/Marriott gold tiers
     grossAnnualRewards = Math.round(yearlySpend * 0.028 + 45000);

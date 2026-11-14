@@ -75,6 +75,15 @@ const DEFAULT_BILLING_DATA: Record<string, Omit<CardBillingInfo, 'cardId'>> = {
     daysRemaining: 5,
     isPaid: false,
   },
+  'axis-magnus': {
+    creditLimit: 1000000,
+    usedAmount: 172000,
+    billAmount: 58900,
+    minimumDue: 2945,
+    dueDate: '24 Nov 2026',
+    daysRemaining: 10,
+    isPaid: false,
+  },
   'sbi-cashback': {
     creditLimit: 250000,
     usedAmount: 58000,
