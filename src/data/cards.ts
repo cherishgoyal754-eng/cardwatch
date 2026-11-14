@@ -958,36 +958,42 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     minSalaryMonthly: 60000,
     minCibilScore: 740,
     status: 'active',
-    headlineBenefit: 'Accelerated Rewards on Tiger Fintech + Ultra-Low 1.5% Forex Markup',
-    cashbackRate: 'Up to 6 Reward Points per ₹100 on preferred online categories; 2 RP per ₹100 others',
+    headlineBenefit: 'Earn up to 6 Accelerated Reward Points on every ₹100 • 1.50% Discounted Forex Mark-up Fee',
+    cashbackRate: 'Earn up to 6 Accelerated Reward Points on every ₹100',
     rewardPointValue: '1 Reward Point = ₹0.40 on statement credit, vouchers & travel booking',
     forexMarkup: 1.5,
     fuelSurchargeWaiver: '1% waiver on transactions between ₹400 and ₹4,000',
-    domesticLoungesPerQuarter: 1,
+    domesticLoungesPerQuarter: 2,
     internationalLoungesPerYear: 2,
-    loungeSpendCondition: '1 complimentary domestic airport lounge visit per quarter + 2 Priority Pass international visits.',
+    loungeSpendCondition: '2 Complimentary Domestic Lounge Access in a quarter via Credit Card and 2 International Lounge Access in a year via Priority Pass',
     loungeNetwork: 'Priority Pass',
     merchantExclusions: ['Rent payments', 'Wallet load', 'Government payments'],
     cappingDetails: 'Accelerated reward points capped at 5,000 points per statement cycle.',
     officialCircularUrl: 'https://www.indusind.com/in/en/personal/cards/credit-cards/tiger-credit-card.html',
-    lastVerifiedDate: 'Nov 04, 2024',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.6,
-    popularityIndex: 90,
+    rating: 4.7,
+    popularityIndex: 92,
     changeHistory: [
       {
         date: 'Sep 01, 2024',
         type: 'enhancement',
-        title: 'Reduced Forex Markup to 1.5%',
-        summary: 'IndusInd Bank slashed forex markup on Tiger card from 3.5% to 1.5% for international transactions.',
+        title: 'Reduced Forex Markup to 1.50%',
+        summary: 'IndusInd Bank slashed forex markup on Tiger card from 3.5% to 1.50% for international transactions.',
         oldValue: '3.5% standard forex fee',
-        newValue: '1.5% discounted forex markup fee',
+        newValue: '1.50% discounted forex markup fee',
         officialRef: 'IndusInd Tiger Circular 2024-09',
         severity: 'positive'
       }
     ],
-    tags: ['travel', 'rewards', 'shopping'],
-    suitableFor: ['International travelers seeking low 1.5% forex', 'Fintech enthusiasts and Bajaj Capital users', 'Domestic airport lounge access']
+    tags: ['travel', 'rewards', 'shopping', 'lounge'],
+    suitableFor: [
+      'Earn up to 6 Accelerated Reward Points on every ₹100',
+      'International travelers seeking 1.50% Discounted Forex Mark-up Fee',
+      '2 Complimentary Domestic Lounge Access in a quarter + 2 International via Priority Pass',
+      'Golfers seeking 1 Complimentary Game or Lesson per Quarter',
+      'One complimentary movie ticket upto ₹500 on BookMyShow every 6 months in a financial year'
+    ]
   },
   {
     id: 'idfc-first-millennia',
@@ -1314,10 +1320,10 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'indusind-tiger') {
     return {
-      headline: 'Buy 1 Get 1 Free on BookMyShow (Up to ₹200, 2x / Month)',
-      subline: 'Enjoy BOGO ticket privileges on BookMyShow twice every month across PVR, INOX, and Cinepolis theaters.',
-      hasBogo: true,
-      score: 7,
+      headline: '1 Complimentary Ticket up to ₹500 on BookMyShow (Every 6 Months)',
+      subline: 'One complimentary movie ticket upto ₹500 on BookMyShow every 6 months in a financial year.',
+      hasBogo: false,
+      score: 8,
     };
   }
   if (id === 'hdfc-regalia-gold') {
@@ -1445,10 +1451,10 @@ export function getCardGolfBenefit(card: { id: string; name?: string; bank?: str
   }
   if (id === 'indusind-tiger') {
     return {
-      headline: '2 Complimentary Golf Games / Month',
-      subline: 'Complimentary green fees at top Indian golf courses twice per month via IndusInd Golf concierge desk.',
-      roundsPerQuarter: 6,
-      score: 7,
+      headline: '1 Complimentary Game or Lesson per Quarter',
+      subline: 'Golf - 1 Complimentary Game or Lesson per Quarter across leading golf clubs in India via IndusInd Golf concierge.',
+      roundsPerQuarter: 1,
+      score: 6,
     };
   }
   if (id === 'hdfc-regalia-gold') {
@@ -1566,6 +1572,21 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       perks: ['Unconditional Lifetime Free (₹0)', '5% Unlimited Amazon Cashback', 'Direct Amazon Pay Balance Credit', 'Zero Redemption Fees'],
       insurance: 'Standard Chip & PIN Fraud Protection',
       score: 7,
+    };
+  }
+  if (id === 'indusind-tiger') {
+    return {
+      headline: '1.50% Discounted Forex + Priority Pass + Golf & Movie Privileges',
+      subline: '1.50% Discounted Forex Mark-up Fee, 2 Complimentary Domestic Lounge Access in a quarter via Credit Card, 2 International Lounge Access in a year via Priority Pass, 1 Golf Game/Lesson per quarter, and 1 Complimentary BookMyShow ticket up to ₹500 every 6 months in a financial year.',
+      perks: [
+        'Earn up to 6 Accelerated Reward Points on every ₹100',
+        '1.50% Discounted Forex Mark-up Fee',
+        'Golf - 1 Complimentary Game or Lesson per Quarter',
+        '2 Domestic Lounges/qtr via Card + 2 Intl Lounges/yr (Priority Pass)',
+        'One complimentary movie ticket upto ₹500 on BookMyShow every 6 months in a financial year'
+      ],
+      insurance: 'Complimentary Personal Air Accident Cover',
+      score: 8,
     };
   }
   if (id === 'sbi-cashback') {
