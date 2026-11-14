@@ -446,47 +446,59 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 6632',
     joiningFee: 1499,
     annualFee: 1499,
-    annualFeeWaiverCondition: 'Waived on ₹3,00,000 annual spend',
+    annualFeeWaiverCondition: 'Waived if you spend ₹3 Lakh or more in a membership year',
     isLifetimeFree: false,
     minSalaryMonthly: 100000,
     minCibilScore: 740,
     status: 'active',
-    headlineBenefit: '1.5% NeuCoins on UPI QR Payments + 5% on Tata Brands',
-    cashbackRate: '1.5% on UPI spends; 10% on BigBasket, 1mg, Tata Cliq, Air India, Taj',
-    rewardPointValue: '1 NeuCoin = ₹1.00 across all Tata brands & Air India flights',
+    headlineBenefit: '5% NeuCoins on Tata Neu (+5% NeuPass) • 1.5% UPI & Non-Tata Spends • 8 Domestic & 4 Intl Lounges',
+    cashbackRate: '5% (+5% via NeuPass) on Tata Brands • 1.5% on Non-Tata & Tata Neu UPI • 0.5% other UPI',
+    rewardPointValue: '1 NeuCoin = ₹1.00 (Claim manually via NeuCard section in Tata Neu App)',
     forexMarkup: 2.0,
-    fuelSurchargeWaiver: '1% waiver (max ₹500/month)',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver across petrol pumps in India',
     domesticLoungesPerQuarter: 2,
     internationalLoungesPerYear: 4,
-    loungeSpendCondition: 'DEVALUATION: Requires spending min ₹50,000 in previous calendar quarter to unlock complimentary domestic lounge visits via RuPay network.',
-    loungeNetwork: 'Visa Lounge',
-    merchantExclusions: ['Rent, Govt utilities, Wallet reloads'],
-    cappingDetails: 'UPI merchant spend capped at 500 NeuCoins per calendar month for small merchant QR codes.',
-    officialCircularUrl: 'https://www.hdfcbank.com/personal/pay/cards/credit-cards/tata-neu-infinity-hdfc-bank-credit-card',
-    lastVerifiedDate: 'Nov 09, 2024',
+    loungeSpendCondition: '8 complimentary domestic lounge visits/year (2/quarter) via Visa or RuPay + 4 international visits/year (1/quarter) via Priority Pass.',
+    loungeNetwork: 'RuPay / Visa / Priority Pass',
+    merchantExclusions: ['Fuel transactions', 'Wallet reloads', 'Rental payments', 'Govt transactions'],
+    cappingDetails: 'NeuCoins must be claimed manually via the NeuCard section in Tata Neu App. UPI rewards subject to combined monthly caps.',
+    officialCircularUrl: 'https://www.hdfc.bank.in/credit-cards/tata-neu-infinity-hdfc-bank-credit-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.6,
-    popularityIndex: 93,
+    rating: 4.7,
+    popularityIndex: 94,
     recentChangeAlert: {
-      badge: 'UPI Lounge Threshold Updated',
-      effectiveDate: 'Nov 15, 2024',
-      isDevaluation: true,
-      description: 'RuPay lounge access now requires ₹50,000 spend in preceding quarter.'
+      badge: 'NeuCard Claim Reminder',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: 'NeuCoins must be manually claimed via the NeuCard section in the Tata Neu App.'
     },
     changeHistory: [
       {
-        date: 'Nov 15, 2024',
-        type: 'devaluation',
-        title: 'RuPay Lounge Spend Requirement',
-        summary: 'Complimentary lounge visits now require minimum ₹50,000 spend in previous calendar quarter.',
-        oldValue: '2 visits/quarter unconditional with card swipe',
-        newValue: '2 visits/quarter after ₹50,000 spend in previous quarter',
-        officialRef: 'RuPay Network & HDFC Bulletin 2024',
-        severity: 'high'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Card Features & Eligibility',
+        summary: '8 domestic lounges/yr (2/qtr) via Visa or RuPay, 4 intl via Priority Pass, 5% on Tata brands (+5% NeuPass), 1.5% on UPI & non-Tata spends, 2% forex, ₹1L monthly salary / ₹12L ITR eligibility.',
+        oldValue: 'Older benefit definitions',
+        newValue: '8 domestic (2/qtr) + 4 Priority Pass intl (1/qtr), 2% forex, 1.5% UPI',
+        officialRef: 'HDFC Bank Tata Neu Infinity Official Portal',
+        severity: 'low'
       }
     ],
     tags: ['upi', 'lounge', 'shopping', 'grocery', 'travel', 'dining'],
-    suitableFor: ['UPI QR code spenders', 'BigBasket grocery shoppers', 'Air India & Taj stays']
+    suitableFor: [
+      'Annual Fee: ₹1,499 + GST (waived on spending ₹3 Lakh or more in a membership year)',
+      '1 NeuCoin = ₹1 (must be claimed manually through the NeuCard section in the Tata Neu App)',
+      '5% back as NeuCoins on non-EMI spends on Tata Neu & partner Tata brands (plus an additional 5% via NeuPass on selected categories)',
+      '1.5% back as NeuCoins on non-Tata brand spends and merchant EMI spends',
+      'RuPay Variant UPI Benefit: 1.5% on Tata Neu UPI, 0.5% on other UPI apps (combined monthly cap applies)',
+      'Domestic Lounge Access: 8 complimentary domestic visits per calendar year (2 per quarter) via Visa or RuPay',
+      'International Lounge Access: Up to 4 complimentary international visits per calendar year (1 per quarter) via Priority Pass (issued on request for Visa)',
+      'Foreign Currency Markup: Low 2% foreign currency markup on international transactions',
+      '1% fuel surcharge waiver across petrol pumps in India',
+      'Comprehensive Insurance: Complimentary accidental air death cover, emergency overseas hospitalization, and credit liability cover',
+      'Eligibility: Age 21–65 years | Salaried: Minimum monthly income ₹1 Lakh | Self-Employed: Annual ITR > ₹12 Lakh'
+    ]
   },
   {
     id: 'icici-sapphiro',
@@ -1693,11 +1705,21 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'tata-neu-infinity') {
     return {
-      headline: '5% NeuCoins on UPI QR + Tata Brand Multipliers + Air India Perks',
-      subline: '5% NeuCoins on Tata Neu UPI, comprehensive coverage on Tata brand ecosystem (Croma, 1mg, Taj, BigBasket, Air India), 8 domestic + 4 international lounges.',
-      perks: ['5% NeuCoins on RuPay UPI QR', 'Taj Hotel & Dining Discounts', '8 Domestic + 4 Intl Lounges', 'Air India Accelerated Points'],
-      insurance: '₹1 Crore Air Accident Cover',
-      score: 7,
+      headline: '5% NeuCoins on Tata Brands (+5% NeuPass) + 1.5% UPI + 8 Domestic & 4 Intl Lounges + 2% Forex',
+      subline: '₹1,499 annual fee (waived on ₹3L spend), 5% back as NeuCoins on Tata Neu & partner brands (+5% NeuPass), 1.5% on non-Tata & Tata Neu UPI (0.5% other UPI), 8 domestic + 4 Priority Pass lounges, 2% forex markup, and ₹1 Cr air accident insurance.',
+      perks: [
+        'Annual Fee: ₹1,499 + GST (Waived on ₹3 Lakh spend in a membership year)',
+        '1 NeuCoin = ₹1 (Claim manually via NeuCard section in Tata Neu App)',
+        '5% NeuCoins on Tata Neu & Partner Tata Brands (+5% additional via NeuPass)',
+        '1.5% NeuCoins on Non-Tata Spends & Merchant EMI Spends',
+        'RuPay UPI Benefits: 1.5% on Tata Neu UPI & 0.5% on other UPI apps (monthly cap)',
+        '8 Domestic Lounges/yr (2/qtr) via Visa/RuPay + 4 Intl/yr (1/qtr) via Priority Pass',
+        'Low 2% Foreign Currency Markup Fee',
+        '1% Fuel Surcharge Waiver across all petrol pumps in India',
+        'Eligibility: Age 21–65; Salaried: ₹1 Lakh/month; Self-Employed: ITR > ₹12 Lakh'
+      ],
+      insurance: '₹1 Crore Accidental Air Death Cover + Credit Liability Cover',
+      score: 9,
     };
   }
   if (id === 'icici-amazon-pay') {

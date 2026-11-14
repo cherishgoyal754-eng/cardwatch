@@ -225,6 +225,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 { id: 'hdfc-regalia-gold', name: 'HDFC Regalia Gold' },
                 { id: 'indusind-tiger', name: 'IndusInd Tiger (LTF)' },
                 { id: 'icici-amazon-pay', name: 'Amazon Pay ICICI (LTF)' },
+                { id: 'tata-neu-infinity', name: 'Tata Neu Infinity' },
                 { id: 'scapia-federal', name: 'Scapia Federal' },
                 { id: 'axis-magnus', name: 'Axis Magnus' },
                 { id: 'sbi-cashback', name: 'SBI Cashback' },
