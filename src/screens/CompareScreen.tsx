@@ -1,6 +1,11 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { CreditCard } from '../types';
-import { getBankHelpline } from '../data/cards';
+import {
+  getBankHelpline,
+  getCardMovieBenefit,
+  getCardGolfBenefit,
+  getCardExtrasBenefit
+} from '../data/cards';
 import { sound } from '../utils/audio';
 import { Real3DCard } from '../components/Real3DCard';
 import {
@@ -20,7 +25,10 @@ import {
   ArrowLeftRight,
   X,
   ChevronDown,
-  Crown
+  Crown,
+  Film,
+  Flag,
+  Gift
 } from 'lucide-react';
 
 interface CompareScreenProps {
@@ -94,6 +102,15 @@ export const CompareScreen: React.FC<CompareScreenProps> = ({
 
   const helpline1 = getBankHelpline(card1.bank);
   const helpline2 = getBankHelpline(card2.bank);
+
+  const movie1 = getCardMovieBenefit(card1);
+  const movie2 = getCardMovieBenefit(card2);
+
+  const golf1 = getCardGolfBenefit(card1);
+  const golf2 = getCardGolfBenefit(card2);
+
+  const extras1 = getCardExtrasBenefit(card1);
+  const extras2 = getCardExtrasBenefit(card2);
 
   // Updates Left Card ONLY (Slot 0), leaves Right Card 100% untouched
   const handleUpdateSlot1 = (newCardId: string) => {
@@ -207,6 +224,8 @@ export const CompareScreen: React.FC<CompareScreenProps> = ({
         keyPoints: [
           'Choose HDFC Diners Club Black if you want 33.3% net reward yield on flights/hotels via SmartBuy, 2X weekend dining points, and an achievable ₹8 Lakh annual fee waiver.',
           'Choose American Express Platinum if you want global Centurion Lounge access without spend requirements, 24x7 elite concierge, and Taj/Marriott elite hotel tier memberships.',
+          '🏌️ Golf: Both cards provide complimentary golf (Amex: Unlimited global courses; Diners: 6 rounds/quarter).',
+          '🎬 Movies: Diners Club Black provides BookMyShow BOGO weekend tickets (up to ₹250 2x/mo).',
         ],
         card1Pill: card1.id === 'amex-platinum' ? '👑 AI LUXURY & STATUS WINNER' : '🏆 AI VALUE & REWARDS WINNER',
         card2Pill: card2.id === 'amex-platinum' ? '👑 AI LUXURY & STATUS WINNER' : '🏆 AI VALUE & REWARDS WINNER',
@@ -227,8 +246,41 @@ export const CompareScreen: React.FC<CompareScreenProps> = ({
     if (card1.domesticLoungesPerQuarter === 'Unlimited') score1 += 2;
     if (card2.domesticLoungesPerQuarter === 'Unlimited') score2 += 2;
 
+    // Movies advantage
+    if (movie1.score > movie2.score) score1 += 1;
+    else if (movie2.score > movie1.score) score2 += 1;
+
+    // Golf advantage
+    if (golf1.score > golf2.score) score1 += 1;
+    else if (golf2.score > golf1.score) score2 += 1;
+
+    // Extras advantage
+    if (extras1.score > extras2.score) score1 += 1;
+    else if (extras2.score > extras1.score) score2 += 1;
+
     const winner = score1 >= score2 ? card1 : card2;
     const runnerUp = score1 >= score2 ? card2 : card1;
+
+    const keyPoints = [
+      `${winner.name}: Lower fee barrier and stronger everyday perks (${winner.headlineBenefit}).`,
+      `${runnerUp.name}: Best suited if your primary priority is specific partner tier benefits or travel ecosystem locks.`,
+    ];
+
+    if (golf1.roundsPerQuarter !== golf2.roundsPerQuarter) {
+      if (golf1.roundsPerQuarter !== 0 && golf2.roundsPerQuarter === 0) {
+        keyPoints.push(`🏌️ Golf Advantage: ${card1.name} includes ${golf1.headline}, whereas ${card2.name} offers no golf perks.`);
+      } else if (golf2.roundsPerQuarter !== 0 && golf1.roundsPerQuarter === 0) {
+        keyPoints.push(`🏌️ Golf Advantage: ${card2.name} includes ${golf2.headline}, whereas ${card1.name} offers no golf perks.`);
+      }
+    }
+
+    if (movie1.hasBogo !== movie2.hasBogo) {
+      if (movie1.hasBogo) {
+        keyPoints.push(`🎬 Cinema Advantage: ${card1.name} features ${movie1.headline}.`);
+      } else if (movie2.hasBogo) {
+        keyPoints.push(`🎬 Cinema Advantage: ${card2.name} features ${movie2.headline}.`);
+      }
+    }
 
     return {
       overallWinnerName: winner.name,
@@ -236,14 +288,11 @@ export const CompareScreen: React.FC<CompareScreenProps> = ({
       luxuryWinnerName: runnerUp.name,
       luxuryWinnerCard: runnerUp,
       verdictHeadline: `AI Recommended: ${winner.name} delivers higher overall cost-to-benefit ratio for Indian cardholders.`,
-      keyPoints: [
-        `${winner.name}: Lower fee barrier and stronger everyday perks (${winner.headlineBenefit}).`,
-        `${runnerUp.name}: Best suited if your primary priority is specific partner tier benefits or travel ecosystem locks.`,
-      ],
+      keyPoints,
       card1Pill: score1 >= score2 ? '🏆 AI RECOMMENDED PICK' : '⭐ ALTERNATIVE CONTENDER',
       card2Pill: score2 > score1 ? '🏆 AI RECOMMENDED PICK' : '⭐ ALTERNATIVE CONTENDER',
     };
-  }, [card1, card2]);
+  }, [card1, card2, movie1, movie2, golf1, golf2, extras1, extras2]);
 
   // Structured comparison parameters strictly following the sketch
   const comparisonItems = [
@@ -267,6 +316,38 @@ export const CompareScreen: React.FC<CompareScreenProps> = ({
           : card2.domesticLoungesPerQuarter === 'Unlimited' && card1.domesticLoungesPerQuarter !== 'Unlimited'
           ? 2
           : 0,
+    },
+    {
+      id: 'movies',
+      sketchLabel: 'MOVIES & CINEMA',
+      title: 'Movie Tickets & Entertainment BOGO',
+      icon: Film,
+      isDifferent: movie1.headline !== movie2.headline || movie1.hasBogo !== movie2.hasBogo,
+      c1: {
+        headline: movie1.headline,
+        subline: movie1.subline,
+      },
+      c2: {
+        headline: movie2.headline,
+        subline: movie2.subline,
+      },
+      winner: movie1.score > movie2.score ? 1 : movie2.score > movie1.score ? 2 : 0,
+    },
+    {
+      id: 'golf',
+      sketchLabel: 'GOLF PRIVILEGES',
+      title: 'Complimentary Golf Rounds & Lessons',
+      icon: Flag,
+      isDifferent: golf1.roundsPerQuarter !== golf2.roundsPerQuarter,
+      c1: {
+        headline: golf1.headline,
+        subline: golf1.subline,
+      },
+      c2: {
+        headline: golf2.headline,
+        subline: golf2.subline,
+      },
+      winner: golf1.score > golf2.score ? 1 : golf2.score > golf1.score ? 2 : 0,
     },
     {
       id: 'dining',
@@ -327,6 +408,22 @@ export const CompareScreen: React.FC<CompareScreenProps> = ({
           : card2.headlineBenefit,
       },
       winner: card1.forexMarkup < card2.forexMarkup ? 1 : card2.forexMarkup < card1.forexMarkup ? 2 : 0,
+    },
+    {
+      id: 'extras',
+      sketchLabel: 'EXTRAS & LIFESTYLE',
+      title: 'Elite Hotel Status, Insurance & VIP Perks',
+      icon: Gift,
+      isDifferent: extras1.headline !== extras2.headline,
+      c1: {
+        headline: extras1.headline,
+        subline: extras1.subline,
+      },
+      c2: {
+        headline: extras2.headline,
+        subline: extras2.subline,
+      },
+      winner: extras1.score > extras2.score ? 1 : extras2.score > extras1.score ? 2 : 0,
     },
     {
       id: 'rewards',

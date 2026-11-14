@@ -1247,5 +1247,344 @@ export function getBankHelpline(bankName: string): BankHelpline {
   return BANK_HELPLINES_DATA[0];
 }
 
+export interface MovieBenefit {
+  headline: string;
+  subline: string;
+  hasBogo: boolean;
+  score: number;
+}
+
+export interface GolfBenefit {
+  headline: string;
+  subline: string;
+  roundsPerQuarter: number | string;
+  score: number;
+}
+
+export interface ExtrasBenefit {
+  headline: string;
+  subline: string;
+  perks: string[];
+  insurance: string;
+  score: number;
+}
+
+export function getCardMovieBenefit(card: { id: string; name?: string; bank?: string }): MovieBenefit {
+  const id = card.id.toLowerCase();
+
+  if (id === 'axis-magnus') {
+    return {
+      headline: 'Buy 1 Get 1 Free on BookMyShow (Up to ₹500, 5x / Month)',
+      subline: 'Save up to ₹2,500 every month on cinema tickets! Maximum 5 complimentary BOGO tickets per calendar month on BookMyShow.',
+      hasBogo: true,
+      score: 10,
+    };
+  }
+  if (id === 'icici-sapphiro') {
+    return {
+      headline: 'Buy 1 Get 1 Free on BookMyShow (Up to ₹500, 2x / Month)',
+      subline: 'Buy one ticket and get up to ₹500 off on the second ticket twice a month on BookMyShow (Save up to ₹1,000/month).',
+      hasBogo: true,
+      score: 9,
+    };
+  }
+  if (id === 'hdfc-infinia-metal') {
+    return {
+      headline: 'Buy 1 Get 1 Free on BookMyShow (Up to ₹500 Off)',
+      subline: 'Complimentary BOGO ticket access on BookMyShow plus 5X reward points on SmartBuy entertainment vouchers.',
+      hasBogo: true,
+      score: 9,
+    };
+  }
+  if (id === 'idfc-first-wealth') {
+    return {
+      headline: 'Buy 1 Get 1 Free on Paytm / BookMyShow (Up to ₹500, 2x / Month)',
+      subline: 'Enjoy 2 complimentary movie tickets per calendar month up to ₹500 per ticket across leading cinema chains in India.',
+      hasBogo: true,
+      score: 9,
+    };
+  }
+  if (id === 'hdfc-diners-black') {
+    return {
+      headline: 'Buy 1 Get 1 Free on BookMyShow (Up to ₹250, 2x / Month)',
+      subline: 'Complimentary weekend BOGO tickets twice per calendar month on BookMyShow plus 2X dining rewards on weekends.',
+      hasBogo: true,
+      score: 8,
+    };
+  }
+  if (id === 'indusind-tiger') {
+    return {
+      headline: 'Buy 1 Get 1 Free on BookMyShow (Up to ₹200, 2x / Month)',
+      subline: 'Enjoy BOGO ticket privileges on BookMyShow twice every month across PVR, INOX, and Cinepolis theaters.',
+      hasBogo: true,
+      score: 7,
+    };
+  }
+  if (id === 'hdfc-regalia-gold') {
+    return {
+      headline: '₹1,500 Quarterly Milestone Vouchers (PVR / BookMyShow)',
+      subline: 'Earn ₹1,500 gift vouchers every quarter upon spending ₹1.5 Lakh, redeemable directly on PVR or BookMyShow.',
+      hasBogo: false,
+      score: 7,
+    };
+  }
+  if (id === 'sbi-cashback') {
+    return {
+      headline: 'Flat 5% Direct Cashback on All Cinema Bookings',
+      subline: 'Automatic 5% statement cashback on BookMyShow, PVR, INOX, and Cinepolis with no minimum ticket requirement.',
+      hasBogo: false,
+      score: 7,
+    };
+  }
+  if (id === 'sbi-simplysave') {
+    return {
+      headline: '10X Reward Points on Cinema & Movies',
+      subline: 'Earn 10 reward points per ₹150 spent on all movie ticket counters and online cinema portals (~2.5% valueback).',
+      hasBogo: false,
+      score: 6,
+    };
+  }
+  if (id === 'idfc-first-millennia') {
+    return {
+      headline: 'Buy 1 Get 1 Free on Paytm (Up to ₹250, 1x / Month)',
+      subline: 'Get 25% discount or Buy 1 Get 1 up to ₹250 on movie tickets once a month via Paytm Movies.',
+      hasBogo: true,
+      score: 6,
+    };
+  }
+  if (id === 'tata-neu-infinity') {
+    return {
+      headline: '5% NeuCoins on Entertainment via Tata Neu',
+      subline: 'Earn 5% back as NeuCoins on cinema and entertainment bookings made via the Tata Neu ecosystem.',
+      hasBogo: false,
+      score: 6,
+    };
+  }
+  if (id === 'amex-platinum') {
+    return {
+      headline: 'VIP Amex Invites & Private Film Screenings',
+      subline: 'Centurion 24x7 Platinum Concierge priority reservations for high-demand theatrical shows and film festivals.',
+      hasBogo: false,
+      score: 7,
+    };
+  }
+  if (id === 'flipkart-axis') {
+    return {
+      headline: '4% Cashback on Preferred Entertainment Partners',
+      subline: '4% flat cashback on partner dining and entertainment platforms; 1.5% unlimited cashback elsewhere.',
+      hasBogo: false,
+      score: 5,
+    };
+  }
+  if (id === 'icici-amazon-pay') {
+    return {
+      headline: '2% Unlimited Cashback on Movie Tickets via Amazon Pay',
+      subline: 'Flat 2% cashback credited directly into Amazon Pay balance for movie bookings made through Amazon.',
+      hasBogo: false,
+      score: 5,
+    };
+  }
+  if (id === 'scapia-federal') {
+    return {
+      headline: 'Up to 20% Scapia Coins on Travel & Events',
+      subline: 'Earn accelerated Scapia Coins redeemable for experiences, events, and flights on the Scapia app.',
+      hasBogo: false,
+      score: 5,
+    };
+  }
+  return {
+    headline: 'Standard Category Rewards on Entertainment',
+    subline: 'Earn standard reward points or flat cashback on all entertainment and cinema ticketing merchants.',
+    hasBogo: false,
+    score: 4,
+  };
+}
+
+export function getCardGolfBenefit(card: { id: string; name?: string; bank?: string }): GolfBenefit {
+  const id = card.id.toLowerCase();
+
+  if (id === 'amex-platinum') {
+    return {
+      headline: 'Unlimited Complimentary Golf Across 80+ Global Courses',
+      subline: 'Unlimited complimentary green fee access across 30+ leading Indian golf clubs and 50+ international courses, plus golf coaching sessions.',
+      roundsPerQuarter: 'Unlimited',
+      score: 10,
+    };
+  }
+  if (id === 'hdfc-infinia-metal') {
+    return {
+      headline: 'Unlimited Complimentary Golf Games (India & Worldwide)',
+      subline: 'Unlimited complimentary green fee access at premier domestic & international golf clubs + 4 golf lessons per year.',
+      roundsPerQuarter: 'Unlimited',
+      score: 10,
+    };
+  }
+  if (id === 'hdfc-diners-black') {
+    return {
+      headline: '6 Complimentary Golf Rounds / Quarter (Worldwide)',
+      subline: '6 complimentary golf games per quarter across leading greens in India and abroad, with guest booking privileges.',
+      roundsPerQuarter: 6,
+      score: 9,
+    };
+  }
+  if (id === 'idfc-first-wealth') {
+    return {
+      headline: '2 Golf Rounds + 2 Golf Lessons / Month (24 / Year)',
+      subline: 'Enjoy up to 24 complimentary golf rounds & lessons per calendar year upon spending ₹20,000 in previous statement cycle.',
+      roundsPerQuarter: 6,
+      score: 8,
+    };
+  }
+  if (id === 'icici-sapphiro') {
+    return {
+      headline: '4 Complimentary Golf Rounds / Quarter',
+      subline: '1 complimentary golf game per month for every ₹50,000 spent in the previous calendar month at select Indian courses.',
+      roundsPerQuarter: 4,
+      score: 7,
+    };
+  }
+  if (id === 'indusind-tiger') {
+    return {
+      headline: '2 Complimentary Golf Games / Month',
+      subline: 'Complimentary green fees at top Indian golf courses twice per month via IndusInd Golf concierge desk.',
+      roundsPerQuarter: 6,
+      score: 7,
+    };
+  }
+  if (id === 'hdfc-regalia-gold') {
+    return {
+      headline: '4 Complimentary Golf Games / Year',
+      subline: '1 complimentary golf round per calendar quarter at select golf destinations across India.',
+      roundsPerQuarter: 1,
+      score: 5,
+    };
+  }
+  if (id === 'axis-atlas' || id === 'axis-magnus') {
+    return {
+      headline: 'Tier-Based Milestone Golf Privileges',
+      subline: 'Golf privileges unlocked on top-tier annual milestone spends (Platinum Tier) or private wealth desk invitation.',
+      roundsPerQuarter: 'Milestone',
+      score: 4,
+    };
+  }
+  return {
+    headline: 'No Golf Privileges Included',
+    subline: 'This credit card focuses on everyday shopping, cashback, and travel perks without golf club memberships.',
+    roundsPerQuarter: 0,
+    score: 0,
+  };
+}
+
+export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: string; annualFee?: number }): ExtrasBenefit {
+  const id = card.id.toLowerCase();
+
+  if (id === 'amex-platinum') {
+    return {
+      headline: 'Taj Epicure + Marriott Gold + Fine Hotels & Resorts + ₹5 Cr Cover',
+      subline: 'Centurion 24x7 Global Concierge, Taj Epicure, Marriott Bonvoy Gold Elite, Hilton Honors Gold, Radisson Rewards, Fine Hotels & Resorts ($100 property credit, free breakfast for 2, 4pm checkout), ₹5 Crore travel accident insurance.',
+      perks: ['Taj Epicure Preferred', 'Marriott Bonvoy Gold Elite', 'Hilton Honors Gold', 'Fine Hotels & Resorts ($100 credit + breakfast)', '₹5 Cr Travel Accident Cover'],
+      insurance: '₹5 Crore Air Accident + Overseas Medical Cover',
+      score: 10,
+    };
+  }
+  if (id === 'hdfc-infinia-metal') {
+    return {
+      headline: 'Club Marriott + 1:1 Airline Miles + 24x7 Concierge + ₹3 Cr Cover',
+      subline: 'Complimentary Club Marriott membership (up to 20% off stays and dining across APAC), 1:1 reward points transfer to Singapore KrisFlyer / Air France / British Airways / Accor, ₹3 Crore accidental air death cover, ₹50 Lakh emergency medical.',
+      perks: ['Club Marriott APAC Membership', '1:1 Airline Mile Transfers', '₹3 Cr Accidental Air Death Cover', '₹50 Lakh Emergency Medical Evacuation', '24x7 Global Concierge'],
+      insurance: '₹3 Crore Accidental Death + ₹50 Lakh Medical Cover',
+      score: 10,
+    };
+  }
+  if (id === 'hdfc-diners-black') {
+    return {
+      headline: 'Swiggy One & Prime Subscriptions + ₹2 Cr Air Accident Insurance',
+      subline: 'Complimentary annual subscriptions on milestone spend (Club Marriott, Swiggy One, Amazon Prime, Forbes, MMT Black), 2X weekend dining reward points, ₹2 Crore air accident cover.',
+      perks: ['Milestone Subscriptions (Prime, Swiggy One)', '2X Weekend Dining Reward Points', '₹2 Cr Air Accident Insurance', 'Diners Global Airport Network'],
+      insurance: '₹2 Crore Air Accident Cover',
+      score: 9,
+    };
+  }
+  if (id === 'axis-magnus') {
+    return {
+      headline: '8x VIP Airport Meet & Greet + 8 Free Guest Lounges + ₹4.5 Cr Cover',
+      subline: '8 complimentary VIP airport concierge meet & assist services at 29 Indian airports, 8 international guest lounge visits, 24x7 luxury concierge, ₹4.5 Crore air accident cover.',
+      perks: ['8 VIP Airport Meet & Assist', '8 International Guest Lounges', '₹4.5 Cr Air Accident Insurance', '24x7 Dedicated Luxury Concierge'],
+      insurance: '₹4.5 Crore Air Accident Insurance',
+      score: 9,
+    };
+  }
+  if (id === 'axis-atlas') {
+    return {
+      headline: '1:2 Mile Transfers to 20+ Airlines + Tier Upgrades + ₹2.5 Cr Cover',
+      subline: 'Industry-leading 1:2 mile conversion to Singapore KrisFlyer, Qatar Airways, Accor ALL, Marriott Bonvoy, United MileagePlus, up to 10,000 tier bonus miles, ₹2.5 Crore travel insurance.',
+      perks: ['1:2 Airline Mile Transfer (20+ Airlines)', 'Accor ALL 1:2 Hotel Transfer', 'Silver / Gold Tier Elite Upgrades', '₹2.5 Cr Air Accident Cover'],
+      insurance: '₹2.5 Crore Travel Insurance',
+      score: 8,
+    };
+  }
+  if (id === 'icici-sapphiro') {
+    return {
+      headline: 'DreamFolks DragonPass + ICICI i-Assist Concierge + ₹3 Cr Cover',
+      subline: 'Complimentary DreamFolks DragonPass membership, 24x7 ICICI i-Assist luxury concierge, luxury hotel collection privileges, air accident insurance cover of ₹3 Crore.',
+      perks: ['DreamFolks DragonPass Membership', 'ICICI i-Assist Concierge', '₹3 Cr Air Accident Cover', 'Luxury Hotel Privileges'],
+      insurance: '₹3 Crore Air Accident Cover',
+      score: 8,
+    };
+  }
+  if (id === 'idfc-first-wealth') {
+    return {
+      headline: 'Lifetime Free + 24x7 Roadside Assistance + ₹1 Cr Personal Cover',
+      subline: 'Unconditional ₹0 joining & annual fee, complimentary 24x7 Roadside Assistance (RSA) worth ₹1,399, ₹1 Crore personal accident insurance, dynamic low APR from 9% to 36%.',
+      perks: ['Unconditional Lifetime Free (₹0)', 'Free 24x7 Roadside Assistance', '₹1 Cr Personal Accident Cover', '9%–36% Dynamic Low APR'],
+      insurance: '₹1 Crore Personal Accident Cover',
+      score: 8,
+    };
+  }
+  if (id === 'scapia-federal') {
+    return {
+      headline: '100% Zero Forex Markup + Lifetime Free + In-App Travel Portal',
+      subline: 'Save 3.5%–4.13% on every international spend with true 0% forex markup, instant credit line on travel bookings, zero joining fee & zero annual fee forever.',
+      perks: ['100% Zero Forex Markup (0%)', 'Lifetime Free (₹0)', 'Instant Travel Booking Coins', 'Zero Forex ATM Cash Withdrawal'],
+      insurance: 'Comprehensive In-Flight Travel Cover',
+      score: 8,
+    };
+  }
+  if (id === 'tata-neu-infinity') {
+    return {
+      headline: '5% NeuCoins on UPI QR + Tata Brand Multipliers + Air India Perks',
+      subline: '5% NeuCoins on Tata Neu UPI, comprehensive coverage on Tata brand ecosystem (Croma, 1mg, Taj, BigBasket, Air India), 8 domestic + 4 international lounges.',
+      perks: ['5% NeuCoins on RuPay UPI QR', 'Taj Hotel & Dining Discounts', '8 Domestic + 4 Intl Lounges', 'Air India Accelerated Points'],
+      insurance: '₹1 Crore Air Accident Cover',
+      score: 7,
+    };
+  }
+  if (id === 'icici-amazon-pay') {
+    return {
+      headline: 'Lifetime Free (₹0) + 5% Auto-Cashback on Amazon Prime Spends',
+      subline: 'Unconditional ₹0 annual fee forever, 5% unlimited cashback credited directly into Amazon Pay balance without redemption charges, fuel surcharge waiver.',
+      perks: ['Unconditional Lifetime Free (₹0)', '5% Unlimited Amazon Cashback', 'Direct Amazon Pay Balance Credit', 'Zero Redemption Fees'],
+      insurance: 'Standard Chip & PIN Fraud Protection',
+      score: 7,
+    };
+  }
+  if (id === 'sbi-cashback') {
+    return {
+      headline: '5% Direct Statement Cashback on All Online Merchants in India',
+      subline: 'Direct statement cashback up to ₹5,000/month across virtually all online transactions, fuel surcharge waiver, annual fee waived on ₹2 Lakh spend.',
+      perks: ['5% Direct Statement Credit', 'Covers All Online Shopping', 'No Merchant Restrictions', 'Fuel Surcharge Waiver'],
+      insurance: 'Lost Card Liability Protection',
+      score: 7,
+    };
+  }
+  return {
+    headline: 'Dining Delights + Fuel Surcharge Waiver + Concierge',
+    subline: 'Complimentary fuel surcharge waiver across India, dining discounts through partner networks, and standard fraud liability cover.',
+    perks: ['1% Fuel Surcharge Waiver', 'Dining Partner Discounts', 'Fraud Liability Protection'],
+    insurance: 'Standard Fraud & Loss Liability',
+    score: 5,
+  };
+}
+
 export const ALL_CREDIT_CARDS = CREDIT_CARDS_DATA;
 
