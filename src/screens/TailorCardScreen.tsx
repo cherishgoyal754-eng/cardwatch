@@ -174,6 +174,12 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     const acceleratedPts = Math.min(60000, (acceleratedSpend / 150) * 10);
     const otherPts = (otherSpend / 150) * 1;
     grossAnnualRewards = Math.round((acceleratedPts + otherPts) * 0.25);
+  } else if (card.id === 'idfc-first-millennia') {
+    // 3X online up to ₹20k/mo, 10X incremental > ₹20k/mo & birthdays + 25% off movies (up to ₹1,200/yr)
+    const baseAnnual = Math.min(240000, yearlySpend);
+    const incAnnual = Math.max(0, yearlySpend - 240000);
+    const pts = ((baseAnnual * 0.6) / 150) * 3 + ((baseAnnual * 0.4) / 150) * 1 + (incAnnual / 150) * 10;
+    grossAnnualRewards = Math.round(pts * 0.25 + 1200);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }

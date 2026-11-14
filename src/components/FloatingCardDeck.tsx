@@ -29,6 +29,7 @@ export const FloatingCardDeck: React.FC<FloatingCardDeckProps> = ({
     { id: 'tata-neu-infinity', label: 'Tata Neu' },
     { id: 'swiggy-hdfc', label: 'Swiggy HDFC' },
     { id: 'hsbc-live-plus', label: 'HSBC Live+' },
+    { id: 'idfc-first-millennia', label: 'IDFC Millennia' },
     { id: 'axis-atlas', label: 'Axis ATLAS' },
     { id: 'hdfc-diners-black', label: 'Diners Black' },
   ];

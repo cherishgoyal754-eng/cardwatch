@@ -1281,28 +1281,38 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 6321',
     joiningFee: 0,
     annualFee: 0,
-    annualFeeWaiverCondition: 'Lifetime Free with no conditions',
+    annualFeeWaiverCondition: 'Nil Joining Fee & Nil Annual Fee (Lifetime Free Forever)',
     isLifetimeFree: true,
     minSalaryMonthly: 25000,
     minCibilScore: 710,
     status: 'active',
-    headlineBenefit: 'Lifetime Free Card + 10X Reward Points on Spends Beyond ₹20,000/mo',
-    cashbackRate: '6X on online, 3X on offline, 10X reward points on incremental spends above ₹20,000',
-    rewardPointValue: '1 Reward Point = ₹0.25 (Reward points never expire)',
+    headlineBenefit: 'Lifetime Free (₹0) • 10X Points Above ₹20k • 4 Railway Lounges/Qtr • 0% ATM Cash Interest',
+    cashbackRate: '10X Reward Points on Spends > ₹20,000/mo & Birthdays • 3X on Online • 1X on Utilities/General (1 RP = ₹0.25)',
+    rewardPointValue: '1 Reward Point = ₹0.25 (Reward points never expire and have no redemption fees)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% fuel surcharge waiver up to ₹200/month',
-    domesticLoungesPerQuarter: 1,
+    fuelSurchargeWaiver: '1% fuel surcharge waiver up to ₹200/month on transactions between ₹200 and ₹5,000',
+    domesticLoungesPerQuarter: 4,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'DEVALUATION: Requires min ₹20,000 spend in previous calendar month to unlock domestic lounge.',
-    loungeNetwork: 'DreamFolks',
-    merchantExclusions: ['Rent payments (1% fee)', 'Wallet loads', 'Property tax'],
-    cappingDetails: 'Reward points never expire and have no redemption capping.',
-    officialCircularUrl: 'https://www.idfcfirstbank.com/credit-card/millennia',
-    lastVerifiedDate: 'Nov 02, 2024',
+    loungeSpendCondition: '4 complimentary railway lounge visits per calendar quarter (16 visits per year) across India.',
+    loungeNetwork: 'IRCTC Railway Lounge',
+    merchantExclusions: ['Rent payments (1% fee)', 'Wallet loads', 'Property tax', 'Cash advances'],
+    cappingDetails: '10X reward points on monthly incremental spends above ₹20,000 and birthdays; 3X points on online spends up to ₹20,000; 1X on offline/utilities/insurance. Points never expire.',
+    officialCircularUrl: 'https://www.idfcfirst.bank.in/credit-card/millennia',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.5,
-    popularityIndex: 92,
+    rating: 4.6,
+    popularityIndex: 93,
     changeHistory: [
+      {
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified 10X Spend Tiers, Railway Lounges & Lifetime Free Status',
+        summary: 'Unconditional ₹0 lifetime free, 10X points on spends > ₹20k/mo and birthdays, 3X on online up to ₹20k, 1X utilities/general (1 RP = ₹0.25, never expire), 4 complimentary railway lounge visits/quarter, 25% off movies (up to ₹100/mo), RSA worth ₹1,399, ₹500 welcome voucher on ₹5k spend.',
+        oldValue: 'Devaluation note regarding domestic airport lounge threshold',
+        newValue: '10X points > ₹20k, 3X online, 4 railway lounges/quarter, 25% movie discount, ₹0 lifetime free',
+        officialRef: 'IDFC FIRST Bank Official Millennia Benefits Portal',
+        severity: 'low'
+      },
       {
         date: 'May 01, 2024',
         type: 'devaluation',
@@ -1315,7 +1325,21 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       }
     ],
     tags: ['lifetime-free', 'shopping', 'rewards', 'entry-level'],
-    suitableFor: ['Anyone wanting a zero-fee lifetime free card', 'Points that never expire', '0% interest on ATM cash withdrawals up to 48 days']
+    suitableFor: [
+      'Lifetime Free Card: Unconditional ₹0 joining fee and ₹0 annual fee forever',
+      '10X Reward Points: Earn 10X points on incremental monthly spends exceeding ₹20,000 and on your birthday',
+      '3X Online Rewards: Earn 3X reward points on online retail purchases up to ₹20,000 per month',
+      '1X Utility & General Spends: Earn 1X reward points on utilities, insurance, and all other retail categories (1 RP = ₹0.25)',
+      'Never-Expiring Points: Reward points do not expire and have zero redemption fees when redeeming for statement credit or gifts',
+      'Railway Lounge Access: 4 complimentary railway lounge visits per calendar quarter (16 visits per year) across India',
+      'Movie & Entertainment: 25% discount on movie tickets up to ₹100 per month via partner booking channels',
+      'Dining Privileges: Up to 20% discount at over 1,500 partner restaurants across India',
+      'Roadside Assistance: Complimentary 24x7 nationwide Roadside Assistance (RSA) package worth ₹1,399',
+      'Financial Perks: Interest-free ATM cash withdrawals for up to 48 days (subject to nominal advance fee of ₹199 + GST)',
+      'Insurance & Protection: Personal accident cover of ₹2,00,000 and zero lost card liability',
+      'Welcome Benefit: Brand gift voucher worth ₹500 upon spending ₹5,000 within the first 30 days of card issuance',
+      'Eligibility: Age 21–65; Minimum annual income of ₹3,00,000 (salaried or self-employed)'
+    ]
   },
   {
     id: 'axis-indianoil',
@@ -1627,9 +1651,9 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'idfc-first-millennia') {
     return {
-      headline: 'Buy 1 Get 1 Free on Paytm (Up to ₹250, 1x / Month)',
-      subline: 'Get 25% discount or Buy 1 Get 1 up to ₹250 on movie tickets once a month via Paytm Movies.',
-      hasBogo: true,
+      headline: '25% Discount on Movie Tickets (Up to ₹100 / Month)',
+      subline: 'Get 25% discount on movie tickets up to ₹100 per month via Paytm Movies or partner entertainment booking platforms.',
+      hasBogo: false,
       score: 6,
     };
   }
@@ -1941,6 +1965,25 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: '₹1 Crore Accidental Air Death Cover + Trip Cancellation Cover (CFAR)',
       score: 9,
+    };
+  }
+  if (id === 'idfc-first-millennia') {
+    return {
+      headline: 'Lifetime Free (₹0) + 10X Points > ₹20k + 4 Railway Lounges/Qtr + 0% Cash Interest',
+      subline: '₹0 joining & annual fee forever, 10X reward points on incremental spends > ₹20k/mo and birthday spends, 3X on online spends, 1X on utilities/general (1 pt = ₹0.25, never expire), 4 complimentary railway lounge visits/quarter, 25% off movie tickets (up to ₹100/mo), complimentary roadside assistance worth ₹1,399, and interest-free ATM cash withdrawals up to 48 days.',
+      perks: [
+        'Unconditional Lifetime Free (₹0 Joining Fee & ₹0 Annual Fee Forever)',
+        '10X Reward Points on incremental monthly spends above ₹20,000 and on birthday spends',
+        '3X Reward Points on online purchases up to ₹20,000 per month (1X on offline/utilities/insurance)',
+        'Never-Expiring Points: 1 Reward Point = ₹0.25 (redeemable for statement credit or partner vouchers)',
+        '4 Complimentary Railway Lounge Visits per quarter (16 visits per year) across India',
+        '25% Discount on Movie Tickets (up to ₹100 per month) via partner booking channels',
+        'Complimentary Roadside Assistance (RSA) worth ₹1,399 nationwide',
+        'Interest-Free ATM Cash Withdrawals up to 48 days (nominal ₹199 advance fee applies)',
+        '1% Fuel Surcharge Waiver up to ₹200/month on fuel transactions between ₹200 and ₹5,000'
+      ],
+      insurance: '₹2,00,000 Personal Accident Cover + Zero Lost Card Liability',
+      score: 8,
     };
   }
   if (id === 'scapia-federal') {

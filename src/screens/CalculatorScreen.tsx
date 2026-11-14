@@ -150,6 +150,19 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const incrementalPoints = (incrementalSpend / 150) * 10;
       monthlyPoints = basePoints + incrementalPoints;
       monthlyCashbackRupees = monthlyPoints * 0.25;
+    } else if (targetCard.id === 'idfc-first-millennia') {
+      // 10X on incremental spends > ₹20k/mo and birthdays (10 pts / ₹150)
+      // 3X on online spends up to ₹20k/mo (3 pts / ₹150), 1X on utilities/general (1 pt / ₹150)
+      // 1 RP = ₹0.25 (never-expiring points)
+      const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel);
+      const baseSpend = Math.min(20000, eligibleSpend);
+      const incrementalSpend = Math.max(0, eligibleSpend - 20000);
+      const onlineBase = Math.min(baseSpend, spends.onlineShopping);
+      const otherBase = Math.max(0, baseSpend - onlineBase);
+      const basePoints = ((onlineBase / 150) * 3) + ((otherBase / 150) * 1);
+      const incrementalPoints = (incrementalSpend / 150) * 10;
+      monthlyPoints = basePoints + incrementalPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.25;
     } else if (targetCard.id === 'kiwi-axis-rupay') {
       // 2 EDGE points per ₹200 (or up to 1.5% cashback on UPI QR Scan & Pay)
       const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel);
