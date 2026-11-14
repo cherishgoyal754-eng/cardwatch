@@ -145,6 +145,14 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const eligibleSpend = Math.max(0, totalMonthlySpend - spends.fuel);
       monthlyCashbackRupees = eligibleSpend * 0.015;
       monthlyPoints = (eligibleSpend / 200) * 2;
+    } else if (targetCard.id === 'flipkart-axis') {
+      // 5% Flipkart & Cleartrip (capped at ₹4k/qtr = ~₹1,333/mo), 4% Swiggy/Uber, 1% elsewhere
+      const flipkartCashback = Math.min(1333, spends.onlineShopping * 0.05);
+      const partnerCashback = spends.dining * 0.04;
+      const otherSpend = Math.max(0, totalMonthlySpend - spends.onlineShopping - spends.dining - spends.fuel);
+      const otherCashback = otherSpend * 0.01;
+      monthlyCashbackRupees = flipkartCashback + partnerCashback + otherCashback;
+      monthlyPoints = monthlyCashbackRupees;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -158,6 +166,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'hdfc-infinia-metal') waiverLimit = 1000000;
     else if (targetCard.id === 'hdfc-diners-black') waiverLimit = 800000;
     else if (targetCard.id === 'sbi-cashback') waiverLimit = 200000;
+    else if (targetCard.id === 'flipkart-axis') waiverLimit = 350000;
     else if (targetCard.id === 'tata-neu-infinity') waiverLimit = 300000;
     else if (targetCard.id === 'icici-sapphiro') waiverLimit = 600000;
     else if (targetCard.id === 'amex-plat-travel') waiverLimit = 99999999;

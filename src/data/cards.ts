@@ -895,41 +895,57 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 4400',
     joiningFee: 500,
     annualFee: 500,
-    annualFeeWaiverCondition: 'Waived on ₹3,50,000 annual spend',
+    annualFeeWaiverCondition: 'Waived if you spend ₹3,50,000 or more in an anniversary year',
     isLifetimeFree: false,
     minSalaryMonthly: 25000,
     minCibilScore: 720,
     status: 'active',
-    headlineBenefit: '5% Unlimited Cashback on Flipkart & Myntra + 4% on Preferred Partners',
-    cashbackRate: '5% on Flipkart/Myntra, 4% on Swiggy, Uber, PVR, Cult.fit, 1.5% other spends',
-    rewardPointValue: 'Direct statement cashback credited every month automatically',
+    headlineBenefit: '5% on Flipkart & Cleartrip • 7.5% Myntra • 4% Swiggy & Uber • Auto-Statement Payout',
+    cashbackRate: '5% Flipkart & Cleartrip • 7.5% Myntra (₹4k/qtr cap each) • 4% Preferred Partners • 1% Other Spends',
+    rewardPointValue: 'Direct statement cashback credited 3 days prior to next billing statement date',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% waiver between ₹400 and ₹4,000',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver up to ₹400/month on transactions between ₹400 and ₹4,000',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'DEVALUATION: Complimentary domestic airport lounge access discontinued.',
+    loungeSpendCondition: 'No airport lounge access included. Card is optimized for co-branded shopping and everyday delivery cashback.',
     loungeNetwork: 'None',
     merchantExclusions: ['Fuel transactions', 'Wallet loading', 'Rent payments', 'Government services', 'Jewellery purchases'],
-    cappingDetails: 'Unlimited cashback on Flipkart & Myntra with no monthly maximum cap.',
-    officialCircularUrl: 'https://www.axisbank.com/retail/cards/credit-card/flipkart-axis-bank-credit-card',
-    lastVerifiedDate: 'Nov 04, 2024',
+    cappingDetails: '5% Flipkart/Cleartrip & 7.5% Myntra capped at ₹4,000 per statement quarter each; 4% on Swiggy/Uber is unlimited; 1% on all other spends.',
+    officialCircularUrl: 'https://www.flipkart.com/pages/axis-bank-credit-card-faq',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
     rating: 4.6,
     popularityIndex: 96,
+    recentChangeAlert: {
+      badge: 'Official Cashback Terms Verified',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: '7.5% on Myntra, 5% on Flipkart & Cleartrip (₹4k/qtr cap each), 4% unlimited on Swiggy & Uber, and 1% other spends.'
+    },
     changeHistory: [
       {
-        date: 'Aug 18, 2023',
-        type: 'devaluation',
-        title: 'Lounge Access & Preferred Partner Devaluation',
-        summary: 'Domestic lounge access withdrawn and preferred partner cashback streamlined to 4%.',
-        oldValue: '4 Complimentary Domestic Lounge visits/year',
-        newValue: 'No complimentary lounge visits',
-        officialRef: 'Axis Bank Notice CC/FLIP/2023-08',
-        severity: 'high'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Cashback Tiers & Quarterly Caps',
+        summary: '5% Flipkart & Cleartrip, 7.5% Myntra (each capped at ₹4k/quarter), 4% unlimited on Swiggy/Uber, 1% on other spends, 1% fuel waiver up to ₹400/mo, payout 3 days before statement.',
+        oldValue: 'Older unlimited cashback definitions',
+        newValue: '5% Flipkart, 7.5% Myntra, 4% Swiggy/Uber, ₹4k/qtr cap each, 1% others',
+        officialRef: 'Flipkart Axis Bank Credit Card FAQ',
+        severity: 'low'
       }
     ],
     tags: ['cashback', 'shopping', 'entry-level'],
-    suitableFor: ['Frequent Flipkart & Myntra shoppers', 'Swiggy & Uber daily users', 'Zero-fuss direct statement credit']
+    suitableFor: [
+      'Cashback on Shopping: 5% cashback on Flipkart and Cleartrip (capped at ₹4,000 per statement quarter)',
+      'Fashion Spends: 7.5% cashback on Myntra (capped at ₹4,000 per statement quarter)',
+      'Daily Delivery & Rides: 4% unlimited cashback on select partners including Swiggy, Uber, PVR, and Cult.fit',
+      'All Other Spends: 1% unlimited cashback on eligible retail and online transactions',
+      'Direct Statement Payout: Accumulated cashback credited automatically 3 days prior to the next billing statement date',
+      'Virtual Card Access: Instant digital card details available via Flipkart App (My Account section) & Axis Bank App via Customer ID SMS',
+      '1% Fuel Surcharge Waiver up to ₹400 per month on fuel spends between ₹400 and ₹4,000',
+      'Annual Fee: ₹500 + GST (waived on spending ₹3,50,000 or more in an anniversary year)',
+      'Eligibility: Age 18–70, Indian resident, minimum monthly income of ₹25,000'
+    ]
   },
   {
     id: 'axis-atlas',
@@ -1556,10 +1572,10 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'flipkart-axis') {
     return {
-      headline: '4% Cashback on Preferred Entertainment Partners',
-      subline: '4% flat cashback on partner dining and entertainment platforms; 1.5% unlimited cashback elsewhere.',
+      headline: '4% Unlimited Cashback on Preferred Entertainment Partners',
+      subline: '4% flat cashback on partner dining and entertainment platforms (Swiggy, PVR, Cult.fit); 1% cashback on other spends.',
       hasBogo: false,
-      score: 5,
+      score: 6,
     };
   }
   if (id === 'icici-amazon-pay') {
@@ -1928,6 +1944,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Standard RuPay Digital Fraud & Zero Lost Card Liability Protection',
       score: 7,
+    };
+  }
+  if (id === 'flipkart-axis') {
+    return {
+      headline: '5% Flipkart & Cleartrip + 7.5% Myntra + 4% Swiggy & Uber + Auto-Payout',
+      subline: '₹500 annual fee (waived on ₹3.5L spend), 5% on Flipkart & Cleartrip, 7.5% on Myntra (each capped at ₹4k/qtr), 4% unlimited on Swiggy & Uber, 1% elsewhere, payout 3 days before statement, instant virtual card in Flipkart & Axis apps, and 1% fuel waiver (up to ₹400/mo).',
+      perks: [
+        '5% Cashback on Flipkart & Cleartrip (capped at ₹4,000 per statement quarter)',
+        '7.5% Cashback on Myntra (capped at ₹4,000 per statement quarter)',
+        '4% Unlimited Cashback on Preferred Partners (Swiggy, Uber, PVR, Cult.fit)',
+        '1% Cashback on All Other Spends',
+        'Direct Statement Credit 3 days prior to next statement generation date',
+        'Instant Virtual Card Details via Flipkart App & Axis Bank Mobile Banking',
+        '1% Fuel Surcharge Waiver on ₹400–₹4,000 transactions (up to ₹400/month)',
+        'Annual Fee Waived on spending ₹3,50,000 in an anniversary year'
+      ],
+      insurance: 'Standard Lost Card Liability & Fraud Protection Cover',
+      score: 8,
     };
   }
   return {
