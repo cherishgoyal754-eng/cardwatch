@@ -511,47 +511,58 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 5521',
     joiningFee: 6500,
     annualFee: 3500,
-    annualFeeWaiverCondition: 'Waived on ₹6,00,000 annual spend',
+    annualFeeWaiverCondition: 'Waived if you spend ₹6 Lakh or more in an anniversary year',
     isLifetimeFree: false,
-    minSalaryMonthly: 175000,
-    minCibilScore: 750,
+    minSalaryMonthly: 75000,
+    minCibilScore: 740,
     status: 'active',
-    headlineBenefit: 'Buy 1 Get 1 Free Movie Tickets up to ₹500 on BMS + 4 Lounges/Quarter',
-    cashbackRate: '4 Reward points per ₹100 domestic; 8 points per ₹100 international',
-    rewardPointValue: '1 RP = ₹0.25 cash credit or vouchers',
+    headlineBenefit: 'Dual-Network Card (Amex + Mastercard) • BOGO BookMyShow (2x/mo up to ₹500) • ₹13k Welcome Vouchers',
+    cashbackRate: '4 RP / ₹100 Intl • 2 RP / ₹100 Domestic • 1 RP / ₹100 Utilities & Insurance (1 RP = ₹0.25)',
+    rewardPointValue: '1 Reward Point = ₹0.25 (Dual-network card sharing a single credit limit)',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% waiver on HPCL petrol pumps',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver across petrol pumps in India',
     domesticLoungesPerQuarter: 4,
     internationalLoungesPerYear: 2,
-    loungeSpendCondition: 'DEVALUATION: Spend of ₹50,000 in previous calendar quarter required to activate 4 domestic lounge visits in next quarter.',
-    loungeNetwork: 'DreamFolks',
-    merchantExclusions: ['Rent, Wallet loading, Property management'],
-    cappingDetails: 'BookMyShow BOGO capped at ₹500 off on second ticket twice every calendar month.',
-    officialCircularUrl: 'https://www.icicibank.com/personal-banking/cards/credit-card/sapphiro-credit-card',
-    lastVerifiedDate: 'Oct 30, 2024',
+    loungeSpendCondition: 'Complimentary domestic airport lounge access (quarterly) and international lounge access (yearly) via DreamFolks.',
+    loungeNetwork: 'DreamFolks / DragonPass',
+    merchantExclusions: ['Cash advances', 'Wallet load', 'Rental payments', 'Late payment fees'],
+    cappingDetails: 'BookMyShow BOGO capped at ₹500 off on second ticket twice every calendar month (up to ₹1,000/mo savings).',
+    officialCircularUrl: 'https://www.icici.bank.in/personal-banking/cards/credit-card/sapphiro-card',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.3,
-    popularityIndex: 87,
+    rating: 4.5,
+    popularityIndex: 89,
     recentChangeAlert: {
-      badge: 'Lounge Spend Criteria Active',
-      effectiveDate: 'Oct 01, 2024',
-      isDevaluation: true,
-      description: 'Spend ₹50,000 in previous calendar quarter to unlock complimentary lounge access.'
+      badge: 'Dual-Card Architecture Verified',
+      effectiveDate: 'Active',
+      isDevaluation: false,
+      description: 'Dual Amex + Mastercard/Visa setup with ₹13,000+ welcome vouchers and BMS BOGO.'
     },
     changeHistory: [
       {
-        date: 'Oct 01, 2024',
-        type: 'devaluation',
-        title: '₹50,000 Quarterly Spend Condition for Lounge',
-        summary: 'ICICI implemented ₹50k previous quarter spend rule across Gemstone cards.',
-        oldValue: '4 Complimentary visits/quarter unconditionally',
-        newValue: '4 visits/quarter unlocked only on ₹50,000 quarterly spend',
-        officialRef: 'ICICI Bank Gemstone Notice GEMS/2024',
-        severity: 'high'
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified Official Features & Dual-Card Architecture',
+        summary: 'Dual network (Amex + Mastercard/Visa), ₹13,000+ welcome vouchers, ₹3,500 annual fee (waived on ₹6L spend), 4 RP intl / 2 RP domestic / 1 RP utility, ₹75k/mo salary / ₹9L ITR eligibility.',
+        oldValue: 'Older salary and earn rate figures',
+        newValue: '₹75k monthly salary, ₹9L ITR, 4/2/1 RP structure, ₹13k welcome vouchers',
+        officialRef: 'ICICI Bank Sapphiro Official Portal',
+        severity: 'low'
       }
     ],
     tags: ['movies', 'lounge', 'dining', 'golf', 'premium'],
-    suitableFor: ['Movie buffs (BOGO BookMyShow up to ₹500)', 'Frequent flyers', 'Golf privileges']
+    suitableFor: [
+      'Joining Fee: ₹6,500 + GST (includes welcome vouchers worth over ₹13,000)',
+      'Annual Fee: ₹3,500 + GST (waived if you spend ₹6 Lakh or more in an anniversary year)',
+      'Dual Card Structure: Issued as dual-network (Amex for weekend offers + Visa/Mastercard for universal acceptance)',
+      'Reward Points: 4 RP per ₹100 international, 2 RP per ₹100 domestic, 1 RP per ₹100 utility & insurance (1 RP = ₹0.25)',
+      'Movies & Entertainment: Buy 1 Get 1 Free on BookMyShow tickets (up to ₹500 off twice a month)',
+      'Lounge Access: Complimentary domestic airport lounge access (quarterly) and international lounge access (yearly)',
+      'Golf Privileges: Complimentary monthly golf rounds based on eligible spend milestones',
+      'Insurance Cover: ₹3 Crore complimentary accidental air death insurance cover',
+      '1% fuel surcharge waiver & 3.5% foreign currency markup fee',
+      'Eligibility: Age 21+ | Salaried: Minimum monthly income ₹75,000 | Self-Employed: Annual ITR > ₹9 Lakh'
+    ]
   },
   {
     id: 'amex-plat-travel',
@@ -1669,10 +1680,20 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
   }
   if (id === 'icici-sapphiro') {
     return {
-      headline: 'DreamFolks DragonPass + ICICI i-Assist Concierge + ₹3 Cr Cover',
-      subline: 'Complimentary DreamFolks DragonPass membership, 24x7 ICICI i-Assist luxury concierge, luxury hotel collection privileges, air accident insurance cover of ₹3 Crore.',
-      perks: ['DreamFolks DragonPass Membership', 'ICICI i-Assist Concierge', '₹3 Cr Air Accident Cover', 'Luxury Hotel Privileges'],
-      insurance: '₹3 Crore Air Accident Cover',
+      headline: 'Dual-Network Amex + Mastercard + ₹13k Vouchers + BOGO BMS (2x/mo) + Golf & Lounges',
+      subline: '₹6,500 joining fee (with ₹13k+ welcome vouchers), ₹3,500 annual fee (waived on ₹6L spend), dual-network Amex + Mastercard/Visa, BOGO on BookMyShow up to ₹500 twice a month, complimentary domestic & international lounge access, monthly golf rounds, and ₹3 Crore air accident cover.',
+      perks: [
+        'Welcome Benefit: Vouchers worth over ₹13,000 upon joining fee realization',
+        'Dual-Card Structure: Amex variant for weekend offers + Mastercard/Visa variant for universal acceptance',
+        'Annual Fee Waived on spending ₹6,00,000 or more in an anniversary year',
+        'Rewards: 4 RP / ₹100 International, 2 RP / ₹100 Domestic, 1 RP / ₹100 Utilities & Insurance',
+        'Movies: Buy 1 Get 1 Free on BookMyShow (up to ₹500 off on second ticket, twice a month)',
+        'Lounge Access: Complimentary domestic airport lounge (quarterly) & international lounge visits (yearly)',
+        'Golf Access: Complimentary monthly golf rounds based on eligible spend milestones',
+        '1% Fuel Surcharge Waiver & 3.5% Forex Markup Fee',
+        'Eligibility: Age 21+; Salaried: Min ₹75,000/month; Self-Employed: Annual ITR > ₹9 Lakh'
+      ],
+      insurance: '₹3 Crore Accidental Air Death Cover + Standard Fraud Protection',
       score: 8,
     };
   }

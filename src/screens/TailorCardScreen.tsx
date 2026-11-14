@@ -47,6 +47,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   else if (card.id === 'sbi-cashback') feeWaiverThreshold = 200000;
   else if (card.id === 'axis-magnus') feeWaiverThreshold = 2500000;
   else if (card.id === 'tata-neu-infinity') feeWaiverThreshold = 300000;
+  else if (card.id === 'icici-sapphiro') feeWaiverThreshold = 600000;
   else if (card.id === 'sbi-aurum') feeWaiverThreshold = 600000;
   else if (card.id === 'amex-platinum') feeWaiverThreshold = 99999999; // Never waived
   else if (card.isLifetimeFree) feeWaiverThreshold = 0;
@@ -110,6 +111,9 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     grossAnnualRewards = Math.round(yearlySpend * 0.028);
   } else if (card.id === 'tata-neu-infinity') {
     grossAnnualRewards = Math.round(yearlySpend * 0.035);
+  } else if (card.id === 'icici-sapphiro') {
+    // 2 RP/₹100 (0.5%) + BookMyShow BOGO savings (up to ₹12k/yr)
+    grossAnnualRewards = Math.round(yearlySpend * 0.0075 + 12000);
   } else if (card.id === 'axis-magnus') {
     // 12 pts/₹200 base (2.4%) + 35 pts/₹200 on spend > ₹1.5L/mo (7%) + 5X on Travel EDGE = blended ~4.2%
     grossAnnualRewards = Math.round(yearlySpend * 0.042);

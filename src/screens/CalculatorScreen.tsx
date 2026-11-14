@@ -108,6 +108,14 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       // 5% Prime on Amazon shopping & travel bookings, 2% utilities/bills/partners, 1% elsewhere
       monthlyCashbackRupees = (spends.onlineShopping * 0.05) + (spends.flightsHotels * 0.05) + (spends.utilities * 0.02) + (spends.offline * 0.01);
       monthlyPoints = monthlyCashbackRupees;
+    } else if (targetCard.id === 'icici-sapphiro') {
+      // 2 RP / ₹100 domestic, 4 RP / ₹100 intl, 1 RP / ₹100 utilities (1 RP = ₹0.25)
+      const utilityPoints = (spends.utilities / 100) * 1;
+      const intlPoints = (spends.flightsHotels / 100) * 4;
+      const otherDomestic = Math.max(0, totalMonthlySpend - spends.utilities - spends.flightsHotels - spends.fuel);
+      const domesticPoints = (otherDomestic / 100) * 2;
+      monthlyPoints = utilityPoints + intlPoints + domesticPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.25;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -122,6 +130,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'hdfc-diners-black') waiverLimit = 800000;
     else if (targetCard.id === 'sbi-cashback') waiverLimit = 200000;
     else if (targetCard.id === 'tata-neu-infinity') waiverLimit = 300000;
+    else if (targetCard.id === 'icici-sapphiro') waiverLimit = 600000;
     else if (targetCard.id === 'axis-magnus') waiverLimit = 2500000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 
