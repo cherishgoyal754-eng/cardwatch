@@ -1158,28 +1158,38 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: '•••• 2910',
     joiningFee: 499,
     annualFee: 499,
-    annualFeeWaiverCondition: 'Waived on ₹1,00,000 annual spend',
+    annualFeeWaiverCondition: 'Waived on spending ₹1,00,000 or more in the preceding membership year',
     isLifetimeFree: false,
     minSalaryMonthly: 20000,
     minCibilScore: 700,
     status: 'active',
-    headlineBenefit: '10X Reward Points on Dining, Movies, Grocery & Departmental Store Spends',
-    cashbackRate: '10 Reward Points per ₹150 spent on Dining/Grocery/Movies (equivalent to 2.5% valueback)',
-    rewardPointValue: '4 Reward Points = ₹1.00 for statement credit or catalogue redemption',
+    headlineBenefit: '10X Reward Points on Dining, Movies, Grocery & Dept Stores • 2,000 Bonus Points (₹500)',
+    cashbackRate: '10 Reward Points / ₹150 on Dining, Movies, Departmental & Grocery (capped at 5,000 pts/mo) • 1 RP / ₹150 Others',
+    rewardPointValue: '4 Reward Points = ₹1.00 (1 RP = ₹0.25) for statement credit or catalogue redemption',
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: '1% waiver across all petrol pumps in India (₹500 to ₹3,000)',
+    fuelSurchargeWaiver: '1% fuel surcharge waiver on transactions between ₹500 and ₹3,000 (up to ₹100/statement cycle)',
     domesticLoungesPerQuarter: 0,
     internationalLoungesPerYear: 0,
-    loungeSpendCondition: 'No airport lounge access included.',
+    loungeSpendCondition: 'No airport lounge access included with this card.',
     loungeNetwork: 'None',
-    merchantExclusions: ['Wallet loads', 'Property tax and Govt utilities', 'Education fees via third-party'],
-    cappingDetails: '10X reward points capped at 10,000 points per calendar month.',
-    officialCircularUrl: 'https://www.sbicard.com/en/personal/credit-cards/shopping/simplysave-sbi-card.page',
-    lastVerifiedDate: 'Nov 01, 2024',
+    merchantExclusions: ['Wallet loads', 'Property tax and Govt utilities', 'Education fees via third-party', 'Cash advances'],
+    cappingDetails: '10X reward points capped at 5,000 points per calendar month; 1X reward points on all other eligible retail spends without cap.',
+    officialCircularUrl: 'https://www.sbicard.com/en/personal/credit-cards/simplysave-sbi-card.html',
+    lastVerifiedDate: 'Nov 14, 2026',
     isVerified: true,
-    rating: 4.3,
-    popularityIndex: 91,
+    rating: 4.4,
+    popularityIndex: 92,
     changeHistory: [
+      {
+        date: 'Nov 14, 2026',
+        type: 'feature_update',
+        title: 'Verified 10X Category Rewards, 5,000 Pts Cap & Welcome Points',
+        summary: '10X points (10 pts/₹150, 2.5% value) on dining, movies, grocery & departmental stores capped at 5,000 pts/month, 1 point/₹150 elsewhere, 2,000 bonus reward points (worth ₹500) on ₹2,000 spend in 60 days, ₹1 Lakh fee waiver threshold.',
+        oldValue: 'Outdated 10k points monthly cap without welcome spend criteria',
+        newValue: '10X points (cap 5,000 pts/mo), 1X base, 2,000 bonus welcome points, ₹1 Lakh spend waiver',
+        officialRef: 'SBI Card SimplySAVE Terms & Conditions',
+        severity: 'low'
+      },
       {
         date: 'Nov 01, 2024',
         type: 'fee_revision',
@@ -1191,8 +1201,18 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         severity: 'medium'
       }
     ],
-    tags: ['dining', 'shopping', 'entry-level', 'rewards'],
-    suitableFor: ['Beginner credit card users', 'Supermarket grocery and movie spenders', 'Fuel surcharge waiver across any petrol pump']
+    tags: ['dining', 'shopping', 'entry-level', 'rewards', 'grocery'],
+    suitableFor: [
+      '10X Reward Points: Earn 10 points per ₹150 spent on dining, movies, departmental stores, and grocery shopping (capped at 5,000 points per month, equivalent to 2.5% valueback)',
+      '1X Base Reward Points: Earn 1 point per ₹150 spent on all other eligible categories',
+      'Welcome Benefit: 2,000 bonus reward points (worth ₹500, where 1 point = ₹0.25) upon spending ₹2,000 or more in the first 60 days of card issuance',
+      'Point Valuation: 4 Reward Points = ₹1.00 for direct statement credit redemption or catalogue gift vouchers',
+      'Annual Fee Reversal: ₹499 + GST annual fee waived/reversed if total annual spend reaches ₹1,00,000 (₹1 Lakh) in the preceding year',
+      'Fuel Surcharge Waiver: 1% fuel surcharge waiver on transactions between ₹500 and ₹3,000 (up to ₹100 per statement cycle) across all petrol pumps in India',
+      'Contactless Technology: Fast, PIN-free Tap & Pay transactions up to ₹5,000',
+      'Flexipay: Convert large purchases of ₹2,500 or more into flexible monthly installments with zero hassle',
+      'Nil Add-on Card Fee for family members'
+    ]
   },
   {
     id: 'indusind-tiger',
@@ -2010,6 +2030,24 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Lost Card Liability Protection Cover',
       score: 8,
+    };
+  }
+  if (id === 'sbi-simplysave') {
+    return {
+      headline: '10X Points on Dining, Grocery & Movies + 2,000 Welcome Points + ₹1L Waiver',
+      subline: '₹499 annual fee (waived on ₹1L spend), 10X points (10 pts/₹150) on dining, movies, grocery & department stores (capped at 5,000 pts/mo), 1 point/₹150 other spends (1 pt = ₹0.25), 2,000 bonus welcome points (₹500 value) on ₹2,000 spend in 60 days, 1% fuel waiver, and Flexipay EMI.',
+      perks: [
+        '10X Reward Points (10 pts/₹150) on Dining, Movies, Grocery & Department Stores (equivalent to 2.5% return, capped at 5,000 pts/month)',
+        '1X Reward Point (1 pt/₹150) on all other eligible retail categories',
+        'Welcome Benefit: 2,000 Bonus Reward Points (worth ₹500) upon spending ₹2,000 in first 60 days',
+        'Point Valuation: 4 Reward Points = ₹1.00 (1 Point = ₹0.25) for statement credit or catalogue gifts',
+        'Annual Fee Reversal on spending ₹1,00,000 or more in the preceding membership year',
+        'Nil Add-on Card Fee for family members',
+        '1% Fuel Surcharge Waiver on ₹500–₹3,000 transactions at all petrol pumps in India (up to ₹100/cycle)',
+        'Flexipay: Easily convert purchases of ₹2,500+ into monthly EMIs + Contactless Tap & Pay up to ₹5,000'
+      ],
+      insurance: 'Lost Card Liability Protection Cover up to Credit Limit',
+      score: 7,
     };
   }
   if (id === 'kiwi-axis-rupay') {

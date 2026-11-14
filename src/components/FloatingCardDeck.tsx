@@ -25,6 +25,7 @@ export const FloatingCardDeck: React.FC<FloatingCardDeckProps> = ({
     { id: 'hdfc-infinia-metal', label: 'HDFC Infinia' },
     { id: 'indusind-tiger', label: 'IndusInd Tiger' },
     { id: 'sbi-cashback', label: 'SBI Cashback' },
+    { id: 'sbi-simplysave', label: 'SBI SimplySAVE' },
     { id: 'tata-neu-infinity', label: 'Tata Neu' },
     { id: 'swiggy-hdfc', label: 'Swiggy HDFC' },
     { id: 'hsbc-live-plus', label: 'HSBC Live+' },

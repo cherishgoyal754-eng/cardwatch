@@ -49,6 +49,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
   else if (card.id === 'axis-atlas') feeWaiverThreshold = 99999999;
   else if (card.id === 'swiggy-hdfc') feeWaiverThreshold = 200000;
   else if (card.id === 'hsbc-live-plus') feeWaiverThreshold = 200000;
+  else if (card.id === 'sbi-simplysave') feeWaiverThreshold = 100000;
   else if (card.id === 'tata-neu-infinity') feeWaiverThreshold = 300000;
   else if (card.id === 'icici-sapphiro') feeWaiverThreshold = 600000;
   else if (card.id === 'amex-plat-travel') feeWaiverThreshold = 99999999;
@@ -166,6 +167,13 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
     const acceleratedCashback = Math.min(14400, acceleratedSpend * 0.10);
     const otherCashback = otherSpend * 0.015;
     grossAnnualRewards = Math.round(acceleratedCashback + otherCashback);
+  } else if (card.id === 'sbi-simplysave') {
+    // 10X points (10 pts/₹150 = 2.5% return) on dining/grocery/dept stores/movies (cap 5,000 pts/mo = ₹15,000/yr), 1X (0.25%) others
+    const acceleratedSpend = yearlySpend * 0.40;
+    const otherSpend = Math.max(0, yearlySpend - acceleratedSpend);
+    const acceleratedPts = Math.min(60000, (acceleratedSpend / 150) * 10);
+    const otherPts = (otherSpend / 150) * 1;
+    grossAnnualRewards = Math.round((acceleratedPts + otherPts) * 0.25);
   } else {
     grossAnnualRewards = Math.round(yearlySpend * 0.022);
   }

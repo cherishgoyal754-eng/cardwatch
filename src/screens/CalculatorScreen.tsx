@@ -183,6 +183,16 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
       const otherCashback = otherSpend * 0.015;
       monthlyCashbackRupees = acceleratedCashback + otherCashback;
       monthlyPoints = monthlyCashbackRupees;
+    } else if (targetCard.id === 'sbi-simplysave') {
+      // 10X points (10 pts/₹150) on dining, grocery, departmental stores, movies (capped at 5,000 pts/mo)
+      // 1X point (1 pt/₹150) on other eligible retail spends (excluding fuel)
+      // 1 RP = ₹0.25 (4 RP = ₹1)
+      const acceleratedSpend = spends.dining + spends.grocery;
+      const acceleratedPoints = Math.min(5000, (acceleratedSpend / 150) * 10);
+      const otherSpend = Math.max(0, totalMonthlySpend - acceleratedSpend - spends.fuel);
+      const regularPoints = (otherSpend / 150) * 1;
+      monthlyPoints = acceleratedPoints + regularPoints;
+      monthlyCashbackRupees = monthlyPoints * 0.25;
     } else {
       monthlyCashbackRupees = (totalMonthlySpend - spends.fuel) * 0.018;
       monthlyPoints = monthlyCashbackRupees;
@@ -205,6 +215,7 @@ export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard
     else if (targetCard.id === 'axis-atlas') waiverLimit = 99999999;
     else if (targetCard.id === 'swiggy-hdfc') waiverLimit = 200000;
     else if (targetCard.id === 'hsbc-live-plus') waiverLimit = 200000;
+    else if (targetCard.id === 'sbi-simplysave') waiverLimit = 100000;
     else if (targetCard.isLifetimeFree) waiverLimit = 0;
 
     const isWaived = targetCard.isLifetimeFree || totalAnnualSpend >= waiverLimit;
