@@ -7,6 +7,7 @@ import { SearchModal } from './components/SearchModal';
 import { OnboardingModal } from './components/OnboardingModal';
 import { ProfileModal } from './components/ProfileModal';
 import { FloatingAIDock } from './components/FloatingAIDock';
+import { CustomCursor } from './components/CustomCursor';
 import { AnimatedVaultChamber } from './components/AnimatedVaultChamber';
 import { CreditCard as CardIcon } from 'lucide-react';
 
@@ -142,6 +143,9 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-emerald-500 selection:text-white flex flex-col font-sans relative overflow-x-hidden">
+      {/* Bespoke FinTech EMV & Contactless Custom Cursor */}
+      <CustomCursor />
+
       {/* Global Ambient Living Kinetic Background */}
       <div className="fixed inset-0 pointer-events-none opacity-40 z-0 overflow-hidden">
         <AnimatedVaultChamber />
