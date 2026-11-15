@@ -1,30 +1,42 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Wifi, Sparkles } from 'lucide-react';
+import { sound } from '../utils/audio';
 
-interface ClickRipple {
+interface ClickImpact {
   id: number;
   x: number;
   y: number;
 }
 
+// 8 radial particle directions (45° apart) for the click spark burst
+const SPARK_DIRECTIONS = Array.from({ length: 8 }, (_, i) => {
+  const angle = (i * 45 * Math.PI) / 180;
+  const distance = 42;
+  return {
+    dx: `${Math.round(Math.cos(angle) * distance)}px`,
+    dy: `${Math.round(Math.sin(angle) * distance)}px`,
+    color: i % 2 === 0 ? '#34D399' : '#FBBF24', // alternating emerald & gold
+  };
+});
+
 export const CustomCursor: React.FC = () => {
   const [enabled, setEnabled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [hoverType, setHoverType] = useState<'default' | 'clickable' | 'card' | 'input'>('default');
-  const [ripples, setRipples] = useState<ClickRipple[]>([]);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isInput, setIsInput] = useState(false);
+  const [clicks, setClicks] = useState<ClickImpact[]>([]);
 
-  // Raw mouse coordinates (instant)
+  // Instant mouse position
   const mousePos = useRef({ x: -100, y: -100 });
-  // Trailing smoothed coordinates
+  // Physics smoothed trailing position
   const trailingPos = useRef({ x: -100, y: -100 });
 
   const dotRef = useRef<HTMLDivElement>(null);
-  const trailingRef = useRef<HTMLDivElement>(null);
+  const haloRef = useRef<HTMLDivElement>(null);
   const rafId = useRef<number | null>(null);
 
   useEffect(() => {
-    // Only enable custom cursor on devices with a fine mouse/pointer (not touchscreens)
+    // Only enable on desktop pointer devices (ignore mobile / touch devices)
     const isTouch =
       typeof window !== 'undefined' &&
       (window.matchMedia('(pointer: coarse)').matches ||
@@ -46,25 +58,15 @@ export const CustomCursor: React.FC = () => {
         trailingPos.current = { x: e.clientX, y: e.clientY };
       }
 
-      // Detect what element is being hovered
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const isInput =
+      const overInput =
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA' ||
         target.isContentEditable;
 
-      const isCard =
-        target.closest('[data-cursor="card"]') !== null ||
-        target.closest('.real-3d-card') !== null ||
-        target.closest('[data-card-id]') !== null ||
-        target.closest('.card-gradient-aurum') !== null ||
-        target.closest('.card-gradient-infinia') !== null ||
-        target.closest('.card-gradient-white') !== null ||
-        target.closest('.card-gradient-scapia') !== null;
-
-      const isClickable =
+      const overInteractive =
         target.tagName === 'BUTTON' ||
         target.tagName === 'A' ||
         target.getAttribute('role') === 'button' ||
@@ -72,34 +74,37 @@ export const CustomCursor: React.FC = () => {
         target.closest('button') !== null ||
         target.closest('a') !== null ||
         target.closest('[role="button"]') !== null ||
-        target.closest('.cursor-pointer') !== null;
+        target.closest('.cursor-pointer') !== null ||
+        target.closest('.real-3d-card') !== null ||
+        target.closest('[data-card-id]') !== null;
 
-      if (isInput) {
-        setHoverType('input');
-      } else if (isCard) {
-        setHoverType('card');
-      } else if (isClickable) {
-        setHoverType('clickable');
-      } else {
-        setHoverType('default');
-      }
+      setIsInput(overInput);
+      setIsHovering(overInteractive && !overInput);
     };
 
     const handleMouseDown = (e: MouseEvent) => {
       setIsClicking(true);
 
-      // Spawn a contactless NFC shockwave ripple at click coordinates
-      const newRipple: ClickRipple = {
-        id: Date.now() + Math.random(),
+      // Play subtle metallic fintech click audio
+      try {
+        sound.playClick();
+      } catch {
+        // audio muted or blocked
+      }
+
+      // Add a high-impact shockwave ripple + particle burst at the exact click point
+      const clickId = Date.now() + Math.random();
+      const newClick: ClickImpact = {
+        id: clickId,
         x: e.clientX,
         y: e.clientY,
       };
 
-      setRipples(prev => [...prev.slice(-3), newRipple]);
+      setClicks(prev => [...prev.slice(-4), newClick]);
 
       setTimeout(() => {
-        setRipples(prev => prev.filter(r => r.id !== newRipple.id));
-      }, 600);
+        setClicks(prev => prev.filter(c => c.id !== clickId));
+      }, 550);
     };
 
     const handleMouseUp = () => {
@@ -122,20 +127,20 @@ export const CustomCursor: React.FC = () => {
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
-    // Smooth physics lerp loop (60-120fps)
+    // Smooth physics lerp animation loop (60-120fps)
     const animate = () => {
-      // Direct position for the precision dot & EMV chip
+      // Instant precision dot
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`;
       }
 
-      // Physics trailing smoothing for the magnetic NFC field
-      const lerpFactor = 0.18;
+      // Smooth liquid trailing halo
+      const lerpFactor = 0.22;
       trailingPos.current.x += (mousePos.current.x - trailingPos.current.x) * lerpFactor;
       trailingPos.current.y += (mousePos.current.y - trailingPos.current.y) * lerpFactor;
 
-      if (trailingRef.current) {
-        trailingRef.current.style.transform = `translate3d(${trailingPos.current.x}px, ${trailingPos.current.y}px, 0)`;
+      if (haloRef.current) {
+        haloRef.current.style.transform = `translate3d(${trailingPos.current.x}px, ${trailingPos.current.y}px, 0)`;
       }
 
       rafId.current = requestAnimationFrame(animate);
@@ -157,63 +162,65 @@ export const CustomCursor: React.FC = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[999999] overflow-hidden select-none">
-      {/* 1. CONTACTLESS TAP CLICK RIPPLES (NFC Terminal Wave Burst) */}
-      {ripples.map(ripple => (
+      {/* 1. HIGH-IMPACT CLICK SHOCKWAVES & SPARK BURST */}
+      {clicks.map(click => (
         <div
-          key={ripple.id}
+          key={click.id}
           className="pointer-events-none absolute"
           style={{
-            left: ripple.x,
-            top: ripple.y,
+            left: click.x,
+            top: click.y,
             transform: 'translate(-50%, -50%)',
           }}
         >
-          {/* Outer NFC wave expanding */}
-          <div className="absolute -inset-6 rounded-full border-2 border-emerald-400/80 animate-ping opacity-75" />
-          {/* Inner gold EMV pulse wave */}
-          <div className="w-12 h-12 rounded-full border border-amber-300 bg-emerald-400/10 shadow-[0_0_20px_rgba(16,185,129,0.5)] animate-pulse" />
+          {/* Outer Emerald Shockwave Ring */}
+          <div className="absolute -inset-8 rounded-full border-2 border-emerald-400 bg-emerald-400/10 shadow-[0_0_25px_#10B981] animate-click-outer" />
+
+          {/* Inner Gold Flash Ring */}
+          <div className="absolute -inset-4 rounded-full border-2 border-amber-300 bg-amber-400/20 shadow-[0_0_15px_#F59E0B] animate-click-inner" />
+
+          {/* High-Impact Center Flash Dot */}
+          <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_15px_#ffffff] animate-ping" />
+
+          {/* 8 Radiating FinTech Spark Particles */}
+          {SPARK_DIRECTIONS.map((dir, idx) => (
+            <div
+              key={idx}
+              className="absolute top-1/2 left-1/2 w-1.5 h-1.5 rounded-full animate-click-spark"
+              style={
+                {
+                  '--dx': dir.dx,
+                  '--dy': dir.dy,
+                  backgroundColor: dir.color,
+                  boxShadow: `0 0 8px ${dir.color}`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
         </div>
       ))}
 
-      {/* 2. TRAILING LIQUID MAGNETIC AURA (Contactless Field) */}
+      {/* 2. LIQUID TRAILING HALO (Clean, sleek, smooth, and expands softly on clickable hover) */}
       <div
-        ref={trailingRef}
+        ref={haloRef}
         className={`pointer-events-none absolute top-0 left-0 transition-opacity duration-300 will-change-transform ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <div
-          className={`relative -top-1/2 -left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out flex items-center justify-center ${
-            hoverType === 'input'
-              ? 'w-1 h-6 rounded-full bg-emerald-500 shadow-[0_0_12px_#10B981]'
-              : hoverType === 'card'
-              ? 'w-20 h-14 rounded-2xl border-2 border-amber-300/80 bg-emerald-950/20 shadow-[0_0_30px_rgba(245,158,11,0.35)] backdrop-blur-[1px]'
-              : hoverType === 'clickable'
-              ? 'w-14 h-14 rounded-full border-2 border-emerald-400 bg-emerald-400/15 shadow-[0_0_25px_rgba(16,185,129,0.45)] scale-110'
-              : 'w-10 h-10 rounded-full border border-emerald-400/40 bg-emerald-500/[0.04] shadow-[0_0_15px_rgba(16,185,129,0.15)]'
+          className={`-translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-200 ease-out flex items-center justify-center ${
+            isInput
+              ? 'w-1 h-6 rounded-full bg-emerald-500 shadow-[0_0_10px_#10B981]'
+              : isClicking
+              ? 'w-6 h-6 border-2 border-emerald-400 bg-emerald-400/30 scale-75'
+              : isHovering
+              ? 'w-12 h-12 border-2 border-emerald-400 bg-emerald-400/15 shadow-[0_0_20px_rgba(16,185,129,0.35)] scale-110'
+              : 'w-8 h-8 border border-emerald-500/40 bg-emerald-500/[0.04] shadow-[0_0_12px_rgba(16,185,129,0.12)]'
           }`}
-        >
-          {/* Subtle rotating crosshair orbit ticks when at rest */}
-          {hoverType === 'default' && (
-            <div className="absolute inset-0 rounded-full animate-spin [animation-duration:14s] pointer-events-none opacity-60">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-0.5 bg-emerald-400 rounded-full" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-0.5 bg-emerald-400 rounded-full" />
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-1.5 bg-emerald-400 rounded-full" />
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0.5 h-1.5 bg-emerald-400 rounded-full" />
-            </div>
-          )}
-
-          {/* Interactive Floating Badge when hovering a 3D Card */}
-          {hoverType === 'card' && (
-            <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-slate-950/90 text-emerald-300 border border-emerald-400/70 text-[9px] font-mono font-black tracking-widest shadow-xl flex items-center gap-1 whitespace-nowrap animate-bounce">
-              <Sparkles className="w-2.5 h-2.5 text-amber-300" />
-              <span>TAP • 3D</span>
-            </div>
-          )}
-        </div>
+        />
       </div>
 
-      {/* 3. PRIMARY POINTER: REALISTIC MINI GOLD EMV CHIP & PRECISION RETICLE */}
+      {/* 3. CENTER PRECISION DOT (Minimal, sharp, emerald green) */}
       <div
         ref={dotRef}
         className={`pointer-events-none absolute top-0 left-0 transition-opacity duration-200 will-change-transform ${
@@ -221,39 +228,16 @@ export const CustomCursor: React.FC = () => {
         }`}
       >
         <div
-          className={`relative transition-transform duration-150 ease-out ${
-            isClicking ? 'scale-75' : hoverType === 'clickable' ? 'scale-115' : 'scale-100'
+          className={`-translate-x-1/2 -translate-y-1/2 rounded-full transition-transform duration-150 ease-out flex items-center justify-center ${
+            isInput
+              ? 'opacity-0' // hide dot inside text inputs so caret is clean
+              : isClicking
+              ? 'w-2 h-2 bg-white ring-2 ring-emerald-400 scale-75 shadow-[0_0_12px_#ffffff]'
+              : isHovering
+              ? 'w-2.5 h-2.5 bg-emerald-400 ring-2 ring-white scale-110 shadow-[0_0_12px_#10B981]'
+              : 'w-2 h-2 bg-emerald-500 ring-1.5 ring-white shadow-[0_0_8px_#10B981]'
           }`}
-        >
-          {/* Precision Emerald Laser Aiming Core at exact (x, y) */}
-          <div className="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-white/90 shadow-[0_0_10px_#10B981] z-30" />
-
-          {/* Realistic Miniature Gold EMV Credit Card Chip (Offset for ergonomic visibility) */}
-          {hoverType !== 'input' && (
-            <div className="absolute top-2 left-2 z-20 flex items-center gap-1 group">
-              {/* Miniature Photorealistic Gold EMV Chip */}
-              <div className="relative w-4 h-3 rounded-[3px] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 border border-amber-300 shadow-md p-[1.5px] flex flex-col justify-between overflow-hidden">
-                {/* Circuit Grid Etching */}
-                <div className="w-full h-px bg-amber-950/50" />
-                <div className="w-full h-px bg-amber-950/50" />
-                <div className="absolute inset-y-0 left-1/2 w-px bg-amber-950/50" />
-                {/* Micro center contact pin */}
-                <div className="absolute inset-y-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-amber-500/80 border border-amber-900/40" />
-              </div>
-
-              {/* Contactless Radio / RFID Wave Badge */}
-              <div
-                className={`flex items-center transition-all ${
-                  hoverType === 'clickable' || hoverType === 'card'
-                    ? 'text-emerald-400 scale-110 drop-shadow-[0_0_6px_rgba(16,185,129,0.8)]'
-                    : 'text-emerald-600/70'
-                }`}
-              >
-                <Wifi className="w-2.5 h-2.5 rotate-90" />
-              </div>
-            </div>
-          )}
-        </div>
+        />
       </div>
     </div>
   );
