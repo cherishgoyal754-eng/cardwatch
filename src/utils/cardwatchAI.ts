@@ -255,15 +255,15 @@ export function compareCards(card1: CreditCard, card2: CreditCard): AIResponse {
     text: `### **${card1.name} vs ${card2.name}**\n\n` +
       `• **${card1.name}:**\n` +
       `  - **Annual Fee:** ${c1Fee}\n` +
-      `  - **Forex Markup:** ${card1.forexMarkup}%\n` +
+      `  - **Forex Markup:** ${card1.forexMarkup}% (forex markup fee)\n` +
       `  - **Key Benefit:** ${card1.headlineBenefit}\n` +
       `  - **Lounge Access:** ${card1.domesticLoungesPerQuarter} domestic/quarter (${card1.loungeSpendCondition || 'Subject to bank criteria'})\n\n` +
       `• **${card2.name}:**\n` +
       `  - **Annual Fee:** ${c2Fee}\n` +
-      `  - **Forex Markup:** ${card2.forexMarkup}%\n` +
+      `  - **Forex Markup:** ${card2.forexMarkup}% (forex markup fee)\n` +
       `  - **Key Benefit:** ${card2.headlineBenefit}\n` +
       `  - **Lounge Access:** ${card2.domesticLoungesPerQuarter} domestic/quarter (${card2.loungeSpendCondition || 'Subject to bank criteria'})\n\n` +
-      `${verdict}`,
+      `**Verdict:** ${verdict}`,
   };
 }
 
@@ -351,7 +351,40 @@ export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[
     return compareCards(c1, c2);
   }
 
-  // 2. Specific Single Card Inquiry (Answer details on the matched card)
+  // 2. Spending Analysis Intent (Detects multi-category monthly spend questions)
+  if (
+    (lower.includes('grocer') && lower.includes('dining')) ||
+    (lower.includes('spend') && (lower.includes('online') || lower.includes('shopping')) && lower.includes('travel')) ||
+    lower.includes('analyze my spend') ||
+    lower.includes('portfolio') ||
+    lower.includes('every month')
+  ) {
+    return analyzeMonthlyExpenses(query, cards);
+  }
+
+  // 3. Reward Calculator Intent (Prioritized before general card info when spend/points asked)
+  const amount = extractAmount(query);
+  const isCalculatorQuery =
+    lower.includes('how many points') ||
+    lower.includes('how much cashback') ||
+    lower.includes('what will i get') ||
+    lower.includes('calculate') ||
+    lower.includes('points will i get') ||
+    (amount !== null && (lower.includes('spend') || lower.includes('spends') || lower.includes('swipe') || lower.includes('txn') || lower.includes('transaction') || lower.includes('using') || lower.includes('rent')));
+
+  if (isCalculatorQuery) {
+    const calcAmount = amount || 10000;
+    const category = detectCategory(query);
+
+    if (matchedCards.length > 0) {
+      return calculateRewards(matchedCards[0], calcAmount, category);
+    } else {
+      const topCard = cards.find(c => c.id === 'sbi-cashback') || cards[0];
+      return calculateRewards(topCard, calcAmount, category);
+    }
+  }
+
+  // 3. Specific Single Card Inquiry (Answer details on the matched card)
   if (matchedCards.length === 1) {
     const c = matchedCards[0];
     const feeStr = c.isLifetimeFree ? '₹0 (Lifetime Free)' : `₹${c.annualFee.toLocaleString('en-IN')}/year (Waiver: ${c.annualFeeWaiverCondition})`;
@@ -445,28 +478,6 @@ export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[
     lower.includes('recommend a card')
   ) {
     return analyzeMonthlyExpenses(query, cards);
-  }
-
-  // 5. Reward Calculator Intent
-  const amount = extractAmount(query);
-  const isCalculatorQuery =
-    lower.includes('how many points') ||
-    lower.includes('how much cashback') ||
-    lower.includes('what will i get') ||
-    lower.includes('calculate') ||
-    lower.includes('points will i get') ||
-    (amount !== null && (lower.includes('spend') || lower.includes('spends') || lower.includes('swipe') || lower.includes('txn') || lower.includes('transaction') || lower.includes('using')));
-
-  if (isCalculatorQuery) {
-    const calcAmount = amount || 10000;
-    const category = detectCategory(query);
-
-    if (matchedCards.length > 0) {
-      return calculateRewards(matchedCards[0], calcAmount, category);
-    } else {
-      const topCard = cards.find(c => c.id === 'sbi-cashback') || cards[0];
-      return calculateRewards(topCard, calcAmount, category);
-    }
   }
 
   // 6. Point Valuation Intent
