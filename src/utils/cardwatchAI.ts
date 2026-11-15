@@ -43,28 +43,28 @@ export function identifyCardsInQuery(query: string, cards: CreditCard[] = CREDIT
   const matched: CreditCard[] = [];
 
   const aliasMap: Record<string, string[]> = {
-    'hdfc-infinia-metal': ['infinia', 'infinia metal'],
-    'hdfc-diners-black': ['diners black', 'dcb', 'diners club', 'diners metal'],
-    'hdfc-regalia-gold': ['regalia', 'regalia gold'],
-    'amex-platinum': ['american express', 'amex', 'amex plat', 'amex platinum', 'centurion', 'platinum charge', 'charge card'],
-    'amex-plat-travel': ['plat travel', 'platinum travel', 'amex travel'],
-    'sbi-cashback': ['sbi cashback', 'cashback sbi'],
-    'sbi-simplysave': ['simplysave', 'simply save'],
+    'hdfc-infinia-metal': ['infinia', 'infinia metal', 'hdfc infinia', 'infinia card'],
+    'hdfc-diners-black': ['diners black', 'dcb', 'diners club', 'diners metal', 'hdfc diners', 'diners'],
+    'hdfc-regalia-gold': ['regalia', 'regalia gold', 'hdfc regalia', 'regalia card'],
+    'amex-platinum': ['american express', 'amex', 'amex plat', 'amex platinum', 'centurion', 'platinum charge', 'charge card', 'amex card'],
+    'amex-plat-travel': ['plat travel', 'platinum travel', 'amex travel', 'amex mr'],
+    'sbi-cashback': ['sbi cashback', 'cashback sbi', 'sbi cb', 'sbi cash back'],
+    'sbi-simplysave': ['simplysave', 'simply save', 'sbi simply'],
     'sbi-aurum': ['aurum', 'sbi aurum'],
-    'scapia-federal': ['scapia', 'scapia federal'],
+    'scapia-federal': ['scapia', 'scapia federal', 'federal scapia', 'federal bank', 'scapia card', 'scapya', 'scapia federal card'],
     'axis-magnus': ['magnus', 'axis magnus'],
-    'axis-atlas': ['atlas', 'axis atlas', 'edge miles'],
-    'axis-indianoil': ['indianoil', 'iocl', 'axis indianoil', 'indianoil rupay'],
-    'flipkart-axis': ['flipkart axis', 'flipkart card'],
-    'kiwi-axis-rupay': ['kiwi', 'axis kwik', 'kwik'],
-    'icici-amazon-pay': ['amazon pay', 'amazon icici', 'apay'],
-    'icici-sapphiro': ['sapphiro', 'icici sapphiro'],
-    'tata-neu-infinity': ['tata neu', 'neu infinity', 'neucoins', 'neupass'],
-    'indusind-tiger': ['tiger', 'indusind tiger'],
-    'idfc-first-wealth': ['idfc wealth', 'first wealth'],
-    'idfc-first-millennia': ['idfc millennia', 'first millennia', 'millennia'],
-    'swiggy-hdfc': ['swiggy hdfc', 'swiggy card'],
-    'hsbc-live-plus': ['hsbc live', 'live+', 'live plus', 'hsbc live plus'],
+    'axis-atlas': ['atlas', 'axis atlas', 'edge miles', 'atlas card'],
+    'axis-indianoil': ['indianoil', 'iocl', 'axis indianoil', 'indianoil rupay', 'axis fuel'],
+    'flipkart-axis': ['flipkart axis', 'flipkart card', 'axis flipkart'],
+    'kiwi-axis-rupay': ['kiwi', 'axis kwik', 'kwik', 'kiwi rupay'],
+    'icici-amazon-pay': ['amazon pay', 'amazon icici', 'apay', 'icici amazon', 'amazon card'],
+    'icici-sapphiro': ['sapphiro', 'icici sapphiro', 'sapphire'],
+    'tata-neu-infinity': ['tata neu', 'neu infinity', 'neucoins', 'neupass', 'tata neu card'],
+    'indusind-tiger': ['tiger', 'indusind tiger', 'indusind', 'indusland', 'indusland tiger', 'tiger card', 'indus'],
+    'idfc-first-wealth': ['idfc wealth', 'first wealth', 'idfc first wealth'],
+    'idfc-first-millennia': ['idfc millennia', 'first millennia'],
+    'swiggy-hdfc': ['swiggy hdfc', 'swiggy card', 'hdfc swiggy', 'swiggy credit card'],
+    'hsbc-live-plus': ['hsbc live', 'live+', 'live plus', 'hsbc live plus', 'hsbc card', 'hsbc'],
   };
 
   for (const card of cards) {
@@ -228,18 +228,42 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
 }
 
 /**
- * Compares two cards concisely
+ * Compares two cards concisely and helpfully
  */
 export function compareCards(card1: CreditCard, card2: CreditCard): AIResponse {
   const c1Fee = card1.isLifetimeFree ? '₹0 (Lifetime Free)' : `₹${card1.annualFee.toLocaleString('en-IN')}/year`;
   const c2Fee = card2.isLifetimeFree ? '₹0 (Lifetime Free)' : `₹${card2.annualFee.toLocaleString('en-IN')}/year`;
 
-  let winner = card1.name;
-  if (card2.tier === 'Super Premium' && card1.tier !== 'Super Premium') winner = card2.name;
-  else if ((card2.id.includes('cashback') || card2.id.includes('amazon')) && (card1.tier === 'Entry Level' || card1.tier === 'Mid Tier')) winner = card2.name;
+  let verdict = '';
+  const pair = [card1.id, card2.id].sort().join('__');
+
+  if (pair.includes('indusind-tiger') && pair.includes('scapia-federal')) {
+    verdict = `**Recommendation:**\n• **Choose Scapia Federal** if you travel internationally or want zero forex fees (**0% forex markup** + ₹0 lifetime free annual fee).\n• **Choose IndusInd Tiger** if you want everyday domestic rewards, reward points across multiple partner brands, and a standard banking relationship with lower markup (1.5%) than standard cards.`;
+  } else if (pair.includes('icici-amazon-pay') && pair.includes('sbi-cashback')) {
+    verdict = `**Recommendation:**\n• **SBI Cashback** gives a higher return (**5% direct statement cashback** across Amazon, Flipkart, Myntra up to ₹2,000/mo).\n• **Amazon Pay ICICI** is completely **Lifetime Free (₹0 fee)** and best if you want an easy card dedicated to Amazon Prime orders.`;
+  } else if (pair.includes('amex-platinum') && pair.includes('hdfc-infinia-metal')) {
+    verdict = `**Recommendation:**\n• **HDFC Infinia Metal** is mathematically superior for rewards (up to **33.3% return** on flights/hotels via SmartBuy).\n• **Amex Platinum** is a luxury charge card built for concierge services, 5-star hotel memberships (Marriott, Hilton, Radisson), and Centurion Lounge access.`;
+  } else {
+    let winner = card1.name;
+    if (card2.tier === 'Super Premium' && card1.tier !== 'Super Premium') winner = card2.name;
+    else if ((card2.id.includes('cashback') || card2.id.includes('amazon')) && (card1.tier === 'Entry Level' || card1.tier === 'Mid Tier')) winner = card2.name;
+    else if (card1.annualFee > card2.annualFee && card2.isLifetimeFree) winner = card2.name;
+    verdict = `**Recommendation:** For overall value and everyday spending returns, **${winner}** is the recommended pick for most users.`;
+  }
 
   return {
-    text: `**${card1.name} vs ${card2.name}:**\n• **${card1.name}:** Annual fee ${c1Fee}, ${card1.headlineBenefit}, forex markup ${card1.forexMarkup}%.\n• **${card2.name}:** Annual fee ${c2Fee}, ${card2.headlineBenefit}, forex markup ${card2.forexMarkup}%.\n\n**Verdict:** For overall value and returns, **${winner}** is the recommended pick.`,
+    text: `### **${card1.name} vs ${card2.name}**\n\n` +
+      `• **${card1.name}:**\n` +
+      `  - **Annual Fee:** ${c1Fee}\n` +
+      `  - **Forex Markup:** ${card1.forexMarkup}%\n` +
+      `  - **Key Benefit:** ${card1.headlineBenefit}\n` +
+      `  - **Lounge Access:** ${card1.domesticLoungesPerQuarter} domestic/quarter (${card1.loungeSpendCondition || 'Subject to bank criteria'})\n\n` +
+      `• **${card2.name}:**\n` +
+      `  - **Annual Fee:** ${c2Fee}\n` +
+      `  - **Forex Markup:** ${card2.forexMarkup}%\n` +
+      `  - **Key Benefit:** ${card2.headlineBenefit}\n` +
+      `  - **Lounge Access:** ${card2.domesticLoungesPerQuarter} domestic/quarter (${card2.loungeSpendCondition || 'Subject to bank criteria'})\n\n` +
+      `${verdict}`,
   };
 }
 
@@ -254,7 +278,11 @@ export function getDevaluationUpdates(card?: CreditCard): AIResponse {
     };
   }
   return {
-    text: `Recent credit card updates: Major banks (HDFC, ICICI, Axis, SBI) have introduced a ₹50,000–₹60,000 quarterly spend requirement for airport lounge visits, and levy a 1% convenience fee on rent payments.`,
+    text: `### **Recent Indian Credit Card Devaluations & Rule Changes**\n\n` +
+      `1. **Lounge Spend Criteria:** Major banks (HDFC, ICICI, Axis, SBI) now require spending **₹50,000–₹60,000 in the previous calendar quarter** to unlock complimentary airport lounge access.\n` +
+      `2. **Rental & Utility Surcharges:** Rent payments (MCC 6513) now carry a 1% convenience fee + GST and earn 0 reward points across almost all issuers.\n` +
+      `3. **Education & Wallet Fees:** Third-party app payments (like CRED, Mobikwik, Paytm) for school fees and wallet reloads incur 1% surcharge fees.\n` +
+      `4. **Government Tax:** Payments for income tax and municipal charges are largely excluded from reward point calculation.`,
   };
 }
 
@@ -263,12 +291,17 @@ export function getDevaluationUpdates(card?: CreditCard): AIResponse {
  */
 export function analyzeMonthlyExpenses(query: string, cards: CreditCard[] = CREDIT_CARDS_DATA): AIResponse {
   return {
-    text: `For your spending breakdown, the best two-card combination is **SBI Cashback** (5% online shopping) and **HSBC Live+** (10% dining and groceries). This duo maximizes direct statement cashback with minimal fees.`,
+    text: `### **Recommended Spending Portfolio:**\n\n` +
+      `To maximize cashback and rewards across your expenses:\n` +
+      `• **Online Shopping (Amazon, Flipkart, Blinkit):** Use **SBI Cashback** (5% cashback up to ₹2,000/mo) or **Amazon Pay ICICI** (5% unlimited for Prime).\n` +
+      `• **Dining, Food Delivery & Groceries:** Use **HSBC Live+** (10% cashback on dining/groceries, up to ₹1,000/mo) or **Swiggy HDFC** (10% cashback on Swiggy).\n` +
+      `• **UPI Scan & Pay:** Use **Tata Neu Infinity RuPay** (1.5% NeuCoins on UPI QR transactions).\n` +
+      `• **Travel & International Spends:** Use **Federal Bank Scapia** (0% forex markup, ₹0 annual fee).`,
   };
 }
 
 /**
- * Deterministic local dispatcher answering only the asked question
+ * Deterministic local dispatcher answering ANY question intelligently
  */
 export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[] = CREDIT_CARDS_DATA): AIResponse {
   const query = rawQuery.trim();
@@ -276,34 +309,121 @@ export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[
 
   const matchedCards = identifyCardsInQuery(query, cards);
 
-  // 1. Comparison Intent
-  if (
+  // 1. Comparison Intent (Triggered if 2+ cards found OR comparison words used)
+  const isComparisonQuery =
+    matchedCards.length >= 2 ||
     lower.includes('compare') ||
     lower.includes(' vs ') ||
+    lower.includes(' vs. ') ||
     lower.includes('versus') ||
     lower.includes('which is better') ||
-    lower.includes('difference between')
-  ) {
+    lower.includes('which card is better') ||
+    lower.includes('which is more useful') ||
+    lower.includes('which card is more useful') ||
+    lower.includes('which one to choose') ||
+    lower.includes('which one should i choose') ||
+    lower.includes('which should i pick') ||
+    lower.includes('which one is better') ||
+    lower.includes('difference between') ||
+    (matchedCards.length === 1 && (lower.includes(' or ') || lower.includes('more useful') || lower.includes('better')));
+
+  if (isComparisonQuery) {
     if (matchedCards.length >= 2) {
       return compareCards(matchedCards[0], matchedCards[1]);
     }
     if (matchedCards.length === 1) {
       const c1 = matchedCards[0];
-      const rivalId = c1.id === 'hdfc-infinia-metal' ? 'amex-platinum' :
-                      c1.id === 'amex-platinum' ? 'hdfc-diners-black' :
-                      c1.id === 'sbi-cashback' ? 'icici-amazon-pay' :
-                      c1.id === 'scapia-federal' ? 'idfc-first-wealth' :
-                      c1.id === 'axis-atlas' ? 'hdfc-regalia-gold' :
-                      'sbi-cashback';
+      const rivalId =
+        c1.id === 'scapia-federal' ? 'indusind-tiger' :
+        c1.id === 'indusind-tiger' ? 'scapia-federal' :
+        c1.id === 'hdfc-infinia-metal' ? 'amex-platinum' :
+        c1.id === 'amex-platinum' ? 'hdfc-infinia-metal' :
+        c1.id === 'sbi-cashback' ? 'icici-amazon-pay' :
+        c1.id === 'icici-amazon-pay' ? 'sbi-cashback' :
+        c1.id === 'axis-atlas' ? 'hdfc-regalia-gold' :
+        c1.id === 'hdfc-regalia-gold' ? 'axis-atlas' :
+        'sbi-cashback';
       const c2 = cards.find(c => c.id === rivalId) || cards[1];
       return compareCards(c1, c2);
     }
-    const amex = cards.find(c => c.id === 'amex-platinum') || cards[0];
-    const diners = cards.find(c => c.id === 'hdfc-diners-black') || cards[1];
-    return compareCards(amex, diners);
+    const c1 = cards.find(c => c.id === 'sbi-cashback') || cards[0];
+    const c2 = cards.find(c => c.id === 'icici-amazon-pay') || cards[1];
+    return compareCards(c1, c2);
   }
 
-  // 2. Devaluation / Changes Intent
+  // 2. Specific Single Card Inquiry (Answer details on the matched card)
+  if (matchedCards.length === 1) {
+    const c = matchedCards[0];
+    const feeStr = c.isLifetimeFree ? '₹0 (Lifetime Free)' : `₹${c.annualFee.toLocaleString('en-IN')}/year (Waiver: ${c.annualFeeWaiverCondition})`;
+
+    // Lounge access details
+    if (lower.includes('lounge') || lower.includes('airport')) {
+      return {
+        text: `### **${c.name} — Lounge Access Details**\n\n` +
+          `• **Domestic Lounges:** ${c.domesticLoungesPerQuarter} complimentary visits per quarter.\n` +
+          `• **International Lounges:** ${c.internationalLoungesPerYear} visits per calendar year (${c.loungeNetwork || 'Priority Pass'}).\n` +
+          `• **Lounge Spend Condition:** ${c.loungeSpendCondition}.\n` +
+          `• **Network:** ${c.network} (${c.bank})\n\n` +
+          `*Note: Most Indian banks now verify that quarterly spend targets are met in the preceding quarter before granting free entry.*`,
+      };
+    }
+
+    // Fees & waiver details
+    if (lower.includes('fee') || lower.includes('charge') || lower.includes('waiver') || lower.includes('free') || lower.includes('cost') || lower.includes('price')) {
+      return {
+        text: `### **${c.name} — Fees & Waiver Criteria**\n\n` +
+          `• **Joining Fee:** ₹${c.joiningFee.toLocaleString('en-IN')}\n` +
+          `• **Annual Fee:** ${feeStr}\n` +
+          `• **Forex Markup Fee:** ${c.forexMarkup}%\n` +
+          `• **Fuel Surcharge Waiver:** ${c.fuelSurchargeWaiver}`,
+      };
+    }
+
+    // Forex / International travel
+    if (lower.includes('forex') || lower.includes('international') || lower.includes('abroad') || lower.includes('overseas') || lower.includes('foreign') || lower.includes('currency') || lower.includes('dubai')) {
+      return {
+        text: `### **${c.name} — International & Forex Analysis**\n\n` +
+          `• **Forex Markup:** **${c.forexMarkup}%** ${c.forexMarkup === 0 ? '(0% Forex Markup — Zero extra foreign currency conversion charge!)' : ''}\n` +
+          `• **International Lounge Access:** ${c.internationalLoungesPerYear} complimentary visits/year (${c.loungeNetwork || 'Priority Pass'}).\n` +
+          `• **Rewards on Spends:** ${c.cashbackRate}`,
+      };
+    }
+
+    // Rewards & Cashback details
+    if (lower.includes('reward') || lower.includes('cashback') || lower.includes('point') || lower.includes('value') || lower.includes('rate') || lower.includes('percent')) {
+      return {
+        text: `### **${c.name} — Reward Rate & Point Valuation**\n\n` +
+          `• **Reward Rate:** ${c.cashbackRate}\n` +
+          `• **Point Redemption Value:** ${c.rewardPointValue}\n` +
+          `• **Merchant Exclusions:** ${c.merchantExclusions.join(', ')}\n` +
+          `• **Reward Capping:** ${c.cappingDetails}`,
+      };
+    }
+
+    // Eligibility / Salary / CIBIL
+    if (lower.includes('salary') || lower.includes('cibil') || lower.includes('eligib') || lower.includes('income') || lower.includes('apply')) {
+      return {
+        text: `### **${c.name} — Eligibility & Application**\n\n` +
+          `• **Minimum Monthly Salary:** ₹${c.minSalaryMonthly.toLocaleString('en-IN')}/month\n` +
+          `• **Minimum Recommended CIBIL:** ${c.minCibilScore}+\n` +
+          `• **Card Tier:** ${c.tier}\n` +
+          `• **Official Portal:** [Bank Information Link](${c.officialCircularUrl})`,
+      };
+    }
+
+    // General Card Review / Overview
+    return {
+      text: `### **${c.name} (${c.bank}) Overview**\n\n` +
+        `• **Annual Fee:** ${feeStr}\n` +
+        `• **Headline Benefit:** ${c.headlineBenefit}\n` +
+        `• **Reward Program:** ${c.cashbackRate}\n` +
+        `• **Forex Markup:** ${c.forexMarkup}%\n` +
+        `• **Lounge Access:** ${c.domesticLoungesPerQuarter} domestic/quarter (${c.loungeSpendCondition})\n\n` +
+        `**Verdict:** ${c.name} is a strong **${c.tier}** card especially tailored for cardholders who prioritize ${c.headlineBenefit.split('•')[0].trim()}.`,
+    };
+  }
+
+  // 3. Devaluation / Changes Intent
   if (
     lower.includes('deval') ||
     lower.includes('what changed') ||
@@ -316,17 +436,18 @@ export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[
     return getDevaluationUpdates(matchedCards[0]);
   }
 
-  // 3. Personalized Spending Analysis Intent
+  // 4. Personalized Spending Analysis Intent
   if (
     (lower.includes('grocer') && lower.includes('dining')) ||
     (lower.includes('spend') && (lower.includes('online') || lower.includes('shopping')) && lower.includes('travel')) ||
     lower.includes('analyze my spend') ||
-    lower.includes('portfolio')
+    lower.includes('portfolio') ||
+    lower.includes('recommend a card')
   ) {
     return analyzeMonthlyExpenses(query, cards);
   }
 
-  // 4. Reward Calculator Intent
+  // 5. Reward Calculator Intent
   const amount = extractAmount(query);
   const isCalculatorQuery =
     lower.includes('how many points') ||
@@ -343,54 +464,161 @@ export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[
     if (matchedCards.length > 0) {
       return calculateRewards(matchedCards[0], calcAmount, category);
     } else {
-      return {
-        text: `Which credit card will you use for this ₹${calcAmount.toLocaleString('en-IN')} spend? (e.g. Scapia, SBI Cashback, HDFC Infinia, or Axis IndianOil)`,
-      };
+      const topCard = cards.find(c => c.id === 'sbi-cashback') || cards[0];
+      return calculateRewards(topCard, calcAmount, category);
     }
   }
 
-  // 5. Point Valuation Intent
+  // 6. Point Valuation Intent
   if (lower.includes('point value') || lower.includes('how much is 1 point') || lower.includes('conversion ratio') || lower.includes('redemption value')) {
     const targetCard = matchedCards[0] || cards.find(c => c.id === 'hdfc-infinia-metal') || cards[0];
     return {
-      text: `For **${targetCard.name}**, reward point valuation is **${targetCard.rewardPointValue}** (earning rate: ${targetCard.cashbackRate}). Points offer the highest value when redeemed for flights and hotels on the bank's travel portal.`,
+      text: `For **${targetCard.name}**, reward point valuation is **${targetCard.rewardPointValue}** (earning rate: ${targetCard.cashbackRate}). Points offer highest value when redeemed for flights and hotels on the bank's travel portal.`,
     };
   }
 
-  // 6. Merchant Category / MCC / Surcharge Intent
+  // 7. Merchant Category / MCC / Surcharge Intent
   if (lower.includes('mcc') || lower.includes('rent') || lower.includes('utility') || lower.includes('wallet') || lower.includes('fuel surcharge')) {
     return {
-      text: `On Indian credit cards: rent payments (MCC 6513) and wallet loading (MCC 6540) earn 0% rewards and incur convenience fees. Utility bills often have monthly reward caps, while fuel transactions offer a 1% surcharge waiver on ₹400–₹4,000.`,
+      text: `### **Indian Credit Card Surcharges & MCC Exclusions:**\n\n` +
+        `• **Rent Payments (MCC 6513):** Excluded from rewards across almost all banks; 1% + GST convenience fee is charged.\n` +
+        `• **Wallet Reloads (MCC 6540):** Paytm, Mobikwik, and Amazon wallet reloads do not earn reward points.\n` +
+        `• **Fuel Surcharge Waiver:** 1% waiver on transactions between ₹400 and ₹4,000–₹5,000.\n` +
+        `• **Utility Bills:** Most banks cap utility reward points at ₹1,000–₹2,000 points per billing cycle.`,
     };
   }
 
-  // 7. Dubai / Forex / Overseas Query
-  if (lower.includes('dubai') || lower.includes('forex') || lower.includes('overseas') || lower.includes('foreign') || lower.includes('international')) {
+  // 8. International Spends / Zero Forex Intent
+  if (lower.includes('dubai') || lower.includes('forex') || lower.includes('overseas') || lower.includes('foreign') || lower.includes('international') || lower.includes('zero forex')) {
     return {
-      text: `**Federal Bank Scapia** is the best card for Dubai and international spending with **0% forex markup** and ₹0 annual fee. Other good low-markup cards are **IndusInd Tiger** (1.5% markup) and **HSBC Live+** (1.99% markup).`,
+      text: `### **Best Credit Cards for International & Forex Spends:**\n\n` +
+        `1. **Federal Bank Scapia:** **0% Forex Markup**, ₹0 Annual Fee (Lifetime Free), complimentary lounge access on meeting spends.\n` +
+        `2. **IndusInd Tiger Credit Card:** Low **1.5% Forex Markup** with rewards across brands and dining.\n` +
+        `3. **RBL World Safari:** **0% Forex Markup** with dedicated travel gift vouchers.\n\n` +
+        `*Most standard credit cards charge a 3.5% + 18% GST markup on international spends. Using a 0% forex card saves you ₹4,130 on every ₹1,00,000 spent overseas.*`,
     };
   }
 
-  // 8. Specific Single Card Inquiry
-  if (matchedCards.length === 1) {
-    const c = matchedCards[0];
-    const feeStr = c.isLifetimeFree ? '₹0 (Lifetime Free)' : `₹${c.annualFee.toLocaleString('en-IN')}/year`;
+  // 9. Airport Lounge Access Intent
+  if (lower.includes('lounge') || lower.includes('airport')) {
     return {
-      text: `**${c.name}** (${c.bank}):\n• **Annual Fee:** ${feeStr}\n• **Headline Benefit:** ${c.headlineBenefit}\n• **Rewards:** ${c.cashbackRate}\n• **Forex Markup:** ${c.forexMarkup}%\n• **Lounge Access:** ${c.domesticLoungesPerQuarter} domestic per quarter (${c.loungeSpendCondition}).`,
+      text: `### **Best Credit Cards for Airport Lounge Access in India:**\n\n` +
+        `• **Super Premium (Unlimited Access):** **HDFC Infinia Metal** & **HDFC Diners Black** (Unlimited domestic and international lounge visits via Priority Pass).\n` +
+        `• **Mid-Tier (Spends Threshold):** **HDFC Regalia Gold** (3 domestic visits/quarter on ₹60k quarterly spend) and **ICICI Sapphiro** (4 visits/quarter on ₹50k spend).\n` +
+        `• **Entry-Level / Lifetime Free:** **Scapia Federal** & **IDFC FIRST Wealth**.\n\n` +
+        `> **Important Notice:** In 2024–2026, banks updated rules: you must swipe and spend ₹50,000–₹60,000 in the previous calendar quarter to unlock complimentary domestic lounge passes.`,
     };
   }
 
-  // 9. Fallback
+  // 10. Travel & Flight Intent
+  if (lower.includes('flight') || lower.includes('travel') || lower.includes('hotel') || lower.includes('airline') || lower.includes('miles')) {
+    return {
+      text: `### **Top Travel Credit Cards in India:**\n\n` +
+        `1. **HDFC Infinia Metal:** Up to **33.3% return** on flights and hotels booked through HDFC SmartBuy portal (1 RP = ₹1).\n` +
+        `2. **Axis Atlas:** Earns **EDGE Miles** with flexible 1:2 transfer ratios to leading domestic and international airline frequent flyer programs.\n` +
+        `3. **American Express Platinum Travel:** Earns **48,000 bonus Membership Rewards points** and ₹10,000 Taj vouchers upon achieving ₹4,00,000 annual spend.\n` +
+        `4. **Federal Bank Scapia:** **0% Forex Markup** for foreign trips with ₹0 annual fee.`,
+    };
+  }
+
+  // 11. Cashback & Online Shopping Intent
+  if (lower.includes('cashback') || lower.includes('online shopping') || lower.includes('amazon') || lower.includes('flipkart') || lower.includes('myntra')) {
+    return {
+      text: `### **Top Cashback & Online Shopping Credit Cards:**\n\n` +
+        `1. **SBI Cashback Card:** **5% direct statement cashback** on almost all online transactions across Amazon, Flipkart, Myntra, Swiggy, etc. (capped at ₹2,000/month).\n` +
+        `2. **Amazon Pay ICICI:** **5% unlimited cashback** for Amazon Prime members, deposited directly as Amazon Pay balance. Lifetime Free (₹0 fee).\n` +
+        `3. **Flipkart Axis Bank Card:** **5% unlimited cashback** on Flipkart and Myntra purchases.`,
+    };
+  }
+
+  // 12. Dining & Groceries Intent
+  if (lower.includes('dining') || lower.includes('restaurant') || lower.includes('swiggy') || lower.includes('zomato') || lower.includes('grocer') || lower.includes('blinkit') || lower.includes('zepto')) {
+    return {
+      text: `### **Top Cards for Dining & Grocery Spends:**\n\n` +
+        `1. **HSBC Live+ Card:** **10% accelerated cashback** on dining, food delivery (Swiggy, Zomato), and grocery supermarkets (Blinkit, Instamart) up to ₹1,000/month.\n` +
+        `2. **Swiggy HDFC Credit Card:** **10% cashback** on all Swiggy orders (Food, Instamart, Dineout) + 5% on top partner apps.\n` +
+        `3. **HDFC Diners Black:** **2X reward points (6.66% return)** on weekend dining.`,
+    };
+  }
+
+  // 13. Fuel Intent
+  if (lower.includes('fuel') || lower.includes('petrol') || lower.includes('diesel') || lower.includes('pump')) {
+    return {
+      text: `### **Top Credit Cards for Fuel & Petrol:**\n\n` +
+        `1. **Axis IndianOil Credit Card:** **4% value-back** (20 EDGE points per ₹100) at IndianOil fuel stations + 1% fuel surcharge waiver.\n` +
+        `2. **BPCL SBI Card Octane:** **7.25% value-back** on Bharat Petroleum fuel spends + 25X reward points.\n` +
+        `3. **Standard Cards:** Offer 1% surcharge waiver for fuel transactions between ₹400 and ₹4,000–₹5,000.`,
+    };
+  }
+
+  // 14. UPI / RuPay Intent
+  if (lower.includes('upi') || lower.includes('rupay') || lower.includes('qr') || lower.includes('scan')) {
+    return {
+      text: `### **Top RuPay Credit Cards for UPI QR Spends:**\n\n` +
+        `1. **Tata Neu Infinity RuPay:** Earns **1.5% NeuCoins** on UPI QR payments and up to 5% on Tata Neu partner brands.\n` +
+        `2. **Kiwi Axis Bank RuPay:** Flat cashback credited directly to your savings account on every merchant UPI QR scan.\n` +
+        `3. **HDFC Tata Neu Plus:** Entry-level RuPay card with 1% return on UPI spends.`,
+    };
+  }
+
+  // 15. Beginner / Lifetime Free Intent
+  if (lower.includes('beginner') || lower.includes('student') || lower.includes('first card') || lower.includes('lifetime free') || lower.includes('ltf') || lower.includes('no fee') || lower.includes('zero fee')) {
+    return {
+      text: `### **Best Lifetime Free (₹0 Annual Fee) Cards for Beginners:**\n\n` +
+        `1. **Amazon Pay ICICI:** ₹0 joining fee, ₹0 annual fee forever, 5% cashback on Amazon, no minimum income criteria.\n` +
+        `2. **Federal Bank Scapia:** ₹0 annual fee, 0% forex markup, easy digital app approval.\n` +
+        `3. **IDFC FIRST Millennia:** ₹0 annual fee, low dynamic interest rates starting at 0.75%/month, and reward points that never expire.\n` +
+        `4. **Kiwi Axis RuPay:** ₹0 annual fee, instant virtual card setup for UPI transactions.`,
+    };
+  }
+
+  // 16. CIBIL / Credit Score Advice
+  if (lower.includes('cibil') || lower.includes('credit score') || lower.includes('score') || lower.includes('improve')) {
+    return {
+      text: `### **How to Build & Maintain a 750+ CIBIL Score:**\n\n` +
+        `1. **Keep Credit Utilization Under 30%:** If your credit limit is ₹1,00,000, keep your monthly billing below ₹30,000.\n` +
+        `2. **Always Pay Total Amount Due:** Never pay only the "Minimum Amount Due", as interest accumulates at 42–48% annually.\n` +
+        `3. **Avoid Applying for Multiple Cards at Once:** Each application triggers a hard credit inquiry that temporarily drops your score.\n` +
+        `4. **If Starting from Scratch:** Open a **Secured Credit Card** backed by a Fixed Deposit (e.g., IDFC WOW or OneCard) to create a clean credit history.`,
+    };
+  }
+
+  // 17. Greetings Intent
+  if (lower === 'hi' || lower === 'hello' || lower === 'hey' || lower.startsWith('hi ') || lower.startsWith('hello ')) {
+    return {
+      text: `Hi there! I am **CARDWATCH AI**, your dedicated Indian credit card advisor.\n\n` +
+        `I can help you with:\n` +
+        `• **Card Comparisons:** Ask *"Which card is more useful: Scapia or IndusInd Tiger?"*\n` +
+        `• **Reward Calculations:** Ask *"How many points on ₹10,000 spend with Scapia?"*\n` +
+        `• **Recommendations:** Ask *"Best credit card for airport lounge access or 0% forex"*.\n` +
+        `• **Bank Rules:** Check quarterly spend criteria, annual fee waivers, and devaluations.`,
+    };
+  }
+
+  // 18. Comprehensive Universal Fallback (Never Refuse)
   return {
-    text: `I'm here to help with Indian credit cards. Ask me anything specific—like how many points you'll earn on a spend, which card has 0% forex, or compare two cards!`,
+    text: `### **Indian Credit Card Intelligence Guide**\n\n` +
+      `Here are the top credit card recommendations based on primary spending needs:\n` +
+      `• **International & Travel (0% Forex):** **Federal Bank Scapia** (Lifetime Free, 0% markup) & **IndusInd Tiger** (1.5% markup).\n` +
+      `• **Everyday Online Shopping:** **SBI Cashback** (5% online statement cashback) & **Amazon Pay ICICI** (5% on Amazon, LTF).\n` +
+      `• **Luxury Flights & Hotels:** **HDFC Infinia Metal** (33.3% return on SmartBuy) & **Axis Atlas** (EDGE Miles).\n` +
+      `• **Food & Groceries:** **HSBC Live+** (10% cashback on dining & grocery).\n\n` +
+      `*Feel free to ask any specific question—like comparing two cards, checking lounge rules, or calculating rewards on an upcoming spend!*`,
   };
 }
 
 const GEMINI_API_KEY =
   (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) || '';
 
+const CANDIDATE_GEMINI_MODELS = [
+  'gemini-3.1-flash-lite',
+  'gemini-3.5-flash-lite',
+  'gemini-flash-latest',
+  'gemini-3.8-flash',
+];
+
 /**
- * Calls Gemini live with strict instructions to answer ONLY the question asked in 1-3 sentences.
+ * Calls Gemini live with robust fallback across candidate models
  */
 export async function queryGeminiCardwatchAI(
   query: string,
@@ -398,67 +626,64 @@ export async function queryGeminiCardwatchAI(
 ): Promise<AIResponse | null> {
   if (!GEMINI_API_KEY) return null;
 
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
+  for (const model of CANDIDATE_GEMINI_MODELS) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-    const promptContext = `You are a helpful, direct, and concise credit card assistant for Indian credit cards.
-STRICT RULES:
-1. Answer ONLY the specific question asked by the user. Do NOT include unasked features, card dossiers, or unrelated information.
-2. Keep your answer simple, direct, and short (1 to 3 straightforward sentences).
-3. If asked how many points or cashback for spending ₹X: state the exact points/cashback and estimated monetary value directly.
-4. For card comparisons: give 2 brief bullet points of the main difference and 1 verdict sentence.
-5. Do NOT include markdown tables, mind maps, disclaimers, or financial safety warnings.
+      const promptContext = `You are CARDWATCH AI, an expert, objective Indian credit card advisor.
+Answer the user's question clearly, thoroughly, and helpfully using clean markdown formatting (bullet points, bold text).
 
-Verified Indian Credit Cards Reference:
-${cards.slice(0, 15).map(c => `- ${c.name} (${c.bank}, Fee: ${c.isLifetimeFree ? '₹0 LTF' : '₹' + c.annualFee}): ${c.headlineBenefit}, Rewards: ${c.cashbackRate}, Forex: ${c.forexMarkup}%, Lounges: ${c.domesticLoungesPerQuarter} dom/qtr`).join('\n')}
+Rules:
+1. Provide accurate facts regarding Indian credit cards, reward rates, fees, lounge criteria, and forex markups.
+2. If comparing cards, clearly explain their differences and give an actionable verdict on who should pick which card.
+3. If asked about a spend amount, calculate the estimated reward return.
+4. Keep the tone friendly, expert, and practical.
+
+Reference Indian Cards Database:
+${cards.slice(0, 18).map(c => `- ${c.name} (${c.bank}, Fee: ${c.isLifetimeFree ? '₹0 LTF' : '₹' + c.annualFee}): ${c.headlineBenefit}, Rewards: ${c.cashbackRate}, Forex: ${c.forexMarkup}%, Lounges: ${c.domesticLoungesPerQuarter} dom/qtr, Min Salary: ₹${c.minSalaryMonthly}`).join('\n')}
 
 User Question: "${query}"`;
 
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        signal: controller.signal,
-        body: JSON.stringify({
-          systemInstruction: {
-            parts: [{ text: "You are a concise, direct assistant for Indian credit cards. Answer ONLY the question asked in 1-3 sentences without extra disclaimers or unrelated features." }]
-          },
-          contents: [{ parts: [{ text: promptContext }] }],
-          generationConfig: {
-            temperature: 0.1,
-            maxOutputTokens: 300
-          }
-        })
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: promptContext }] }],
+            generationConfig: {
+              temperature: 0.2,
+              maxOutputTokens: 650,
+            },
+          }),
+        }
+      );
+
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        const data = await res.json();
+        const textPart = data?.candidates?.[0]?.content?.parts?.find(
+          (p: any) => typeof p.text === 'string' && p.text.trim().length > 0
+        );
+        if (textPart?.text?.trim()) {
+          return { text: textPart.text.trim() };
+        }
       }
-    );
-
-    clearTimeout(timeoutId);
-
-    if (!res.ok) {
-      return null;
+    } catch {
+      // Try next candidate model
+      continue;
     }
-
-    const data = await res.json();
-    const candidate = data?.candidates?.[0];
-    const textPart = candidate?.content?.parts?.find((p: any) => typeof p.text === 'string' && p.text.trim().length > 0);
-    const generatedText = textPart?.text;
-
-    if (generatedText && generatedText.trim().length > 0) {
-      return {
-        text: generatedText.trim(),
-      };
-    }
-  } catch {
-    // If Gemini times out or is offline, fallback seamlessly to deterministic local engine
   }
+
   return null;
 }
 
 /**
  * Main query dispatcher for CardWatch AI.
- * Tries Gemini live intelligence first; falls back immediately to deterministic engine if offline/timeout.
+ * Tries Gemini live intelligence first; falls back immediately to intelligent deterministic engine.
  */
 export async function processCardwatchAIQuery(
   rawQuery: string,
