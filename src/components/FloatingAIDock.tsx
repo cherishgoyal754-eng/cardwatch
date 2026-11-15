@@ -48,17 +48,7 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
     {
       id: 'init-1',
       sender: 'ai',
-      text: "Hi! I am CARDWATCH AI, India's most accurate credit card intelligence assistant. Ask me to calculate your reward points on any spend (e.g. 'How many points will I get if I spend ₹10,000 using my Scapia credit card?'), compare cards head-to-head, track devaluations, or analyze your monthly spending.",
-      mindMapNodes: {
-        title: "CARDWATCH Verified Intelligence Core",
-        items: [
-          { label: "Reward Calculator", detail: "Step-by-step mathematical calculation with caps & MCC exclusions.", tag: "Calculator" },
-          { label: "Card Comparison", detail: "Head-to-head comparison across rates, fees, forex, and lounges.", tag: "Compare" },
-          { label: "Devaluation Tracker", detail: "Official regulatory updates, cuts, and lounge spend rules.", tag: "Devaluation" },
-          { label: "Spend Optimizer", detail: "Categorized analysis of groceries, travel, dining & online spends.", tag: "Optimization" },
-        ],
-      },
-      sources: ["Official Bank Regulatory Filings", "Bank Cardholder Charters", "CARDWATCH Verified Database (Nov 2026)"],
+      text: 'Hi! How can I help you today?',
     },
   ]);
 
@@ -288,44 +278,13 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
                   >
                     {msg.text}
                   </div>
-
-                  {/* Mind Map Nodes View */}
-                  {msg.mindMapNodes && (
-                    <div className="mt-2.5 p-3 rounded-2xl bg-white border-2 border-emerald-300 shadow-sm space-y-2 max-w-[92%]">
-                      <div className="flex items-center gap-1.5 text-emerald-800 font-mono font-bold text-[10px] uppercase tracking-wider">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                        <span>{msg.mindMapNodes.title}</span>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {msg.mindMapNodes.items.map((item, idx) => (
-                          <div key={idx} className="p-2 rounded-xl bg-emerald-50/50 border border-emerald-200 space-y-0.5">
-                            <div className="flex items-center justify-between">
-                              <span className="font-extrabold text-[11px] text-slate-900">{item.label}</span>
-                              <span className="text-[9px] font-mono font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded">
-                                {item.tag}
-                              </span>
-                            </div>
-                            <p className="text-[10px] text-slate-600 leading-snug">{item.detail}</p>
-                          </div>
-                        ))}
-                      </div>
-
-                      {msg.sources && (
-                        <div className="pt-1 text-[9px] text-slate-400 font-mono flex items-center gap-1">
-                          <ShieldCheck className="w-3 h-3 text-emerald-600" />
-                          <span>Sources: {msg.sources.join(' • ')}</span>
-                        </div>
-                      )}
-                    </div>
-                  )}
                 </div>
               ))}
 
               {isTyping && (
                 <div className="flex items-center gap-2 p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs font-mono text-emerald-800 w-fit">
                   <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-600" />
-                  <span>Scanning regulatory circulars & Technofino...</span>
+                  <span>Thinking...</span>
                 </div>
               )}
 
