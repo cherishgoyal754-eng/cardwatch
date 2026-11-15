@@ -7,6 +7,7 @@ import {
   CARDWATCH_AI_SYSTEM_ROLE,
   processCardwatchAIQuery,
 } from '../utils/cardwatchAI';
+import { MarkdownRenderer } from './MarkdownRenderer';
 import {
   Sparkles,
   Send,
@@ -270,13 +271,13 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`p-3.5 rounded-2xl max-w-[85%] font-medium leading-relaxed shadow-xs whitespace-pre-wrap ${
+                    className={`p-3.5 rounded-2xl max-w-[88%] font-medium leading-relaxed shadow-xs ${
                       msg.sender === 'user'
                         ? 'bg-emerald-600 text-white font-bold rounded-tr-none'
                         : 'bg-emerald-50/80 text-slate-900 border border-emerald-200 rounded-tl-none'
                     }`}
                   >
-                    {msg.text}
+                    <MarkdownRenderer content={msg.text} isUser={msg.sender === 'user'} />
                   </div>
                 </div>
               ))}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { sound } from '../utils/audio';
 import { CREDIT_CARDS_DATA } from '../data/cards';
 import { processCardwatchAIQuery } from '../utils/cardwatchAI';
+import { MarkdownRenderer } from '../components/MarkdownRenderer';
 import {
   Bot,
   Send,
@@ -132,13 +133,13 @@ export const AIAdvisorScreen: React.FC = () => {
 
               <div className={`max-w-2xl space-y-3.5 ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
                 <div
-                  className={`p-4 rounded-2xl text-xs sm:text-sm leading-relaxed font-medium whitespace-pre-wrap ${
+                  className={`p-4 rounded-2xl text-xs sm:text-sm leading-relaxed font-medium ${
                     msg.sender === 'user'
                       ? 'bg-emerald-600 text-white font-bold rounded-tr-none shadow-sm'
                       : 'bg-emerald-50/70 text-slate-900 border border-emerald-200 rounded-tl-none shadow-sm'
                   }`}
                 >
-                  {msg.text}
+                  <MarkdownRenderer content={msg.text} isUser={msg.sender === 'user'} />
                 </div>
 
                 {/* Mind Map Diagram Visualization */}
