@@ -80,7 +80,7 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
     setIsOpen(!isOpen);
   };
 
-  const handleSend = (queryText?: string) => {
+  const handleSend = async (queryText?: string) => {
     const text = (queryText || inputQuery).trim();
     if (!text) return;
 
@@ -95,11 +95,11 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
     setInputQuery('');
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const aiResponse = await processCardwatchAIQuery(text, cards);
       sound.playSuccess();
       setIsTyping(false);
 
-      const aiResponse = processCardwatchAIQuery(text, cards);
       const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'ai',
@@ -109,7 +109,10 @@ export const FloatingAIDock: React.FC<FloatingAIDockProps> = ({
       };
 
       setMessages(prev => [...prev, aiMsg]);
-    }, 600);
+    } catch {
+      sound.playSuccess();
+      setIsTyping(false);
+    }
   };
 
   return (

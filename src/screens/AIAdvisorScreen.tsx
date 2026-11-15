@@ -49,7 +49,7 @@ export const AIAdvisorScreen: React.FC = () => {
     "Why was HDFC Regalia Gold lounge access reduced from 3 to 2?",
   ];
 
-  const handleSend = (textToSend?: string) => {
+  const handleSend = async (textToSend?: string) => {
     const query = textToSend || inputQuery;
     if (!query.trim()) return;
 
@@ -64,11 +64,11 @@ export const AIAdvisorScreen: React.FC = () => {
     setInputQuery('');
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const aiResponse = await processCardwatchAIQuery(query, CREDIT_CARDS_DATA);
       sound.playSuccess();
       setIsTyping(false);
 
-      const aiResponse = processCardwatchAIQuery(query, CREDIT_CARDS_DATA);
       const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'ai',
@@ -78,7 +78,10 @@ export const AIAdvisorScreen: React.FC = () => {
       };
 
       setMessages(prev => [...prev, aiMsg]);
-    }, 700);
+    } catch {
+      sound.playSuccess();
+      setIsTyping(false);
+    }
   };
 
   return (
