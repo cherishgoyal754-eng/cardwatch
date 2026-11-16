@@ -682,10 +682,18 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 </label>
               </div>
 
+              {/* Live helper message if password incomplete */}
+              {!passValidation.valid && password.length > 0 && (
+                <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>{passValidation.errors[0] || 'Please fulfill all password security requirements above.'}</span>
+                </div>
+              )}
+
               <button
                 type="submit"
-                disabled={isLoading || !passValidation.valid || !passwordsMatch || !acceptTerms}
-                className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-300 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-95 disabled:scale-100"
+                disabled={isLoading}
+                className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-300 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-95 disabled:scale-100 cursor-pointer"
               >
                 {isLoading ? (
                   <>
