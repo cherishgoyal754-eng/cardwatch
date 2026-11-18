@@ -167,7 +167,44 @@ export function validateCard(card: CreditCard): CardValidationResult {
     verifiedFieldsCount++;
   }
 
-  // 9. Change History & Devaluations
+  // 9. Deep Audit Fields (GST, Welcome, Renewal, Conversion, MITC)
+  if (!card.gstApplicability || card.gstApplicability.trim() === '') {
+    errors.push({ cardId: card.id, field: 'gstApplicability', message: 'GST applicability breakdown (18% GST on fees) must be documented', severity: 'warning' });
+  } else {
+    verifiedFieldsCount++;
+  }
+
+  if (!card.welcomeBenefit || card.welcomeBenefit.trim() === '') {
+    errors.push({ cardId: card.id, field: 'welcomeBenefit', message: 'Welcome benefits and activation criteria must be documented', severity: 'warning' });
+  } else {
+    verifiedFieldsCount++;
+  }
+
+  if (!card.renewalBenefit || card.renewalBenefit.trim() === '') {
+    errors.push({ cardId: card.id, field: 'renewalBenefit', message: 'Renewal benefits / renewal fee waiver terms must be documented', severity: 'warning' });
+  } else {
+    verifiedFieldsCount++;
+  }
+
+  if (!card.rewardConversionDetails || card.rewardConversionDetails.trim() === '') {
+    errors.push({ cardId: card.id, field: 'rewardConversionDetails', message: 'Reward conversion ratios & airmile transfer partners must be documented', severity: 'warning' });
+  } else {
+    verifiedFieldsCount++;
+  }
+
+  if (card.mitcUrl && !card.mitcUrl.startsWith('http')) {
+    errors.push({ cardId: card.id, field: 'mitcUrl', message: 'MITC URL must be a valid HTTP/HTTPS link', severity: 'critical' });
+  } else if (card.mitcUrl) {
+    verifiedFieldsCount++;
+  }
+
+  if (card.auditVerificationStatus !== 'fully_verified') {
+    errors.push({ cardId: card.id, field: 'auditVerificationStatus', message: 'Card must have auditVerificationStatus set to "fully_verified"', severity: 'warning' });
+  } else {
+    verifiedFieldsCount++;
+  }
+
+  // 10. Change History & Devaluations
   if (Array.isArray(card.changeHistory)) {
     for (const [idx, ch] of card.changeHistory.entries()) {
       if (!ch.title || !ch.summary || !ch.officialRef) {

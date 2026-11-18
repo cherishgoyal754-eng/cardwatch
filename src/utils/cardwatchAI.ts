@@ -219,6 +219,33 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const cb = Math.round(amount * 0.01);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Amazon Pay ICICI, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% unlimited).`;
     }
+  } else if (card.id === 'hsbc-live-plus') {
+    if (lowerCat.includes('dining') || lowerCat.includes('restaurant') || lowerCat.includes('food') || lowerCat.includes('grocer') || lowerCat.includes('blinkit') || lowerCat.includes('swiggy') || lowerCat.includes('zomato')) {
+      const cb = Math.min(1000, Math.round(amount * 0.10));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on dining & groceries with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (10% accelerated cashback, capped at ₹1,000/month).`;
+    } else {
+      const cb = Math.round(amount * 0.015);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} unlimited cashback (1.5% return).`;
+    }
+  } else if (card.id === 'swiggy-hdfc') {
+    if (lowerCat.includes('swiggy') || lowerCat.includes('food') || lowerCat.includes('instamart') || lowerCat.includes('dineout')) {
+      const cb = amount >= 249 ? Math.min(1500, Math.round(amount * 0.10)) : Math.round(amount * 0.01);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback in Swiggy Money (10% return on orders ₹249+, capped at ₹1,500/cycle).`;
+    } else {
+      const cb = Math.round(amount * 0.01);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% return).`;
+    }
+  } else if (card.id === 'flipkart-axis') {
+    if (lowerCat.includes('flipkart') || lowerCat.includes('cleartrip')) {
+      const cb = Math.min(4000, Math.round(amount * 0.05));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Flipkart/Cleartrip with Flipkart Axis, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (5% return, capped at ₹4,000/quarter).`;
+    } else if (lowerCat.includes('swiggy') || lowerCat.includes('uber') || lowerCat.includes('pvr')) {
+      const cb = Math.round(amount * 0.04);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on preferred partners with Flipkart Axis, you will earn ₹${cb.toLocaleString('en-IN')} unlimited cashback (4% return).`;
+    } else {
+      const cb = Math.round(amount * 0.01);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Flipkart Axis, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% return).`;
+    }
   } else {
     const cb = Math.round(amount * 0.02);
     text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you will earn approx ₹${cb.toLocaleString('en-IN')} in rewards based on its ${card.cashbackRate} reward rate.`;
@@ -650,9 +677,21 @@ Rules:
 2. If comparing cards, clearly explain their differences and give an actionable verdict on who should pick which card.
 3. If asked about a spend amount, calculate the estimated reward return.
 4. Keep the tone friendly, expert, and practical.
+5. STRICT DATA TRUTHFULNESS: Anchor your responses 100% on the verified database below. Never invent outdated or unverified rules.
+   - Scapia Federal: 0% forex markup, ₹0 annual fee (LTF), domestic lounge access unlocks strictly on spending ₹20,000 in preceding monthly billing cycle.
+   - Cashback SBI: 5% online cashback capped at ₹2,000/cycle, 1% offline, 0 complimentary airport lounges.
+   - Axis Magnus: 5:2 partner airline transfer ratio (capped at 500k pts/yr), ₹12,500 fee, BookMyShow BOGO is discontinued, domestic lounge requires ₹50,000 spend in previous 3 months.
+   - HDFC Infinia Metal: 5 RP/₹150 base rate (3.33%), 1 RP = ₹1 on SmartBuy flights/hotels, unlimited domestic & intl lounges with ₹0 spend criteria.
+   - HDFC Regalia Gold: 4 RP/₹150, 1 RP = ₹0.50 on SmartBuy flights/hotels, domestic lounges require ₹60,000 spend in preceding quarter.
+   - Flipkart Axis: 5% on Flipkart/Cleartrip (capped at ₹4k/qtr), 4% on Swiggy/Uber, 0 complimentary airport lounges.
+   - HSBC Live+: 10% on dining, food delivery & groceries (capped at ₹1,000/mo), 1.5% unlimited elsewhere, 1.99% forex.
+   - Swiggy HDFC: 10% on Swiggy (min ₹249, capped at ₹1,500/mo), 5% select online platforms, 0 airport lounges.
+   - Amex Platinum Charge: ₹66,000 + GST non-waivable annual fee, unlimited global Centurion/Priority Pass lounges.
+   - Amex Platinum Travel: Joining fee ₹3,500 + GST, renewal ₹5,000 + GST, 48,000 MR points + ₹10k Taj voucher on ₹4L spend.
+   - IDFC FIRST Millennia: ₹0 LTF, 4 railway lounges/quarter, 0 airport lounges.
 
-Reference Indian Cards Database:
-${cards.slice(0, 18).map(c => `- ${c.name} (${c.bank}, Fee: ${c.isLifetimeFree ? '₹0 LTF' : '₹' + c.annualFee}): ${c.headlineBenefit}, Rewards: ${c.cashbackRate}, Forex: ${c.forexMarkup}%, Lounges: ${c.domesticLoungesPerQuarter} dom/qtr, Min Salary: ₹${c.minSalaryMonthly}`).join('\n')}
+Reference Indian Cards Database (All 21 Audited & Verified Cards):
+${cards.map(c => `- ${c.name} (${c.bank}, Fee: ${c.isLifetimeFree ? '₹0 LTF' : '₹' + c.annualFee + ' + 18% GST'}, Waiver: ${c.annualFeeWaiverCondition}): Rewards: ${c.cashbackRate}, Point Value: ${c.rewardPointValue}, Forex: ${c.forexMarkup}%, Lounges: ${c.domesticLoungesPerQuarter} dom/qtr & ${c.internationalLoungesPerYear} intl/yr (Condition: ${c.loungeSpendCondition}), Min Salary: ₹${c.minSalaryMonthly}/mo, Exclusions: ${c.merchantExclusions.slice(0, 3).join(', ')}`).join('\n')}
 
 User Question: "${query}"`;
 

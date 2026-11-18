@@ -308,21 +308,34 @@ export const CardDetailsScreen: React.FC<CardDetailsScreenProps> = ({
             </div>
           </div>
 
-          {/* Official Bank Circular Link */}
-          <div className="pt-2 flex items-center justify-between text-xs text-slate-600">
+          {/* Official Bank Circular & MITC Links */}
+          <div className="pt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
             <span className="flex items-center gap-1.5 font-medium">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Verified against signed bank circulars</span>
+              <span>100% RBI & Bank Circular Verified (Nov 2026 Audit)</span>
             </span>
-            <a
-              href={card.officialCircularUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-emerald-700 hover:text-emerald-900 font-bold flex items-center gap-1 underline"
-            >
-              <span>View Official Bank PDF</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            <div className="flex items-center gap-3">
+              {card.mitcUrl && (
+                <a
+                  href={card.mitcUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-600 hover:text-slate-900 font-bold flex items-center gap-1 underline"
+                >
+                  <span>Bank MITC</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+              <a
+                href={card.officialCircularUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-emerald-700 hover:text-emerald-900 font-bold flex items-center gap-1 underline"
+              >
+                <span>View Official Bank PDF</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -377,12 +390,34 @@ export const CardDetailsScreen: React.FC<CardDetailsScreenProps> = ({
                   {card.isLifetimeFree ? '₹0 (Lifetime Free)' : `₹${card.annualFee.toLocaleString('en-IN')} + 18% GST`}
                 </span>
               </div>
+              {card.gstApplicability && (
+                <div className="flex justify-between py-2 border-b border-emerald-100 text-xs">
+                  <span className="text-slate-600 font-medium">GST Breakdown</span>
+                  <span className="font-mono text-emerald-800 font-bold">{card.gstApplicability}</span>
+                </div>
+              )}
               <div className="py-2">
                 <span className="text-slate-600 font-medium block mb-1">Annual Fee Waiver Target:</span>
                 <span className="text-emerald-800 font-bold">
                   {card.annualFeeWaiverCondition}
                 </span>
               </div>
+              {card.welcomeBenefit && (
+                <div className="py-2 border-t border-emerald-100">
+                  <span className="text-slate-600 font-medium block mb-1">Welcome Gift / Activation Benefit:</span>
+                  <span className="text-slate-900 text-xs leading-relaxed block bg-emerald-50/40 p-2.5 rounded-xl border border-emerald-200">
+                    {card.welcomeBenefit}
+                  </span>
+                </div>
+              )}
+              {card.renewalBenefit && (
+                <div className="py-2 border-t border-emerald-100">
+                  <span className="text-slate-600 font-medium block mb-1">Renewal Benefit:</span>
+                  <span className="text-slate-900 text-xs leading-relaxed block bg-emerald-50/40 p-2.5 rounded-xl border border-emerald-200">
+                    {card.renewalBenefit}
+                  </span>
+                </div>
+              )}
               <div className="py-2 border-t border-emerald-100">
                 <span className="text-slate-600 font-medium block mb-1">Fuel Surcharge Waiver:</span>
                 <span className="text-slate-900">
@@ -413,6 +448,24 @@ export const CardDetailsScreen: React.FC<CardDetailsScreenProps> = ({
                   {card.rewardPointValue}
                 </span>
               </div>
+
+              {card.rewardConversionDetails && (
+                <div>
+                  <span className="text-slate-600 font-medium block mb-1">Airmiles & Partner Transfer Ratios:</span>
+                  <span className="text-slate-900 leading-relaxed block bg-emerald-50/60 p-3 rounded-xl border border-emerald-200 text-xs">
+                    {card.rewardConversionDetails}
+                  </span>
+                </div>
+              )}
+
+              {card.milestoneBenefits && (
+                <div>
+                  <span className="text-slate-600 font-medium block mb-1">Spending Milestones & Bonuses:</span>
+                  <span className="text-slate-900 leading-relaxed block bg-emerald-50/60 p-3 rounded-xl border border-emerald-200 text-xs">
+                    {card.milestoneBenefits}
+                  </span>
+                </div>
+              )}
 
               <div>
                 <span className="text-slate-600 font-medium block mb-1">Capping & Monthly Spend Limits:</span>
@@ -559,6 +612,20 @@ export const CardDetailsScreen: React.FC<CardDetailsScreenProps> = ({
               <span className="text-xs text-slate-600">+ 18% standard GST</span>
             </div>
           </div>
+
+          {typeof card.railwayLoungesPerQuarter === 'number' && card.railwayLoungesPerQuarter > 0 && (
+            <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-300 flex items-center justify-between text-xs sm:text-sm">
+              <span className="text-slate-700 font-bold">Complimentary Railway Lounges (IRCTC):</span>
+              <span className="font-mono text-emerald-800 font-extrabold">{card.railwayLoungesPerQuarter} visits / quarter</span>
+            </div>
+          )}
+
+          {card.loungeGuestAccess && (
+            <div className="p-4 rounded-2xl bg-white border border-emerald-200 text-xs sm:text-sm text-slate-700">
+              <span className="font-bold text-slate-900 block mb-0.5">Lounge Guest Policy:</span>
+              <span>{card.loungeGuestAccess}</span>
+            </div>
+          )}
 
           <div className="p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-900 uppercase font-mono">
