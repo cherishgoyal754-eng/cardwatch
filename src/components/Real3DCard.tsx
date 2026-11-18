@@ -17,6 +17,39 @@ export interface CardVisualAssets {
 }
 
 /**
+ * Robustly resolves card asset paths across GitHub Pages (/cardwatch/),
+ * Vercel root (/), local development, and direct URLs.
+ */
+export function resolveCardAsset(path: string): string {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
+    return path;
+  }
+  if (path.startsWith('/cardwatch/')) {
+    return path;
+  }
+  const clean = path.startsWith('./') ? path.slice(2) : path.startsWith('/') ? path.slice(1) : path;
+
+  // If in browser and hosted on GitHub Pages repo subpath (/cardwatch)
+  if (typeof window !== 'undefined' && window.location?.pathname?.includes('/cardwatch')) {
+    return `/cardwatch/${clean}`;
+  }
+
+  const base = import.meta.env.BASE_URL || './';
+  const prefix = base.endsWith('/') ? base : `${base}/`;
+  return `${prefix}${clean}`;
+}
+
+function makeCardVisuals(front: string, back: string, isVertical = false, hasPreprintedName = false): CardVisualAssets {
+  return {
+    front: resolveCardAsset(front),
+    back: resolveCardAsset(back),
+    hasPreprintedName,
+    isVertical,
+  };
+}
+
+/**
  * Returns strictly exact photorealistic front and back images for every credit card
  * directly matching physical cards uploaded by the user.
  */
@@ -27,221 +60,111 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
 
   // 1. American Express Platinum / Platinum Travel (Exact Centurion Roman Soldier)
   if (id.includes('amex') || bank.includes('american express') || card.cardStyle === 'amex-platinum') {
-    return {
-      front: '/cards/amex-platinum-front-clean.png',
-      back: '/cards/amex-platinum-back-clean.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/amex-platinum-front-clean.png', '/cards/amex-platinum-back-clean.png', false, false);
   }
 
   // 2. IndusInd Bank Tiger Credit Card (Geometric Tiger Wireframe & Real physical card back)
   if (id.includes('indusind') || name.includes('tiger')) {
-    return {
-      front: '/cards/indusind-tiger-front.png',
-      back: '/cards/indusind-tiger-back.png',
-      hasPreprintedName: false,
-      isVertical: true,
-    };
+    return makeCardVisuals('/cards/indusind-tiger-front.png', '/cards/indusind-tiger-back.png', true, false);
   }
 
   // 3. HSBC Live+ (Exact crimson-wine gradient with Visa Signature)
   if (id.includes('hsbc') || name.includes('live')) {
-    return {
-      front: '/cards/hsbc-live-plus-front.png',
-      back: '/cards/hsbc-live-plus-back.png',
-      hasPreprintedName: false,
-      isVertical: true,
-    };
+    return makeCardVisuals('/cards/hsbc-live-plus-front.png', '/cards/hsbc-live-plus-back.png', true, false);
   }
 
   // 4. HDFC Infinia Metal Edition (Deep Navy Titanium)
   if (id === 'hdfc-infinia-metal' || name.includes('infinia')) {
-    return {
-      front: '/cards/hdfc-infinia-front.png',
-      back: '/cards/hdfc-millennia-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/hdfc-infinia-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
   // 5. HDFC Regalia Gold (Obsidian & Gold Geometric)
   if (id === 'hdfc-regalia-gold' || name.includes('regalia')) {
-    return {
-      front: '/cards/hdfc-regalia-gold-front.png',
-      back: '/cards/hdfc-millennia-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/hdfc-regalia-gold-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
   // 6. HDFC Diners Club Black Metal Edition (Diners Globe Emblem)
   if (id === 'hdfc-diners-black' || name.includes('diners')) {
-    return {
-      front: '/cards/hdfc-diners-black-front.png',
-      back: '/cards/hdfc-millennia-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/hdfc-diners-black-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
   // 7. Tata Neu Infinity HDFC RuPay (Purple 'N' Emblem)
   if (id.includes('tata-neu') || name.includes('neu')) {
-    return {
-      front: '/cards/tata-neu-infinity-front.png',
-      back: '/cards/hdfc-millennia-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/tata-neu-infinity-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
   // 8. Swiggy HDFC Bank (Vibrant Sunset Gradient)
   if (id.includes('swiggy') || name.includes('swiggy')) {
-    return {
-      front: '/cards/swiggy-hdfc-front.png',
-      back: '/cards/hdfc-millennia-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/swiggy-hdfc-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
   // 9. HDFC Millennia (Cobalt Mosaic Pattern)
   if (id.includes('millennia') && !id.includes('idfc')) {
-    return {
-      front: '/cards/hdfc-millennia-front.png',
-      back: '/cards/hdfc-millennia-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/hdfc-millennia-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
   // 10. SBI Card SimplySAVE (Blue Mandala Pattern)
   if (id.includes('simplysave') || name.includes('simplysave')) {
-    return {
-      front: '/cards/sbi-simplysave-front.png',
-      back: '/cards/sbi-cashback-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/sbi-simplysave-front.png', '/cards/sbi-cashback-back.png', false, false);
   }
 
   // 11. SBI Cashback (Purple & Yellow Chevron)
   if (id.includes('sbi') || bank.includes('sbi') || name.includes('cashback')) {
-    return {
-      front: '/cards/sbi-cashback-front.png',
-      back: '/cards/sbi-cashback-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/sbi-cashback-front.png', '/cards/sbi-cashback-back.png', false, false);
   }
 
   // 12. Federal Bank Scapia (Zero Forex Traveler - Vertical Direction)
   if (id.includes('scapia') || name.includes('scapia')) {
-    return {
-      front: '/cards/scapia-federal-front.png',
-      back: '/cards/scapia-federal-back.png',
-      hasPreprintedName: false,
-      isVertical: true,
-    };
+    return makeCardVisuals('/cards/scapia-federal-front.png', '/cards/scapia-federal-back.png', true, false);
   }
 
   // 13. Axis Bank Magnus (Magenta Feather on Black)
   if (id === 'axis-magnus' || name.includes('magnus')) {
-    return {
-      front: '/cards/axis-magnus-front.png',
-      back: '/cards/axis-flipkart-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/axis-magnus-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
   // 14. Axis Bank ATLAS (Pink Earth Globe)
   if (id.includes('atlas') || name.includes('atlas')) {
-    return {
-      front: '/cards/axis-atlas-front.png',
-      back: '/cards/axis-flipkart-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/axis-atlas-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
   // 15. Axis Bank IndianOil RuPay (Speedometer Dial)
   if (id.includes('indianoil') || name.includes('indianoil')) {
-    return {
-      front: '/cards/axis-indianoil-front.png',
-      back: '/cards/axis-flipkart-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/axis-indianoil-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
   // 16. Flipkart Axis Bank (Dual Ribbon with exact back)
   if (id.includes('flipkart') || name.includes('flipkart')) {
-    return {
-      front: '/cards/flipkart-axis-front.png',
-      back: '/cards/axis-flipkart-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/flipkart-axis-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
   // 17. Kiwi Axis RuPay / Axis ACE
   if (id.includes('kiwi') || id.includes('ace')) {
-    return {
-      front: '/cards/kiwi-axis-rupay-front.png',
-      back: '/cards/axis-flipkart-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/kiwi-axis-rupay-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
   // 18. ICICI Bank Amazon Pay
   if (id.includes('amazon') || name.includes('amazon')) {
-    return {
-      front: '/cards/icici-amazon-pay-front.png',
-      back: '/cards/icici-amazon-pay-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/icici-amazon-pay-front.png', '/cards/icici-amazon-pay-back.png', false, false);
   }
 
   // 19. ICICI Emeralde / Sapphiro
   if (id.includes('sapphiro') || id.includes('emeralde') || bank.includes('icici')) {
-    return {
-      front: '/cards/icici-sapphiro-front.png',
-      back: '/cards/icici-amazon-pay-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/icici-sapphiro-front.png', '/cards/icici-amazon-pay-back.png', false, false);
   }
 
   // 20. IDFC FIRST Millennia (Face Illustration with Sunglasses)
   if (id.includes('idfc') && (id.includes('millennia') || name.includes('millennia'))) {
-    return {
-      front: '/cards/idfc-first-millennia-front.png',
-      back: '/cards/idfc-first-wealth-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/idfc-first-millennia-front.png', '/cards/idfc-first-wealth-back.png', false, false);
   }
 
   // 21. IDFC FIRST Bank Wealth (Matte Black Box)
   if (id.includes('idfc') || bank.includes('idfc')) {
-    return {
-      front: '/cards/idfc-first-wealth-front.png',
-      back: '/cards/idfc-first-wealth-back.png',
-      hasPreprintedName: false,
-      isVertical: false,
-    };
+    return makeCardVisuals('/cards/idfc-first-wealth-front.png', '/cards/idfc-first-wealth-back.png', false, false);
   }
 
   // Default fallback
-  return {
-    front: '/cards/hdfc-infinia-front.png',
-    back: '/cards/hdfc-millennia-back.png',
-    hasPreprintedName: false,
-    isVertical: false,
-  };
+  return makeCardVisuals('/cards/hdfc-infinia-front.png', '/cards/hdfc-millennia-back.png', false, false);
 }
 
 interface Real3DCardProps {
@@ -375,8 +298,20 @@ export const Real3DCard: React.FC<Real3DCardProps> = ({
             {/* Exact High-Resolution Real Card Image */}
             <div className="absolute inset-0 w-full h-full rounded-[22px] sm:rounded-[24px] overflow-hidden">
               <img
-                src={visuals.front}
+                src={resolveCardAsset(visuals.front)}
                 alt={`${card.name} Front`}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = '1';
+                    const filename = visuals.front.split('/').pop() || '';
+                    if (target.src.includes('/cardwatch/')) {
+                      target.src = `./cards/${filename}`;
+                    } else {
+                      target.src = `/cardwatch/cards/${filename}`;
+                    }
+                  }
+                }}
                 className="w-full h-full object-cover rounded-[22px] sm:rounded-[24px] pointer-events-none select-none"
               />
             </div>
@@ -415,8 +350,20 @@ export const Real3DCard: React.FC<Real3DCardProps> = ({
             {/* Exact High-Resolution Real Card Back Image */}
             <div className="absolute inset-0 w-full h-full rounded-[22px] sm:rounded-[24px] overflow-hidden">
               <img
-                src={visuals.back}
+                src={resolveCardAsset(visuals.back)}
                 alt={`${card.name} Back`}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = '1';
+                    const filename = visuals.back.split('/').pop() || '';
+                    if (target.src.includes('/cardwatch/')) {
+                      target.src = `./cards/${filename}`;
+                    } else {
+                      target.src = `/cardwatch/cards/${filename}`;
+                    }
+                  }
+                }}
                 className="w-full h-full object-cover rounded-[22px] sm:rounded-[24px] pointer-events-none select-none"
               />
             </div>
