@@ -46,24 +46,40 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Oct 01, 2024',
-        type: 'policy_update',
-        title: 'Domestic Lounge Access Requirement: ₹60,000 Spend',
-        summary: 'Cardholders receive 3 complimentary domestic lounge visits per quarter upon spending ₹60,000 in preceding calendar quarter, plus 6 Priority Pass international visits per year.',
-        oldValue: 'Spend ₹1,00,000 in previous calendar quarter for 2 visits',
-        newValue: '3 complimentary visits per quarter on spends of ₹60,000+ in preceding calendar quarter',
-        officialRef: 'HDFC Regalia Gold Benefit Guide 2024',
-        severity: 'medium'
+        date: 'Sep 01, 2024',
+        announcedDate: 'Jul 15, 2024',
+        deadline: 'Sep 01, 2024',
+        type: 'restriction',
+        title: 'Utility & Telecom Reward Capping (Max 2,000 Points)',
+        summary: 'Monthly reward points earned on utility, telecom, and cable services capped at 2,000 points. 1% surcharge levied if monthly utility spends cross ₹50,000.',
+        oldValue: 'Unlimited utility reward points at 4 RP per ₹150 with no category capping',
+        newValue: 'Strict 2,000 points monthly cap + 1% fee on total utility spend if > ₹50,000',
+        officialRef: 'HDFC Bank Circular HDFC/CC/REV/SEPT2024',
+        severity: 'high'
       },
       {
         date: 'Aug 01, 2024',
-        type: 'restriction',
-        title: 'Utility & Fuel Reward Capping',
-        summary: 'Utility reward points capped at 2,000 points per month; 1% charge on third-party educational payments.',
-        oldValue: 'Unlimited utility reward points at 4 RP per ₹150',
-        newValue: 'Capped at 2,000 reward points per calendar month',
-        officialRef: 'HDFC Customer Notice Ref 8941',
+        announcedDate: 'Jun 28, 2024',
+        deadline: 'Aug 01, 2024',
+        type: 'fee_revision',
+        title: '1% Fee on Rental & Third-Party Education Transactions',
+        summary: 'Rental transactions processed via apps like CRED, Cheq, Paytm attract 1% fee capped at ₹3,000. Education fees via third-party apps attract 1% fee with zero reward points.',
+        oldValue: 'Zero surcharge on rent and education via third-party portals; standard points earned',
+        newValue: '1% fee (up to ₹3,000) on rent and third-party education payments; zero reward points',
+        officialRef: 'HDFC Cardholder Tariff Gazette Aug 2024',
         severity: 'high'
+      },
+      {
+        date: 'Apr 01, 2024',
+        announcedDate: 'Dec 15, 2023',
+        deadline: 'Apr 01, 2024',
+        type: 'policy_update',
+        title: 'Domestic Lounge Spend Requirement: ₹60,000/Quarter',
+        summary: '3 complimentary domestic lounge visits per calendar quarter unlock strictly on spending ₹60,000 or more in preceding calendar quarter.',
+        oldValue: '2 complimentary visits per calendar quarter on card presentation',
+        newValue: '3 visits per quarter conditioned on spending ₹60,000+ in preceding quarter',
+        officialRef: 'HDFC Regalia Gold Benefit Guide 2024',
+        severity: 'medium'
       }
     ],
     tags: ['lounge', 'dining', 'travel', 'shopping', 'premium'],
@@ -124,13 +140,27 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     changeHistory: [
       {
         date: 'Oct 01, 2024',
+        announcedDate: 'Sep 01, 2024',
+        deadline: 'Oct 01, 2024',
         type: 'devaluation',
-        title: 'SmartBuy Accelerated Cap Reduction',
-        summary: 'Accelerated rewards on flight and hotel bookings through SmartBuy portal capped at 10,000 points per month.',
-        oldValue: '15,000 accelerated reward points per calendar month',
-        newValue: '10,000 accelerated reward points per calendar month',
+        title: 'SmartBuy Accelerated Cap Slashed to 10,000 Points',
+        summary: 'Accelerated rewards on flight and hotel bookings through SmartBuy portal slashed from 15,000 to 10,000 points per calendar month.',
+        oldValue: '15,000 accelerated reward points per calendar month on SmartBuy',
+        newValue: '10,000 accelerated reward points per calendar month on SmartBuy',
         officialRef: 'HDFC Infinia T&C Oct 2024 Gazette',
         severity: 'medium'
+      },
+      {
+        date: 'Aug 01, 2024',
+        announcedDate: 'Jun 28, 2024',
+        deadline: 'Aug 01, 2024',
+        type: 'restriction',
+        title: 'Insurance Rewards Capped at 10,000 Points & 1% Rent Fee',
+        summary: 'Reward points on insurance payments strictly capped at 10,000 points per month, and 1% fee levied on rental payments via third-party apps.',
+        oldValue: 'Uncapped reward points on insurance payments; zero fees on rent',
+        newValue: 'Maximum 10,000 points per month on insurance; 1% fee on rent via third-party apps',
+        officialRef: 'HDFC Bank High-Net-Worth Portfolio Revision Aug 2024',
+        severity: 'high'
       }
     ],
     tags: ['lounge', 'travel', 'dining', 'golf', 'premium', 'forex'],
@@ -194,23 +224,39 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Apr 01, 2026',
-        type: 'devaluation',
-        title: 'Cashback Monthly Cap Revised to ₹2,000',
-        summary: 'SBI Card revised maximum online cashback to ₹2,000 per statement cycle, with offline cashback also capped at ₹2,000 per cycle.',
-        oldValue: 'Maximum ₹5,000 cashback per billing cycle',
-        newValue: 'Maximum ₹2,000 online cashback + ₹2,000 offline cashback per cycle',
-        officialRef: 'SBI Card Cashback Policy Revision 2026',
+        date: 'Dec 01, 2024',
+        announcedDate: 'Oct 25, 2024',
+        deadline: 'Dec 01, 2024',
+        type: 'fee_revision',
+        title: '1% Utility Surcharge & Digital Gaming Reward Exclusion',
+        summary: 'Total utility bill payments exceeding ₹50,000 in a billing cycle attract a 1% fee. Accrual of cashback and rewards on Digital Gaming merchants completely discontinued.',
+        oldValue: 'No fee on high-value utility payments; rewards earned on digital gaming merchants',
+        newValue: '1% surcharge on utility spends > ₹50,000 per cycle; 0% rewards on digital gaming',
+        officialRef: 'SBI Card Terms & Conditions Revision Circular Dec 2024',
+        severity: 'medium'
+      },
+      {
+        date: 'Nov 01, 2024',
+        announcedDate: 'Sep 28, 2024',
+        deadline: 'Nov 01, 2024',
+        type: 'fee_revision',
+        title: 'Finance Charges Raised to 3.75% per Month (45% Annualized)',
+        summary: 'Finance charges on unpaid rolling balances and cash advances increased to 3.75% per month across all unsecured SBI credit cards.',
+        oldValue: '3.50% per month (42% annualized finance charges)',
+        newValue: '3.75% per month (45% annualized finance charges)',
+        officialRef: 'SBI Card Customer Intimation Notice Oct 2024',
         severity: 'high'
       },
       {
-        date: 'Sep 15, 2024',
+        date: 'May 01, 2023',
+        announcedDate: 'Apr 15, 2023',
+        deadline: 'May 01, 2023',
         type: 'restriction',
-        title: 'Education, Utilities & Insurance Excluded',
-        summary: 'Cashback removed on educational fees, utilities, insurance, rent, wallet loads, and jewelry.',
-        oldValue: 'Cashback applied across broader merchant categories',
+        title: 'Education, Utilities & Insurance Excluded from 5% Cashback',
+        summary: 'Cashback removed on educational fees, utilities, insurance, rent, wallet loads, railways, and jewelry.',
+        oldValue: '5% cashback applied across broad online categories with few exclusions',
         newValue: 'Strict exclusions on fuel, wallets, rent, insurance, utilities, jewelry, and school fees',
-        officialRef: 'SBI Card Notification Circular SBIC/REV/2024',
+        officialRef: 'SBI Card Notification Circular SBIC/REV',
         severity: 'high'
       }
     ],
@@ -265,24 +311,28 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Sep 01, 2024',
-        type: 'policy_update',
-        title: 'Lounge Spend Criteria Updated to ₹20,000 + Dining Privileges',
-        summary: 'Monthly spend requirement to unlock unlimited domestic lounge access and up to ₹1,000 airport dining/shopping privileges updated to ₹20,000 in preceding cycle.',
-        oldValue: 'Spend ₹10,000 in monthly statement cycle',
-        newValue: 'Spend ₹20,000 in preceding/monthly billing cycle (includes airport dining/shopping up to ₹1,000)',
-        officialRef: 'Scapia Terms of Service Revision 2024',
-        severity: 'medium'
+        date: 'Mar 01, 2024',
+        announcedDate: 'Jan 22, 2024',
+        deadline: 'Mar 01, 2024',
+        type: 'devaluation',
+        title: 'Spend-Linked Airport Lounge Access: ₹20,000/Cycle',
+        summary: 'Unlimited complimentary domestic lounge access restricted. Now strictly requires spending ₹20,000 or more in the preceding billing cycle to unlock domestic lounge visits.',
+        oldValue: 'Unlimited complimentary domestic airport lounge access on card presentation',
+        newValue: '0 free visits unless spending ₹20,000+ in preceding billing cycle',
+        officialRef: 'Federal Bank & Scapia Lounge Access Policy Circular Mar 2024',
+        severity: 'critical'
       },
       {
-        date: 'Aug 01, 2024',
-        type: 'enhancement',
-        title: 'Dual Card Issuance (Visa + RuPay UPI)',
-        summary: 'One application provides a Visa card for general/international 0% forex spends and a RuPay card for UPI payments.',
-        oldValue: 'Single Visa physical card only',
-        newValue: 'Dual cards: Visa for international/general + RuPay for UPI (5% rewards on ₹500+)',
-        officialRef: 'Scapia Product Blog 2024',
-        severity: 'positive'
+        date: 'Nov 01, 2024',
+        announcedDate: 'Sep 15, 2024',
+        deadline: 'Nov 01, 2024',
+        type: 'restriction',
+        title: 'Minimum Spend Thresholds on Travel Bookings for Scapia Coins',
+        summary: 'Micro-transactions under ₹200 excluded from coin accrual, and offline coin rates restructured.',
+        oldValue: '10% Scapia Coins on all Scapia app travel bookings regardless of order value',
+        newValue: 'Minimum ₹200 order value required for 10% accelerated coins',
+        officialRef: 'Scapia App Rewards Policy Nov 2024',
+        severity: 'medium'
       }
     ],
     tags: ['forex', 'travel', 'lounge', 'lifetime-free', 'rupay', 'upi', 'rewards'],
@@ -344,23 +394,39 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Sep 01, 2024',
-        type: 'policy_update',
-        title: 'Accelerated 35 Points Rate & Domestic Lounge Threshold',
-        summary: 'Earn 35 EDGE points per ₹200 on monthly spends > ₹1.5 Lakhs; domestic lounge access requires ₹50,000 spend in preceding 3 months.',
-        oldValue: '25,000 milestone bonus points on ₹1L monthly spend',
-        newValue: '35 EDGE points per ₹200 on spend above ₹1.5L/mo + 5X on Travel EDGE',
-        officialRef: 'Axis Bank Magnus Terms Revision',
-        severity: 'medium'
+        date: 'Apr 20, 2024',
+        announcedDate: 'Mar 20, 2024',
+        deadline: 'Apr 20, 2024',
+        type: 'devaluation',
+        title: 'Airline Partner Transfer Ratio Slashed from 5:4 to 5:2',
+        summary: 'Standard airline mile conversion slashed from 5:4 to 5:2 (40% transfer yield). Transfer partners split into Group A and Group B with strict annual caps.',
+        oldValue: '5 EDGE Reward points = 4 Airline Miles across all partners (80% yield)',
+        newValue: '5 EDGE Reward points = 2 Airline Miles with partner caps (40% yield)',
+        officialRef: 'Axis Bank Circular AXIS/RET/CC/2024/03',
+        severity: 'critical'
       },
       {
-        date: 'Sep 01, 2024',
+        date: 'Apr 20, 2024',
+        announcedDate: 'Mar 20, 2024',
+        deadline: 'Apr 20, 2024',
+        type: 'restriction',
+        title: 'Discontinuation of BookMyShow BOGO & 24/7 Concierge',
+        summary: 'Complimentary Buy-One-Get-One (BOGO) movie tickets up to ₹500 on BookMyShow and 24x7 global concierge completely discontinued.',
+        oldValue: 'Buy 1 Get 1 free movie tickets up to 5 times a month on BookMyShow',
+        newValue: 'Benefit completely removed; zero complimentary movie tickets',
+        officialRef: 'Axis Magnus Revised Schedule of Benefits April 2024',
+        severity: 'critical'
+      },
+      {
+        date: 'Sep 01, 2023',
+        announcedDate: 'Jul 20, 2023',
+        deadline: 'Sep 01, 2023',
         type: 'devaluation',
-        title: 'Airline Partner Transfer Ratio Revised to 5:2',
-        summary: 'Standard airline mile conversion updated to 5 EDGE Reward points = 2 Partner Air Miles, capped at 500,000 points per year.',
-        oldValue: '5 EDGE Reward points = 4 Airline Miles',
-        newValue: '5 EDGE Reward points = 2 Airline Miles (500k points/yr cap)',
-        officialRef: 'Axis Bank Notice Ref AX/CC/MAGNUS',
+        title: 'Elimination of 25,000 Monthly Milestone EDGE Points',
+        summary: 'Historic 25,000 bonus EDGE Reward points on spending ₹1,00,000 in a calendar month abolished. Annual fee hiked to ₹12,500 + GST.',
+        oldValue: '25,000 bonus points on spending ₹1,00,000 in a calendar month',
+        newValue: 'Completely eliminated; milestone benefits removed from card',
+        officialRef: 'Axis Bank Magnus Milestone Restructuring Circular',
         severity: 'critical'
       }
     ],
@@ -412,13 +478,27 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 98,
     changeHistory: [
       {
+        date: 'Nov 15, 2024',
+        announcedDate: 'Oct 16, 2024',
+        deadline: 'Nov 15, 2024',
+        type: 'devaluation',
+        title: '1% Education & Rent Payment Surcharge Introduced',
+        summary: 'ICICI Bank introduced a 1% surcharge on education payments made via third-party platforms (CRED, Paytm) and rent transactions. Finance charges increased to 3.75% per month.',
+        oldValue: '0% fee on education payments via third-party apps and 3.50% finance charges',
+        newValue: '1% fee on third-party education & rent payments, finance charges hiked to 3.75%/mo (45% p.a.)',
+        officialRef: 'ICICI Bank Retail Credit Circular ICICI/CC/REVISION/2024-11',
+        severity: 'medium'
+      },
+      {
         date: 'Jun 18, 2024',
+        announcedDate: 'Jun 01, 2024',
+        deadline: 'Jun 18, 2024',
         type: 'enhancement',
-        title: 'Instant Credit Approval Rollout',
-        summary: '100% video KYC digital approval expanded with instant virtual card delivery on Amazon app.',
-        oldValue: 'Physical verification for non-ICICI customers',
-        newValue: 'Instant 10-minute digital approval via Aadhaar OTP',
-        officialRef: 'Amazon Pay ICICI Partnership Statement',
+        title: 'Instant Credit Approval & Digital Video KYC Rollout',
+        summary: '100% video KYC digital approval expanded with instant virtual card delivery on Amazon app within 10 minutes.',
+        oldValue: 'Physical verification and physical card dispatch for non-ICICI customers',
+        newValue: 'Instant 10-minute digital approval and virtual card issuance via Aadhaar OTP',
+        officialRef: 'Amazon Pay ICICI Partnership Statement 2024-06',
         severity: 'positive'
       }
     ],
@@ -475,14 +555,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Card Features & Eligibility',
-        summary: '8 domestic lounges/yr (2/qtr) via Visa or RuPay, 4 intl via Priority Pass, 5% on Tata brands (+5% NeuPass), 1.5% on UPI & non-Tata spends, 2% forex, ₹1L monthly salary / ₹12L ITR eligibility.',
-        oldValue: 'Older benefit definitions',
-        newValue: '8 domestic (2/qtr) + 4 Priority Pass intl (1/qtr), 2% forex, 1.5% UPI',
-        officialRef: 'HDFC Bank Tata Neu Infinity Official Portal',
-        severity: 'low'
+        date: 'Aug 01, 2024',
+        announcedDate: 'Jun 15, 2024',
+        deadline: 'Aug 01, 2024',
+        type: 'devaluation',
+        title: 'UPI RuPay NeuCoins Monthly Cap (500 Coins) & 12-Month Expiry',
+        summary: 'RuPay UPI merchant transactions capped at 500 NeuCoins per statement cycle. Unredeemed NeuCoins strictly expire after 12 months.',
+        oldValue: 'Uncapped 1.5% NeuCoins on RuPay UPI merchant transactions with indefinite validity',
+        newValue: 'Strict 500 NeuCoins monthly cap on UPI + 12-month expiry on unredeemed coins',
+        officialRef: 'HDFC Bank Tata Neu Terms Revision Circular Aug 2024',
+        severity: 'medium'
       }
     ],
     tags: ['upi', 'lounge', 'shopping', 'grocery', 'travel', 'dining'],
@@ -540,14 +622,40 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Official Features & Dual-Card Architecture',
-        summary: 'Dual network (Amex + Mastercard/Visa), ₹13,000+ welcome vouchers, ₹3,500 annual fee (waived on ₹6L spend), 4 RP intl / 2 RP domestic / 1 RP utility, ₹75k/mo salary / ₹9L ITR eligibility.',
-        oldValue: 'Older salary and earn rate figures',
-        newValue: '₹75k monthly salary, ₹9L ITR, 4/2/1 RP structure, ₹13k welcome vouchers',
-        officialRef: 'ICICI Bank Sapphiro Official Portal',
-        severity: 'low'
+        date: 'Nov 15, 2024',
+        announcedDate: 'Oct 18, 2024',
+        deadline: 'Nov 15, 2024',
+        type: 'devaluation',
+        title: 'Complete Discontinuation of DreamFolks Spa Access',
+        summary: 'Complimentary airport spa visits provided through DreamFolks airport network completely discontinued across all ICICI cards.',
+        oldValue: '1 complimentary spa session per calendar quarter via DreamFolks',
+        newValue: 'Benefit completely abolished; zero complimentary spa visits',
+        officialRef: 'ICICI Bank Cardmember Notice Ref: RET-CC-NOV24',
+        severity: 'critical'
+      },
+      {
+        date: 'Jan 01, 2025',
+        announcedDate: 'Oct 18, 2024',
+        deadline: 'Jan 01, 2025',
+        type: 'restriction',
+        title: 'Domestic Airport Lounge Access: ₹75,000 Quarterly Spend Gate',
+        summary: 'Complimentary domestic lounge access conditioned on spending ₹75,000 or more in the preceding calendar quarter (rent, education, government excluded).',
+        oldValue: 'Complimentary domestic lounge access unlocked on ₹35,000 quarterly spend',
+        newValue: 'Minimum ₹75,000 spend in preceding quarter required to unlock 2 lounge visits',
+        officialRef: 'ICICI Bank Domestic Lounge Policy Notice 2025',
+        severity: 'critical'
+      },
+      {
+        date: 'Nov 15, 2024',
+        announcedDate: 'Oct 18, 2024',
+        deadline: 'Nov 15, 2024',
+        type: 'fee_revision',
+        title: '1% Fee on Third-Party Education & ₹50,000 Utility Cap',
+        summary: '1% surcharge on school/college fees paid via third-party apps (CRED, Cheq, Paytm) with zero reward points. 1% fee on utility payments exceeding ₹50,000 in a cycle.',
+        oldValue: '0% fee on education apps; standard rewards on utility payments',
+        newValue: '1% fee on third-party education and on utility payments > ₹50,000; zero reward points',
+        officialRef: 'ICICI Bank Tariff Gazette Nov 2024',
+        severity: 'high'
       }
     ],
     tags: ['movies', 'lounge', 'dining', 'golf', 'premium'],
@@ -604,14 +712,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Official Fee & Income Thresholds',
-        summary: '₹5,000 annual fee, ₹6 Lakhs annual income eligibility (₹50k/mo), 10k welcome MR points on ₹15k spend in 90 days, 1 MR/₹50 earn rate.',
-        oldValue: 'Older salary & fee structures',
-        newValue: '₹5k annual fee, ₹6L annual income, 1 MR / ₹50, 10k welcome bonus',
-        officialRef: 'American Express India Official Portal',
-        severity: 'low'
+        date: 'Jan 01, 2024',
+        announcedDate: 'Nov 01, 2023',
+        deadline: 'Jan 01, 2024',
+        type: 'restriction',
+        title: 'Base Points Slashed on Fuel, Utilities & Insurance',
+        summary: 'Base Membership Rewards points discontinued on government transactions, fuel, insurance, and utilities. Milestone bonus points shifted toward ₹4L and ₹7L spend slabs.',
+        oldValue: '1 MR per ₹50 on utilities, fuel, and insurance transactions',
+        newValue: 'Zero MR points on fuel, utilities, and insurance; rewards concentrated on travel/retail milestones',
+        officialRef: 'American Express India Tariff Revision Notice Jan 2024',
+        severity: 'medium'
       }
     ],
     tags: ['travel', 'lounge', 'dining', 'premium'],
@@ -667,14 +777,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Official Fee, Eligibility & Luxury Benefits',
-        summary: '₹66,000 annual fee, ₹25L salaried / ₹15L self-employed eligibility, up to ₹60k welcome gift, 1,550+ global lounges, 5 hotel elite statuses, FHR benefits, 1 MR/₹40, 3X intl, up to 20X multiplier.',
-        oldValue: 'Older ₹60,000 fee figures',
-        newValue: '₹66k + GST fee, ₹25L/₹15L income, ₹60k welcome vouchers, 1,550+ lounges',
-        officialRef: 'American Express India Official Portal',
-        severity: 'low'
+        date: 'Feb 15, 2024',
+        announcedDate: 'Jan 15, 2024',
+        deadline: 'Feb 15, 2024',
+        type: 'fee_revision',
+        title: 'Annual Fee Revision to ₹66,000 + GST & Voucher Restructuring',
+        summary: 'Metal charge card annual fee revised to ₹66,000 + GST. Welcome vouchers shifted to Taj, Luxe, and Postcard hotels with mandatory fee realization.',
+        oldValue: '₹60,000 + GST annual fee with flexible voucher redemption',
+        newValue: '₹66,000 + GST non-waivable annual fee with curated luxury hotel gift vouchers',
+        officialRef: 'American Express Platinum Charge Card Agreement 2024',
+        severity: 'high'
       }
     ],
     tags: ['premium', 'lounge', 'travel', 'dining', 'golf'],
@@ -731,14 +843,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Official Features & Eligibility',
-        summary: '₹10,000 annual fee (waived on ₹8L spend), 2% forex, 10,000 bonus RP/quarter on ₹4L spend, 2X weekend dining, unlimited global lounges for primary + add-on, 6 golf games/qtr, salaried > ₹2.5L/mo, self-employed ITR > ₹30L/yr.',
-        oldValue: 'Older salary and benefit structures',
-        newValue: '₹2.5L/mo salary, ₹30L ITR, 10k points/qtr milestone, 2X weekend dining',
-        officialRef: 'HDFC Bank Diners Club Black Official Portal',
-        severity: 'low'
+        date: 'Aug 01, 2024',
+        announcedDate: 'Jun 28, 2024',
+        deadline: 'Aug 01, 2024',
+        type: 'fee_revision',
+        title: '1% Fee on Rent, Education & SmartBuy Cap Reduction (7,500 Pts)',
+        summary: '1% fee on rental payments via third-party apps (CRED/Cheq/Paytm) capped at ₹3,000. 1% fee on utility spends > ₹50,000. SmartBuy 10X accelerated rewards capped at 7,500 points/month.',
+        oldValue: 'Zero fee on rental payments; uncapped utility rewards; 10,000 monthly SmartBuy cap',
+        newValue: '1% fee on rent & utilities > ₹50k; SmartBuy accelerated cap reduced to 7,500 points/month',
+        officialRef: 'HDFC Diners Club Benefit Amendment Aug 2024',
+        severity: 'critical'
       }
     ],
     tags: ['premium', 'lounge', 'travel', 'dining', 'golf'],
@@ -796,14 +910,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Official Features & Income Criteria',
-        summary: 'Lifetime Free (₹0), ₹36L annual income eligibility (~₹3L/mo), 10X points above ₹20k spend, 3X up to ₹20k, 1.5% forex markup, BOGO movies up to ₹250 (2x/mo), 2 golf rounds/mo, interest-free ATM withdrawals.',
-        oldValue: 'Older ₹30k threshold and salary figures',
-        newValue: '10X on spends above ₹20k, ₹36L income eligibility, Lifetime Free',
-        officialRef: 'IDFC FIRST Bank Official Wealth Product Guide',
-        severity: 'low'
+        date: 'May 01, 2024',
+        announcedDate: 'Mar 28, 2024',
+        deadline: 'May 01, 2024',
+        type: 'devaluation',
+        title: 'Domestic Lounge Access Spend Threshold Quadrupled to ₹20,000/Month',
+        summary: 'Complimentary airport lounge and spa access threshold raised from ₹5,000 to ₹20,000 retail spend in preceding calendar month. 1% surcharge on utility spends > ₹20,000.',
+        oldValue: 'Spend ₹5,000 in preceding month to unlock 2 lounge/spa visits',
+        newValue: 'Spend ₹20,000 in preceding month required to unlock 2 lounge/spa visits; 1% fee on utilities > ₹20k',
+        officialRef: 'IDFC FIRST Bank Benefit & Surcharge Circular May 2024',
+        severity: 'high'
       }
     ],
     tags: ['lifetime-free', 'lounge', 'forex', 'travel', 'dining', 'movies'],
@@ -861,14 +977,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Official Fees, Fuel Waiver & Rewards',
-        summary: 'Lifetime Free (₹0), 2 EDGE Points per ₹200, 1% fuel waiver (₹400–₹4,000 capped at ₹150/mo), 1% rental fee (max ₹1,500), 3.6% monthly APR, instant Video KYC issuance.',
-        oldValue: 'Older benefit definitions',
-        newValue: '2 EDGE points per ₹200, 1% fuel waiver, 3.5% forex, Lifetime Free',
-        officialRef: 'Axis Bank & Kiwi User Guide',
-        severity: 'low'
+        date: 'Aug 20, 2024',
+        announcedDate: 'Jul 15, 2024',
+        deadline: 'Aug 20, 2024',
+        type: 'restriction',
+        title: 'Exclusion of Small-Ticket UPI (<₹2,000) from Base EDGE Points',
+        summary: 'UPI merchant QR scan transactions under ₹2,000 earn reduced or zero base EDGE points unless subscribed to Kiwi Neon. 1% rental fee (max ₹1,500).',
+        oldValue: 'Standard 2 EDGE points per ₹200 on all merchant UPI spends',
+        newValue: 'Exclusions on UPI under ₹2,000 without Kiwi Neon; 1% rental surcharge (max ₹1,500)',
+        officialRef: 'Axis Bank & Kiwi RuPay Terms Update Aug 2024',
+        severity: 'medium'
       }
     ],
     tags: ['lifetime-free', 'upi', 'cashback', 'shopping'],
@@ -924,14 +1042,16 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     },
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Cashback Tiers & Quarterly Caps',
-        summary: '5% Flipkart & Cleartrip, 7.5% Myntra (each capped at ₹4k/quarter), 4% unlimited on Swiggy/Uber, 1% on other spends, 1% fuel waiver up to ₹400/mo, payout 3 days before statement.',
-        oldValue: 'Older unlimited cashback definitions',
-        newValue: '5% Flipkart, 7.5% Myntra, 4% Swiggy/Uber, ₹4k/qtr cap each, 1% others',
-        officialRef: 'Flipkart Axis Bank Credit Card FAQ',
-        severity: 'low'
+        date: 'Aug 12, 2023',
+        announcedDate: 'Jul 15, 2023',
+        deadline: 'Aug 12, 2023',
+        type: 'devaluation',
+        title: '5% Flipkart Cashback Capped at ₹4,000/Quarter & Lounges Slashed',
+        summary: 'Unlimited 5% cashback on Flipkart capped at ₹4,000 per statement quarter. Complimentary domestic airport lounge access completely removed.',
+        oldValue: 'Unlimited 5% cashback on Flipkart + 4 complimentary domestic airport lounge visits per year',
+        newValue: '5% Flipkart cashback capped at ₹4,000/quarter; 0 complimentary lounge visits',
+        officialRef: 'Axis Bank Flipkart Co-Brand Revision Circular',
+        severity: 'critical'
       }
     ],
     tags: ['cashback', 'shopping', 'entry-level'],
@@ -981,24 +1101,28 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 94,
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified EDGE Miles Rates & Tier Structures',
-        summary: '5 EDGE Miles/₹100 on travel (capped at ₹2L/mo spend), 2 EDGE Miles/₹100 general, 1:2 partner transfer across 20+ partners, Silver/Gold/Platinum tiers with up to 18 domestic & 12 international lounge visits.',
-        oldValue: 'Uncapped travel rewards & legacy lounge access definitions',
-        newValue: '5 EDGE Miles/₹100 travel (capped at ₹2L spend/mo), 2 EDGE Miles/₹100 general, Silver (8 domestic/4 intl), Gold (12/6), Platinum (18/12) tiers',
-        officialRef: 'Axis Bank ATLAS Credit Card Page',
-        severity: 'low'
+        date: 'Apr 20, 2024',
+        announcedDate: 'Mar 20, 2024',
+        deadline: 'Apr 20, 2024',
+        type: 'devaluation',
+        title: 'Partner Mile Transfers Capped at 30k Miles & Exclusions on Gold/Insurance/Fuel',
+        summary: 'Annual partner transfer caps introduced for Group A (30,000 miles) and Group B partners. Rent, fuel, insurance, utilities, and gold excluded from tier milestone calculations.',
+        oldValue: 'Uncapped 1:2 partner mile transfers; all spends counted toward Gold/Platinum tiers',
+        newValue: 'Annual 30,000-mile cap on Group A transfers; rent, fuel, insurance, utilities excluded from tier spends',
+        officialRef: 'Axis Bank Circular ATLAS/2024/04',
+        severity: 'critical'
       },
       {
         date: 'Apr 20, 2024',
-        type: 'devaluation',
-        title: 'Miles Conversion Cap & Exclusions',
-        summary: 'Axis Bank capped annual group A and group B partner mile transfers.',
-        oldValue: 'Uncapped partner mile transfers',
-        newValue: 'Annual capping on group A (30,000 miles) and group B transfers',
-        officialRef: 'Axis Circular ATLAS/2024/04',
-        severity: 'critical'
+        announcedDate: 'Mar 20, 2024',
+        deadline: 'Apr 20, 2024',
+        type: 'restriction',
+        title: 'Monthly ₹2,00,000 Cap on 5X Travel Spends & Concierge Discontinued',
+        summary: '5 EDGE Miles per ₹100 on airlines/hotels capped at cumulative ₹2 Lakh monthly spend. Airport Meet & Greet and concierge services discontinued.',
+        oldValue: 'Uncapped 5X EDGE Miles on travel bookings + complimentary airport Meet & Greet',
+        newValue: '5X travel miles capped at ₹2 Lakh/mo; Meet & Greet and concierge removed',
+        officialRef: 'Axis Atlas Benefits Revision Gazette Apr 2024',
+        severity: 'high'
       }
     ],
     tags: ['travel', 'super-premium', 'rewards', 'air-miles'],
@@ -1048,24 +1172,28 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 96,
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified Cashback Tiers, Caps & Welcome Swiggy One',
-        summary: '10% on Swiggy (min ₹249, capped at ₹1,500/cycle), 5% select online (min ₹100, capped at ₹1,500/cycle), 1% other spends (min ₹100, capped at ₹500/cycle), complimentary 3-month Swiggy One membership, ₹2 Lakh annual fee waiver.',
-        oldValue: 'Generic cashback overview without category min transaction limits and caps',
-        newValue: '10% Swiggy (cap ₹1.5k, min ₹249), 5% online (cap ₹1.5k, min ₹100), 1% other (cap ₹500), 3-mo Swiggy One, waived on ₹2L spend',
-        officialRef: 'HDFC Bank Swiggy Credit Card Official Portal',
-        severity: 'low'
+        date: 'Jun 21, 2024',
+        announcedDate: 'May 10, 2024',
+        deadline: 'Jun 21, 2024',
+        type: 'devaluation',
+        title: 'Minimum ₹249 Order Value for 10% Accelerated Cashback',
+        summary: '10% cashback on Swiggy food ordering and Instamart restricted strictly to orders of ₹249 and above. Orders below ₹249 earn only 1% base rate.',
+        oldValue: '10% cashback on all Swiggy orders regardless of order size',
+        newValue: 'Minimum ₹249 order threshold for 10% cashback; orders below ₹249 earn 1% base rate',
+        officialRef: 'HDFC Bank Swiggy Benefit Bulletin v1.8',
+        severity: 'medium'
       },
       {
-        date: 'Jun 20, 2024',
-        type: 'enhancement',
-        title: 'Direct Swiggy Money Statement Balance Option',
-        summary: 'Cashback now flows seamlessly into Swiggy Money wallet for instant order redemption.',
-        oldValue: 'Manual voucher claiming',
-        newValue: 'Instant automatic Swiggy Money credit',
-        officialRef: 'HDFC Swiggy Benefit Bulletin v1.8',
-        severity: 'positive'
+        date: 'Aug 01, 2024',
+        announcedDate: 'Jun 28, 2024',
+        deadline: 'Aug 01, 2024',
+        type: 'fee_revision',
+        title: '1% Fee on Rent & Education via Third-Party Apps',
+        summary: '1% surcharge on rental transactions through third-party apps and 1% fee on third-party educational payments with zero cashback.',
+        oldValue: 'No rental surcharge; standard rewards on education apps',
+        newValue: '1% fee on rent (capped at ₹3,000); 1% fee on third-party education apps with zero cashback',
+        officialRef: 'HDFC Bank Fee Schedule Aug 2024',
+        severity: 'high'
       }
     ],
     tags: ['cashback', 'dining', 'shopping', 'grocery', 'entry-level'],
@@ -1114,22 +1242,26 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 95,
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified 10% Accelerated Cashback, 1.99% Forex & Lounges',
-        summary: '10% cashback on dining, food delivery, groceries, shopping & utilities (capped at ₹1,200/mo), unlimited 1.5% on other spends, 1.99% low forex markup, 2 domestic + 1 international lounge visit/yr, BOGO on BookMyShow & District, ₹2 Lakh annual fee waiver.',
-        oldValue: 'Generic dining-only summary with 3.5% forex and 0 international lounges',
-        newValue: '10% on dining/groceries/utilities (cap ₹1,200/mo), 1.5% unlimited, 1.99% low forex, 2 domestic + 1 intl lounge, BOGO movies & events',
-        officialRef: 'HSBC Live+ Credit Card Official Benefits Page',
-        severity: 'low'
+        date: 'Jul 01, 2024',
+        announcedDate: 'Jun 10, 2024',
+        deadline: 'Jul 01, 2024',
+        type: 'devaluation',
+        title: 'Accelerated Cashback Capped at ₹1,000/mo & Utility Exclusions',
+        summary: 'HSBC rebranded the Cashback Card to Live+ while introducing a strict monthly cap of ₹1,000 (later revised to ₹1,200) on 10% accelerated categories, and excluded telecom/utility payments from base 1.5% cashback.',
+        oldValue: 'Uncapped dining cashback structure under legacy Cashback card',
+        newValue: '10% dining & grocery capped at ₹1,000/mo, strict MCC mapping, utilities excluded from 1.5% base pool',
+        officialRef: 'HSBC Retail Banking Circular LIVE+/2024-07',
+        severity: 'medium'
       },
       {
         date: 'Jun 24, 2024',
+        announcedDate: 'May 20, 2024',
+        deadline: 'Jun 24, 2024',
         type: 'enhancement',
-        title: 'Rebranded from Cashback Card to Live+',
-        summary: 'HSBC revamped the popular Cashback Card into Live+ with enhanced dining and quick-commerce groceries.',
-        oldValue: '1.5% flat cashback with 10% dining cap',
-        newValue: '10% accelerated cashback on dining and groceries up to ₹1,000/mo',
+        title: 'Rebranded from Cashback Card to Live+ with Quick Commerce Perks',
+        summary: 'HSBC revamped the popular Cashback Card into Live+ with enhanced dining and quick-commerce groceries (Blinkit, Zepto, Swiggy Instamart).',
+        oldValue: '1.5% flat cashback with 10% dining cap on select merchants',
+        newValue: '10% accelerated cashback on dining and groceries including quick-commerce',
         officialRef: 'HSBC Retail Banking Circular LIVE+/2024-06',
         severity: 'positive'
       }
@@ -1181,24 +1313,28 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 92,
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified 10X Category Rewards, 5,000 Pts Cap & Welcome Points',
-        summary: '10X points (10 pts/₹150, 2.5% value) on dining, movies, grocery & departmental stores capped at 5,000 pts/month, 1 point/₹150 elsewhere, 2,000 bonus reward points (worth ₹500) on ₹2,000 spend in 60 days, ₹1 Lakh fee waiver threshold.',
-        oldValue: 'Outdated 10k points monthly cap without welcome spend criteria',
-        newValue: '10X points (cap 5,000 pts/mo), 1X base, 2,000 bonus welcome points, ₹1 Lakh spend waiver',
-        officialRef: 'SBI Card SimplySAVE Terms & Conditions',
-        severity: 'low'
+        date: 'Dec 01, 2024',
+        announcedDate: 'Oct 25, 2024',
+        deadline: 'Dec 01, 2024',
+        type: 'fee_revision',
+        title: '1% Surcharge on Utility Payments > ₹50,000 & Gaming Rewards Discontinued',
+        summary: '1% fee on cumulative utility bill payments exceeding ₹50,000 per billing cycle. Accrual of reward points on Digital Gaming merchants discontinued.',
+        oldValue: 'Zero fee on large utility payments; standard rewards on digital gaming merchants',
+        newValue: '1% fee on utility payments > ₹50k; zero rewards on digital gaming merchants',
+        officialRef: 'SBI Card Utility & Gaming Revision Circular Dec 2024',
+        severity: 'medium'
       },
       {
         date: 'Nov 01, 2024',
+        announcedDate: 'Sep 28, 2024',
+        deadline: 'Nov 01, 2024',
         type: 'fee_revision',
-        title: 'Utility Payment Fee Revisions',
-        summary: 'SBI Card levied 1% fee on utility payments exceeding ₹50,000 in a billing cycle.',
-        oldValue: 'Zero fee on utility payments',
-        newValue: '1% fee on utility transactions over ₹50,000/cycle',
-        officialRef: 'SBI Card Utility Circular SBIC/REV/2024-11',
-        severity: 'medium'
+        title: 'Finance Charges Raised to 3.75% per Month (45% Annualized)',
+        summary: 'Finance charges on unpaid rolling balances and cash advances increased to 3.75% per month across all unsecured SBI cards.',
+        oldValue: '3.50% per month (42% annualized finance charges)',
+        newValue: '3.75% per month (45% annualized finance charges)',
+        officialRef: 'SBI Card Customer Intimation Notice Oct 2024',
+        severity: 'high'
       }
     ],
     tags: ['dining', 'shopping', 'entry-level', 'rewards', 'grocery'],
@@ -1249,13 +1385,27 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     changeHistory: [
       {
         date: 'Sep 01, 2024',
+        announcedDate: 'Aug 10, 2024',
+        deadline: 'Sep 01, 2024',
         type: 'enhancement',
-        title: 'Reduced Forex Markup to 1.50%',
-        summary: 'IndusInd Bank slashed forex markup on Tiger card from 3.5% to 1.50% for international transactions.',
-        oldValue: '3.5% standard forex fee',
-        newValue: '1.50% discounted forex markup fee',
-        officialRef: 'IndusInd Tiger Circular 2024-09',
+        title: 'Discounted 1.50% Forex Markup Implemented',
+        summary: 'IndusInd Bank slashed the foreign currency markup fee on the Tiger credit card from 3.50% to 1.50% for international purchases.',
+        oldValue: '3.50% standard foreign currency markup fee',
+        newValue: '1.50% discounted forex markup fee on international spend',
+        officialRef: 'IndusInd Tiger Circular TIGER/2024-09',
         severity: 'positive'
+      },
+      {
+        date: 'Jul 01, 2024',
+        announcedDate: 'May 28, 2024',
+        deadline: 'Jul 01, 2024',
+        type: 'devaluation',
+        title: 'Government, Utility & Rent Payments Excluded from Milestone Rewards',
+        summary: 'Government payments, tax transactions, utility bills, and rental payments excluded from earning accelerated reward points and milestone calculations.',
+        oldValue: 'All retail payments eligible for milestone acceleration',
+        newValue: 'Government, utility, and rental transactions strictly excluded from reward calculation',
+        officialRef: 'IndusInd Retail Credit Revision INDUS/CC/2024-07',
+        severity: 'medium'
       }
     ],
     tags: ['lifetime-free', 'travel', 'rewards', 'shopping', 'lounge'],
@@ -1304,22 +1454,14 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 93,
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified 10X Spend Tiers, Railway Lounges & Lifetime Free Status',
-        summary: 'Unconditional ₹0 lifetime free, 10X points on spends > ₹20k/mo and birthdays, 3X on online up to ₹20k, 1X utilities/general (1 RP = ₹0.25, never expire), 4 complimentary railway lounge visits/quarter, 25% off movies (up to ₹100/mo), RSA worth ₹1,399, ₹500 welcome voucher on ₹5k spend.',
-        oldValue: 'Devaluation note regarding domestic airport lounge threshold',
-        newValue: '10X points > ₹20k, 3X online, 4 railway lounges/quarter, 25% movie discount, ₹0 lifetime free',
-        officialRef: 'IDFC FIRST Bank Official Millennia Benefits Portal',
-        severity: 'low'
-      },
-      {
         date: 'May 01, 2024',
+        announcedDate: 'Mar 28, 2024',
+        deadline: 'May 01, 2024',
         type: 'devaluation',
-        title: 'Lounge Monthly Spend Threshold Added',
-        summary: 'Complimentary lounge visit now requires ₹20,000 minimum spend in previous billing cycle.',
-        oldValue: 'Unconditional complimentary domestic lounge visit',
-        newValue: 'Requires ₹20,000 monthly spend',
+        title: 'Airport Lounge Access Discontinued (Shifted to Railway Lounges)',
+        summary: 'Complimentary domestic airport lounge access discontinued on Millennia; replaced with 4 complimentary railway lounge visits per quarter.',
+        oldValue: '1 complimentary domestic airport lounge visit per quarter on card presentation',
+        newValue: 'Airport lounge access completely removed; 4 railway lounge visits per quarter retained',
         officialRef: 'IDFC First Circular IDFC/CC/2024/05',
         severity: 'high'
       }
@@ -1375,22 +1517,26 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     popularityIndex: 90,
     changeHistory: [
       {
-        date: 'Nov 14, 2026',
-        type: 'feature_update',
-        title: 'Verified 4% Fuel Valueback, Welcome Benefit & ₹3.5L Waiver',
-        summary: '20 EDGE points/₹100 on IndianOil fuel (capped at 1,000 pts/mo), 100% valueback welcome benefit (up to 1,250 points / ₹250) on first fuel txn within 30 days, 5 pts/₹100 online (max 250 pts), 1 pt/₹100 other retail, 10% BMS discount (up to ₹100/mo), ₹50/cycle fuel waiver cap, ₹3.5 Lakh annual fee waiver threshold.',
-        oldValue: 'Older ₹50k fee waiver threshold and uncapped online rewards',
-        newValue: '20 pts/₹100 fuel (cap 1k pts), 5 pts/₹100 online (cap 250 pts), ₹3.5L spend waiver, RuPay UPI integration',
-        officialRef: 'Axis Bank IndianOil Credit Card Terms & Conditions',
-        severity: 'low'
+        date: 'Aug 01, 2024',
+        announcedDate: 'Jun 20, 2024',
+        deadline: 'Aug 01, 2024',
+        type: 'devaluation',
+        title: 'Fuel Waiver Surcharge Capped at ₹50 & Online Rewards Capped',
+        summary: 'Axis Bank revised cobranded terms: 1% fuel surcharge waiver capped at ₹50 per statement cycle (down from ₹100), 5X online rewards capped at 250 EDGE points/month, and annual fee waiver threshold increased to ₹3.5 Lakh.',
+        oldValue: '₹100/cycle fuel surcharge waiver cap and ₹50,000 annual fee waiver threshold',
+        newValue: '₹50/cycle fuel waiver cap, 250 pts/mo online cap, and ₹3.5L annual fee waiver condition',
+        officialRef: 'Axis Bank Cobranded Card Tariff Revision AXIS/RET/IOCL/2024-08',
+        severity: 'high'
       },
       {
         date: 'Sep 10, 2024',
+        announcedDate: 'Aug 15, 2024',
+        deadline: 'Sep 10, 2024',
         type: 'enhancement',
-        title: 'RuPay UPI Integration',
-        summary: 'Link seamlessly to Google Pay, PhonePe, and Paytm for merchant UPI QR payments.',
-        oldValue: 'Physical card only',
-        newValue: 'Instant RuPay UPI on all apps',
+        title: 'RuPay UPI Integration Across Third-Party Apps',
+        summary: 'Link seamlessly to Google Pay, PhonePe, Paytm, and CRED for merchant UPI QR payments with credit line.',
+        oldValue: 'Physical card transactions and online POS only',
+        newValue: 'Instant RuPay UPI on all approved UPI payment apps',
         officialRef: 'NPCI / Axis Bank RuPay Notice 2024-09',
         severity: 'positive'
       }

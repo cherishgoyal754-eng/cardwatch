@@ -181,8 +181,9 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         sound.playDevaluation();
         setErrorMessage(res.message);
       }
-    } catch {
-      setErrorMessage('An unexpected error occurred during account creation.');
+    } catch (err: any) {
+      console.error('Account creation error:', err);
+      setErrorMessage(err?.message || 'An unexpected error occurred during account creation.');
     } finally {
       setIsLoading(false);
     }

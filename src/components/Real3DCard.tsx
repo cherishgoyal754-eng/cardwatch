@@ -35,7 +35,7 @@ export function resolveCardAsset(path: string): string {
     return `/cardwatch/${clean}`;
   }
 
-  const base = import.meta.env.BASE_URL || './';
+  const base = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || './';
   const prefix = base.endsWith('/') ? base : `${base}/`;
   return `${prefix}${clean}`;
 }

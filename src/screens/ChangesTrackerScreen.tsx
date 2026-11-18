@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CreditCard, CardChangeHistory, ScreenType } from '../types';
 import { sound } from '../utils/audio';
+import liveDevaluations from '../data/live-devaluations.json';
 import {
   Calendar,
   ArrowRight,
@@ -15,7 +16,9 @@ import {
   Clock,
   Sparkles,
   CheckCircle2,
-  XCircle
+  XCircle,
+  Bell,
+  Check
 } from 'lucide-react';
 
 interface ChangesTrackerScreenProps {
@@ -41,6 +44,31 @@ export const ChangesTrackerScreen: React.FC<ChangesTrackerScreenProps> = ({
   const [selectedBank, setSelectedBank] = useState<string>('all');
 
   const allChanges: FlattenedChange[] = [];
+
+  // 1. Live Google News & Gemini Radar circulars (auto-updated daily via GitHub Actions)
+  (liveDevaluations as any[]).forEach(item => {
+    allChanges.push({
+      cardId: item.cardId || 'general-banking',
+      cardName: item.cardName,
+      bank: item.bank,
+      change: {
+        date: item.date,
+        announcedDate: item.announcedDate,
+        deadline: item.deadline,
+        type: item.type,
+        title: item.title,
+        summary: item.summary,
+        oldValue: item.oldValue,
+        newValue: item.newValue,
+        officialRef: item.officialRef,
+        severity: item.severity,
+        source: item.source,
+        syncedAt: item.syncedAt,
+      },
+    });
+  });
+
+  // 2. Verified card circulars from database
   cards.forEach(card => {
     if (card.changeHistory && card.changeHistory.length > 0) {
       card.changeHistory.forEach(ch => {
@@ -319,6 +347,12 @@ export const ChangesTrackerScreen: React.FC<ChangesTrackerScreenProps> = ({
                           CRITICAL CUT
                         </span>
                       )}
+                      {item.change.source && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded font-black uppercase bg-emerald-50 text-emerald-800 border border-emerald-300 flex items-center gap-1 shadow-xs">
+                          <Sparkles className="w-3 h-3 text-emerald-600 animate-pulse" />
+                          <span>Google News Radar</span>
+                        </span>
+                      )}
                     </div>
 
                     <h3
@@ -332,9 +366,18 @@ export const ChangesTrackerScreen: React.FC<ChangesTrackerScreenProps> = ({
                     </h3>
                   </div>
 
-                  <div className="px-4 py-2 rounded-2xl bg-red-50/70 border border-red-200 text-xs font-mono text-red-800 flex items-center gap-2 shrink-0">
-                    <Calendar className="w-4 h-4 text-red-600" />
-                    <span>Effective: <strong className="text-slate-950 font-bold">{item.change.date}</strong></span>
+                  {/* Timeline: Announced Date (When Info Came) & Deadline (Enforcement) */}
+                  <div className="flex flex-wrap sm:flex-col items-start sm:items-end gap-1.5 shrink-0">
+                    {item.change.announcedDate && (
+                      <div className="px-3 py-1 rounded-xl bg-slate-100 border border-slate-200 text-[11px] font-mono text-slate-700 flex items-center gap-1.5">
+                        <Bell className="w-3.5 h-3.5 text-slate-500" />
+                        <span>Notice Sent: <strong className="text-slate-900 font-bold">{item.change.announcedDate}</strong></span>
+                      </div>
+                    )}
+                    <div className="px-3 py-1.5 rounded-xl bg-red-50 border-2 border-red-200 text-xs font-mono text-red-900 flex items-center gap-1.5 shadow-xs">
+                      <Clock className="w-3.5 h-3.5 text-red-600 animate-pulse" />
+                      <span>Deadline / Effective: <strong className="text-red-700 font-black">{item.change.deadline || item.change.date}</strong></span>
+                    </div>
                   </div>
                 </div>
 

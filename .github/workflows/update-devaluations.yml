@@ -1,0 +1,42 @@
+name: Auto-Sync Credit Card Devaluations from Google News
+
+on:
+  schedule:
+    # Runs daily at 00:00 UTC (05:30 AM IST)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions dashboard
+
+permissions:
+  contents: write
+
+jobs:
+  sync-google-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Google News & Gemini Devaluation Radar Sync
+        run: node scripts/sync-google-devaluations.js
+        env:
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Commit & push updated circulars if new news arrived
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/live-devaluations.json
+          if ! git diff --cached --quiet; then
+            echo "✨ New circulars detected! Committing updates..."
+            git commit -m "feat(radar): auto-sync latest bank circulars from Google News"
+            git push origin main
+          else
+            echo "ℹ️ No new devaluations since last sync. Working tree clean."
+          fi

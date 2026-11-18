@@ -30,15 +30,19 @@ export type CardCategory =
 export type CardNetwork = 'Visa' | 'Mastercard' | 'RuPay' | 'Amex' | 'Diners Club';
 
 export interface CardChangeHistory {
-  date: string;
-  type: 'devaluation' | 'enhancement' | 'fee_revision' | 'restriction' | 'policy_update';
+  date: string; // Effective enforcement date
+  announcedDate?: string; // Date when circular or notification was sent to cardholders
+  deadline?: string; // Deadline / cut-off date before new rules become mandatory
+  type: 'devaluation' | 'enhancement' | 'fee_revision' | 'restriction' | 'policy_update' | 'regulatory_update';
   title: string;
   summary: string;
   oldValue: string;
   newValue: string;
   officialRef: string;
   circularPdfUrl?: string;
-  severity: 'critical' | 'high' | 'medium' | 'positive';
+  severity: 'critical' | 'high' | 'medium' | 'low' | 'positive';
+  source?: string;
+  syncedAt?: string;
 }
 
 export interface CreditCard {
@@ -65,20 +69,36 @@ export interface CreditCard {
   forexMarkup: number; // e.g. 2.0 or 0.0 for zero forex
   fuelSurchargeWaiver: string;
 
+  // Comprehensive Audited & Verified Attributes (2024-2026 Standards)
+  gstApplicability?: string; // Standard 18% GST applies to annual & joining fees
+  welcomeBenefit?: string;
+  renewalBenefit?: string;
+  milestoneBenefits?: string;
+  rewardConversionDetails?: string; // e.g. 1:1 or 5:2 airmile transfer details
+  movieBenefits?: string;
+  diningBenefits?: string;
+  golfBenefits?: string;
+  insuranceCoverage?: string;
+  mitcUrl?: string; // Most Important Terms and Conditions (MITC) official link
+
   // Lounge details
   domesticLoungesPerQuarter: number | string;
   internationalLoungesPerYear: number | string;
+  railwayLoungesPerQuarter?: number | string;
+  loungeGuestAccess?: string;
   loungeSpendCondition: string; // e.g., "Requires ₹1 Lakh spend in previous quarter" vs "Complimentary with no minimum spend"
-  loungeNetwork: 'DreamFolks' | 'Priority Pass' | 'Visa Lounge' | 'Mastercard Airport Pass' | 'None';
+  loungeNetwork: 'DreamFolks' | 'Priority Pass' | 'Visa Lounge' | 'Mastercard Airport Pass' | 'None' | 'IRCTC Railway Lounge' | 'Diners Club' | 'American Express Global Lounge Collection' | 'Centurion Lounge';
 
   // Exclusions & Restrictions
   merchantExclusions: string[]; // e.g. ["Rent payments", "Govt taxes", "Wallet loads", "Jewellery"]
   cappingDetails: string;
 
-  // Official verification
+  // Official verification & Permanent Accuracy Audit
   officialCircularUrl: string;
   lastVerifiedDate: string;
   isVerified: boolean;
+  auditVerificationStatus?: 'fully_verified' | 'pending_review';
+  auditDate?: string;
   rating: number; // 4.8 / 5
   popularityIndex: number;
 
