@@ -194,4 +194,29 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.fuelSurchargeWaiver).toContain('₹400 and ₹4,000');
     expect(card?.officialCircularUrl).toBe('https://www.icici.bank.in/personal-banking/cards/credit-card/hpcl-super-saver');
   });
+
+  it('should verify exact audited facts and 2026 devaluation for Airtel Axis Bank', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'axis-airtel');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(500);
+    expect(card?.annualFee).toBe(500);
+    expect(card?.domesticLoungesPerQuarter).toBe(0);
+    expect(card?.loungeSpendCondition).toContain('discontinued');
+    expect(card?.recentChangeAlert?.isDevaluation).toBe(true);
+    expect(card?.cappingDetails).toContain('2x');
+    expect(card?.cappingDetails).toContain('1x');
+    expect(card?.cappingDetails).toContain('Swiggy');
+    expect(card?.welcomeBenefit).toContain('250');
+  });
+
+  it('should verify exact audited facts for Axis Bank ACE', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'axis-ace');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(499);
+    expect(card?.annualFee).toBe(499);
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.loungeSpendCondition).toContain('50,000');
+    expect(card?.cappingDetails).toContain('500');
+    expect(card?.officialCircularUrl).toBe('https://www.axis.bank.in/cards/credit-card/axis-bank-ace-credit-card');
+  });
 });

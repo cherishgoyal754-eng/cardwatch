@@ -349,17 +349,17 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
     }
   } else if (card.id === 'axis-airtel') {
     if (lowerCat.includes('airtel') || lowerCat.includes('mobile') || lowerCat.includes('dth') || lowerCat.includes('broadband')) {
-      const cb = Math.min(250, Math.round(amount * 0.25));
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on Airtel bills via Airtel Thanks with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (25% return, capped at ₹250/month).`;
-    } else if (lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('bigbasket')) {
-      const cb = Math.min(500, Math.round(amount * 0.10));
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy/Zomato/BigBasket with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (10% return, capped at ₹500/month).`;
+      const cb = Math.round(amount * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Airtel bills via Airtel Thanks with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} (25% return, subject to dynamic monthly cap of 2x your monthly 1% base cashback).`;
+    } else if (lowerCat.includes('zomato') || lowerCat.includes('blinkit') || lowerCat.includes('district')) {
+      const cb = amount >= 499 ? Math.min(200, Math.round(amount * 0.10)) : 0;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on ${lowerCat.includes('blinkit') ? 'Blinkit' : lowerCat.includes('district') ? 'District' : 'Zomato'} with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} wallet value-back (10% back on min ₹499 order, capped at ₹200/partner/month). Note: Swiggy and BigBasket 10% cashback have been discontinued.`;
     } else if (lowerCat.includes('utility') || lowerCat.includes('bill') || lowerCat.includes('electricity') || lowerCat.includes('gas')) {
-      const cb = Math.min(250, Math.round(amount * 0.10));
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on utility bills via Airtel Thanks with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (10% return, capped at ₹250/month).`;
+      const cb = Math.round(amount * 0.10);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on utility bills via Airtel Thanks with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} (10% return, subject to dynamic monthly cap of 1x your monthly 1% base cashback).`;
     } else {
       const cb = Math.round(amount * 0.01);
-      text = `On spending ₹${amount.toLocaleString('en-IN')} with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (1% unlimited return).`;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on regular retail with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} base cashback (1% return). This 1% base spend also unlocks up to ₹${(cb * 2).toLocaleString('en-IN')} in Airtel 25% cashback cap and ₹${cb.toLocaleString('en-IN')} in utility 10% cashback cap.`;
     }
   } else if (card.id === 'icici-rubyx') {
     if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
