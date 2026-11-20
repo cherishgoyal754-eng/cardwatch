@@ -3,12 +3,49 @@ import { CREDIT_CARDS_DATA } from '../data/cards';
 import { validateCard, validateAllCards } from '../utils/cardValidator';
 
 describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
-  it('should validate all 21 cards with a 100% accuracy score and zero critical errors', () => {
+  it('should validate all cards with a 100% accuracy score and zero critical errors', () => {
     const report = validateAllCards(CREDIT_CARDS_DATA);
-    expect(report.totalCardsAudited).toBe(21);
-    expect(report.validCardsCount).toBe(21);
+    expect(report.totalCardsAudited).toBe(CREDIT_CARDS_DATA.length);
+    expect(report.validCardsCount).toBe(CREDIT_CARDS_DATA.length);
     expect(report.hasErrors).toBe(false);
     expect(report.accuracyScore).toBe(100);
+  });
+
+  it('should verify exact audited facts for HDFC Millennia', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'hdfc-millennia');
+    expect(card).toBeDefined();
+    expect(card?.annualFee).toBe(1000);
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.loungeSpendCondition).toContain('₹1,00,000');
+    expect(card?.cashbackRate).toContain('5%');
+    expect(card?.rewardPointValue).toContain('1 CashPoint = ₹1.00');
+  });
+
+  it('should verify exact audited facts for SimplyCLICK SBI Card', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'sbi-simplyclick');
+    expect(card).toBeDefined();
+    expect(card?.annualFee).toBe(499);
+    expect(card?.domesticLoungesPerQuarter).toBe(0);
+    expect(card?.welcomeBenefit).toContain('Amazon');
+    expect(card?.cashbackRate).toContain('10 Reward Points');
+  });
+
+  it('should verify exact audited facts for BPCL SBI Card OCTANE', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'sbi-bpcl-octane');
+    expect(card).toBeDefined();
+    expect(card?.annualFee).toBe(1499);
+    expect(card?.headlineBenefit).toContain('7.25%');
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.rewardPointValue).toContain('BPCL petrol pumps');
+  });
+
+  it('should verify exact audited facts for SBI Card PRIME', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'sbi-prime');
+    expect(card).toBeDefined();
+    expect(card?.annualFee).toBe(2999);
+    expect(card?.domesticLoungesPerQuarter).toBe(2);
+    expect(card?.internationalLoungesPerYear).toBe(4);
+    expect(card?.welcomeBenefit).toContain('₹3,000');
   });
 
   it('should ensure all Lifetime Free (LTF) cards have strictly ₹0 joining and annual fees', () => {

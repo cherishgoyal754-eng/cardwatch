@@ -65,6 +65,23 @@ export function identifyCardsInQuery(query: string, cards: CreditCard[] = CREDIT
     'idfc-first-millennia': ['idfc millennia', 'first millennia'],
     'swiggy-hdfc': ['swiggy hdfc', 'swiggy card', 'hdfc swiggy', 'swiggy credit card'],
     'hsbc-live-plus': ['hsbc live', 'live+', 'live plus', 'hsbc live plus', 'hsbc card', 'hsbc'],
+    'hdfc-millennia': ['millennia', 'hdfc millennia', 'millenia'],
+    'hdfc-moneyback-plus': ['moneyback', 'moneyback+', 'moneyback plus', 'hdfc moneyback'],
+    'hdfc-diners-privilege': ['diners privilege', 'diners club privilege', 'hdfc privilege'],
+    'hdfc-freedom': ['freedom', 'hdfc freedom', 'freedom card'],
+    'sbi-simplyclick': ['simplyclick', 'simply click', 'sbi click', 'sbi simplyclick'],
+    'sbi-prime': ['sbi prime', 'card prime', 'sbi card prime', 'prime card'],
+    'sbi-bpcl-octane': ['bpcl octane', 'bpcl sbi', 'sbi octane', 'octane'],
+    'sbi-irctc': ['sbi irctc', 'irctc card', 'irctc rupay'],
+    'hdfc-marriott-bonvoy': ['marriott bonvoy', 'marriott hdfc', 'bonvoy card'],
+    'axis-myzone': ['axis myzone', 'my zone', 'myzone'],
+    'icici-coral': ['icici coral', 'coral card'],
+    'icici-rubyx': ['icici rubyx', 'rubyx card'],
+    'icici-emeralde-private': ['emeralde', 'emeralde private', 'icici emeralde'],
+    'icici-makemytrip': ['makemytrip icici', 'mmt icici', 'icici makemytrip'],
+    'axis-airtel': ['airtel axis', 'axis airtel'],
+    'axis-ace': ['axis ace', 'ace card', 'google pay ace'],
+    'sbi-air-india': ['air india sbi', 'sbi air india'],
   };
 
   for (const card of cards) {
@@ -245,6 +262,103 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
     } else {
       const cb = Math.round(amount * 0.01);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Flipkart Axis, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% return).`;
+    }
+  } else if (card.id === 'hdfc-millennia') {
+    const isPartner = lowerCat.includes('amazon') || lowerCat.includes('flipkart') || lowerCat.includes('myntra') || lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('tata cliq') || lowerCat.includes('uber') || lowerCat.includes('bookmyshow') || lowerCat.includes('cult') || lowerCat.includes('sony');
+    if (isPartner) {
+      const cb = Math.min(1000, Math.round(amount * 0.05));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on partner apps with HDFC Millennia, you will earn ${cb.toLocaleString('en-IN')} CashPoints (worth ₹${cb.toLocaleString('en-IN')} at 1 CP = ₹1 statement credit, capped at 1,000 CP/month).`;
+    } else {
+      const cb = Math.min(1000, Math.round(amount * 0.01));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with HDFC Millennia, you will earn ${cb.toLocaleString('en-IN')} CashPoints (worth ₹${cb.toLocaleString('en-IN')} at 1% return, capped at 1,000 CP/month).`;
+    }
+  } else if (card.id === 'hdfc-moneyback-plus') {
+    const is10X = lowerCat.includes('amazon') || lowerCat.includes('bigbasket') || lowerCat.includes('flipkart') || lowerCat.includes('reliance') || lowerCat.includes('swiggy');
+    if (is10X) {
+      const points = Math.min(2500, Math.round((amount / 200) * 20));
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on 10X partner brands with HDFC MoneyBack+, you will earn ${points.toLocaleString('en-IN')} CashPoints (worth ₹${val.toLocaleString('en-IN')} at 1 CP = ₹0.25, up to 2,500 CP/month).`;
+    } else {
+      const points = Math.round((amount / 200) * 2);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with HDFC MoneyBack+, you will earn ${points.toLocaleString('en-IN')} CashPoints (worth ₹${val.toLocaleString('en-IN')}).`;
+    }
+  } else if (card.id === 'hdfc-diners-privilege') {
+    if (lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('dining')) {
+      const points = Math.min(2500, Math.round((amount / 200) * 20));
+      const val = Math.round(points * 0.50);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy/Zomato with HDFC Diners Privilege, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth up to ₹${val.toLocaleString('en-IN')} on SmartBuy travel at 1 RP = ₹0.50).`;
+    } else {
+      const points = Math.round((amount / 200) * 4);
+      const val = Math.round(points * 0.50);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with HDFC Diners Privilege, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth up to ₹${val.toLocaleString('en-IN')} on SmartBuy flights & hotels).`;
+    }
+  } else if (card.id === 'sbi-simplyclick') {
+    const is10X = lowerCat.includes('apollo') || lowerCat.includes('bookmyshow') || lowerCat.includes('cleartrip') || lowerCat.includes('domino') || lowerCat.includes('myntra') || lowerCat.includes('swiggy') || lowerCat.includes('yatra') || lowerCat.includes('tata cliq');
+    if (is10X) {
+      const points = Math.round((amount / 100) * 10);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on partner brands with SimplyCLICK SBI, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 4 RP = ₹1).`;
+    } else if (lowerCat.includes('online') || lowerCat.includes('shopping')) {
+      const points = Math.min(10000, Math.round((amount / 100) * 5));
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} online with SimplyCLICK SBI, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 5X rewards, capped at 10,000 pts/month).`;
+    } else {
+      const points = Math.round((amount / 100) * 1);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} offline with SimplyCLICK SBI, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')}).`;
+    }
+  } else if (card.id === 'sbi-prime') {
+    if (lowerCat.includes('dining') || lowerCat.includes('grocer') || lowerCat.includes('departmental') || lowerCat.includes('movie')) {
+      const points = Math.min(7500, Math.round((amount / 100) * 10));
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on dining/groceries/movies with SBI Card PRIME, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 2.5% return, capped at 7,500 pts/month).`;
+    } else if (lowerCat.includes('utility') || lowerCat.includes('bill')) {
+      const points = Math.min(3000, Math.round((amount / 100) * 20));
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on utilities with SBI Card PRIME, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 5% return, capped at 3,000 pts/month).`;
+    } else {
+      const points = Math.round((amount / 100) * 2);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with SBI Card PRIME, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')}).`;
+    }
+  } else if (card.id === 'sbi-bpcl-octane') {
+    if (lowerCat.includes('fuel') || lowerCat.includes('petrol') || lowerCat.includes('bpcl') || lowerCat.includes('diesel')) {
+      const eligibleSpend = Math.min(10000, amount);
+      const points = Math.min(2500, Math.round((eligibleSpend / 100) * 25));
+      const val = Math.round(points * 0.25);
+      const surchargeSaved = Math.min(100, Math.round(amount * 0.01));
+      const totalReturn = val + surchargeSaved;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on BPCL fuel with BPCL SBI OCTANE, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')}) plus ₹${surchargeSaved} surcharge waiver, giving ₹${totalReturn.toLocaleString('en-IN')} total valueback (7.25% return).`;
+    } else {
+      const points = Math.round((amount / 100) * 1);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with BPCL SBI OCTANE, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')}).`;
+    }
+  } else if (card.id === 'axis-ace') {
+    if (lowerCat.includes('utility') || lowerCat.includes('bill') || lowerCat.includes('recharge') || lowerCat.includes('electricity') || lowerCat.includes('google pay') || lowerCat.includes('gpay')) {
+      const cb = Math.min(500, Math.round(amount * 0.05));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on bill payments via Google Pay with Axis ACE, you will earn ₹${cb.toLocaleString('en-IN')} cashback (5% return, capped at ₹500/month).`;
+    } else if (lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('ola')) {
+      const cb = Math.min(500, Math.round(amount * 0.04));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy/Zomato/Ola with Axis ACE, you will earn ₹${cb.toLocaleString('en-IN')} cashback (4% return).`;
+    } else {
+      const cb = Math.round(amount * 0.015);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Axis ACE, you will earn ₹${cb.toLocaleString('en-IN')} unlimited cashback (1.5% flat return everywhere).`;
+    }
+  } else if (card.id === 'axis-airtel') {
+    if (lowerCat.includes('airtel') || lowerCat.includes('mobile') || lowerCat.includes('dth') || lowerCat.includes('broadband')) {
+      const cb = Math.min(250, Math.round(amount * 0.25));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Airtel bills via Airtel Thanks with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (25% return, capped at ₹250/month).`;
+    } else if (lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('bigbasket')) {
+      const cb = Math.min(500, Math.round(amount * 0.10));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy/Zomato/BigBasket with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (10% return, capped at ₹500/month).`;
+    } else if (lowerCat.includes('utility') || lowerCat.includes('bill') || lowerCat.includes('electricity') || lowerCat.includes('gas')) {
+      const cb = Math.min(250, Math.round(amount * 0.10));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on utility bills via Airtel Thanks with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (10% return, capped at ₹250/month).`;
+    } else {
+      const cb = Math.round(amount * 0.01);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (1% unlimited return).`;
     }
   } else {
     const cb = Math.round(amount * 0.02);

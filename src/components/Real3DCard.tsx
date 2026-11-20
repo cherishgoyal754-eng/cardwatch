@@ -83,33 +83,68 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return makeCardVisuals('/cards/hdfc-regalia-gold-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
-  // 6. HDFC Diners Club Black Metal Edition (Diners Globe Emblem)
+  // 6. HDFC Diners Club Privilege (Violet/Purple World Map)
+  if (id === 'hdfc-diners-privilege' || name.includes('privilege')) {
+    return makeCardVisuals('/cards/hdfc-diners-privilege-front.png', '/cards/hdfc-millennia-back.png', false, false);
+  }
+
+  // 7. Marriott Bonvoy HDFC Bank Diners Club (Matte Black & Gold)
+  if (id.includes('marriott') || name.includes('marriott') || name.includes('bonvoy')) {
+    return makeCardVisuals('/cards/hdfc-marriott-bonvoy-front.png', '/cards/hdfc-millennia-back.png', false, false);
+  }
+
+  // 8. HDFC Diners Club Black Metal Edition (Diners Globe Emblem)
   if (id === 'hdfc-diners-black' || name.includes('diners')) {
     return makeCardVisuals('/cards/hdfc-diners-black-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
-  // 7. Tata Neu Infinity HDFC RuPay (Purple 'N' Emblem)
+  // 9. Tata Neu Infinity HDFC RuPay (Purple 'N' Emblem)
   if (id.includes('tata-neu') || name.includes('neu')) {
     return makeCardVisuals('/cards/tata-neu-infinity-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
-  // 8. Swiggy HDFC Bank (Vibrant Sunset Gradient)
+  // 10. Swiggy HDFC Bank (Vibrant Sunset Gradient)
   if (id.includes('swiggy') || name.includes('swiggy')) {
     return makeCardVisuals('/cards/swiggy-hdfc-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
-  // 9. HDFC Millennia (Cobalt Mosaic Pattern)
+  // 11. HDFC Millennia (Cobalt Mosaic Pattern)
   if (id.includes('millennia') && !id.includes('idfc')) {
     return makeCardVisuals('/cards/hdfc-millennia-front.png', '/cards/hdfc-millennia-back.png', false, false);
   }
 
-  // 10. SBI Card SimplySAVE (Blue Mandala Pattern)
+  // 12. SBI Card SimplyCLICK (Emerald Green Mandala Pattern)
+  if (id.includes('simplyclick') || name.includes('simplyclick') || name.includes('simply click')) {
+    return makeCardVisuals('/cards/sbi-simplyclick-front.png', '/cards/sbi-cashback-back.png', false, false);
+  }
+
+  // 13. BPCL SBI Card OCTANE (Black & Molten Gold Swirl)
+  if (id.includes('bpcl') || name.includes('bpcl') || name.includes('octane')) {
+    return makeCardVisuals('/cards/sbi-bpcl-octane-front.png', '/cards/sbi-cashback-back.png', false, false);
+  }
+
+  // 14. SBI Card PRIME (Prismatic Rainbow Mandala on Black)
+  if (id.includes('sbi-prime') || (id.includes('prime') && id.includes('sbi')) || name.includes('sbi card prime')) {
+    return makeCardVisuals('/cards/sbi-prime-front.png', '/cards/sbi-cashback-back.png', false, false);
+  }
+
+  // 15. IRCTC SBI Card RuPay Platinum (Vande Bharat Train Artwork)
+  if (id.includes('irctc') || name.includes('irctc')) {
+    return makeCardVisuals('/cards/sbi-irctc-front.png', '/cards/sbi-cashback-back.png', false, false);
+  }
+
+  // 16. Air India SBI Card Signature (Air India Flying Sun Logo on Blue)
+  if (id.includes('air-india') || name.includes('air india')) {
+    return makeCardVisuals('/cards/sbi-air-india-front.png', '/cards/sbi-cashback-back.png', false, false);
+  }
+
+  // 17. SBI Card SimplySAVE (Blue Mandala Pattern)
   if (id.includes('simplysave') || name.includes('simplysave')) {
     return makeCardVisuals('/cards/sbi-simplysave-front.png', '/cards/sbi-cashback-back.png', false, false);
   }
 
-  // 11. SBI Cashback (Purple & Yellow Chevron)
-  if (id.includes('sbi') || bank.includes('sbi') || name.includes('cashback')) {
+  // 18. SBI Cashback (Purple & Yellow Chevron)
+  if (id === 'sbi-cashback' || name.includes('cashback')) {
     return makeCardVisuals('/cards/sbi-cashback-front.png', '/cards/sbi-cashback-back.png', false, false);
   }
 
@@ -138,18 +173,53 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return makeCardVisuals('/cards/flipkart-axis-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
-  // 17. Kiwi Axis RuPay / Axis ACE
-  if (id.includes('kiwi') || id.includes('ace')) {
+  // 17. Axis Bank ACE (Google Pay Collaboration)
+  if (id.includes('axis-ace') || (id.includes('ace') && !id.includes('space'))) {
+    return makeCardVisuals('/cards/axis-ace-front.png', '/cards/axis-flipkart-back.png', false, false);
+  }
+
+  // 18. Airtel Axis Bank (Black & Crimson Metallic Loop)
+  if (id.includes('airtel') || name.includes('airtel')) {
+    return makeCardVisuals('/cards/axis-airtel-front.png', '/cards/axis-flipkart-back.png', false, false);
+  }
+
+  // 19. Axis Bank MY ZONE (Burgundy Headphones Artwork)
+  if (id.includes('myzone') || id.includes('my-zone') || name.includes('my zone')) {
+    return makeCardVisuals('/cards/axis-myzone-front.png', '/cards/axis-flipkart-back.png', false, false);
+  }
+
+  // 20. Kiwi Axis RuPay
+  if (id.includes('kiwi') || id.includes('kwik')) {
     return makeCardVisuals('/cards/kiwi-axis-rupay-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
-  // 18. ICICI Bank Amazon Pay
+  // 21. ICICI Bank Amazon Pay
   if (id.includes('amazon') || name.includes('amazon')) {
     return makeCardVisuals('/cards/icici-amazon-pay-front.png', '/cards/icici-amazon-pay-back.png', false, false);
   }
 
-  // 19. ICICI Emeralde / Sapphiro
-  if (id.includes('sapphiro') || id.includes('emeralde') || bank.includes('icici')) {
+  // 22. ICICI Bank Coral (Vibrant Orange Gemstone)
+  if (id.includes('coral') || name.includes('coral')) {
+    return makeCardVisuals('/cards/icici-coral-front.png', '/cards/icici-amazon-pay-back.png', false, false);
+  }
+
+  // 23. ICICI Bank Rubyx (Dual Gemstone Design)
+  if (id.includes('rubyx') || name.includes('rubyx')) {
+    return makeCardVisuals('/cards/icici-rubyx-front.png', '/cards/icici-amazon-pay-back.png', false, false);
+  }
+
+  // 24. ICICI Bank Emeralde Private (Emerald Cut Crystal)
+  if (id.includes('emeralde') || name.includes('emeralde')) {
+    return makeCardVisuals('/cards/icici-emeralde-private-front.png', '/cards/icici-amazon-pay-back.png', false, false);
+  }
+
+  // 25. ICICI Bank MakeMyTrip (Travel Skyline on Black)
+  if (id.includes('makemytrip') || id.includes('mmt') || name.includes('makemytrip')) {
+    return makeCardVisuals('/cards/icici-makemytrip-front.png', '/cards/icici-amazon-pay-back.png', false, false);
+  }
+
+  // 26. ICICI Sapphiro
+  if (id.includes('sapphiro') || name.includes('sapphiro') || bank.includes('icici')) {
     return makeCardVisuals('/cards/icici-sapphiro-front.png', '/cards/icici-amazon-pay-back.png', false, false);
   }
 
