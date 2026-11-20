@@ -238,7 +238,32 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return makeCardVisuals('/cards/idfc-first-millennia-front.png', '/cards/idfc-first-wealth-back.png', false, false);
   }
 
-  // 21. IDFC FIRST Bank Wealth (Matte Black Box)
+  // 28. IDFC FIRST Select (Sunset & Convertible Artwork)
+  if (id === 'idfc-first-select' || (id.includes('select') && id.includes('idfc')) || name.includes('first select')) {
+    return makeCardVisuals('/cards/idfc-first-select-front.png', '/cards/idfc-first-wealth-back.png', false, false);
+  }
+
+  // 29. RBL Bank World Safari (Airplane Wing Artwork with 0% Forex)
+  if (id.includes('world-safari') || (id.includes('safari') && id.includes('rbl')) || name.includes('world safari')) {
+    return makeCardVisuals('/cards/rbl-world-safari-front.png', '/cards/axis-flipkart-back.png', false, true);
+  }
+
+  // 30. OneCard Metal (BOBCARD / Partner 16g Metal Card - Vertical)
+  if (id.includes('onecard') || name.includes('onecard') || name.includes('one card')) {
+    return makeCardVisuals('/cards/bobcard-onecard-front.png', '/cards/axis-flipkart-back.png', true, true);
+  }
+
+  // 31. AU Zenith+ Metal (Green Wave Infinite - Vertical)
+  if (id.includes('zenith') || name.includes('zenith')) {
+    return makeCardVisuals('/cards/au-zenith-plus-front.png', '/cards/axis-flipkart-back.png', true, false);
+  }
+
+  // 32. ixigo AU Credit Card (Monument Line Art - Vertical)
+  if (id.includes('ixigo') || name.includes('ixigo')) {
+    return makeCardVisuals('/cards/au-ixigo-front.png', '/cards/axis-flipkart-back.png', true, true);
+  }
+
+  // 33. IDFC FIRST Bank Wealth (Matte Black Box)
   if (id.includes('idfc') || bank.includes('idfc')) {
     return makeCardVisuals('/cards/idfc-first-wealth-front.png', '/cards/idfc-first-wealth-back.png', false, false);
   }

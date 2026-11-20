@@ -84,6 +84,14 @@ export function identifyCardsInQuery(query: string, cards: CreditCard[] = CREDIT
     'axis-neo': ['axis neo', 'neo card', 'axis bank neo'],
     'sbi-air-india': ['air india sbi', 'sbi air india'],
     'icici-hpcl-super-saver': ['icici hpcl', 'hpcl super saver', 'hpcl icici', 'icici fuel card', 'super saver'],
+    'kotak-league-platinum': ['kotak league', 'league platinum', 'kotak platinum'],
+    'kotak-myntra': ['kotak myntra', 'myntra kotak'],
+    'kotak-pvr-inox': ['pvr inox kotak', 'kotak pvr', 'pvr kotak', 'inox kotak'],
+    'rbl-world-safari': ['world safari', 'rbl world safari', 'rbl safari'],
+    'idfc-first-select': ['idfc select', 'first select', 'idfc first select'],
+    'onecard-metal': ['onecard', 'one card', 'bobcard onecard'],
+    'au-zenith-plus': ['au zenith', 'zenith+', 'zenith plus', 'au zenith plus'],
+    'au-ixigo': ['au ixigo', 'ixigo au', 'ixigo card'],
   };
 
   for (const card of cards) {
@@ -431,6 +439,56 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const points = Math.round((amount / 200) * 1);
       const val = Math.round(points * 0.20);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Axis Bank NEO, you will earn ${points.toLocaleString('en-IN')} EDGE Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.1% return).`;
+    }
+  } else if (card.id === 'rbl-world-safari') {
+    if (lowerCat.includes('travel') || lowerCat.includes('flight') || lowerCat.includes('hotel')) {
+      const points = Math.round((amount / 100) * 5);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on travel with RBL Bank World Safari, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 1.25% return).`;
+    } else if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      const savings = Math.round(amount * 0.035);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} overseas with RBL Bank World Safari, you save approx ₹${savings.toLocaleString('en-IN')} via 0% foreign currency markup (zero forex fee). Note: International spends do not earn points.`;
+    } else {
+      const points = Math.round((amount / 100) * 2);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with RBL Bank World Safari, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.5% return).`;
+    }
+  } else if (card.id === 'idfc-first-select') {
+    if (amount > 20000 || lowerCat.includes('birthday')) {
+      const points = Math.round((amount / 150) * 10);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with IDFC FIRST Select (above ₹20k tier), you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 1.67%–2.5% return with never-expiring points).`;
+    } else {
+      const points = Math.round((amount / 150) * 3);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with IDFC FIRST Select, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.75% return).`;
+    }
+  } else if (card.id === 'kotak-pvr-inox') {
+    if (lowerCat.includes('movie') || lowerCat.includes('pvr') || lowerCat.includes('inox') || lowerCat.includes('ticket')) {
+      const discount = Math.round(amount * 0.05);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on PVR INOX movie tickets, you will save ₹${discount} (5% discount), and earn toward 1 free ticket (worth ₹300) per ₹10,000 monthly spend.`;
+    } else if (lowerCat.includes('food') || lowerCat.includes('popcorn') || lowerCat.includes('snack') || lowerCat.includes('beverage')) {
+      const discount = Math.round(amount * 0.20);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on food & beverages at PVR INOX, you will save ₹${discount} (20% instant discount).`;
+    } else {
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with PVR INOX Kotak, every ₹10,000 in monthly spend earns 1 free PVR INOX movie ticket (worth up to ₹300).`;
+    }
+  } else if (card.id === 'au-zenith-plus') {
+    if (lowerCat.includes('dining') || lowerCat.includes('travel') || lowerCat.includes('flight') || lowerCat.includes('hotel')) {
+      const points = Math.round((amount / 100) * 2);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on dining/travel with AU Zenith+, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${points.toLocaleString('en-IN')} at 1:1 redemption value = 2% return).`;
+    } else {
+      const points = Math.round((amount / 100) * 1);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with AU Zenith+, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${points.toLocaleString('en-IN')} at 1:1 redemption value = 1% return).`;
+    }
+  } else if (card.id === 'au-ixigo') {
+    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      const savings = Math.round(amount * 0.035);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} overseas with ixigo AU, you save approx ₹${savings.toLocaleString('en-IN')} via 0% foreign currency markup (zero forex fee).`;
+    } else {
+      const points = Math.round((amount / 200) * 5);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with ixigo AU, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.625% return).`;
     }
   } else {
     const cb = Math.round(amount * 0.02);

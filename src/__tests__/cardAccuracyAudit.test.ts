@@ -255,4 +255,82 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.diningBenefits).toContain('Zomato');
     expect(card?.officialCircularUrl).toBe('https://www.axis.bank.in/cards/credit-card/axis-bank-neo-credit-card');
   });
+
+  it('should verify exact audited facts for Kotak League Platinum', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'kotak-league-platinum');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(499);
+    expect(card?.annualFee).toBe(499);
+    expect(card?.annualFeeWaiverCondition).toContain('50,000');
+    expect(card?.domesticLoungesPerQuarter).toBe(0);
+    expect(card?.recentChangeAlert?.isDevaluation).toBe(true);
+    expect(card?.cappingDetails).toContain('35,000');
+    expect(card?.movieBenefits).toContain('PVR');
+  });
+
+  it('should verify exact audited facts for Kotak Myntra discontinuation', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'kotak-myntra');
+    expect(card).toBeDefined();
+    expect(card?.status).toBe('discontinued');
+    expect(card?.recentChangeAlert?.badge).toContain('Discontinued');
+    expect(card?.recentChangeAlert?.effectiveDate).toContain('Jul 10, 2025');
+  });
+
+  it('should verify exact audited facts for PVR INOX Kotak', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'kotak-pvr-inox');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(0);
+    expect(card?.annualFee).toBe(499);
+    expect(card?.movieBenefits).toContain('PVR INOX');
+    expect(card?.diningBenefits).toContain('20%');
+  });
+
+  it('should verify exact audited facts for RBL Bank World Safari with 0% forex', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'rbl-world-safari');
+    expect(card).toBeDefined();
+    expect(card?.forexMarkup).toBe(0);
+    expect(card?.joiningFee).toBe(3000);
+    expect(card?.annualFee).toBe(3000);
+    expect(card?.domesticLoungesPerQuarter).toBe(2);
+    expect(card?.loungeSpendCondition).toContain('35,000');
+  });
+
+  it('should verify exact audited facts for IDFC FIRST Select Lifetime Free', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-select');
+    expect(card).toBeDefined();
+    expect(card?.isLifetimeFree).toBe(true);
+    expect(card?.joiningFee).toBe(0);
+    expect(card?.annualFee).toBe(0);
+    expect(card?.domesticLoungesPerQuarter).toBe(2);
+    expect(card?.loungeSpendCondition).toContain('20,000');
+  });
+
+  it('should verify exact audited facts for OneCard Metal RBI halt', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'onecard-metal');
+    expect(card).toBeDefined();
+    expect(card?.isLifetimeFree).toBe(true);
+    expect(card?.status).toBe('discontinued');
+    expect(card?.recentChangeAlert?.badge).toContain('RBI');
+    expect(card?.forexMarkup).toBe(1.0);
+  });
+
+  it('should verify exact audited facts for AU Zenith+ Super Premium and Dec 1 2026 revisions', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'au-zenith-plus');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(4999);
+    expect(card?.annualFee).toBe(4999);
+    expect(card?.annualFeeWaiverCondition).toContain('8,00,000');
+    expect(card?.loungeSpendCondition).toContain('EXEMPT');
+    expect(card?.recentChangeAlert?.effectiveDate).toContain('Dec 1, 2026');
+  });
+
+  it('should verify exact audited facts for ixigo AU Lifetime Free & 0% Forex', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'au-ixigo');
+    expect(card).toBeDefined();
+    expect(card?.isLifetimeFree).toBe(true);
+    expect(card?.forexMarkup).toBe(0);
+    expect(card?.domesticLoungesPerQuarter).toBe(2);
+    expect(card?.loungeSpendCondition).toContain('50,000');
+    expect(card?.recentChangeAlert?.effectiveDate).toContain('Apr 13, 2026');
+  });
 });
