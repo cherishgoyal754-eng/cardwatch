@@ -374,6 +374,20 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const val = Math.round(points * 0.25);
       text = `On spending ₹${amount.toLocaleString('en-IN')} on domestic retail with ICICI Bank Rubyx, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.5% value back).`;
     }
+  } else if (card.id === 'icici-emeralde-private') {
+    if (lowerCat.includes('hotel') && lowerCat.includes('ishop')) {
+      const points = Math.min(18000, Math.round((amount / 200) * 72));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on hotels via iShop with Emeralde Private Metal, you will earn up to ${points.toLocaleString('en-IN')} accelerated Reward Points (12X points, worth up to ₹${points.toLocaleString('en-IN')} on travel, capped at 18k pts/mo).`;
+    } else if (lowerCat.includes('flight') && lowerCat.includes('ishop')) {
+      const points = Math.min(18000, Math.round((amount / 200) * 36));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on flights via iShop with Emeralde Private Metal, you will earn up to ${points.toLocaleString('en-IN')} accelerated Reward Points (6X points, worth up to ₹${points.toLocaleString('en-IN')} on travel, capped at 18k pts/mo).`;
+    } else if (lowerCat.includes('grocery') || lowerCat.includes('utility') || lowerCat.includes('education')) {
+      const points = Math.min(1000, Math.round((amount / 200) * 6));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on groceries/utilities/education with Emeralde Private Metal, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth up to ₹${points.toLocaleString('en-IN')}, capped at 1,000 pts/cycle).`;
+    } else {
+      const points = Math.round((amount / 200) * 6);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with ICICI Bank Emeralde Private Metal, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth up to ₹${points.toLocaleString('en-IN')} at up to 3% return when redeemed for flights, hotels, or luxury vouchers).`;
+    }
   } else {
     const cb = Math.round(amount * 0.02);
     text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you will earn approx ₹${cb.toLocaleString('en-IN')} in rewards based on its ${card.cashbackRate} reward rate.`;

@@ -163,4 +163,21 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.fuelSurchargeWaiver).toContain('₹400 and ₹4,000');
     expect(card?.officialCircularUrl).toBe('https://www.icici.bank.in/personal-banking/cards/credit-card/rubyx-credit-card');
   });
+
+  it('should verify exact audited facts for ICICI Bank Emeralde Private Metal', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'icici-emeralde-private');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(12499);
+    expect(card?.annualFee).toBe(12499);
+    expect(card?.forexMarkup).toBe(2.0);
+    expect(card?.domesticLoungesPerQuarter).toBe('Unlimited');
+    expect(card?.internationalLoungesPerYear).toBe('Unlimited');
+    expect(card?.loungeSpendCondition).toContain('₹75,000');
+    expect(card?.movieBenefits).toContain('₹750');
+    expect(card?.golfBenefits).toContain('Unlimited complimentary golf');
+    expect(card?.fuelSurchargeWaiver).toContain('₹1,00,000');
+    expect(card?.annualFeeWaiverCondition).toContain('10,00,000');
+    expect(card?.recentChangeAlert?.isDevaluation).toBe(true);
+    expect(card?.recentChangeAlert?.description).toContain('Dec 15, 2026');
+  });
 });
