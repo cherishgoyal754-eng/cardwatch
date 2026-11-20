@@ -307,7 +307,7 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.joiningFee).toBe(0);
     expect(card?.annualFee).toBe(0);
     expect(card?.forexMarkup).toBe(0);
-    expect(card?.loungeNetwork).toContain('EliteAssist');
+    expect(card?.loungeNetwork).toContain('DreamFolks');
     expect(card?.domesticLoungesPerQuarter).toBe(2);
     expect(card?.loungeSpendCondition).toContain('20,000');
   });
@@ -391,19 +391,18 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(kwik?.headlineBenefit).toContain('DISCONTINUED');
 
     const atlas = CREDIT_CARDS_DATA.find(c => c.id === 'axis-atlas');
-    expect(atlas?.status).toBe('discontinued');
-    expect(atlas?.headlineBenefit).toContain('ISSUANCE PAUSED');
-    expect(atlas?.rewardPointValue).toContain('2:1');
+    expect(atlas?.status).toBe('active');
+    expect(atlas?.rewardPointValue).toContain('1:2');
   });
 
   it('should verify 0% forex markup across IDFC FIRST portfolio', () => {
     const wealth = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-wealth');
     expect(wealth?.forexMarkup).toBe(0);
-    expect(wealth?.loungeNetwork).toContain('EliteAssist');
+    expect(wealth?.loungeNetwork).toContain('DreamFolks');
 
     const select = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-select');
     expect(select?.forexMarkup).toBe(0);
-    expect(select?.loungeNetwork).toContain('EliteAssist');
+    expect(select?.loungeNetwork).toContain('DreamFolks');
 
     const millennia = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-millennia');
     expect(millennia?.forexMarkup).toBe(0);
@@ -423,5 +422,43 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     const scapia = CREDIT_CARDS_DATA.find(c => c.id === 'scapia-federal');
     expect(scapia?.merchantExclusions.some(e => e.includes('Insurance'))).toBe(true);
     expect(scapia?.merchantExclusions.some(e => e.includes('Utility'))).toBe(true);
+  });
+
+  it('should verify all 2026 special corrections required by user', () => {
+    // 1. HDFC Millennia: SmartBuy travel redemption is ₹0.30 per point, not ₹1
+    const millennia = CREDIT_CARDS_DATA.find(c => c.id === 'hdfc-millennia');
+    expect(millennia?.rewardPointValue).toContain('₹0.30');
+    expect(millennia?.rewardConversionDetails).toContain('₹0.30');
+
+    // 2. Amex Platinum Travel: ₹4 lakh milestone still awards 10,000 MR points
+    const platTravel = CREDIT_CARDS_DATA.find(c => c.id === 'amex-plat-travel');
+    expect(platTravel?.milestoneBenefits).toContain('10,000');
+
+    // 3. ICICI BookMyShow eligibility: 1 April 2026, not 1 February 2026
+    const coral = CREDIT_CARDS_DATA.find(c => c.id === 'icici-coral');
+    const rubyx = CREDIT_CARDS_DATA.find(c => c.id === 'icici-rubyx');
+    const sapphiro = CREDIT_CARDS_DATA.find(c => c.id === 'icici-sapphiro');
+    const hpcl = CREDIT_CARDS_DATA.find(c => c.id === 'icici-hpcl-super-saver');
+    expect(coral?.cappingDetails).toContain('1 April 2026');
+    expect(rubyx?.cappingDetails).toContain('1 April 2026');
+    expect(sapphiro?.cappingDetails).toContain('1 April 2026');
+    expect(hpcl?.cappingDetails).toContain('1 April 2026');
+
+    // 4. IDFC FIRST: Bank clarified international transactions continue to earn reward points
+    const wealth = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-wealth');
+    expect(wealth?.cappingDetails).toContain('clarified international transactions continue to earn reward points');
+
+    // 5. PVR INOX Kotak: Specify complimentary entry to eligible in-cinema lounges, with purchases chargeable
+    const pvrInox = CREDIT_CARDS_DATA.find(c => c.id === 'kotak-pvr-inox');
+    expect(pvrInox?.loungeSpendCondition).toContain('in-cinema lounges');
+    expect(pvrInox?.loungeSpendCondition).toContain('chargeable');
+
+    // 6. Axis Magnus: Existing ₹50,000 spend requirement is an established 2024 policy, not a new Aug 2026 change
+    const magnus = CREDIT_CARDS_DATA.find(c => c.id === 'axis-magnus');
+    expect(magnus?.loungeSpendCondition).toContain('2024');
+
+    // 7. Swiggy HDFC: Migration is phased and non-automatic for all cardholders simultaneously
+    const swiggy = CREDIT_CARDS_DATA.find(c => c.id === 'swiggy-hdfc');
+    expect(swiggy?.cappingDetails).toContain('phased individual migration');
   });
 });

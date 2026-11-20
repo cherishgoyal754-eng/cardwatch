@@ -29,6 +29,36 @@ export type CardCategory =
 
 export type CardNetwork = 'Visa' | 'Mastercard' | 'RuPay' | 'Amex' | 'Diners Club';
 
+export type VerificationStatus =
+  | 'Verified Active'
+  | 'Announced - Not Yet Effective'
+  | 'Discontinued'
+  | 'Conflicting Sources'
+  | 'Unverified'
+  | 'Outdated';
+
+export type SourceType =
+  | 'Issuer Circular'
+  | 'KFS'
+  | 'MITC'
+  | 'Public Report'
+  | 'Unconfirmed Claim';
+
+export interface CardBenefitAuditRecord {
+  cardId: string;
+  cardName: string;
+  benefitName: string;
+  previousValue: string;
+  currentValue: string;
+  announcementDate: string;
+  effectiveDate: string;
+  sourceUrl: string;
+  sourceType: SourceType;
+  lastVerifiedDate: string;
+  verificationStatus: VerificationStatus;
+  notes?: string;
+}
+
 export interface CardChangeHistory {
   date: string; // Effective enforcement date
   announcedDate?: string; // Date when circular or notification was sent to cardholders
@@ -42,7 +72,10 @@ export interface CardChangeHistory {
   circularPdfUrl?: string;
   severity: 'critical' | 'high' | 'medium' | 'low' | 'positive';
   source?: string;
+  sourceType?: SourceType;
   syncedAt?: string;
+  verificationStatus?: VerificationStatus;
+  isUnverified?: boolean;
 }
 
 export interface CreditCard {
@@ -110,6 +143,7 @@ export interface CreditCard {
     description: string;
   };
   changeHistory: CardChangeHistory[];
+  benefitAudits?: CardBenefitAuditRecord[];
 
   tags: CardCategory[];
   suitableFor: string[];

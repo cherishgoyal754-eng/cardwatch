@@ -250,7 +250,8 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
     }
   } else if (card.id === 'hsbc-live-plus') {
     if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
-      text = `HSBC Live+ does not earn cashback on international transactions (discontinued effective July 26, 2026). Standard 1.99% forex markup applies.`;
+      const cb = Math.round(amount * 0.015);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} internationally with your HSBC Live+ card, you earn ₹${cb.toLocaleString('en-IN')} base cashback (1.5% return) with a 1.99% forex markup. (Note: Reports claiming international exclusion from 1.5% cashback remain unverified by an official HSBC circular).`;
     } else if (lowerCat.includes('dining') || lowerCat.includes('restaurant') || lowerCat.includes('food') || lowerCat.includes('grocer') || lowerCat.includes('blinkit') || lowerCat.includes('swiggy') || lowerCat.includes('zomato')) {
       const cb = Math.min(1200, Math.round(amount * 0.10));
       text = `On spending ₹${amount.toLocaleString('en-IN')} on dining & groceries with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (10% accelerated cashback, capped at ₹1,200/month).`;
@@ -261,7 +262,7 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
   } else if (card.id === 'swiggy-hdfc') {
     if (lowerCat.includes('swiggy') || lowerCat.includes('food') || lowerCat.includes('instamart') || lowerCat.includes('dineout')) {
       const cb = amount >= 249 ? Math.min(1500, Math.round(amount * 0.10)) : Math.round(amount * 0.01);
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback in Swiggy Money (10% return on orders ₹249+, capped at ₹1,500/cycle). Note: HDFC Bank is phasing out this card through March 2027 (migrating to Swiggy Ornge/BLCK).`;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback in Swiggy Money (10% return on orders ₹249+, capped at ₹1,500/cycle). Note: HDFC Bank is phasing out new applications; existing cardholders undergo a phased migration (through March 2027) upon individual notice (not automatic for all cardholders simultaneously).`;
     } else {
       const cb = Math.round(amount * 0.01);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% return).`;
@@ -278,13 +279,29 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Flipkart Axis, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% return).`;
     }
   } else if (card.id === 'hdfc-millennia') {
-    const isPartner = lowerCat.includes('amazon') || lowerCat.includes('flipkart') || lowerCat.includes('myntra') || lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('tata cliq') || lowerCat.includes('uber') || lowerCat.includes('bookmyshow') || lowerCat.includes('cult') || lowerCat.includes('sony');
-    if (isPartner) {
-      const cb = Math.min(1000, Math.round(amount * 0.05));
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on partner apps with HDFC Millennia, you will earn ${cb.toLocaleString('en-IN')} CashPoints (worth ₹${cb.toLocaleString('en-IN')} at 1 CP = ₹1 statement credit, capped at 1,000 CP/month).`;
-    } else {
+    if (lowerCat.includes('flight') || lowerCat.includes('hotel') || lowerCat.includes('smartbuy') || lowerCat.includes('travel')) {
       const cb = Math.min(1000, Math.round(amount * 0.01));
-      text = `On spending ₹${amount.toLocaleString('en-IN')} with HDFC Millennia, you will earn ${cb.toLocaleString('en-IN')} CashPoints (worth ₹${cb.toLocaleString('en-IN')} at 1% return, capped at 1,000 CP/month).`;
+      const travelVal = Math.round(cb * 0.30);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on travel with HDFC Millennia, you earn ${cb.toLocaleString('en-IN')} CashPoints. Note: When redeemed for flights and hotels on SmartBuy, 1 CashPoint = ₹0.30 (worth ₹${travelVal.toLocaleString('en-IN')}); for direct statement balance credit, 1 CashPoint = ₹1.00 (worth ₹${cb.toLocaleString('en-IN')}, min 500 CP).`;
+    } else {
+      const isPartner = lowerCat.includes('amazon') || lowerCat.includes('flipkart') || lowerCat.includes('myntra') || lowerCat.includes('swiggy') || lowerCat.includes('zomato') || lowerCat.includes('tata cliq') || lowerCat.includes('uber') || lowerCat.includes('bookmyshow') || lowerCat.includes('cult') || lowerCat.includes('sony');
+      if (isPartner) {
+        const cb = Math.min(1000, Math.round(amount * 0.05));
+        text = `On spending ₹${amount.toLocaleString('en-IN')} on partner apps with HDFC Millennia, you will earn ${cb.toLocaleString('en-IN')} CashPoints (worth ₹${cb.toLocaleString('en-IN')} at 1 CP = ₹1 statement credit, capped at 1,000 CP/month; or ₹${Math.round(cb * 0.30)} at ₹0.30/point for SmartBuy flights/hotels).`;
+      } else {
+        const cb = Math.min(1000, Math.round(amount * 0.01));
+        text = `On spending ₹${amount.toLocaleString('en-IN')} with HDFC Millennia, you will earn ${cb.toLocaleString('en-IN')} CashPoints (worth ₹${cb.toLocaleString('en-IN')} at 1% return for statement credit, capped at 1,000 CP/month; ₹0.30/point for SmartBuy travel).`;
+      }
+    }
+  } else if (card.id === 'idfc-first-wealth' || card.id === 'idfc-first-select' || card.id === 'idfc-first-millennia') {
+    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      const points = Math.round((amount / 150) * 3);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} internationally with ${card.name}, you enjoy 0.0% forex markup and earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 1 RP = ₹0.25). IDFC FIRST clarified that international transactions continue to earn reward points.`;
+    } else {
+      const points = Math.round((amount / 150) * 3);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you earn approx ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')}).`;
     }
   } else if (card.id === 'hdfc-moneyback-plus') {
     const is10X = lowerCat.includes('amazon') || lowerCat.includes('bigbasket') || lowerCat.includes('flipkart') || lowerCat.includes('reliance') || lowerCat.includes('swiggy');
@@ -616,6 +633,67 @@ export function analyzeMonthlyExpenses(query: string, cards: CreditCard[] = CRED
 export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[] = CREDIT_CARDS_DATA): AIResponse {
   const query = rawQuery.trim();
   const lower = query.toLowerCase();
+
+  // Check for queries regarding specific unverified claims
+  if (
+    lower.includes('dcc') ||
+    lower.includes('markup') ||
+    lower.includes('accor') ||
+    lower.includes('transfer ratio') ||
+    lower.includes('paused') ||
+    lower.includes('upi limit') ||
+    lower.includes('spa') ||
+    lower.includes('fee waiver') ||
+    lower.includes('exclude') ||
+    lower.includes('exclusion') ||
+    lower.includes('unverified')
+  ) {
+    if (lower.includes('infinia') && (lower.includes('dcc') || lower.includes('1.75') || lower.includes('markup'))) {
+      return {
+        text: `### **HDFC Infinia Metal — DCC Markup Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Reports claiming a 1.75% Dynamic Currency Conversion (DCC) fee on HDFC Infinia Metal remain unconfirmed by an official HDFC Bank MITC or circular. HDFC Bank charges standard forex markup (2.0%) on foreign currency transactions.`,
+      };
+    }
+    if (lower.includes('magnus') && (lower.includes('dcc') || lower.includes('2%') || lower.includes('2.0%') || lower.includes('markup'))) {
+      return {
+        text: `### **Axis Magnus — DCC Markup Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Reports claiming a 2.0% DCC markup on Axis Bank Magnus remain unverified by an official Axis Bank circular or MITC. Standard forex markup is 2.0%.`,
+      };
+    }
+    if (lower.includes('atlas') && (lower.includes('accor') || lower.includes('2:1') || lower.includes('ratio'))) {
+      return {
+        text: `### **Axis ATLAS — Accor Transfer Ratio Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** The official published transfer ratio between Axis EDGE Miles and Accor ALL remains **1:2** (1 EDGE Mile = 2 Accor points). Claims of a 2:1 devaluation remain unverified by an official Axis Bank circular.`,
+      };
+    }
+    if (lower.includes('atlas') && (lower.includes('pause') || lower.includes('discontinued') || lower.includes('halt'))) {
+      return {
+        text: `### **Axis ATLAS — Application Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Claims of a permanent pause on Axis ATLAS applications are unverified by official Axis Bank circulars. The card remains active for cardholders with standard benefits.`,
+      };
+    }
+    if ((lower.includes('kwik') || lower.includes('kiwi')) && (lower.includes('1 lakh') || lower.includes('upi limit') || lower.includes('daily limit'))) {
+      return {
+        text: `### **Axis Kwik — Daily UPI Limit Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Daily transaction limits on UPI transactions follow standard NPCI and linked bank account guidelines; reports of a specific ₹1 Lakh daily cap on Axis Kwik are unverified. Note that the Axis-Kiwi co-brand partnership was terminated on Sept 6, 2026.`,
+      };
+    }
+    if (lower.includes('flipkart') && (lower.includes('dcc') || lower.includes('3.5') || lower.includes('markup'))) {
+      return {
+        text: `### **Flipkart Axis Bank — DCC Markup Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Claims of a 3.5% DCC markup on Flipkart Axis remain unverified by official Axis Bank terms. Standard forex markup is 3.5%.`,
+      };
+    }
+    if ((lower.includes('live+') || lower.includes('live plus') || lower.includes('hsbc')) && (lower.includes('international') || lower.includes('abroad') || lower.includes('exclude') || lower.includes('exclusion'))) {
+      return {
+        text: `### **HSBC Live+ — International Cashback Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Reports claiming complete exclusion of international transactions from the 1.5% base cashback are unverified by an official HSBC circular. Cardholders earn 1.5% base cashback with a 1.99% forex markup.`,
+      };
+    }
+    if (lower.includes('wealth') && (lower.includes('spa') || lower.includes('eliteassist') || lower.includes('dreamfolks'))) {
+      return {
+        text: `### **IDFC FIRST Wealth — Airport Spa & Lounge Network Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Claims of complete discontinuation of airport spa access and full migration away from DreamFolks remain unverified by official IDFC FIRST KFS circulars. Domestic and international lounges unlock on ₹20,000 monthly spend.`,
+      };
+    }
+    if (lower.includes('safari') && (lower.includes('3 lakh') || lower.includes('waiver') || lower.includes('fee waiver'))) {
+      return {
+        text: `### **RBL World Safari — Annual Fee Waiver Status**\n\n• **Status:** **Unverified**\n• **Official Fact:** Claims that the ₹3,000 annual fee is automatically waived on ₹3,00,000 annual spend remain unverified in the official RBL Bank MITC. The card features 0% forex markup and spend-linked domestic lounge visits.`,
+      };
+    }
+  }
 
   const matchedCards = identifyCardsInQuery(query, cards);
 
@@ -961,17 +1039,20 @@ Rules:
 3. If asked about a spend amount, calculate the estimated reward return.
 4. Keep the tone friendly, expert, and practical.
 5. STRICT DATA TRUTHFULNESS: Anchor your responses 100% on the verified database below. Never invent outdated or unverified rules.
+   - HDFC Millennia: 1 CashPoint = ₹1.00 for statement balance credit (min 500 CP); 1 CP = ₹0.30 for SmartBuy travel (flights/hotels) and rewards catalogue.
+   - Amex Platinum Travel: Joining and renewal fee ₹5,000 + GST; ₹4 Lakh annual milestone awards 10,000 bonus MR points.
+   - ICICI Cards (Coral, Rubyx, Sapphiro, HPCL Super Saver): BookMyShow quarterly spend hurdle of ₹25,000 takes effect from 1 April 2026 (not 1 Feb 2026).
+   - IDFC FIRST Cards (Wealth, Select, Millennia): 0.0% forex markup; bank clarified that international spends continue to earn reward points.
+   - PVR INOX Kotak: Complimentary entry to eligible in-cinema lounges only (food & beverage purchases are chargeable).
+   - Axis Magnus: ₹50,000 spend requirement in preceding 3 months is an established policy active since 2024. Priority Pass restricted from domestic Indian lounges.
+   - Swiggy HDFC: Migration to Swiggy Ornge/BLCK is phased (through March 2027) upon individual notice and not automatic for all cardholders simultaneously. Legacy cards remain active.
    - Scapia Federal: 0% forex markup, ₹0 annual fee (LTF), domestic lounge access unlocks strictly on spending ₹20,000 in preceding monthly billing cycle.
    - Cashback SBI: 5% online cashback capped at ₹2,000/cycle, 1% offline, 0 complimentary airport lounges.
-   - Axis Magnus: 5:2 partner airline transfer ratio (capped at 500k pts/yr), ₹12,500 fee, BookMyShow BOGO is discontinued, domestic lounge requires ₹50,000 spend in previous 3 months.
-   - HDFC Infinia Metal: 5 RP/₹150 base rate (3.33%), 1 RP = ₹1 on SmartBuy flights/hotels, unlimited domestic & intl lounges with ₹0 spend criteria.
-   - HDFC Regalia Gold: 4 RP/₹150, 1 RP = ₹0.50 on SmartBuy flights/hotels, domestic lounges require ₹60,000 spend in preceding quarter.
-   - Flipkart Axis: 5% on Flipkart/Cleartrip (capped at ₹4k/qtr), 4% on Swiggy/Uber, 0 complimentary airport lounges.
-   - HSBC Live+: 10% on dining, food delivery & groceries (capped at ₹1,000/mo), 1.5% unlimited elsewhere, 1.99% forex.
-   - Swiggy HDFC: 10% on Swiggy (min ₹249, capped at ₹1,500/mo), 5% select online platforms, 0 airport lounges.
-   - Amex Platinum Charge: ₹66,000 + GST non-waivable annual fee, unlimited global Centurion/Priority Pass lounges.
-   - Amex Platinum Travel: Joining fee ₹3,500 + GST, renewal ₹5,000 + GST, 48,000 MR points + ₹10k Taj voucher on ₹4L spend.
-   - IDFC FIRST Millennia: ₹0 LTF, 4 railway lounges/quarter, 0 airport lounges.
+   - HDFC Infinia Metal: 5 RP/₹150 base rate (3.33%), 1 RP = ₹1 on SmartBuy flights/hotels, unlimited domestic & intl lounges with ₹0 spend criteria. SmartBuy brand gift vouchers capped at 3,000 bonus pts/mo.
+   - HDFC Regalia Gold: 5 RP/₹200 base rate, 1 RP = ₹0.50 on SmartBuy flights/hotels, domestic lounges require ₹60,000 spend in preceding quarter.
+   - Flipkart Axis: 5% on Flipkart/Cleartrip (capped at ₹4k/qtr), 7.5% on Myntra (capped at ₹4k/qtr), 4% on Swiggy/Uber, 0 complimentary airport lounges.
+   - HSBC Live+: 10% on dining, food delivery & groceries (capped at ₹1,200/mo), 1.5% unlimited elsewhere, 1.99% forex.
+   - Unverified Claims: Treat claims of Infinia 1.75% DCC markup, Magnus 2.0% DCC markup, Atlas Accor 2:1 transfer ratio, Atlas application pause, Axis Kwik ₹1L daily UPI limit, Flipkart Axis 3.5% DCC markup, HSBC Live+ international cashback exclusion, IDFC Wealth spa discontinuation/lounge migration, and RBL World Safari ₹3L fee waiver as UNVERIFIED. Never state them as confirmed facts.
 
 Reference Indian Cards Database (All 21 Audited & Verified Cards):
 ${cards.map(c => `- ${c.name} (${c.bank}, Fee: ${c.isLifetimeFree ? '₹0 LTF' : '₹' + c.annualFee + ' + 18% GST'}, Waiver: ${c.annualFeeWaiverCondition}): Rewards: ${c.cashbackRate}, Point Value: ${c.rewardPointValue}, Forex: ${c.forexMarkup}%, Lounges: ${c.domesticLoungesPerQuarter} dom/qtr & ${c.internationalLoungesPerYear} intl/yr (Condition: ${c.loungeSpendCondition}), Min Salary: ₹${c.minSalaryMonthly}/mo, Exclusions: ${c.merchantExclusions.slice(0, 3).join(', ')}`).join('\n')}
