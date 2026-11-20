@@ -349,4 +349,25 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.milestoneBenefits).toContain('100,000');
     expect(card?.officialCircularUrl).toBe('https://www.sbicard.com/en/personal/credit-cards/air-india-sbi-signature-card.html');
   });
+
+  it('should verify exact audited facts for MakeMyTrip ICICI Bank Signature Credit Card', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'icici-makemytrip');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(2500);
+    expect(card?.annualFee).toBe(0);
+    expect(card?.status).toBe('discontinued');
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.internationalLoungesPerYear).toBe(1);
+    expect(card?.railwayLoungesPerQuarter).toBe(1);
+    expect(card?.loungeSpendCondition).toContain('75,000');
+    expect(card?.recentChangeAlert?.badge).toContain('Applications Closed');
+    expect(card?.recentChangeAlert?.effectiveDate).toContain('Jan 15, 2026');
+    expect(card?.changeHistory.some(ch => ch.date === 'Jan 15, 2026')).toBe(true);
+    expect(card?.changeHistory.some(ch => ch.date === 'Oct 15, 2025')).toBe(true);
+    expect(card?.changeHistory.some(ch => ch.date === 'Apr 01, 2024')).toBe(true);
+    expect(card?.milestoneBenefits).toContain('1,100');
+    expect(card?.milestoneBenefits).toContain('4,000');
+    expect(card?.officialCircularUrl).toBe('https://www.icici.bank.in/personal-banking/cards/credit-card/makemytrip/signature-credit-card');
+    expect(card?.mitcUrl).toBe('https://www.icici.bank.in/terms-condition/tnc-for-signature-credit-card');
+  });
 });

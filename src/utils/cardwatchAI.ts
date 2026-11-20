@@ -498,6 +498,17 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const points = Math.round((amount / 100) * 4);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Air India SBI Signature, you will earn ${points.toLocaleString('en-IN')} Maharaja Club Points (4 points per ₹100).`;
     }
+  } else if (card.id === 'icici-makemytrip') {
+    if (lowerCat.includes('hotel') || lowerCat.includes('holiday')) {
+      const myCash = Math.round((amount / 200) * 4);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on MakeMyTrip hotel or holiday bookings with MakeMyTrip ICICI Signature, you will earn ${myCash.toLocaleString('en-IN')} myCash (worth ₹${myCash.toLocaleString('en-IN')} at 1 myCash = ₹1.00 on MMT). Note: New card applications are discontinued; existing cards remain active.`;
+    } else if (lowerCat.includes('flight') || lowerCat.includes('airline')) {
+      const myCash = Math.round((amount / 200) * 2);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on MakeMyTrip flights with MakeMyTrip ICICI Signature, you will earn ${myCash.toLocaleString('en-IN')} myCash (worth ₹${myCash.toLocaleString('en-IN')} at 1 myCash = ₹1.00 on MMT). Note: New card applications are discontinued; existing cards remain active.`;
+    } else {
+      const myCash = Math.round((amount / 200) * 1.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with MakeMyTrip ICICI Signature, you will earn ${myCash.toLocaleString('en-IN')} myCash (worth ₹${myCash.toLocaleString('en-IN')} at 1 myCash = ₹1.00 on MMT).`;
+    }
   } else {
     const cb = Math.round(amount * 0.02);
     text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you will earn approx ₹${cb.toLocaleString('en-IN')} in rewards based on its ${card.cashbackRate} reward rate.`;
