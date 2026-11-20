@@ -48,6 +48,19 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.welcomeBenefit).toContain('₹3,000');
   });
 
+  it('should verify exact audited facts for ICICI Bank Coral Credit Card', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'icici-coral');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(500);
+    expect(card?.annualFee).toBe(500);
+    expect(card?.minSalaryMonthly).toBe(20000);
+    expect(card?.loungeSpendCondition).toContain('₹75,000');
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.railwayLoungesPerQuarter).toBe(1);
+    expect(card?.movieBenefits).toContain('25%');
+    expect(card?.fuelSurchargeWaiver).toContain('HPCL');
+  });
+
   it('should ensure all Lifetime Free (LTF) cards have strictly ₹0 joining and annual fees', () => {
     const ltfCards = CREDIT_CARDS_DATA.filter(c => c.isLifetimeFree);
     expect(ltfCards.length).toBeGreaterThan(0);
