@@ -2673,6 +2673,109 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     mitcUrl: "https://campaign.axis.bank.in/generic/terms-and-conditions-myzone.pdf",
   },
   {
+    id: "axis-neo",
+    name: "Axis Bank NEO Credit Card",
+    bank: "Axis Bank",
+    bankLogoText: "AXIS BANK",
+    tier: "Entry Level",
+    network: "RuPay",
+    cardStyle: "purple",
+    cardNumberPreview: "•••• 3819",
+    joiningFee: 250,
+    annualFee: 250,
+    annualFeeWaiverCondition: "Waived on spending ₹1,00,000 or more in an anniversary year (frequently offered Lifetime Free under promotional channels)",
+    isLifetimeFree: false,
+    minSalaryMonthly: 15000,
+    minCibilScore: 700,
+    status: "active",
+    headlineBenefit: "Flat ₹120 Off on Zomato (2x/Mo) • 10% Off on Blinkit • 5% Off Paytm Utilities • 10% Off BookMyShow",
+    cashbackRate: "1 EDGE REWARDS point per ₹200 spent (0.1% base return); instant discount partner perks on Zomato, Blinkit, Paytm & BookMyShow",
+    rewardPointValue: "1 EDGE Point = ₹0.20 against vouchers or product catalogue",
+    rewardConversionDetails: "1 EDGE REWARDS Point = ₹0.20. Points can be redeemed for gift vouchers or merchandise. Points forfeit 30 days after card closure or if minimum amount due is unpaid for >90 days.",
+    forexMarkup: 3.5,
+    fuelSurchargeWaiver: "1% waiver on fuel transactions between ₹400 and ₹4,000 across all petrol pumps in India (capped at ₹400 per month)",
+    domesticLoungesPerQuarter: 0,
+    internationalLoungesPerYear: 0,
+    loungeSpendCondition: "Complimentary airport lounge access is not offered on Axis Bank NEO.",
+    loungeNetwork: "None",
+    loungeGuestAccess: "Charged at standard lounge walk-in fee.",
+    merchantExclusions: [
+      "Gift card purchases (categorized under Gift card with zero rewards)",
+      "Bridge, road, and toll fees (earn zero rewards)",
+      "Utility bill payments & telecom spends",
+      "Wallet reloads & cash advances",
+      "Government services & insurance payments",
+      "Gold & jewellery purchases",
+      "Fuel transactions",
+      "Rent payments (capped at ₹50,000/month, earn no rewards)"
+    ],
+    cappingDetails: "Zomato flat ₹120 discount twice a month on min ₹499 spend (promo code AXISNEO, excludes UPI-linked RuPay). Blinkit 10% off up to ₹250 once a month on min ₹750 spend. Paytm 5% off on utility bills/recharges. BookMyShow 10% off up to ₹100 requires ₹25,000 spend in preceding 3 months (effective Nov 1, 2026, waived for first 3 months).",
+    officialCircularUrl: "https://www.axis.bank.in/cards/credit-card/axis-bank-neo-credit-card",
+    lastVerifiedDate: "2026-11-20",
+    isVerified: true,
+    auditVerificationStatus: 'fully_verified',
+    auditDate: "2026-11-20",
+    rating: 4.1,
+    popularityIndex: 86,
+    recentChangeAlert: {
+      badge: "BookMyShow Spend Rule & DCC Revisions",
+      effectiveDate: "Nov 1, 2026",
+      isDevaluation: true,
+      description: "BookMyShow 10% discount now requires ₹25,000 spend in preceding 3 months (effective Nov 1, 2026). Zomato minimum order raised to ₹499 for ₹120 discount. DCC markup increased to 3.5%."
+    },
+    changeHistory: [
+      {
+        date: "Nov 01, 2026",
+        announcedDate: "Sep 2026",
+        type: "policy_update",
+        title: "BookMyShow 10% Discount Spend Condition: ₹25,000 in 3 Months",
+        summary: "10% BookMyShow movie discount (up to ₹100) now requires at least ₹25,000 card spend over the preceding 3 months (waived for first 3 months for new cards).",
+        oldValue: "10% off on BookMyShow up to ₹100 without spend requirement",
+        newValue: "Requires ₹25,000 spend in previous 3 months to unlock BookMyShow discount",
+        officialRef: "Axis Bank NEO Terms & Conditions (Nov 2026)",
+        severity: "high"
+      },
+      {
+        date: "Aug 28, 2026",
+        announcedDate: "Jul 2026",
+        type: "fee_revision",
+        title: "DCC Markup Raised to 3.5% & Late Payment Tiering",
+        summary: "Dynamic Currency Conversion (DCC) markup increased from 1.5% to 3.5%. Late payment fees tiered up to ₹1,300. Gift cards and bridge/road/toll charges excluded from rewards.",
+        oldValue: "1.5% DCC markup; earlier fee schedule",
+        newValue: "3.5% DCC markup; tiered late fees up to ₹1,300; gift cards and tolls earn 0 rewards",
+        officialRef: "Axis Bank Card Charges Revision Circular 2026",
+        severity: "medium"
+      },
+      {
+        date: "Jul 01, 2025",
+        announcedDate: "May 2025",
+        type: "devaluation",
+        title: "Zomato Minimum Order Raised to ₹499",
+        summary: "Minimum order value to avail the ₹120 Zomato discount increased to ₹499 (twice a month via code AXISNEO, excluding UPI-linked RuPay transactions).",
+        oldValue: "Flat ₹120 off on Zomato on minimum order of ₹200/₹250",
+        newValue: "Flat ₹120 off on Zomato on minimum order of ₹499 (code AXISNEO)",
+        officialRef: "Axis Bank NEO Offer Revisions",
+        severity: "medium"
+      }
+    ],
+    tags: ["dining", "shopping", "movies", "upi", "cashback"],
+    suitableFor: [
+      "Food delivery lovers saving flat ₹120 twice every month on Zomato (orders ₹499+)",
+      "Quick-commerce grocery shoppers getting 10% off on Blinkit (up to ₹250/month on min ₹750 spend)",
+      "Utility bill payers saving 5% via Paytm Utilities and recharges",
+      "Entry-level users looking for a budget or Lifetime-Free credit card with everyday lifestyle perks"
+    ],
+    gstApplicability: "₹250 + 18% GST (Total: ₹295)",
+    welcomeBenefit: "Complimentary welcome vouchers across partner brands like Amazon Pay, Zomato, and Blinkit on initial card spend within 30 days.",
+    renewalBenefit: "Annual fee of ₹250 waived on spending ₹1,00,000 or more in the previous card year.",
+    milestoneBenefits: "Flat ₹120 off on Zomato twice a month (min spend ₹499); 10% off on Blinkit up to ₹250 once a month (min spend ₹750).",
+    movieBenefits: "10% off on BookMyShow up to ₹100 per transaction (requires minimum ₹25,000 spend in preceding 3 months, effective Nov 1, 2026; waived for first 3 months on new cards).",
+    diningBenefits: "Flat ₹120 off on Zomato food orders of ₹499 or more (up to twice a month with promo code AXISNEO); up to 15% discount at partner restaurants under Axis Dining Delights.",
+    golfBenefits: "None",
+    insuranceCoverage: "Zero Lost Card Liability upon prompt reporting.",
+    mitcUrl: "https://campaign.axis.bank.in/generic/terms-and-conditions-neo.pdf",
+  },
+  {
     id: "icici-coral",
     name: "ICICI Bank Coral Credit Card",
     bank: "ICICI Bank",
@@ -3545,6 +3648,14 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
       subline: 'Get 100% discount on the second movie ticket up to ₹200 once every calendar month on District app (requires ₹25,000 spend in preceding 3 months; waived for first 3 months + issuance month for new cards).',
       hasBogo: true,
       score: 7,
+    };
+  }
+  if (id === 'axis-neo') {
+    return {
+      headline: '10% Discount on BookMyShow (Up to ₹100 Off)',
+      subline: 'Get 10% discount up to ₹100 on BookMyShow tickets (requires minimum ₹25,000 spend in preceding 3 months, effective Nov 1, 2026; waived for first 3 months on new cards).',
+      hasBogo: false,
+      score: 5,
     };
   }
   if (id === 'icici-coral' || id === 'icici-hpcl-super-saver') {

@@ -188,7 +188,12 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return makeCardVisuals('/cards/axis-myzone-front.png', '/cards/axis-flipkart-back.png', false, false);
   }
 
-  // 20. Kiwi Axis RuPay
+  // 20. Axis Bank NEO (Online Lifestyle & Dining)
+  if (id === 'axis-neo' || (id.includes('neo') && id.includes('axis')) || name.includes('neo')) {
+    return makeCardVisuals('/cards/axis-neo-front.png', '/cards/axis-flipkart-back.png', false, false);
+  }
+
+  // 21. Kiwi Axis RuPay
   if (id.includes('kiwi') || id.includes('kwik')) {
     return makeCardVisuals('/cards/kiwi-axis-rupay-front.png', '/cards/axis-flipkart-back.png', false, false);
   }

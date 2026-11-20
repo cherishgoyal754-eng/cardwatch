@@ -236,4 +236,23 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.milestoneBenefits).toContain('1,000 EDGE Reward Points');
     expect(card?.officialCircularUrl).toBe('https://www.axis.bank.in/cards/credit-card/axis-bank-my-zone-credit-card');
   });
+
+  it('should verify exact audited facts and 2026 revisions for Axis Bank NEO', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'axis-neo');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(250);
+    expect(card?.annualFee).toBe(250);
+    expect(card?.annualFeeWaiverCondition).toContain('1,00,000');
+    expect(card?.domesticLoungesPerQuarter).toBe(0);
+    expect(card?.loungeSpendCondition).toContain('not offered');
+    expect(card?.cappingDetails).toContain('Zomato');
+    expect(card?.cappingDetails).toContain('Blinkit');
+    expect(card?.cappingDetails).toContain('25,000');
+    expect(card?.cappingDetails).toContain('BookMyShow');
+    expect(card?.recentChangeAlert?.isDevaluation).toBe(true);
+    expect(card?.recentChangeAlert?.badge).toContain('BookMyShow Spend Rule');
+    expect(card?.movieBenefits).toContain('BookMyShow');
+    expect(card?.diningBenefits).toContain('Zomato');
+    expect(card?.officialCircularUrl).toBe('https://www.axis.bank.in/cards/credit-card/axis-bank-neo-credit-card');
+  });
 });

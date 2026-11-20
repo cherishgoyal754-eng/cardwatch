@@ -81,6 +81,7 @@ export function identifyCardsInQuery(query: string, cards: CreditCard[] = CREDIT
     'icici-makemytrip': ['makemytrip icici', 'mmt icici', 'icici makemytrip'],
     'axis-airtel': ['airtel axis', 'axis airtel'],
     'axis-ace': ['axis ace', 'ace card', 'google pay ace'],
+    'axis-neo': ['axis neo', 'neo card', 'axis bank neo'],
     'sbi-air-india': ['air india sbi', 'sbi air india'],
     'icici-hpcl-super-saver': ['icici hpcl', 'hpcl super saver', 'hpcl icici', 'icici fuel card', 'super saver'],
   };
@@ -412,6 +413,24 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const points = Math.round((amount / 200) * 4);
       const val = Math.round(points * 0.20);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Axis Bank MY ZONE, you will earn ${points.toLocaleString('en-IN')} EDGE Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.4% return).`;
+    }
+  } else if (card.id === 'axis-neo') {
+    if (lowerCat.includes('zomato') || lowerCat.includes('food') || lowerCat.includes('dining')) {
+      const discount = amount >= 499 ? 120 : 0;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Zomato with Axis Bank NEO, you will save ₹${discount} via flat ₹120 off (code AXISNEO, orders ₹499+, twice a month, excluding RuPay UPI).`;
+    } else if (lowerCat.includes('blinkit') || lowerCat.includes('grocery') || lowerCat.includes('quick')) {
+      const discount = amount >= 750 ? Math.min(250, Math.round(amount * 0.10)) : 0;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Blinkit with Axis Bank NEO, you will save ₹${discount} (10% off up to ₹250 on min ₹750 orders, once a month).`;
+    } else if (lowerCat.includes('utility') || lowerCat.includes('bill') || lowerCat.includes('paytm')) {
+      const discount = Math.round(amount * 0.05);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Paytm Utilities with Axis Bank NEO, you will save ₹${discount} (5% discount).`;
+    } else if (lowerCat.includes('movie') || lowerCat.includes('bookmyshow') || lowerCat.includes('cinema')) {
+      const discount = Math.min(100, Math.round(amount * 0.10));
+      text = `On movie tickets with Axis Bank NEO, you save ₹${discount} (10% off up to ₹100 on BookMyShow; requires ₹25,000 spend in preceding 3 months from Nov 1, 2026).`;
+    } else {
+      const points = Math.round((amount / 200) * 1);
+      const val = Math.round(points * 0.20);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Axis Bank NEO, you will earn ${points.toLocaleString('en-IN')} EDGE Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.1% return).`;
     }
   } else {
     const cb = Math.round(amount * 0.02);
