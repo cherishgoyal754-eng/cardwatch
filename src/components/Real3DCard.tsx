@@ -25,19 +25,19 @@ export function resolveCardAsset(path: string): string {
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
     return path;
   }
-  if (path.startsWith('/cardwatch/')) {
-    return path;
-  }
-  const clean = path.startsWith('./') ? path.slice(2) : path.startsWith('/') ? path.slice(1) : path;
+  // Strip any leading ./, /, or cardwatch/
+  const clean = path.replace(/^\.?\/?(cardwatch\/)?/, '');
 
-  // If in browser and hosted on GitHub Pages repo subpath (/cardwatch)
-  if (typeof window !== 'undefined' && window.location?.pathname?.includes('/cardwatch')) {
-    return `/cardwatch/${clean}`;
+  // If in browser
+  if (typeof window !== 'undefined') {
+    // If hosted on GitHub Pages (either host is github.io or path contains /cardwatch)
+    if (window.location.hostname.includes('github.io') || window.location.pathname.includes('/cardwatch')) {
+      return `/cardwatch/${clean}`;
+    }
   }
 
-  const base = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || './';
-  const prefix = base.endsWith('/') ? base : `${base}/`;
-  return `${prefix}${clean}`;
+  // On Vercel, localhost, or standard root hosting
+  return `/${clean}`;
 }
 
 function makeCardVisuals(front: string, back: string, isVertical = false, hasPreprintedName = false): CardVisualAssets {
@@ -372,14 +372,21 @@ export const Real3DCard: React.FC<Real3DCardProps> = ({
                 alt={`${card.name} Front`}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (!target.dataset.triedFallback) {
-                    target.dataset.triedFallback = '1';
-                    const filename = visuals.front.split('/').pop() || '';
+                  const attempts = Number(target.dataset.attempts || 0);
+                  const filename = (visuals.front || '').split('/').pop() || '';
+                  if (attempts === 0) {
+                    target.dataset.attempts = '1';
                     if (target.src.includes('/cardwatch/')) {
-                      target.src = `./cards/${filename}`;
+                      target.src = `/cards/${filename}`;
                     } else {
                       target.src = `/cardwatch/cards/${filename}`;
                     }
+                  } else if (attempts === 1) {
+                    target.dataset.attempts = '2';
+                    target.src = `./cards/${filename}`;
+                  } else {
+                    // Graceful fallback: hide the broken img so the stylish dark metallic surface is shown without a browser broken image icon
+                    target.style.display = 'none';
                   }
                 }}
                 className="w-full h-full object-cover rounded-[22px] sm:rounded-[24px] pointer-events-none select-none"
@@ -424,14 +431,20 @@ export const Real3DCard: React.FC<Real3DCardProps> = ({
                 alt={`${card.name} Back`}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (!target.dataset.triedFallback) {
-                    target.dataset.triedFallback = '1';
-                    const filename = visuals.back.split('/').pop() || '';
+                  const attempts = Number(target.dataset.attempts || 0);
+                  const filename = (visuals.back || '').split('/').pop() || '';
+                  if (attempts === 0) {
+                    target.dataset.attempts = '1';
                     if (target.src.includes('/cardwatch/')) {
-                      target.src = `./cards/${filename}`;
+                      target.src = `/cards/${filename}`;
                     } else {
                       target.src = `/cardwatch/cards/${filename}`;
                     }
+                  } else if (attempts === 1) {
+                    target.dataset.attempts = '2';
+                    target.src = `./cards/${filename}`;
+                  } else {
+                    target.style.display = 'none';
                   }
                 }}
                 className="w-full h-full object-cover rounded-[22px] sm:rounded-[24px] pointer-events-none select-none"
