@@ -330,7 +330,10 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.isLifetimeFree).toBe(true);
     expect(card?.forexMarkup).toBe(0);
     expect(card?.domesticLoungesPerQuarter).toBe(2);
+    expect(card?.railwayLoungesPerQuarter).toBe(2);
     expect(card?.loungeSpendCondition).toContain('50,000');
+    expect(card?.loungeSpendCondition).toContain('add-on');
+    expect(card?.rewardConversionDetails).toContain('99');
     expect(card?.recentChangeAlert?.effectiveDate).toContain('Apr 13, 2026');
   });
 

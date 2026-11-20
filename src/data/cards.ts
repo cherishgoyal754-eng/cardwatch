@@ -4071,17 +4071,18 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     minSalaryMonthly: 25000,
     minCibilScore: 720,
     status: "active",
-    headlineBenefit: "Lifetime Free • 0% Forex Markup • 2 Domestic Lounges/Qtr (on ₹50k Spend) • 1 International Lounge/Yr",
+    headlineBenefit: "Lifetime Free • 0% Forex Markup • 2 Domestic Lounges/Qtr (on ₹50k Spend) • 2 Railway Lounges/Qtr",
     cashbackRate: "5 Reward Points per ₹200 (0.625% return) on eligible online, offline, and RuPay UPI spends; exclusive travel discounts on ixigo",
-    rewardPointValue: "1 Reward Point = ₹0.25 (redeemable for flight/hotel vouchers or statement credit via AU Rewardz)",
-    rewardConversionDetails: "1 Reward Point = ₹0.25. Online spends revised to flat 5 points per ₹200 (down from earlier 10 points/₹200) matching offline/UPI rates.",
+    rewardPointValue: "1 Reward Point = ₹0.25 (redeemable for flight/hotel vouchers or statement credit; ₹99 + GST redemption fee applies)",
+    rewardConversionDetails: "1 Reward Point = ₹0.25. Online spends revised to flat 5 points per ₹200 (matching offline/UPI rates). ₹99 + GST redemption fee per transaction (AU KFS v1.9).",
     forexMarkup: 0.0,
-    fuelSurchargeWaiver: "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000 across petrol pumps",
+    fuelSurchargeWaiver: "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000 (up to ₹250 per statement month)",
     domesticLoungesPerQuarter: 2,
     internationalLoungesPerYear: 1,
-    loungeSpendCondition: "2 complimentary domestic airport lounge visits per calendar quarter unlocked on spending ₹50,000 or more in the preceding calendar quarter (effective April 13, 2026).",
-    loungeNetwork: "DreamFolks",
-    loungeGuestAccess: "Additional visits or guests charged at prevailing lounge rates ( + taxes for international).",
+    railwayLoungesPerQuarter: 2,
+    loungeSpendCondition: "2 complimentary domestic airport lounge visits per calendar quarter unlocked on spending ₹50,000 or more in the preceding calendar quarter (effective April 13, 2026; add-on cards excluded). 2 railway lounge visits per quarter with ₹0 spend requirement. 1 international lounge visit/yr via Priority Pass on request.",
+    loungeNetwork: "DreamFolks / Priority Pass",
+    loungeGuestAccess: "Additional visits or guests charged at standard rack rates ($35 + taxes for international).",
     merchantExclusions: [
       "Fuel transactions",
       "Rent payments",
@@ -4090,7 +4091,7 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
       "International spends (0 points, 0% forex)",
       "Wallet reloads"
     ],
-    cappingDetails: "Online rewards adjusted to 5 pts/₹200. Domestic lounge access requires ₹50,000 spend in preceding quarter (effective April 13, 2026). Single-card policy: AU allows holding only one AU credit card per customer.",
+    cappingDetails: "Online rewards adjusted to 5 pts/₹200. Domestic lounge access requires ₹50,000 spend in preceding quarter (effective April 13, 2026; add-on cards excluded). ₹99 + GST reward redemption fee applies. Single-card policy: AU allows holding only one AU credit card per customer.",
     officialCircularUrl: "https://www.au.bank.in/personal-banking/credit-cards/ixigo-au-credit-card",
     lastVerifiedDate: "2026-11-20",
     isVerified: true,
@@ -4099,10 +4100,10 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     rating: 4.7,
     popularityIndex: 95,
     recentChangeAlert: {
-      badge: "Lounge Spend Rule & Reward Rate Adjustment",
+      badge: "Lounge Spend Rule & ₹99 Redemption Fee",
       effectiveDate: "Apr 13, 2026",
       isDevaluation: true,
-      description: "Domestic lounge access requires ₹50,000 spend in preceding quarter from April 13, 2026. Online rewards adjusted to 5 pts/₹200 (matching offline/UPI)."
+      description: "Domestic lounge access requires ₹50,000 spend in preceding quarter from April 13, 2026 (add-on excluded). Flat 5 pts/₹200 earn rate. ₹99 + GST redemption fee in KFS v1.9."
     },
     changeHistory: [
       {
@@ -4110,7 +4111,7 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
         announcedDate: "Feb 2026",
         type: "devaluation",
         title: "Domestic Lounge Spend Criteria: ₹50,000 & Reward Rate Harmonization",
-        summary: "Domestic airport lounge access now requires ₹50,000 spend in the preceding calendar quarter. Online spends earn 5 points/₹200 (down from 10 points/₹200).",
+        summary: "Domestic airport lounge access now requires ₹50,000 spend in the preceding calendar quarter for primary cardholders (add-on cards excluded). Online spends earn 5 points/₹200 (down from 10 points/₹200).",
         oldValue: "2 domestic lounges/quarter without spend criteria; 10 points/₹200 online",
         newValue: "Requires ₹50,000 spend in previous quarter; flat 5 points/₹200 online",
         officialRef: "AU Small Finance Bank ixigo Revision Circular (Apr 2026)",
@@ -4131,12 +4132,12 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     tags: ["lifetime-free", "forex", "travel", "lounge", "upi"],
     suitableFor: [
       "Budget international travelers seeking a 100% Lifetime-Free card with 0% forex markup",
-      "Train and flight bookers using ixigo and ConfirmTkt enjoying payment gateway fee waivers",
-      "RuPay UPI users making daily merchant payments and earning rewards"
+      "Train, bus, and flight bookers using ixigo and ConfirmTkt enjoying payment gateway fee waivers and 10% discounts",
+      "RuPay UPI users making daily merchant QR payments and earning rewards with zero annual fees"
     ],
-    gstApplicability: "Lifetime Free (₹0 Joining / ₹0 Annual)",
+    gstApplicability: "Lifetime Free (₹0 Joining / ₹0 Annual). ₹99 + GST redemption fee per reward claim.",
     welcomeBenefit: "₹1,000 ixigo money + 1,000 bonus reward points upon card activation within 30 days of issuance.",
-    renewalBenefit: "Lifetime-free credit card with ₹0 annual maintenance charges.",
+    renewalBenefit: "Lifetime-free credit card with ₹0 annual maintenance charges forever.",
     milestoneBenefits: "5,000 bonus reward points on spending ₹75,000 or more in a calendar quarter.",
     movieBenefits: "None",
     diningBenefits: "Dining discounts under AU Small Finance Bank dining delights.",

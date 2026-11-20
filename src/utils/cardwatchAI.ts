@@ -482,13 +482,18 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       text = `On spending ₹${amount.toLocaleString('en-IN')} with AU Zenith+, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${points.toLocaleString('en-IN')} at 1:1 redemption value = 1% return).`;
     }
   } else if (card.id === 'au-ixigo') {
-    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+    if (lowerCat.includes('train') || lowerCat.includes('railway') || lowerCat.includes('irctc') || lowerCat.includes('confirmtkt')) {
+      text = `On train bookings via ixigo Trains / ConfirmTkt with ixigo AU, payment gateway charges (₹0 PG fee) are waived up to twice a month per platform, plus you earn 5 Reward Points per ₹200.`;
+    } else if (lowerCat.includes('flight') || lowerCat.includes('hotel') || lowerCat.includes('bus') || lowerCat.includes('ixigo')) {
+      const discount = Math.min(3000, Math.round(amount * 0.10));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on flights/hotels via ixigo with ixigo AU, you save ₹${discount.toLocaleString('en-IN')} (10% instant discount up to ₹3,000/month), plus earn 5 Reward Points per ₹200.`;
+    } else if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
       const savings = Math.round(amount * 0.035);
-      text = `On spending ₹${amount.toLocaleString('en-IN')} overseas with ixigo AU, you save approx ₹${savings.toLocaleString('en-IN')} via 0% foreign currency markup (zero forex fee).`;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} overseas with ixigo AU, you save approx ₹${savings.toLocaleString('en-IN')} via 0% foreign currency markup (zero forex fee). Note: International spends do not earn reward points.`;
     } else {
       const points = Math.round((amount / 200) * 5);
       const val = Math.round(points * 0.25);
-      text = `On spending ₹${amount.toLocaleString('en-IN')} with ixigo AU, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.625% return).`;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with ixigo AU, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.625% return). Note: ₹99 + GST fee per redemption.`;
     }
   } else if (card.id === 'sbi-air-india') {
     if (lowerCat.includes('flight') || lowerCat.includes('air india') || lowerCat.includes('airline') || lowerCat.includes('ticket')) {
