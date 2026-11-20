@@ -137,9 +137,9 @@ export const App: React.FC = () => {
     );
   }
 
-  // Initial Welcome and Authentication Screen: Shown if not authenticated and not in guest mode,
-  // or explicitly triggered by a protected action (isSignInPromptOpen).
-  const isAuthModalOpen = (!user && !isGuest) || isSignInPromptOpen;
+  // Auth Modal is triggered on-demand via promptSignIn (e.g. adding card to wallet or explicit sign-in request).
+  // Front page allows immediate exploration with the sign-in section seamlessly reachable on scroll.
+  const isAuthModalOpen = isSignInPromptOpen;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-emerald-500 selection:text-white flex flex-col font-sans relative overflow-x-hidden">
