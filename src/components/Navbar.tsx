@@ -285,16 +285,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           {/* Profile / Sign In */}
-          {!user ? (
+          {isGuest ? (
             <button
               onClick={() => {
                 sound.playClick();
-                const el = document.getElementById('signin-section');
-                if (el && currentScreen === 'home') {
-                  el.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  promptSignIn('Sign in to access your personal card wallet and custom alerts.');
-                }
+                promptSignIn('Sign in to access your personal card wallet and custom alerts.');
               }}
               className="h-9 sm:h-10 flex items-center gap-1.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold transition-all shrink-0 shadow-sm shadow-emerald-600/20"
             >

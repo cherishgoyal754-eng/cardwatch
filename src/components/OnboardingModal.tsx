@@ -283,11 +283,76 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         </div>
       )}
 
-      {/* MAIN BODY: CENTERED AUTHENTICATION TERMINAL */}
-      <main className="flex-1 w-full max-w-lg mx-auto px-4 py-8 sm:py-12 flex flex-col items-center justify-center">
+      {/* MAIN FULL-SCREEN BODY: 2-COLUMN IMMERSIVE VIEW */}
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14">
 
-        {/* AUTHENTICATION TERMINAL */}
-        <div className="w-full bg-white rounded-[32px] border-2 border-emerald-300 p-6 sm:p-9 shadow-2xl shadow-emerald-600/10 relative">
+        {/* ======================================================== */}
+        {/* LEFT COLUMN: CINEMATIC ANIMATION & REAL 3D CARD SHOWCASE */}
+        {/* ======================================================== */}
+        <div className="w-full lg:w-7/12 relative rounded-[32px] p-6 sm:p-10 border border-emerald-200 bg-white/80 shadow-xl overflow-hidden flex flex-col justify-between space-y-6">
+
+          {/* Animated Moving Vault Chamber in Background */}
+          <AnimatedVaultChamber className="opacity-95" />
+
+          {/* Ambient Mint Glow */}
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-36 bg-gradient-to-r from-emerald-200/50 via-teal-100/60 to-emerald-300/50 blur-3xl pointer-events-none rounded-full" />
+
+          <div className="relative z-20 space-y-5">
+            {/* Top Intelligence Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-emerald-300 text-emerald-800 text-xs font-bold shadow-sm backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-80" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
+              </span>
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="font-mono tracking-wide uppercase">India's #1 Credit Card Intelligence Platform</span>
+            </div>
+
+            {/* Kinetic Punchline */}
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.14]">
+              Know what your bank changes{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500">
+                before it costs you money.
+              </span>
+            </h1>
+
+            {/* Platform Subtitle */}
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl font-medium">
+              Over 48 popular Indian credit cards quietly reduced airport lounge quotas, capped cashback, or introduced spend thresholds. Protect your wallet with CARDWATCH.
+            </p>
+
+            {/* Real-Life 3D Animated Card with Continuous Motion */}
+            <div className="py-2 flex justify-center">
+              <Real3DCard
+                card={showcaseCard}
+                cardholderName="CHERISH GOYAL"
+                autoRotate={true}
+                isInteractive={true}
+              />
+            </div>
+
+            {/* Authentic Trust Grid (Supported by Real Platform Data) */}
+            <div className="grid grid-cols-3 gap-2.5 sm:gap-3 p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-emerald-200 text-left shadow-sm backdrop-blur-md">
+              <div className="p-1 sm:p-1.5">
+                <div className="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono tracking-tight">48+ Cards</div>
+                <div className="text-[11px] text-slate-600 font-bold">Monitored Live</div>
+              </div>
+              <div className="p-1 sm:p-1.5 border-x border-emerald-200">
+                <div className="text-xl sm:text-2xl font-extrabold text-emerald-700 font-mono tracking-tight">100% Signed</div>
+                <div className="text-[11px] text-slate-600 font-bold">Bank Circulars</div>
+              </div>
+              <div className="p-1 sm:p-1.5">
+                <div className="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono tracking-tight">0 Spam</div>
+                <div className="text-[11px] text-slate-600 font-bold">No Sales Calls</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* RIGHT COLUMN: FULL-HEIGHT AUTHENTICATION TERMINAL       */}
+        {/* ======================================================== */}
+        <div className="w-full lg:w-5/12 bg-white rounded-[32px] border-2 border-emerald-300 p-6 sm:p-9 shadow-2xl shadow-emerald-600/10 relative">
 
           {/* Tab Switcher */}
           {activeTab !== 'forgot' && (

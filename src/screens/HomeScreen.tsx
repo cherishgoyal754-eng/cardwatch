@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { CreditCard, ScreenType, UserProfile } from '../types';
 import { FloatingCardDeck } from '../components/FloatingCardDeck';
 import { AnimatedVaultChamber } from '../components/AnimatedVaultChamber';
-import { FranklinAnimatedHero } from '../components/FranklinAnimatedHero';
-import { ScrollSignInSection } from '../components/ScrollSignInSection';
 import { sound } from '../utils/audio';
 import {
   ShieldAlert,
@@ -13,8 +11,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Search,
-  Plane,
-  Layers
+  Plane
 } from 'lucide-react';
 
 interface HomeScreenProps {
@@ -159,13 +156,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
             </div>
 
-            {/* Right Column: Animated Franklin Artwork */}
+            {/* Right Floating Deck Column (Pure White & Green Style) */}
             <div className="lg:col-span-5 flex justify-center items-center">
-              <FranklinAnimatedHero
-                onScrollToSignIn={() => {
-                  document.getElementById('signin-section')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                onExploreCards={() => handleAction('explorer')}
+              <FloatingCardDeck
+                onSelectCard={onSelectCard}
+                onExploreChanges={() => handleAction('changes')}
               />
             </div>
 
@@ -204,12 +199,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
         </div>
       </section>
-
-      {/* SCROLL-DOWN SIGN IN & MEMBER ACCOUNT SECTION */}
-      <ScrollSignInSection
-        onExploreCards={() => handleAction('explorer')}
-        onOpenWallet={() => handleAction('wallet')}
-      />
 
       {/* INTERACTIVE OLD-VERSUS-NEW BENEFIT COMPARISON (Pure White & Green) */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
