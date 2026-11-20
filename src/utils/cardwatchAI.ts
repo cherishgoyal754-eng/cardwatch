@@ -634,27 +634,6 @@ export function getLocalCardwatchAIResponse(rawQuery: string, cards: CreditCard[
   const query = rawQuery.trim();
   const lower = query.toLowerCase();
 
-  // 0. Front Page Design System Query Handler
-  if (
-    lower.includes('current design') ||
-    lower.includes('which design') ||
-    lower.includes('previous design') ||
-    lower.includes('revert design') ||
-    lower.includes('switch design') ||
-    lower.includes('franklin design') ||
-    lower.includes('design mode')
-  ) {
-    return {
-      text: `### **CARDWATCH Front Page Design System**\n\n` +
-        `• **Current Active Design:** **C. Franklin Noir Edition** — Features the interactive, moveable torn $100 banknote engraving with Benjamin Franklin's eyes, dynamic 3D mouse/touch tilt, currency stamp guilloche borders, and cursive signature.\n` +
-        `• **Previous / Alternative Design:** **Classic Emerald Vault Chamber** — The original 3D perspective chamber with the rotating 3D physical credit card deck.\n\n` +
-        `**How to Revert or Switch Anytime:**\n` +
-        `• Look at the top right of the hero banner on the front page.\n` +
-        `• Click the **"Switch to Classic Design"** pill (or **"Switch to C. Franklin Design"**).\n` +
-        `• The app instantly toggles between both designs and saves your choice in \`localStorage\` so it persists on every visit.`,
-    };
-  }
-
   // Check for queries regarding specific unverified claims
   if (
     lower.includes('dcc') ||
