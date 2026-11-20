@@ -402,6 +402,17 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const val = Math.round(points * 0.25);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with ICICI HPCL Super Saver, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.5% return).`;
     }
+  } else if (card.id === 'axis-myzone') {
+    if (lowerCat.includes('swiggy') || lowerCat.includes('food') || lowerCat.includes('dining')) {
+      const discount = amount >= 500 ? 120 : 0;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy with Axis Bank MY ZONE, you will save ₹${discount} via the flat ₹120 instant discount (valid on min ₹500 orders, twice a month).`;
+    } else if (lowerCat.includes('movie') || lowerCat.includes('district') || lowerCat.includes('cinema') || lowerCat.includes('ticket')) {
+      text = `On movie tickets with Axis Bank MY ZONE, you unlock Buy-One-Get-One-Free on District app (100% off second ticket, up to ₹200/month; requires ₹25,000 spend in preceding 3 months).`;
+    } else {
+      const points = Math.round((amount / 200) * 4);
+      const val = Math.round(points * 0.20);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Axis Bank MY ZONE, you will earn ${points.toLocaleString('en-IN')} EDGE Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.4% return).`;
+    }
   } else {
     const cb = Math.round(amount * 0.02);
     text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you will earn approx ₹${cb.toLocaleString('en-IN')} in rewards based on its ${card.cashbackRate} reward rate.`;

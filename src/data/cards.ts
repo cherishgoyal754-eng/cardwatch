@@ -2577,7 +2577,7 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     minSalaryMonthly: 20000,
     minCibilScore: 700,
     status: "active",
-    headlineBenefit: "Buy 1 Get 1 on Paytm Movies (up to ₹200 off) • ₹120 Off on Swiggy • 1 Domestic Lounge/Quarter",
+    headlineBenefit: "BOGO on District Movies (on ₹25k 3-Mo Spend) • ₹120 Off on Swiggy • 1 Domestic Lounge/Qtr",
     cashbackRate: "4 EDGE REWARD points per ₹200 spent (0.4% base return); flat ₹120 off on Swiggy twice a month on min ₹500 spend",
     rewardPointValue: "1 EDGE Point = ₹0.20 against vouchers or product catalogue",
     rewardConversionDetails: "1 EDGE REWARD Point = ₹0.20. Points can be redeemed for gift vouchers, merchandise, or partner transfers. Valid for 3 years.",
@@ -2589,47 +2589,88 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     loungeNetwork: "DreamFolks",
     loungeGuestAccess: "Charged at standard lounge walk-in fee.",
     merchantExclusions: [
-          "Wallet loading transactions",
-          "Rent payments (1% fee + no points)",
-          "Government transactions & utilities over threshold",
-          "Fuel transactions (covered by 1% waiver, no points)"
+      "Wallet loading transactions",
+      "Rent payments (1% fee + no points)",
+      "Gift card purchases (no reward points or milestone benefits)",
+      "Bridge, road, and toll fees (no reward points)",
+      "Government transactions & utilities over threshold",
+      "Fuel transactions (covered by 1% waiver, no points)"
     ],
-    cappingDetails: "Paytm Movies BOGO discount capped at ₹200 per transaction (1 free ticket per calendar month); Swiggy ₹120 instant discount valid twice a month.",
-    officialCircularUrl: "https://www.axisbank.com/retail/cards/credit-card/my-zone-credit-card",
+    cappingDetails: "District BOGO movie ticket offer (100% off second ticket, up to ₹200/month) requires ₹25,000 spend in preceding 3 months (waived for new/additional cards in issuance month plus next 3 months). Swiggy flat ₹120 discount valid twice per calendar month on minimum order of ₹500.",
+    officialCircularUrl: "https://www.axis.bank.in/cards/credit-card/axis-bank-my-zone-credit-card",
     lastVerifiedDate: "2026-11-20",
     isVerified: true,
     auditVerificationStatus: 'fully_verified',
     auditDate: "2026-11-20",
     rating: 4.3,
     popularityIndex: 91,
+    recentChangeAlert: {
+      badge: "District BOGO Spend Rule & Sony LIV Discontinuation",
+      effectiveDate: "Nov 1, 2026",
+      isDevaluation: true,
+      description: "District BOGO movie offer now requires ₹25,000 spend in preceding 3 months (effective Nov 1, 2026). Complimentary Sony LIV annual renewal discontinued (replaced by 1,000 EDGE points on ₹1.5L spend). 3.5% DCC fee introduced."
+    },
     changeHistory: [
-          {
-                "date": "May 01, 2024",
-                "announcedDate": "Mar 15, 2024",
-                "type": "policy_update",
-                "title": "Domestic Lounge Spend Requirement: ₹50,000",
-                "summary": "1 complimentary airport lounge visit per quarter now requires ₹50,000 spend in preceding 3 months.",
-                "oldValue": "1 complimentary domestic lounge visit per quarter without spend criteria",
-                "newValue": "Requires ₹50,000 spend in previous 3 months to unlock lounge access",
-                "officialRef": "Axis Bank MY ZONE Benefit Circular 2024",
-                "severity": "medium"
-          }
+      {
+        date: "Nov 01, 2026",
+        announcedDate: "Sep 2026",
+        type: "policy_update",
+        title: "District BOGO Movie Offer Spend Condition: ₹25,000 in 3 Months",
+        summary: "Buy-One-Get-One (BOGO) movie ticket offer on District now requires ₹25,000 in card spends during previous 3 months (waived for first 3 months + issuance month for new cards).",
+        oldValue: "BOGO on District / Paytm Movies up to ₹200/month without spend criteria",
+        newValue: "Requires ₹25,000 spend in previous 3 months to unlock BOGO movie benefit",
+        officialRef: "Axis Bank MY ZONE Terms & Conditions (Nov 2026)",
+        severity: "high"
+      },
+      {
+        date: "Aug 28, 2026",
+        announcedDate: "Jul 2026",
+        type: "fee_revision",
+        title: "3.5% DCC Markup & Exclusion Updates",
+        summary: "Dynamic Currency Conversion (DCC) markup set to 3.5%. Gift cards excluded from rewards and milestone benefits; bridge/road/toll charges earn no rewards. Late payment fees tiered up to ₹1,300.",
+        oldValue: "No separate DCC fee; standard exclusions",
+        newValue: "3.5% DCC markup on international INR transactions; gift cards & tolls excluded from rewards",
+        officialRef: "Axis Bank Card Charges Revision Circular 2026",
+        severity: "medium"
+      },
+      {
+        date: "Apr 01, 2026",
+        announcedDate: "Feb 2026",
+        type: "devaluation",
+        title: "Sony LIV Annual Renewal Discontinued",
+        summary: "Complimentary Sony LIV annual subscription renewal on ₹1.5 Lakh annual spend discontinued and replaced with 1,000 EDGE Reward Points on ₹1.5 Lakh annual eligible spend.",
+        oldValue: "Complimentary Sony LIV Premium annual renewal on spending ₹1.5 Lakhs annually",
+        newValue: "1,000 EDGE Reward Points on spending ₹1.5 Lakhs annually (Sony LIV renewal sunset)",
+        officialRef: "Axis Bank MY ZONE CVP Revision 2026",
+        severity: "medium"
+      },
+      {
+        date: "May 01, 2024",
+        announcedDate: "Mar 15, 2024",
+        type: "policy_update",
+        title: "Domestic Lounge Spend Requirement: ₹50,000",
+        summary: "1 complimentary airport lounge visit per quarter now requires ₹50,000 spend in preceding 3 months.",
+        oldValue: "1 complimentary domestic lounge visit per quarter without spend criteria",
+        newValue: "Requires ₹50,000 spend in previous 3 months to unlock lounge access",
+        officialRef: "Axis Bank MY ZONE Benefit Circular 2024",
+        severity: "medium"
+      }
     ],
     tags: ["movies","dining","upi","shopping","lounge"],
     suitableFor: [
-          "Movie goers wanting Buy 1 Get 1 free tickets via District/Paytm Movies (up to ₹200 off)",
-          "Swiggy users saving flat ₹120 twice every month on food orders (code: AXIS200)",
-          "RuPay UPI users linking their card for daily merchant QR scanning"
+      "Movie lovers wanting Buy 1 Get 1 free tickets via District app (up to ₹200 off/month, subject to ₹25k spend in previous 3 months)",
+      "Swiggy users saving flat ₹120 twice every month on food orders (min ₹500 spend)",
+      "RuPay UPI users linking their card for daily merchant QR scanning, or FD-backed My Zone Easy users (from ₹15k FD)"
     ],
     gstApplicability: "₹500 + 18% GST (Total: ₹590)",
     welcomeBenefit: "Complimentary Sony LIV Premium annual subscription upon first card spend within 30 days of issuance.",
-    renewalBenefit: "Annual fee waived on spending ₹1,50,000 or more in previous card year.",
-    milestoneBenefits: "Flat ₹120 off on Swiggy on minimum spend of ₹500 (up to 2 times a month, code AXIS200).",
-    movieBenefits: "Buy 1 Get 1 Free on movie tickets via Paytm Movies / District app (up to ₹200 off, once per calendar month).",
-    diningBenefits: "Flat ₹120 off twice a month on Swiggy; up to 15% discount at partner restaurants under Axis Dining Delights.",
+    renewalBenefit: "Annual fee waived on spending ₹1,50,000 or more in previous card year. (Note: Annual Sony LIV renewal was discontinued on April 1, 2026, replaced by 1,000 EDGE Reward Points on ₹1.5L eligible annual spend).",
+    milestoneBenefits: "1,000 EDGE Reward Points on ₹1.5 Lakh annual eligible spend (replaced Sony LIV renewal from April 1, 2026). Flat ₹120 off on Swiggy on minimum spend of ₹500 (up to 2 times a month).",
+    movieBenefits: "Buy 1 Get 1 Free on movie tickets via District app (100% off second ticket, up to ₹200/month; requires ₹25,000 card spend in previous 3 months, waived for new cards for issuance month + 3 months).",
+    diningBenefits: "Flat ₹120 off twice a month on Swiggy (min spend ₹500); up to 15% discount at partner restaurants under Axis Dining Delights.",
     golfBenefits: "None",
     insuranceCoverage: "Lost Card Liability Cover up to ₹3 Lakhs and Purchase Protection cover up to ₹50,000.",
-    mitcUrl: "https://www.axisbank.com/docs/default-source/default-document-library/mitc-credit-cards.pdf",
+    mitcUrl: "https://campaign.axis.bank.in/generic/terms-and-conditions-myzone.pdf",
   },
   {
     id: "icici-coral",
@@ -3500,8 +3541,8 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'axis-myzone') {
     return {
-      headline: 'Buy 1 Get 1 Free on Paytm Movies / District (Up to ₹200 Off / Month)',
-      subline: 'Get 100% discount on the second movie ticket up to ₹200 once every calendar month on Paytm Movies / District app.',
+      headline: 'Buy 1 Get 1 Free on District Movies (Up to ₹200 Off / Month)',
+      subline: 'Get 100% discount on the second movie ticket up to ₹200 once every calendar month on District app (requires ₹25,000 spend in preceding 3 months; waived for first 3 months + issuance month for new cards).',
       hasBogo: true,
       score: 7,
     };

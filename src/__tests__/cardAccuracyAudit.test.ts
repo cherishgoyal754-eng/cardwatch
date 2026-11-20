@@ -219,4 +219,21 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.cappingDetails).toContain('500');
     expect(card?.officialCircularUrl).toBe('https://www.axis.bank.in/cards/credit-card/axis-bank-ace-credit-card');
   });
+
+  it('should verify exact audited facts and 2026 revisions for Axis Bank MY ZONE', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'axis-myzone');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(500);
+    expect(card?.annualFee).toBe(500);
+    expect(card?.annualFeeWaiverCondition).toContain('1,50,000');
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.loungeSpendCondition).toContain('50,000');
+    expect(card?.cappingDetails).toContain('25,000');
+    expect(card?.cappingDetails).toContain('District');
+    expect(card?.recentChangeAlert?.isDevaluation).toBe(true);
+    expect(card?.recentChangeAlert?.badge).toContain('District BOGO');
+    expect(card?.movieBenefits).toContain('District');
+    expect(card?.milestoneBenefits).toContain('1,000 EDGE Reward Points');
+    expect(card?.officialCircularUrl).toBe('https://www.axis.bank.in/cards/credit-card/axis-bank-my-zone-credit-card');
+  });
 });
