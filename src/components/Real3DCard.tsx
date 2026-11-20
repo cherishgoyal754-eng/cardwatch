@@ -218,7 +218,12 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
     return makeCardVisuals('/cards/icici-makemytrip-front.png', '/cards/icici-amazon-pay-back.png', false, false);
   }
 
-  // 26. ICICI Sapphiro
+  // 26. ICICI Bank HPCL Super Saver
+  if (id.includes('hpcl') || name.includes('hpcl')) {
+    return makeCardVisuals('/cards/icici-coral-front.png', '/cards/icici-amazon-pay-back.png', false, false);
+  }
+
+  // 27. ICICI Sapphiro
   if (id.includes('sapphiro') || name.includes('sapphiro') || bank.includes('icici')) {
     return makeCardVisuals('/cards/icici-sapphiro-front.png', '/cards/icici-amazon-pay-back.png', false, false);
   }

@@ -180,4 +180,18 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.recentChangeAlert?.isDevaluation).toBe(true);
     expect(card?.recentChangeAlert?.description).toContain('Dec 15, 2026');
   });
+
+  it('should verify exact audited facts for ICICI Bank HPCL Super Saver', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'icici-hpcl-super-saver');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(500);
+    expect(card?.annualFee).toBe(500);
+    expect(card?.annualFeeWaiverCondition).toContain('1,50,000');
+    expect(card?.minSalaryMonthly).toBe(20000);
+    expect(card?.domesticLoungesPerQuarter).toBe(1);
+    expect(card?.loungeSpendCondition).toContain('₹75,000');
+    expect(card?.movieBenefits).toContain('25%');
+    expect(card?.fuelSurchargeWaiver).toContain('₹400 and ₹4,000');
+    expect(card?.officialCircularUrl).toBe('https://www.icici.bank.in/personal-banking/cards/credit-card/hpcl-super-saver');
+  });
 });

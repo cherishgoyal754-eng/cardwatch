@@ -3181,6 +3181,78 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     golfBenefits: "None",
     insuranceCoverage: "Complimentary Lost Card Liability Cover up to ₹1 Lakh.",
     mitcUrl: "https://www.sbicard.com/sbi-card-en/assets/docs/pdf/personal/credit-cards/travel/air-india-sbi-signature-card/AirIndia-TnC.pdf",
+  },
+  {
+    id: "icici-hpcl-super-saver",
+    name: "ICICI Bank HPCL Super Saver Credit Card",
+    bank: "ICICI Bank",
+    bankLogoText: "ICICI BANK",
+    tier: "Entry Level",
+    network: "Visa",
+    cardStyle: "purple",
+    cardNumberPreview: "•••• 4182",
+    joiningFee: 500,
+    annualFee: 500,
+    annualFeeWaiverCondition: "Waived on spending ₹1,50,000 or more in an anniversary year",
+    isLifetimeFree: false,
+    minSalaryMonthly: 20000,
+    minCibilScore: 700,
+    status: "active",
+    headlineBenefit: "5% Fuel Cashback at HPCL Outlets • 20 RP/₹100 on Utilities & Departmental Stores • 1 Domestic Lounge/Qtr",
+    cashbackRate: "Up to 5% savings on HPCL fuel (4% cashback + 1% fuel surcharge waiver); 20 RP per ₹100 on utilities & departmental stores; 2 RP per ₹100 on other retail spends",
+    rewardPointValue: "1 ICICI Reward Point = ₹0.25 (redeemable for statement credit, gift vouchers, or HP Pay balance)",
+    rewardConversionDetails: "1 ICICI Reward Point = ₹0.25. 4% fuel cashback credited directly to statement; 20 RP/₹100 on utilities and departmental stores capped at 400 points (₹100/month). Extra 1.5% rewards via HP Pay app.",
+    forexMarkup: 3.5,
+    fuelSurchargeWaiver: "1% waiver on fuel transactions between ₹400 and ₹4,000 at HPCL petrol pumps / HP Pay",
+    domesticLoungesPerQuarter: 1,
+    internationalLoungesPerYear: 0,
+    railwayLoungesPerQuarter: 0,
+    loungeSpendCondition: "1 complimentary domestic airport lounge access per calendar quarter on spending ₹75,000 or more in the preceding calendar quarter.",
+    loungeNetwork: "DreamFolks",
+    loungeGuestAccess: "Charged at standard lounge walk-in rates.",
+    merchantExclusions: [
+      "Fuel transactions at non-HPCL petrol pumps",
+      "Rental payments (1% fee + zero reward points)",
+      "Government taxes and municipal fees",
+      "E-wallet loading transactions"
+    ],
+    cappingDetails: "4% fuel cashback capped at ₹200/month (on up to ₹4,000 monthly fuel spend); 20 RP/₹100 on utilities and departmental stores capped at 400 points (₹100/month); 25% movie discount capped at ₹100 twice a month on BookMyShow/INOX.",
+    officialCircularUrl: "https://www.icici.bank.in/personal-banking/cards/credit-card/hpcl-super-saver",
+    lastVerifiedDate: "2026-11-20",
+    isVerified: true,
+    auditVerificationStatus: "fully_verified",
+    auditDate: "2026-11-20",
+    rating: 4.3,
+    popularityIndex: 88,
+    changeHistory: [
+      {
+        date: "Apr 01, 2024",
+        announcedDate: "Feb 10, 2024",
+        type: "policy_update",
+        title: "Airport Lounge Spend Requirement: ₹75,000/Quarter",
+        summary: "Complimentary domestic airport lounge access now conditioned on spending ₹75,000 or more in preceding calendar quarter.",
+        oldValue: "1 complimentary domestic airport lounge visit per quarter with lower spend condition",
+        newValue: "₹75,000 spend in preceding calendar quarter required to unlock complimentary lounge access",
+        officialRef: "ICICI Bank HPCL Super Saver Terms & Conditions",
+        severity: "medium"
+      }
+    ],
+    tags: ["fuel", "cashback", "lounge", "movies", "upi", "shopping"],
+    suitableFor: [
+      "Commuters and vehicle owners spending up to ₹4,000/month at HPCL petrol pumps to maximize 5% fuel savings",
+      "Everyday spenders earning 5% effective value back (20 RP/₹100) on departmental stores and monthly utility bills",
+      "Movie goers saving 25% (up to ₹100) twice a month on BookMyShow and INOX",
+      "Salaried professionals with monthly income of ₹20,000+ seeking a high-value everyday fuel credit card"
+    ],
+    gstApplicability: "₹500 joining fee + 18% GST (Total: ₹590) / ₹500 renewal fee + 18% GST (Total: ₹590)",
+    welcomeBenefit: "2,000 joining ICICI Reward Points (worth ₹500) credited upon payment of joining fee and card activation.",
+    renewalBenefit: "Annual renewal fee waived on spending ₹1,50,000 or more in the previous anniversary year.",
+    milestoneBenefits: "Spend ₹1,50,000 in an anniversary year to get 100% waiver of the ₹500 annual renewal fee.",
+    movieBenefits: "25% discount (up to ₹100) on purchase of minimum 2 tickets per transaction on BookMyShow and INOX, available twice a month.",
+    diningBenefits: "Dining discounts via the ICICI Bank Culinary Treats programme across partner restaurants.",
+    golfBenefits: "None",
+    insuranceCoverage: "Complimentary 24/7 roadside assistance, personal accident death cover of ₹2 Lakhs on RuPay variant, and standard zero lost card liability.",
+    mitcUrl: "https://www.icici.bank.in/personal-banking/cards/credit-card/hpcl-super-saver"
   }
 ];
 
@@ -3403,10 +3475,10 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
       score: 7,
     };
   }
-  if (id === 'icici-coral') {
+  if (id === 'icici-coral' || id === 'icici-hpcl-super-saver') {
     return {
-      headline: '25% Discount on BookMyShow & Inox (Up to ₹100 Off, 2x / Month)',
-      subline: 'Get 25% discount up to ₹100 on purchase of minimum 2 tickets per transaction on BookMyShow and Inox (twice a month).',
+      headline: '25% Discount on BookMyShow & INOX (Up to ₹100 Off, 2x / Month)',
+      subline: 'Get 25% discount up to ₹100 on purchase of minimum 2 tickets per transaction on BookMyShow and INOX (twice a month).',
       hasBogo: false,
       score: 6,
     };

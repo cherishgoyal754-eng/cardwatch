@@ -82,6 +82,7 @@ export function identifyCardsInQuery(query: string, cards: CreditCard[] = CREDIT
     'axis-airtel': ['airtel axis', 'axis airtel'],
     'axis-ace': ['axis ace', 'ace card', 'google pay ace'],
     'sbi-air-india': ['air india sbi', 'sbi air india'],
+    'icici-hpcl-super-saver': ['icici hpcl', 'hpcl super saver', 'hpcl icici', 'icici fuel card', 'super saver'],
   };
 
   for (const card of cards) {
@@ -387,6 +388,19 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
     } else {
       const points = Math.round((amount / 200) * 6);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with ICICI Bank Emeralde Private Metal, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth up to ₹${points.toLocaleString('en-IN')} at up to 3% return when redeemed for flights, hotels, or luxury vouchers).`;
+    }
+  } else if (card.id === 'icici-hpcl-super-saver') {
+    if (lowerCat.includes('fuel') || lowerCat.includes('petrol') || lowerCat.includes('diesel') || lowerCat.includes('hpcl')) {
+      const cb = Math.min(200, Math.round(amount * 0.05));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on fuel at HPCL with ICICI HPCL Super Saver, you will earn ₹${cb.toLocaleString('en-IN')} in savings (4% cashback + 1% surcharge waiver, capped at ₹200/month). Extra 1.5% rewards available via HP Pay.`;
+    } else if (lowerCat.includes('utilit') || lowerCat.includes('bill') || lowerCat.includes('grocer') || lowerCat.includes('departmental')) {
+      const points = Math.min(400, Math.round((amount / 100) * 20));
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on utilities & departmental stores with ICICI HPCL Super Saver, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 5% value back, capped at 400 pts/month).`;
+    } else {
+      const points = Math.round((amount / 100) * 2);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with ICICI HPCL Super Saver, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.5% return).`;
     }
   } else {
     const cb = Math.round(amount * 0.02);
