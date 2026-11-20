@@ -58,6 +58,13 @@ describe('CARDWATCH AI Engine', () => {
     expect(res.text).toContain('₹60,000');
   });
 
+  it('answers design system queries and explains how to revert or switch designs', () => {
+    const res = getLocalCardwatchAIResponse('which is the current design', CREDIT_CARDS_DATA);
+    expect(res.text).toContain('C. Franklin Noir Edition');
+    expect(res.text).toContain('Classic Emerald Vault Chamber');
+    expect(res.text).toContain('Switch to Classic Design');
+  });
+
   it('analyzes monthly spending with concise direct recommendation', () => {
     const res = getLocalCardwatchAIResponse('I spend ₹15,000 on groceries, ₹10,000 on online shopping, ₹5,000 on dining and ₹10,000 on travel every month.', CREDIT_CARDS_DATA);
     expect(res.text).toContain('SBI Cashback');
