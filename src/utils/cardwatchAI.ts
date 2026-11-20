@@ -167,7 +167,9 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
   let text = '';
 
   if (card.id === 'scapia-federal') {
-    if (lowerCat.includes('travel') || lowerCat.includes('flight') || lowerCat.includes('hotel')) {
+    if (lowerCat.includes('insurance') || lowerCat.includes('utility') || lowerCat.includes('bill') || lowerCat.includes('telecom')) {
+      text = `Scapia Federal Credit Card does not earn Scapia Coins on ${category.toLowerCase()} transactions (discontinued effective Feb 27, 2026).`;
+    } else if (lowerCat.includes('travel') || lowerCat.includes('flight') || lowerCat.includes('hotel')) {
       const coins = Math.round(amount * 0.20);
       const val = Math.round(coins * 0.20);
       text = `On spending ₹${amount.toLocaleString('en-IN')} on travel with your Scapia Federal Credit Card, you will earn ${coins.toLocaleString('en-IN')} Scapia Coins (worth ₹${val.toLocaleString('en-IN')} at 5 Coins = ₹1).`;
@@ -247,17 +249,19 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Amazon Pay ICICI, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% unlimited).`;
     }
   } else if (card.id === 'hsbc-live-plus') {
-    if (lowerCat.includes('dining') || lowerCat.includes('restaurant') || lowerCat.includes('food') || lowerCat.includes('grocer') || lowerCat.includes('blinkit') || lowerCat.includes('swiggy') || lowerCat.includes('zomato')) {
-      const cb = Math.min(1000, Math.round(amount * 0.10));
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on dining & groceries with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (10% accelerated cashback, capped at ₹1,000/month).`;
+    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      text = `HSBC Live+ does not earn cashback on international transactions (discontinued effective July 26, 2026). Standard 1.99% forex markup applies.`;
+    } else if (lowerCat.includes('dining') || lowerCat.includes('restaurant') || lowerCat.includes('food') || lowerCat.includes('grocer') || lowerCat.includes('blinkit') || lowerCat.includes('swiggy') || lowerCat.includes('zomato')) {
+      const cb = Math.min(1200, Math.round(amount * 0.10));
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on dining & groceries with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (10% accelerated cashback, capped at ₹1,200/month).`;
     } else {
       const cb = Math.round(amount * 0.015);
-      text = `On spending ₹${amount.toLocaleString('en-IN')} with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} unlimited cashback (1.5% return).`;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with your HSBC Live+ card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1.5% return on other domestic retail).`;
     }
   } else if (card.id === 'swiggy-hdfc') {
     if (lowerCat.includes('swiggy') || lowerCat.includes('food') || lowerCat.includes('instamart') || lowerCat.includes('dineout')) {
       const cb = amount >= 249 ? Math.min(1500, Math.round(amount * 0.10)) : Math.round(amount * 0.01);
-      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback in Swiggy Money (10% return on orders ₹249+, capped at ₹1,500/cycle).`;
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Swiggy with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback in Swiggy Money (10% return on orders ₹249+, capped at ₹1,500/cycle). Note: HDFC Bank is phasing out this card through March 2027 (migrating to Swiggy Ornge/BLCK).`;
     } else {
       const cb = Math.round(amount * 0.01);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with your Swiggy HDFC card, you will earn ₹${cb.toLocaleString('en-IN')} cashback (1% return).`;
@@ -453,8 +457,19 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const val = Math.round(points * 0.25);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with RBL Bank World Safari, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.5% return).`;
     }
+  } else if (card.id === 'axis-atlas') {
+    if (lowerCat.includes('travel') || lowerCat.includes('airline') || lowerCat.includes('hotel') || lowerCat.includes('flight')) {
+      const miles = Math.round((amount / 100) * 5);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on travel bookings with Axis Bank ATLAS, you will earn ${miles.toLocaleString('en-IN')} EDGE Miles (5 EDGE Miles per ₹100, capped at ₹2L/month). Note: Accor ALL ratio was slashed to 2:1 from Sept 2026; public card issuance is paused.`;
+    } else {
+      const miles = Math.round((amount / 100) * 2);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Axis Bank ATLAS, you will earn ${miles.toLocaleString('en-IN')} EDGE Miles (2 EDGE Miles per ₹100).`;
+    }
   } else if (card.id === 'idfc-first-select') {
-    if (amount > 20000 || lowerCat.includes('birthday')) {
+    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      const savings = Math.round(amount * 0.035);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} overseas with IDFC FIRST Select, you save approx ₹${savings.toLocaleString('en-IN')} via 0% foreign currency markup. Note: International spends earn 0 reward points effective Oct 26, 2026.`;
+    } else if (amount > 20000 || lowerCat.includes('birthday')) {
       const points = Math.round((amount / 150) * 10);
       const val = Math.round(points * 0.25);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with IDFC FIRST Select (above ₹20k tier), you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 1.67%–2.5% return with never-expiring points).`;

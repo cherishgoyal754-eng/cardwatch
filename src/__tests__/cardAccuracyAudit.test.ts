@@ -121,9 +121,11 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
   it('should verify exact audited facts for American Express cards', () => {
     const platTravel = CREDIT_CARDS_DATA.find(c => c.id === 'amex-plat-travel');
     expect(platTravel).toBeDefined();
-    expect(platTravel?.joiningFee).toBe(3500);
+    expect(platTravel?.joiningFee).toBe(5000);
     expect(platTravel?.annualFee).toBe(5000);
     expect(platTravel?.domesticLoungesPerQuarter).toBe(2);
+    expect(platTravel?.loungeSpendCondition).toContain('70,000');
+    expect(platTravel?.milestoneBenefits).toContain('10,000');
 
     const platCharge = CREDIT_CARDS_DATA.find(c => c.id === 'amex-platinum');
     expect(platCharge).toBeDefined();
@@ -136,9 +138,12 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     const card = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-millennia');
     expect(card).toBeDefined();
     expect(card?.isLifetimeFree).toBe(true);
-    expect(card?.domesticLoungesPerQuarter).toBe(4);
-    expect(card?.loungeNetwork).toBe('IRCTC Railway Lounge');
+    expect(card?.domesticLoungesPerQuarter).toBe(0);
+    expect(card?.railwayLoungesPerQuarter).toBe(4);
+    expect(card?.forexMarkup).toBe(0);
+    expect(card?.loungeNetwork).toContain('IRCTC');
     expect(card?.loungeSpendCondition).toContain('railway lounge');
+    expect(card?.loungeSpendCondition).toContain('20,000');
   });
 
   it('should verify exact audited facts for Flipkart Axis Bank', () => {
@@ -301,6 +306,8 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.isLifetimeFree).toBe(true);
     expect(card?.joiningFee).toBe(0);
     expect(card?.annualFee).toBe(0);
+    expect(card?.forexMarkup).toBe(0);
+    expect(card?.loungeNetwork).toContain('EliteAssist');
     expect(card?.domesticLoungesPerQuarter).toBe(2);
     expect(card?.loungeSpendCondition).toContain('20,000');
   });
@@ -372,5 +379,49 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.milestoneBenefits).toContain('4,000');
     expect(card?.officialCircularUrl).toBe('https://www.icici.bank.in/personal-banking/cards/credit-card/makemytrip/signature-credit-card');
     expect(card?.mitcUrl).toBe('https://www.icici.bank.in/terms-condition/tnc-for-signature-credit-card');
+  });
+
+  it('should verify exact audited facts for Swiggy HDFC, Axis Kwik, and Axis Atlas status updates', () => {
+    const swiggy = CREDIT_CARDS_DATA.find(c => c.id === 'swiggy-hdfc');
+    expect(swiggy?.status).toBe('discontinued');
+    expect(swiggy?.headlineBenefit).toContain('PHASED OUT');
+
+    const kwik = CREDIT_CARDS_DATA.find(c => c.id === 'kiwi-axis-rupay');
+    expect(kwik?.status).toBe('discontinued');
+    expect(kwik?.headlineBenefit).toContain('DISCONTINUED');
+
+    const atlas = CREDIT_CARDS_DATA.find(c => c.id === 'axis-atlas');
+    expect(atlas?.status).toBe('discontinued');
+    expect(atlas?.headlineBenefit).toContain('ISSUANCE PAUSED');
+    expect(atlas?.rewardPointValue).toContain('2:1');
+  });
+
+  it('should verify 0% forex markup across IDFC FIRST portfolio', () => {
+    const wealth = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-wealth');
+    expect(wealth?.forexMarkup).toBe(0);
+    expect(wealth?.loungeNetwork).toContain('EliteAssist');
+
+    const select = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-select');
+    expect(select?.forexMarkup).toBe(0);
+    expect(select?.loungeNetwork).toContain('EliteAssist');
+
+    const millennia = CREDIT_CARDS_DATA.find(c => c.id === 'idfc-first-millennia');
+    expect(millennia?.forexMarkup).toBe(0);
+    expect(millennia?.domesticLoungesPerQuarter).toBe(0);
+    expect(millennia?.railwayLoungesPerQuarter).toBe(4);
+  });
+
+  it('should verify 2026 devaluations for HDFC Regalia Gold, Infinia, and Scapia', () => {
+    const regalia = CREDIT_CARDS_DATA.find(c => c.id === 'hdfc-regalia-gold');
+    expect(regalia?.cashbackRate).toContain('5 RP per ₹200');
+    expect(regalia?.recentChangeAlert?.badge).toContain('5 RP/₹200');
+
+    const infinia = CREDIT_CARDS_DATA.find(c => c.id === 'hdfc-infinia-metal');
+    expect(infinia?.cappingDetails).toContain('3,000');
+    expect(infinia?.renewalBenefit).toContain('18 Lakhs');
+
+    const scapia = CREDIT_CARDS_DATA.find(c => c.id === 'scapia-federal');
+    expect(scapia?.merchantExclusions.some(e => e.includes('Insurance'))).toBe(true);
+    expect(scapia?.merchantExclusions.some(e => e.includes('Utility'))).toBe(true);
   });
 });
