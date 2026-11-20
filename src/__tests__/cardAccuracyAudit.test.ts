@@ -333,4 +333,20 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.loungeSpendCondition).toContain('50,000');
     expect(card?.recentChangeAlert?.effectiveDate).toContain('Apr 13, 2026');
   });
+
+  it('should verify exact audited facts for Air India SBI Signature discontinuation and revisions', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'sbi-air-india');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(4999);
+    expect(card?.annualFee).toBe(4999);
+    expect(card?.status).toBe('discontinued');
+    expect(card?.cashbackRate).toContain('10');
+    expect(card?.recentChangeAlert?.badge).toContain('Discontinued');
+    expect(card?.recentChangeAlert?.effectiveDate).toContain('Oct 28, 2026');
+    expect(card?.changeHistory.some(ch => ch.date === 'Oct 28, 2026')).toBe(true);
+    expect(card?.changeHistory.some(ch => ch.date === 'Mar 31, 2025')).toBe(true);
+    expect(card?.changeHistory.some(ch => ch.date === 'Oct 10, 2024')).toBe(true);
+    expect(card?.milestoneBenefits).toContain('100,000');
+    expect(card?.officialCircularUrl).toBe('https://www.sbicard.com/en/personal/credit-cards/air-india-sbi-signature-card.html');
+  });
 });

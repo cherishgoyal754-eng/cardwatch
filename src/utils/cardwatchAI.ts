@@ -490,6 +490,14 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const val = Math.round(points * 0.25);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with ixigo AU, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.625% return).`;
     }
+  } else if (card.id === 'sbi-air-india') {
+    if (lowerCat.includes('flight') || lowerCat.includes('air india') || lowerCat.includes('airline') || lowerCat.includes('ticket')) {
+      const points = Math.round((amount / 100) * 10);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on Air India tickets with Air India SBI Signature, you will earn ${points.toLocaleString('en-IN')} Maharaja Club Points (10 points per ₹100, effective March 31, 2025). Note: Card issuance was discontinued on Oct 10, 2024; a new co-branded card was announced on Oct 28, 2026.`;
+    } else {
+      const points = Math.round((amount / 100) * 4);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} with Air India SBI Signature, you will earn ${points.toLocaleString('en-IN')} Maharaja Club Points (4 points per ₹100).`;
+    }
   } else {
     const cb = Math.round(amount * 0.02);
     text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you will earn approx ₹${cb.toLocaleString('en-IN')} in rewards based on its ${card.cashbackRate} reward rate.`;
