@@ -148,4 +148,19 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     expect(card?.domesticLoungesPerQuarter).toBe(0);
     expect(card?.internationalLoungesPerYear).toBe(0);
   });
+
+  it('should verify exact audited facts for ICICI Bank Rubyx', () => {
+    const card = CREDIT_CARDS_DATA.find(c => c.id === 'icici-rubyx');
+    expect(card).toBeDefined();
+    expect(card?.joiningFee).toBe(3000);
+    expect(card?.annualFee).toBe(2000);
+    expect(card?.minSalaryMonthly).toBe(75000);
+    expect(card?.domesticLoungesPerQuarter).toBe(2);
+    expect(card?.railwayLoungesPerQuarter).toBe(2);
+    expect(card?.loungeSpendCondition).toContain('₹75,000');
+    expect(card?.movieBenefits).toContain('25%');
+    expect(card?.golfBenefits).toContain('Up to 2 complimentary golf rounds');
+    expect(card?.fuelSurchargeWaiver).toContain('₹400 and ₹4,000');
+    expect(card?.officialCircularUrl).toBe('https://www.icici.bank.in/personal-banking/cards/credit-card/rubyx-credit-card');
+  });
 });

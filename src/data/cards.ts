@@ -2720,65 +2720,73 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     cardNumberPreview: "•••• 2910",
     joiningFee: 3000,
     annualFee: 2000,
-    annualFeeWaiverCondition: "Waived on spending ₹3,00,000 or more in the previous anniversary year",
+    annualFeeWaiverCondition: "Waived on spending ₹3,00,000 in an anniversary year",
     isLifetimeFree: false,
-    minSalaryMonthly: 50000,
-    minCibilScore: 730,
+    minSalaryMonthly: 75000,
+    minCibilScore: 720,
     status: "active",
-    headlineBenefit: "Dual Card (Visa + Mastercard / RuPay) • 2 Domestic Lounges/Quarter • BOGO Movies (₹250 Off)",
+    headlineBenefit: "2 Domestic Lounges/Quarter (on ₹75k spend) + 8 Railway Lounges/Yr • 25% Off Movies (up to ₹150) • Up to 2 Golf Rounds/Mo",
     cashbackRate: "4 Reward Points per ₹100 on international spends; 2 RP per ₹100 on domestic retail spends; 1 RP per ₹100 on utilities & insurance",
-    rewardPointValue: "1 ICICI Reward Point = ₹0.25 (redeemable for statement credit or brand vouchers)",
-    rewardConversionDetails: "1 ICICI Reward Point = ₹0.25. Dual card accounts share unified reward pool redeemable on ICICI Rewardz portal or for statement credit. Valid for 3 years.",
+    rewardPointValue: "1 ICICI Reward Point = ₹0.25 (redeemable via ICICI Internet Banking or iMobile app for statement credit, gift vouchers, or merchandise)",
+    rewardConversionDetails: "1 ICICI Reward Point = ₹0.25. Dual card accounts (Visa + Mastercard / RuPay) share a unified reward pool redeemable via ICICI Internet Banking or iMobile app. Points valid for 3 years.",
     forexMarkup: 3.5,
-    fuelSurchargeWaiver: "1% waiver on fuel transactions up to ₹4,000 across HPCL petrol pumps",
+    fuelSurchargeWaiver: "1% waiver on fuel transactions between ₹400 and ₹4,000",
     domesticLoungesPerQuarter: 2,
     internationalLoungesPerYear: 0,
     railwayLoungesPerQuarter: 2,
-    loungeSpendCondition: "2 complimentary domestic airport lounge visits + 2 complimentary railway lounge visits per calendar quarter unlocked strictly on spending ₹35,000 or more in preceding calendar quarter.",
+    loungeSpendCondition: "2 complimentary domestic airport lounge visits per calendar quarter unlocked strictly upon spending ₹75,000 or more in the preceding calendar quarter; up to 8 complimentary railway lounge visits per year.",
     loungeNetwork: "DreamFolks",
     loungeGuestAccess: "Charged at standard lounge walk-in fee.",
     merchantExclusions: [
-          "Wallet loading transactions",
-          "Rental payments (1% fee + zero reward points)",
-          "Government taxes and municipal payments",
-          "Fuel transactions (covered by 1% surcharge waiver, no points)"
+      "Fuel transactions (covered by 1% fuel surcharge waiver, no points)",
+      "Rental payments (1% fee + zero reward points)",
+      "Government taxes and municipal payments",
+      "Wallet loading transactions"
     ],
-    cappingDetails: "Buy 1 Get 1 free movie ticket discount capped at ₹250 per ticket on BookMyShow and Inox (twice a month, up to 2 free tickets/month).",
-    officialCircularUrl: "https://www.icicibank.com/personal-banking/cards/credit-cards/rubyx-credit-card",
+    cappingDetails: "25% discount up to ₹150 on tickets booked via BookMyShow or INOX (twice a month); spend requirement of ₹75,000 in preceding calendar quarter to unlock airport lounge visits.",
+    officialCircularUrl: "https://www.icici.bank.in/personal-banking/cards/credit-card/rubyx-credit-card",
     lastVerifiedDate: "2026-11-20",
     isVerified: true,
-    auditVerificationStatus: 'fully_verified',
+    auditVerificationStatus: "fully_verified",
     auditDate: "2026-11-20",
     rating: 4.5,
     popularityIndex: 90,
+    recentChangeAlert: {
+      badge: "Lounge Spend Criteria: ₹75,000/Quarter",
+      effectiveDate: "2024",
+      isDevaluation: true,
+      description: "Domestic airport lounge access now requires spending ₹75,000 or more in the preceding calendar quarter."
+    },
     changeHistory: [
-          {
-                "date": "Apr 01, 2024",
-                "announcedDate": "Feb 10, 2024",
-                "type": "policy_update",
-                "title": "Quarterly Lounge Spend Requirement: ₹35,000",
-                "summary": "2 domestic airport lounge visits and 2 railway lounge visits per quarter now require spending ₹35,000 in preceding calendar quarter.",
-                "oldValue": "2 complimentary domestic airport lounge visits per quarter without spend condition",
-                "newValue": "₹35,000 quarterly spend required in preceding quarter to unlock access",
-                "officialRef": "ICICI Bank Rubyx Product Revisions 2024",
-                "severity": "medium"
-          }
+      {
+        date: "Apr 01, 2024",
+        announcedDate: "Feb 10, 2024",
+        type: "policy_update",
+        title: "Airport Lounge Spend Requirement: ₹75,000/Quarter",
+        summary: "2 complimentary domestic airport lounge visits per calendar quarter now conditioned strictly on spending ₹75,000 or more in the preceding calendar quarter.",
+        oldValue: "2 complimentary domestic airport lounge visits per quarter without or with lower spend condition",
+        newValue: "₹75,000 spend in preceding calendar quarter required to unlock complimentary lounge access",
+        officialRef: "ICICI Bank Rubyx Credit Card Terms & Conditions",
+        severity: "high"
+      }
     ],
-    tags: ["lounge","movies","dining","shopping"],
+    tags: ["lounge", "movies", "dining", "shopping", "golf", "travel"],
     suitableFor: [
-          "Movie lovers using BookMyShow BOGO offer with generous ₹250 discount per ticket twice a month",
-          "Travellers wanting 2 domestic airport lounges + 2 railway lounges per quarter on ₹35k spend",
-          "Users appreciating dual card convenience with linked single credit limit"
+      "Frequent spenders spending ₹75,000+/quarter to unlock 2 domestic airport lounge visits per quarter",
+      "Train travellers benefiting from 8 complimentary railway lounge visits per year",
+      "Movie enthusiasts saving 25% (up to ₹150) twice a month on BookMyShow and INOX",
+      "Golfers playing up to 2 complimentary golf rounds per month on ₹50,000 monthly spend",
+      "Salaried professionals earning ₹75,000+/month or self-employed earning ₹9,00,000+/year"
     ],
-    gstApplicability: "₹3,000 joining / ₹2,000 renewal + 18% GST",
-    welcomeBenefit: "Shopping and travel vouchers worth ₹5,000+ upon payment of joining fee within 30 days of issuance.",
-    renewalBenefit: "Annual renewal fee waived on spending ₹3,00,000 or more in the previous card year.",
-    milestoneBenefits: "Earn 3,000 bonus Reward Points on spending ₹3 Lakhs in an anniversary year, and 1,500 bonus points for every subsequent ₹1 Lakh spend (max 15,000 points/year).",
-    movieBenefits: "Buy 1 Get 1 Free on movie tickets via BookMyShow and Inox (up to ₹250 off per ticket, twice a month).",
-    diningBenefits: "Up to 20% discount on dining bills via ICICI Culinary Treats partner restaurants.",
-    golfBenefits: "1 complimentary golf round or practice session per month on spending ₹50,000 in preceding month.",
-    insuranceCoverage: "Complimentary Personal Accidental Air Death Cover of ₹1 Crore and Standard Lost Card Liability of ₹50,000.",
-    mitcUrl: "https://www.icicibank.com/personal-banking/cards/credit-cards/most-important-terms-and-conditions",
+    gstApplicability: "₹3,000 joining fee + 18% GST (Total: ₹3,540) / ₹2,000 renewal fee + 18% GST (Total: ₹2,360)",
+    welcomeBenefit: "Vouchers worth over ₹15,000 (subject to terms and fee payment).",
+    renewalBenefit: "Annual renewal fee waived on spending ₹3,00,000 in an anniversary year.",
+    milestoneBenefits: "3,000 reward points upon reaching ₹3,00,000 in annual spend.",
+    movieBenefits: "25% discount up to ₹150 on tickets booked via BookMyShow or INOX (available twice a month).",
+    diningBenefits: "Exclusive dining discounts under the ICICI Bank Culinary Treats programme.",
+    golfBenefits: "Up to 2 complimentary golf rounds per month (subject to ₹50,000 spend criteria).",
+    insuranceCoverage: "Up to ₹1 crore air accident cover, plus ₹2 lakh personal accident cover on the RuPay variant. Standard zero lost card liability.",
+    mitcUrl: "https://www.icici.bank.in/personal-banking/cards/credit-card/rubyx-credit-card"
   },
   {
     id: "icici-emeralde-private",
@@ -3338,10 +3346,10 @@ export function getCardMovieBenefit(card: { id: string; name?: string; bank?: st
   }
   if (id === 'icici-rubyx') {
     return {
-      headline: 'Buy 1 Get 1 Free on BookMyShow & Inox (Up to ₹250 Off, 2x / Month)',
-      subline: 'Buy one ticket and get up to ₹250 off on the second ticket twice a month on BookMyShow and Inox (Save up to ₹500/month).',
-      hasBogo: true,
-      score: 8,
+      headline: '25% Off on BookMyShow & INOX (Up to ₹150 Off, 2x / Month)',
+      subline: '25% discount up to ₹150 per transaction on buying tickets via BookMyShow or INOX twice a month (Save up to ₹300/month).',
+      hasBogo: false,
+      score: 7,
     };
   }
   if (id === 'axis-myzone') {
@@ -3573,10 +3581,10 @@ export function getCardGolfBenefit(card: { id: string; name?: string; bank?: str
   }
   if (id === 'icici-rubyx') {
     return {
-      headline: '1 Complimentary Golf Round / Month (on ₹50k spend)',
-      subline: '1 complimentary golf game or lesson per month on spending ₹50,000 or more in the preceding month.',
-      roundsPerQuarter: 3,
-      score: 6,
+      headline: 'Up to 2 Complimentary Golf Rounds / Month (on ₹50k spend)',
+      subline: 'Up to 2 complimentary golf rounds per month subject to spending ₹50,000 or more in the preceding calendar month.',
+      roundsPerQuarter: 6,
+      score: 7,
     };
   }
   if (id === 'hdfc-diners-privilege') {

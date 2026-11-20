@@ -360,6 +360,20 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
       const cb = Math.round(amount * 0.01);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with Airtel Axis Bank, you will earn ₹${cb.toLocaleString('en-IN')} statement cashback (1% unlimited return).`;
     }
+  } else if (card.id === 'icici-rubyx') {
+    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      const points = Math.round((amount / 100) * 4);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} internationally with ICICI Bank Rubyx, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 1% value back).`;
+    } else if (lowerCat.includes('utility') || lowerCat.includes('bill') || lowerCat.includes('insurance')) {
+      const points = Math.round((amount / 100) * 1);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on utilities & insurance with ICICI Bank Rubyx, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.25% value back).`;
+    } else {
+      const points = Math.round((amount / 100) * 2);
+      const val = Math.round(points * 0.25);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} on domestic retail with ICICI Bank Rubyx, you will earn ${points.toLocaleString('en-IN')} Reward Points (worth ₹${val.toLocaleString('en-IN')} at 0.5% value back).`;
+    }
   } else {
     const cb = Math.round(amount * 0.02);
     text = `On spending ₹${amount.toLocaleString('en-IN')} with ${card.name}, you will earn approx ₹${cb.toLocaleString('en-IN')} in rewards based on its ${card.cashbackRate} reward rate.`;
