@@ -9,7 +9,8 @@ export type ScreenType =
   | 'calculator'
   | 'advisors'
   | 'ai-advisor'
-  | 'wallet';
+  | 'wallet'
+  | 'admin';
 
 export type CardCategory =
   | 'all'
@@ -186,4 +187,40 @@ export interface UserProfile {
     feeRevisions: boolean;
     expiringOffers: boolean;
   };
+}
+
+export interface LiveDevaluationEntry extends CardChangeHistory {
+  id: string;
+  cardId: string;
+  cardName: string;
+  bank: string;
+}
+
+export type ProjectChangeCategory =
+  | 'card_created'
+  | 'card_updated'
+  | 'card_archived'
+  | 'card_restored'
+  | 'devaluation_published'
+  | 'devaluation_updated'
+  | 'devaluation_dismissed'
+  | 'radar_sync'
+  | 'project_note'
+  | 'security_vault'
+  | 'system_release';
+
+export interface ProjectChangeEntry {
+  id: string;
+  timestamp: string;
+  category: ProjectChangeCategory;
+  title: string;
+  description: string;
+  targetId?: string;
+  targetName?: string;
+  actor: string;
+  beforeSummary?: string;
+  afterSummary?: string;
+  beforeSnapshot?: unknown;
+  afterSnapshot?: unknown;
+  status: 'applied' | 'reverted' | 'milestone';
 }

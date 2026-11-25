@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { ALL_CREDIT_CARDS } from '../data/cards';
-import { ScreenType } from '../types';
+import { ScreenType, CreditCard } from '../types';
 import { sound } from '../utils/audio';
 import { Search, X, ShieldAlert, ArrowRight, ArrowUpRight } from 'lucide-react';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
+  cards?: CreditCard[];
   onSelectCard: (cardId: string) => void;
   onNavigate: (screen: ScreenType) => void;
 }
@@ -14,23 +15,24 @@ interface SearchModalProps {
 export const SearchModal: React.FC<SearchModalProps> = ({
   isOpen,
   onClose,
+  cards = ALL_CREDIT_CARDS,
   onSelectCard,
   onNavigate,
 }) => {
   const [query, setQuery] = useState('');
 
   const filteredCards = useMemo(() => {
-    if (!query.trim()) return ALL_CREDIT_CARDS.slice(0, 6);
+    if (!query.trim()) return cards.slice(0, 6);
     const q = query.toLowerCase();
-    return ALL_CREDIT_CARDS.filter(
+    return cards.filter(
       c =>
         c.name.toLowerCase().includes(q) ||
         c.bank.toLowerCase().includes(q) ||
-        c.category.toLowerCase().includes(q) ||
+        c.tier.toLowerCase().includes(q) ||
         c.headlineBenefit.toLowerCase().includes(q) ||
         c.tags.some(t => t.toLowerCase().includes(q))
     );
-  }, [query]);
+  }, [query, cards]);
 
   if (!isOpen) return null;
 

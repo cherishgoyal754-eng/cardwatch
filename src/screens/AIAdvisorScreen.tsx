@@ -10,6 +10,8 @@ import {
   Network
 } from 'lucide-react';
 
+import { CreditCard } from '../types';
+
 interface Message {
   id: string;
   sender: 'user' | 'ai';
@@ -21,7 +23,15 @@ interface Message {
   sources?: string[];
 }
 
-export const AIAdvisorScreen: React.FC = () => {
+interface AIAdvisorScreenProps {
+  cards?: CreditCard[];
+  onSelectCard?: (cardId: string) => void;
+  onNavigate?: (screen: any) => void;
+}
+
+export const AIAdvisorScreen: React.FC<AIAdvisorScreenProps> = ({
+  cards = CREDIT_CARDS_DATA,
+}) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'm1',
@@ -66,7 +76,7 @@ export const AIAdvisorScreen: React.FC = () => {
     setIsTyping(true);
 
     try {
-      const aiResponse = await processCardwatchAIQuery(query, CREDIT_CARDS_DATA);
+      const aiResponse = await processCardwatchAIQuery(query, cards);
       sound.playSuccess();
       setIsTyping(false);
 

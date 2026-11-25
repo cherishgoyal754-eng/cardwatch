@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CreditCard, CardChangeHistory, ScreenType } from '../types';
+import { useCardData } from '../context/CardDataContext';
 import { sound } from '../utils/audio';
-import liveDevaluations from '../data/live-devaluations.json';
 import {
   Calendar,
   ArrowRight,
@@ -39,14 +39,15 @@ export const ChangesTrackerScreen: React.FC<ChangesTrackerScreenProps> = ({
   onSelectCard,
   onNavigate,
 }) => {
+  const { liveDevaluations } = useCardData();
   const [filterType, setFilterType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedBank, setSelectedBank] = useState<string>('all');
 
   const allChanges: FlattenedChange[] = [];
 
-  // 1. Live Google News & Gemini Radar circulars (auto-updated daily via GitHub Actions)
-  (liveDevaluations as any[]).forEach(item => {
+  // 1. Live Google News & Admin Radar circulars (auto-updated + admin-curated)
+  liveDevaluations.forEach(item => {
     allChanges.push({
       cardId: item.cardId || 'general-banking',
       cardName: item.cardName,
@@ -61,6 +62,7 @@ export const ChangesTrackerScreen: React.FC<ChangesTrackerScreenProps> = ({
         oldValue: item.oldValue,
         newValue: item.newValue,
         officialRef: item.officialRef,
+        circularPdfUrl: item.circularPdfUrl,
         severity: item.severity,
         source: item.source,
         syncedAt: item.syncedAt,

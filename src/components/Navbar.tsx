@@ -18,7 +18,9 @@ import {
   KeyRound,
   Sparkles,
   Maximize,
-  Minimize
+  Minimize,
+  ShieldCheck,
+  Lock
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -29,6 +31,7 @@ interface NavbarProps {
   unreadChangesCount: number;
   onOpenSearch?: () => void;
   onOpenProfile: () => void;
+  isAdminUnlocked?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -37,6 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   savedCardsCount,
   unreadChangesCount,
   onOpenProfile,
+  isAdminUnlocked = false,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -271,6 +275,28 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right Controls pushed to far right with ml-auto */}
         <div className="flex items-center gap-2 shrink-0 ml-auto">
+          {/* Owner Sovereign Admin Vault Button */}
+          <button
+            onClick={() => handleNavClick('admin')}
+            className={`h-9 sm:h-10 rounded-xl border transition-all flex items-center justify-center gap-1.5 shrink-0 shadow-sm cursor-pointer ${
+              currentScreen === 'admin'
+                ? 'px-3 bg-slate-950 text-emerald-400 border-emerald-500 ring-2 ring-emerald-400/30 font-black text-xs'
+                : isAdminUnlocked
+                ? 'px-3 bg-emerald-950 text-emerald-300 border-emerald-500/60 hover:bg-slate-900 font-black text-xs'
+                : 'w-9 sm:w-10 bg-slate-100/90 border-slate-200 text-slate-600 hover:bg-slate-900 hover:text-emerald-400 hover:border-slate-800'
+            }`}
+            title={isAdminUnlocked ? 'Open Sovereign Admin Control Center' : 'Owner Admin Vault (Master Key Required)'}
+          >
+            {isAdminUnlocked ? (
+              <>
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="hidden md:inline-block whitespace-nowrap">Admin Live</span>
+              </>
+            ) : (
+              <Lock className="w-4 h-4" />
+            )}
+          </button>
+
           {/* Sound Toggle */}
           <button
             onClick={toggleSound}
@@ -335,6 +361,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               ...primaryNavItems,
               { id: 'travel-intent' as ScreenType, label: 'Airplane Mode', icon: Plane },
               { id: 'calculator' as ScreenType, label: 'Reward Points', icon: Coins },
+              { id: 'admin' as ScreenType, label: isAdminUnlocked ? 'Admin Live' : 'Admin Vault', icon: isAdminUnlocked ? ShieldCheck : Lock },
             ].map(item => {
               const Icon = item.icon;
               const isActive = currentScreen === item.id;

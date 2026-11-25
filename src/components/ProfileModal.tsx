@@ -24,12 +24,14 @@ interface ProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenAuth?: () => void;
+  onOpenAdmin?: () => void;
 }
 
 export const ProfileModal: React.FC<ProfileModalProps> = ({
   isOpen,
   onClose,
   onOpenAuth,
+  onOpenAdmin,
 }) => {
   const {
     user,
@@ -352,6 +354,20 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </div>
               <span className="text-xs text-slate-500">Tier 1 Consumer</span>
             </div>
+
+            {onOpenAdmin && (
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  onClose();
+                  onOpenAdmin();
+                }}
+                className="w-full py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-2 border border-emerald-500/30 shadow-md cursor-pointer"
+              >
+                <Lock className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Open Sovereign Admin Vault (Master Key)</span>
+              </button>
+            )}
           </div>
         )}
 

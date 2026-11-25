@@ -14,11 +14,15 @@ import {
 } from 'lucide-react';
 
 interface CalculatorScreenProps {
+  cards?: CreditCard[];
   onSelectCard: (cardId: string) => void;
+  onNavigate?: (screen: any) => void;
 }
 
-export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({ onSelectCard }) => {
-  const cards = ALL_CREDIT_CARDS;
+export const CalculatorScreen: React.FC<CalculatorScreenProps> = ({
+  cards = ALL_CREDIT_CARDS,
+  onSelectCard,
+}) => {
   const [selectedCardId, setSelectedCardId] = useState<string>('hdfc-regalia-gold');
 
   // Spend breakdown inputs (monthly)

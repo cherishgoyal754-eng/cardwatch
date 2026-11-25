@@ -17,7 +17,9 @@ import {
 } from 'lucide-react';
 
 interface TailorCardScreenProps {
+  cards?: CreditCard[];
   onSelectCard: (cardId: string) => void;
+  onNavigate?: (screen: any) => void;
   userSalary?: number;
 }
 
@@ -230,6 +232,7 @@ function calculateSpendJudgment(card: CreditCard, yearlySpend: number): SpendJud
 }
 
 export const TailorCardScreen: React.FC<TailorCardScreenProps> = ({
+  cards = ALL_CREDIT_CARDS,
   onSelectCard,
   userSalary = 120000,
 }) => {
@@ -283,7 +286,7 @@ export const TailorCardScreen: React.FC<TailorCardScreenProps> = ({
 
   // Tailored recommendation logic based on SPEND, LIFESTYLE, and SALARY
   const getTailoredRecommendations = () => {
-    const scoredCards = ALL_CREDIT_CARDS.map(card => {
+    const scoredCards = cards.map(card => {
       let score = 0;
       const reasons: string[] = [];
 

@@ -18,8 +18,12 @@ import {
   Globe
 } from 'lucide-react';
 
+import { CreditCard } from '../types';
+
 interface TravelIntentScreenProps {
+  cards?: CreditCard[];
   onSelectCard: (cardId: string) => void;
+  onNavigate?: (screen: any) => void;
 }
 
 interface FlightCardProfile {

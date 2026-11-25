@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ScreenType, UserProfile, CreditCard } from './types';
-import { CREDIT_CARDS_DATA } from './data/cards';
+import { ScreenType, UserProfile } from './types';
 import { useAuth } from './context/AuthContext';
+import { CardDataProvider, useCardData } from './context/CardDataContext';
+import { getActiveAdminSession, lockAdminVault } from './utils/adminVault';
 import { Navbar } from './components/Navbar';
 import { SearchModal } from './components/SearchModal';
 import { OnboardingModal } from './components/OnboardingModal';
@@ -22,8 +23,9 @@ import { TravelIntentScreen } from './screens/TravelIntentScreen';
 import { CalculatorScreen } from './screens/CalculatorScreen';
 import { AIAdvisorScreen } from './screens/AIAdvisorScreen';
 import { WalletScreen } from './screens/WalletScreen';
+import { AdminScreen } from './screens/AdminScreen';
 
-export const App: React.FC = () => {
+const AppContent: React.FC = () => {
   const {
     user,
     profile,
@@ -34,7 +36,21 @@ export const App: React.FC = () => {
     promptSignIn,
   } = useAuth();
 
-  const [currentScreen, setCurrentScreen] = useState<ScreenType>('home');
+  const { cards, liveDevaluations } = useCardData();
+
+  const [currentScreen, setCurrentScreen] = useState<ScreenType>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('admin') === '1' || window.location.hash === '#/admin') {
+        return 'admin';
+      }
+    }
+    return 'home';
+  });
+  const [isAdminUnlocked, setIsAdminUnlocked] = useState<boolean>(() =>
+    Boolean(getActiveAdminSession())
+  );
+  const [adminSessionKey, setAdminSessionKey] = useState<string | null>(null);
   const [selectedCardId, setSelectedCardId] = useState<string>('hdfc-regalia-gold');
   const [comparisonCardIds, setComparisonCardIds] = useState<string[]>([
     'amex-platinum',
@@ -103,8 +119,9 @@ export const App: React.FC = () => {
     }
   };
 
-  const unreadChangesCount = CREDIT_CARDS_DATA.filter(c => c.recentChangeAlert).length;
-  const currentCard = CREDIT_CARDS_DATA.find(c => c.id === selectedCardId) || CREDIT_CARDS_DATA[0];
+  const unreadChangesCount =
+    cards.filter(c => c.recentChangeAlert).length + liveDevaluations.length;
+  const currentCard = cards.find(c => c.id === selectedCardId) || cards[0];
 
   // Active user profile object derived from session
   const activeUserProfile: UserProfile = {
@@ -137,12 +154,16 @@ export const App: React.FC = () => {
     );
   }
 
-  // Initial Welcome and Authentication Screen: Shown if not authenticated and not in guest mode,
-  // or explicitly triggered by a protected action (isSignInPromptOpen).
-  const isAuthModalOpen = (!user && !isGuest) || isSignInPromptOpen;
+  // Initial Welcome and Authentication Screen: Shown if not authenticated and not in guest mode
+  // (bypassed when accessing Sovereign Admin Vault directly via ?admin=1), or triggered by protected actions.
+  const isAuthModalOpen =
+    (!user && !isGuest && currentScreen !== 'admin') || isSignInPromptOpen;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-emerald-500 selection:text-white flex flex-col font-sans relative overflow-x-hidden">
+    <div
+      data-admin-unlocked={isAdminUnlocked ? 'true' : 'false'}
+      className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-emerald-500 selection:text-white flex flex-col font-sans relative overflow-x-hidden"
+    >
       {/* Bespoke FinTech EMV & Contactless Custom Cursor */}
       <CustomCursor />
 
@@ -163,13 +184,14 @@ export const App: React.FC = () => {
         unreadChangesCount={unreadChangesCount}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenProfile={() => setIsProfileOpen(true)}
+        isAdminUnlocked={isAdminUnlocked}
       />
 
       {/* Screen Router */}
       <main className="flex-1 relative z-10">
         {currentScreen === 'home' && (
           <HomeScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onNavigate={screen => {
               setCurrentScreen(screen);
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -182,7 +204,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'explorer' && (
           <ExplorerScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onSelectCard={handleSelectCard}
             onAddToCompare={handleAddToCompare}
             comparisonCardIds={comparisonCardIds}
@@ -205,7 +227,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'changes' && (
           <ChangesTrackerScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onSelectCard={handleSelectCard}
             onNavigate={setCurrentScreen}
           />
@@ -213,7 +235,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'compare' && (
           <CompareScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             selectedCardIds={comparisonCardIds}
             onAddCard={handleAddToCompare}
             onSetCompareSlot={handleSetCompareSlot}
@@ -224,7 +246,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'tailor' && (
           <TailorCardScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onSelectCard={handleSelectCard}
             onNavigate={setCurrentScreen}
           />
@@ -232,7 +254,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'travel-intent' && (
           <TravelIntentScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onSelectCard={handleSelectCard}
             onNavigate={setCurrentScreen}
           />
@@ -240,7 +262,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'calculator' && (
           <CalculatorScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onSelectCard={handleSelectCard}
             onNavigate={setCurrentScreen}
           />
@@ -248,7 +270,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'ai-advisor' && (
           <AIAdvisorScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             onSelectCard={handleSelectCard}
             onNavigate={setCurrentScreen}
           />
@@ -256,7 +278,7 @@ export const App: React.FC = () => {
 
         {currentScreen === 'wallet' && (
           <WalletScreen
-            cards={CREDIT_CARDS_DATA}
+            cards={cards}
             savedCardIds={savedCardIds}
             onRemoveFromWallet={handleToggleWallet}
             onAddToWallet={handleToggleWallet}
@@ -266,13 +288,34 @@ export const App: React.FC = () => {
             onUpdateProfile={() => {}}
           />
         )}
+
+        {currentScreen === 'admin' && (
+          <AdminScreen
+            onNavigate={setCurrentScreen}
+            onSelectCard={handleSelectCard}
+            isUnlocked={isAdminUnlocked}
+            sessionKeyInMemory={adminSessionKey}
+            onUnlocked={rawKey => {
+              setIsAdminUnlocked(true);
+              setAdminSessionKey(rawKey);
+            }}
+            onLockVault={() => {
+              lockAdminVault();
+              setIsAdminUnlocked(false);
+              setAdminSessionKey(null);
+            }}
+            onRotatedKey={newRawKey => {
+              setAdminSessionKey(newRawKey);
+            }}
+          />
+        )}
       </main>
 
       {/* Global Modals */}
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        cards={CREDIT_CARDS_DATA}
+        cards={cards}
         onSelectCard={handleSelectCard}
         onNavigate={setCurrentScreen}
       />
@@ -290,6 +333,10 @@ export const App: React.FC = () => {
         isOpen={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
         onOpenAuth={() => promptSignIn('Sign in to access your saved cards and customized alerts.')}
+        onOpenAdmin={() => {
+          setCurrentScreen('admin');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
       {/* Floating Side Dock: Compare & Credit-Card-Themed AI Advisor */}
@@ -300,11 +347,17 @@ export const App: React.FC = () => {
             setCurrentScreen('compare');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          cards={CREDIT_CARDS_DATA}
+          cards={cards}
         />
       )}
     </div>
   );
 };
+
+export const App: React.FC = () => (
+  <CardDataProvider>
+    <AppContent />
+  </CardDataProvider>
+);
 
 export default App;
