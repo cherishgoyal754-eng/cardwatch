@@ -643,3 +643,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-26T14:52:45+05:30`
 - **Verification Note**: Documented up to 3% Monies cashback on UPI/card spends, weekly slice Spark deals, and no-cost 3-month slice in 3 splits.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-26 16:40:18] docs(ledger): index AU ixigo and RBL World Safari 0% forex fee parity checks
+- **Date**: `2026-11-26T16:40:18+05:30`
+- **Verification Note**: Cross-checked zero-forex card terms across Scapia Federal, RBL World Safari, ixigo AU, and slice UPI Credit Card.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
