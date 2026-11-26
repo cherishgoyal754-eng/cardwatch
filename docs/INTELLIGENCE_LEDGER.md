@@ -648,3 +648,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-26T16:40:18+05:30`
 - **Verification Note**: Cross-checked zero-forex card terms across Scapia Federal, RBL World Safari, ixigo AU, and slice UPI Credit Card.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-26 18:22:33] docs(ledger): verify HDFC Regalia Gold and Infinia SmartBuy utility capping
+- **Date**: `2026-11-26T18:22:33+05:30`
+- **Verification Note**: Reconfirmed SmartBuy bonus point caps and monthly utility reward ceilings under 2026 circular schedules.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
