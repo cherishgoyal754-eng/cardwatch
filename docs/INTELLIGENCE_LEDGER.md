@@ -628,3 +628,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-24T18:22:33+05:30`
 - **Verification Note**: Verified Taj experience voucher distribution timelines upon reaching ₹4,00,000 annual milestone.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-26 10:14:22] docs(ledger): audit Sovereign Admin Vault SHA-256 rate limiter and session persistence
+- **Date**: `2026-11-26T10:14:22+05:30`
+- **Verification Note**: Verified salted SHA-256 verification flow, 5-attempt 120s lockout guard, and constant-time digest comparison in Sovereign Admin Vault.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
