@@ -633,3 +633,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-26T10:14:22+05:30`
 - **Verification Note**: Verified salted SHA-256 verification flow, 5-attempt 120s lockout guard, and constant-time digest comparison in Sovereign Admin Vault.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-26 12:35:10] docs(ledger): verify slice UPI Credit Card MITC 0% forex markup schedule
+- **Date**: `2026-11-26T12:35:10+05:30`
+- **Verification Note**: Verified Slice Small Finance Bank MITC and Rates & Pricing confirming ₹0 joining/annual fee and 0% foreign currency markup.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
