@@ -638,3 +638,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-26T12:35:10+05:30`
 - **Verification Note**: Verified Slice Small Finance Bank MITC and Rates & Pricing confirming ₹0 joining/annual fee and 0% foreign currency markup.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-26 14:52:45] docs(ledger): catalog slice Spark weekly offers and 3-month no-cost split rules
+- **Date**: `2026-11-26T14:52:45+05:30`
+- **Verification Note**: Documented up to 3% Monies cashback on UPI/card spends, weekly slice Spark deals, and no-cost 3-month slice in 3 splits.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
