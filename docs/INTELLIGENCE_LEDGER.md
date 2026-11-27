@@ -653,3 +653,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-26T18:22:33+05:30`
 - **Verification Note**: Reconfirmed SmartBuy bonus point caps and monthly utility reward ceilings under 2026 circular schedules.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-27 10:14:22] docs(ledger): record Slice Small Finance Bank interest schedule (3.5% per month)
+- **Date**: `2026-11-27T10:14:22+05:30`
+- **Verification Note**: Recorded 3.5%/month (42% p.a.) finance charge beyond the 14-46 day interest-free billing window in slice MITC.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
