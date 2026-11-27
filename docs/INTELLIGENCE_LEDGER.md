@@ -663,3 +663,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-27T12:35:10+05:30`
 - **Verification Note**: Logged category limits on fuel, rent, wallet loads, utilities, and education plus 2.5% (min ₹25 + GST) bank transfer fee.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-27 14:52:45] docs(ledger): audit IDFC FIRST Wealth and Millennia quarterly lounge policies
+- **Date**: `2026-11-27T14:52:45+05:30`
+- **Verification Note**: Verified ₹20,000 monthly spend gate for IDFC Wealth airport lounge access and 4 quarterly railway lounge visits on Millennia.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
