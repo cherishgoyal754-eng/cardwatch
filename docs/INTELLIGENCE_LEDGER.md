@@ -658,3 +658,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-27T10:14:22+05:30`
 - **Verification Note**: Recorded 3.5%/month (42% p.a.) finance charge beyond the 14-46 day interest-free billing window in slice MITC.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-27 12:35:10] docs(ledger): index slice UPI Credit Card excluded MCC categories and bank transfer fee
+- **Date**: `2026-11-27T12:35:10+05:30`
+- **Verification Note**: Logged category limits on fuel, rent, wallet loads, utilities, and education plus 2.5% (min ₹25 + GST) bank transfer fee.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
