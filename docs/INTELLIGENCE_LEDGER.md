@@ -673,3 +673,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-27T16:40:18+05:30`
 - **Verification Note**: Confirmed ₹25,000 preceding calendar quarter spend condition effective April 1, 2026 for BookMyShow benefits.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-27 18:22:33] docs(ledger): log Google News RSS + Gemini circular radar sync verification
+- **Date**: `2026-11-27T18:22:33+05:30`
+- **Verification Note**: Verified daily cron and authenticated /api/radar-sync serverless extraction across Indian bank circulars.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
