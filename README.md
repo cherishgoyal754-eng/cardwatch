@@ -137,23 +137,6 @@ vercel deploy --prod
 
 ---
 
-## 🧠 Powered by Credit Card Intelligence Engine & Data Management System
-
-CardWatch is powered by the **Credit Card Intelligence Data Management Architecture**:
-
-- **Automated Bank Document Ingestion**: Structured retrieval of official PDF schedules, circulars, and Most Important Terms and Conditions (MITC) across HDFC Bank, SBI Card, Axis Bank, ICICI Bank, IDFC FIRST Bank, IndusInd Bank, and American Express.
-- **AI-Powered Claim Extraction Pipeline**: High-fidelity claim extraction across 12 financial benefit categories, preserving exact source document page numbers and verbatim text citations with zero hallucination.
-- **Format-Agnostic Devaluation & Change Detection**: Intelligent normalization isolating real financial adjustments (fee hikes, reward slash rates, quarterly lounge spend thresholds, utility/rent exclusions) from cosmetic bank website layout updates.
-- **Verification & Review Queue**: Three-tier status workflow (`pending_verification`, `verified`, `rejected`) requiring administrator verification before circular diffs populate the live catalog.
-- **Relational Snapshot Ledger**: Historical versioning tracking timeline evolutions and devaluation events across India's premier cards.
-
-### 🏆 Attribution & Project Credits
-- **Architect & Lead Developer**: **Cherish Goyal** ([@cherishgoyal754-eng](https://github.com/cherishgoyal754-eng))
-- **Core Intelligence Engine**: Credit Card Intelligence Platform (Data Management, MITC Extraction Pipeline & Sovereign Admin Vault)
-- **Data Governance**: Zero CVV, OTP, or PIN storage; strictly verified public bank schedules and official circulars.
-
----
-
 ## 📄 License
 
 This project is licensed under the ISC License.

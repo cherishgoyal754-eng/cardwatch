@@ -311,28 +311,6 @@ const AppContent: React.FC = () => {
         )}
       </main>
 
-      {/* Footer & Platform Attribution */}
-      <footer className="mt-20 border-t border-slate-800/80 bg-slate-950/70 backdrop-blur-xl py-10 px-4 text-center">
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-4">
-          <div className="flex items-center gap-2 text-emerald-400 font-extrabold text-sm tracking-wider uppercase">
-            <span>💳 CardWatch Intelligence System</span>
-          </div>
-          <p className="text-xs text-slate-400 max-w-2xl leading-relaxed">
-            Powered by the <span className="text-slate-200 font-semibold">Credit Card Intelligence &amp; Data Management Engine</span>. Automated bank document collection, AI claim extraction with verbatim MITC page provenance, format-agnostic devaluation detection, and verified financial audit trails across India&apos;s leading credit cards.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-slate-500 font-medium pt-2 border-t border-slate-900 w-full max-w-xl">
-            <span>Architect &amp; Lead: <strong className="text-slate-300">Cherish Goyal</strong></span>
-            <span>•</span>
-            <span>Zero Hallucination Extraction</span>
-            <span>•</span>
-            <span>Official Bank MITC Verified</span>
-          </div>
-          <p className="text-[10px] text-slate-600">
-            © {new Date().getFullYear()} CARDWATCH. All financial metrics and terms sourced directly from official bank publications.
-          </p>
-        </div>
-      </footer>
-
       {/* Global Modals */}
       <SearchModal
         isOpen={isSearchOpen}

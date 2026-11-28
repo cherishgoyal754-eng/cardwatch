@@ -64,4 +64,14 @@ describe('CARDWATCH AI Engine', () => {
     expect(res.text).toContain('HSBC Live+');
     expect(res.text).not.toContain('Net Financial Benefit Equation');
   });
+
+  it('recognizes slice UPI Credit Card aliases and returns accurate cashback & 0% forex details', () => {
+    const matched = identifyCardsInQuery('Tell me about super slicer credit card', CREDIT_CARDS_DATA);
+    expect(matched.some(c => c.id === 'slice-upi')).toBe(true);
+
+    const upiRes = getLocalCardwatchAIResponse('How much cashback if I spend ₹10,000 on UPI with slice card?', CREDIT_CARDS_DATA);
+    expect(upiRes.text).toContain('slice UPI Credit Card');
+    expect(upiRes.text).toContain('3%');
+    expect(upiRes.text).toContain('slice in 3');
+  });
 });

@@ -28,6 +28,19 @@ export interface CloudSyncStatus {
 
 const BASE_PROJECT_MILESTONES: ProjectChangeEntry[] = [
   {
+    id: 'milestone-slice-upi-card-2026-11-28',
+    timestamp: '2026-11-28T23:40:00.000Z',
+    category: 'card_created',
+    title: 'Added slice UPI Credit Card (Slice Small Finance Bank)',
+    description:
+      'Ingested lifetime-free slice UPI Credit Card ("super slicer" artwork) with up to 3% Monies cashback, 0% forex markup, "slice in 3" split payments, MITC audit links, and AI advisor support.',
+    targetId: 'slice-upi',
+    targetName: 'slice UPI Credit Card',
+    actor: 'System Catalog Update',
+    afterSummary: '₹0 LTF • 0% Forex • Up to 3% Monies • slice in 3 (3-mo split)',
+    status: 'milestone',
+  },
+  {
     id: 'milestone-sovereign-admin-2026-11-25',
     timestamp: '2026-11-25T15:00:00.000Z',
     category: 'system_release',

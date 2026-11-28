@@ -58,6 +58,11 @@ export function getCardVisuals(card: { id?: string; name?: string; bank?: string
   const bank = card.bank?.toLowerCase() || '';
   const name = card.name?.toLowerCase() || '';
 
+  // 0. slice UPI Credit Card (Vibrant Magenta "super slicer" - Vertical)
+  if (id.includes('slice') || name.includes('slice') || bank.includes('slice')) {
+    return makeCardVisuals('/cards/slice-upi-front.png', '/cards/scapia-federal-back.png', true, false);
+  }
+
   // 1. American Express Platinum / Platinum Travel (Exact Centurion Roman Soldier)
   if (id.includes('amex') || bank.includes('american express') || card.cardStyle === 'amex-platinum') {
     return makeCardVisuals('/cards/amex-platinum-front-clean.png', '/cards/amex-platinum-back-clean.png', false, false);

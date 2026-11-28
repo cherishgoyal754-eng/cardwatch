@@ -4469,6 +4469,84 @@ export const CREDIT_CARDS_DATA: CreditCard[] = [
     golfBenefits: "None",
     insuranceCoverage: "Zero liability on lost card and travel protection cover.",
     mitcUrl: "https://www.au.bank.in/pdfs/revision-of-ixigo-au-credit-card-usage-tnc_Lounge.pdf"
+  },
+  {
+    id: 'slice-upi',
+    name: 'slice UPI Credit Card',
+    bank: 'Slice Small Finance Bank',
+    bankLogoText: 'SLICE SFB',
+    tier: 'Entry Level',
+    network: 'RuPay',
+    cardStyle: 'purple',
+    cardNumberPreview: '•••• 3003',
+    joiningFee: 0,
+    annualFee: 0,
+    annualFeeWaiverCondition: 'Nil Joining Fee & Nil Annual Fee (Unconditionally Lifetime Free with no minimum spend requirement)',
+    isLifetimeFree: true,
+    minSalaryMonthly: 15000,
+    minCibilScore: 650,
+    status: 'active',
+    headlineBenefit: 'Lifetime Free (₹0) • Up to 3% Monies Cashback on UPI & Cards • 0% Forex Markup • slice in 3 (3-Mo Split)',
+    cashbackRate: 'Up to 3% Cashback (Monies) on eligible UPI QR scan/tap & card spends + Weekly slice Spark brand deals',
+    rewardPointValue: '1 Monie = Direct in-app cashback redemption with no high minimum spend threshold for small-value UPI transactions',
+    forexMarkup: 0.0,
+    fuelSurchargeWaiver: 'No blanket fuel surcharge waiver; category surcharges and limits apply on fuel, utilities, rent, education & wallets per slice MITC',
+    domesticLoungesPerQuarter: 0,
+    internationalLoungesPerYear: 0,
+    railwayLoungesPerQuarter: 0,
+    loungeSpendCondition: 'No complimentary airport or railway lounge access included; built for UPI cashback, 0% forex markup & 3-month no-cost splits.',
+    loungeNetwork: 'None',
+    merchantExclusions: ['Fuel', 'Rent payments', 'Wallet loads', 'Education payments', 'Bank transfers (2.5% fee, min ₹25)'],
+    cappingDetails: 'Up to 3% cashback ("Monies") on eligible UPI & card transactions; small-value UPI transactions earn Monies without a high minimum threshold. Finance charges: 3.5%/mo (42% p.a.) beyond 14–46 day interest-free period. Bank transfers carry 2.5% fee (min ₹25 + GST).',
+    officialCircularUrl: 'https://slice.bank.in/credit-card',
+    lastVerifiedDate: 'Nov 28, 2026',
+    isVerified: true,
+    auditVerificationStatus: 'fully_verified',
+    auditDate: '2026-11-28',
+    rating: 4.7,
+    popularityIndex: 94,
+    recentChangeAlert: {
+      badge: '0% Forex & 3% UPI Cashback',
+      effectiveDate: 'Nov 28, 2026',
+      isDevaluation: false,
+      description: 'Slice Small Finance Bank super slicer edition offers ₹0 joining/annual fee, up to 3% Monies cashback, 0% forex markup, and no-cost "slice in 3" 3-month split payments.',
+    },
+    changeHistory: [
+      {
+        date: 'Nov 01, 2026',
+        announcedDate: 'Nov 01, 2026',
+        deadline: 'Nov 01, 2026',
+        type: 'enhancement',
+        title: 'Slice Small Finance Bank UPI Credit Card ("super slicer") Terms Verified',
+        summary: 'Issued by Slice Small Finance Bank: Lifetime-free (₹0) card for everyday UPI and card payments with up to 3% Monies cashback, 0% foreign currency markup, weekly slice Spark deals, and no-cost 3-month split ("slice in 3").',
+        oldValue: 'Earlier slice credit line / super card prepaid construct',
+        newValue: 'Full Slice Small Finance Bank RuPay UPI Credit Card with ₹0 fees, 0% forex markup, up to 3% Monies & slice in 3',
+        officialRef: 'https://slice.bank.in/cc-mitc/',
+        circularPdfUrl: 'https://slice.bank.in/rates-and-pricing',
+        severity: 'positive',
+        sourceType: 'MITC',
+        verificationStatus: 'Verified Active',
+      }
+    ],
+    tags: ['lifetime-free', 'upi', 'cashback', 'forex', 'shopping'],
+    suitableFor: [
+      'Lifetime Free (₹0 Joining & ₹0 Annual Fee) everyday UPI & card spenders with zero minimum annual spend condition',
+      'Small-value & frequent UPI QR payers earning up to 3% cashback ("Monies") redeemable directly in the slice app',
+      'International shoppers & travelers wanting 0% foreign currency markup fee with ₹0 annual fee',
+      'Users splitting eligible bills into 3 monthly installments at zero extra charge via "slice in 3" plus weekly slice Spark deals',
+      'Credit builders aged 18+ (limits scaling up to ₹5 Lakh by profile) utilizing in-app spend controls, bill-split notes/tags & exportable history',
+    ],
+    gstApplicability: 'Lifetime Free (₹0 Joining & ₹0 Annual Fee). Standard 18% GST applies only to transactional fees such as bank transfers (2.5%, min ₹25) or revolving interest (3.5%/month).',
+    welcomeBenefit: 'Zero joining fee with instant activation inside the slice app, unlocking weekly slice Spark instant cashback deals immediately.',
+    renewalBenefit: 'Unconditionally Lifetime Free forever (₹0 renewal fee with zero minimum annual spend threshold).',
+    milestoneBenefits: 'Dynamic credit limit upgrades (cited up to ₹5 Lakh on slice credit pages) and 0% extra-cost 3-month split payments via "slice in 3".',
+    rewardConversionDetails: 'Earn up to 3% cashback in Monies redeemable inside the slice app. Also includes in-app spend tracking, bill splitting with notes/tags, exportable transaction history, and weekly slice Spark offers.',
+    movieBenefits: 'Occasional brand discounts & instant cashback offers via weekly slice Spark Deals in the slice app.',
+    diningBenefits: 'Instant merchant cashback deals via weekly slice Spark Deals on food & everyday brands.',
+    golfBenefits: 'None',
+    insuranceCoverage: 'Standard RuPay & Slice Small Finance Bank digital fraud protection with instant in-app card freeze and spend controls.',
+    loungeGuestAccess: 'No airport lounge visits included; optimized for UPI Monies rewards, 0% forex, and no-cost 3-month splits.',
+    mitcUrl: 'https://slice.bank.in/cc-mitc/',
   }
 
 ];
@@ -4588,6 +4666,17 @@ export const BANK_HELPLINES_DATA: BankHelpline[] = [
     whatsappSupport: '+91 95555 55555',
     portalUrl: 'https://www.idfcfirstbank.com',
     notes: 'Wealth cardholders get direct access to personal Wealth Banker.'
+  },
+  {
+    bank: 'Slice Small Finance Bank',
+    shortName: 'slice',
+    logoColor: '#db2777',
+    conciergeNumber: '1800-123-7542',
+    generalSupport: '080-4832-9999',
+    premiumDesk: 'help@slice.bank.in',
+    email: 'help@slice.bank.in',
+    portalUrl: 'https://slice.bank.in/credit-card',
+    notes: '24x7 in-app chat support, spend controls, card freeze, and Rates & Pricing transparency via slice app and help.slice.bank.in.'
   }
 ];
 
@@ -5424,6 +5513,23 @@ export function getCardExtrasBenefit(card: { id: string; name?: string; bank?: s
       ],
       insurance: 'Lost Card Liability Protection & Standard Fraud Protection',
       score: 7,
+    };
+  }
+  if (id === 'slice-upi') {
+    return {
+      headline: 'Lifetime Free + Up to 3% Monies + 0% Forex + slice in 3 (No-Cost 3-Mo Split)',
+      subline: 'Issued by Slice Small Finance Bank: ₹0 joining & annual fee, up to 3% cashback ("Monies") on everyday UPI & card spends, 0% forex markup abroad, no-cost 3-month "slice in 3" splits, weekly slice Spark deals, and rich in-app expense tracking & bill split tools.',
+      perks: [
+        'Lifetime Free: ₹0 Joining Fee & ₹0 Annual Fee with zero minimum annual spend condition',
+        'Up to 3% Cashback ("Monies") on eligible UPI scan/tap & card payments redeemable in slice app',
+        '0% Foreign Currency Markup Fee on international transactions (saves ~4.13% vs typical 3.5% + GST cards)',
+        'Pay in 3 ("slice in 3"): Split eligible bills/spends into 3 monthly installments at zero extra cost',
+        'Weekly slice Spark Deals: App-exclusive instant cashback & partner brand deals',
+        'In-App Expense Tools: Spend controls, bill splitting with notes/tags & exportable transaction history',
+        'Credit Building (Aged 18+): Profile-based limits scaling up to ₹5 Lakh; finance rate 3.5%/mo (42% p.a.) & 2.5% bank transfer fee (min ₹25 + GST)',
+      ],
+      insurance: 'Zero Lost Card Liability & Instant In-App Card Freeze / Spend Controls',
+      score: 8,
     };
   }
   return {

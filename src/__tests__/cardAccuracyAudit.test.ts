@@ -461,4 +461,22 @@ describe('CARDWATCH — Permanent Credit Card Data Accuracy Audit', () => {
     const swiggy = CREDIT_CARDS_DATA.find(c => c.id === 'swiggy-hdfc');
     expect(swiggy?.cappingDetails).toContain('phased individual migration');
   });
+
+  it('should verify exact audited facts for slice UPI Credit Card (Slice Small Finance Bank)', () => {
+    const slice = CREDIT_CARDS_DATA.find(c => c.id === 'slice-upi');
+    expect(slice).toBeDefined();
+    expect(slice?.bank).toBe('Slice Small Finance Bank');
+    expect(slice?.isLifetimeFree).toBe(true);
+    expect(slice?.joiningFee).toBe(0);
+    expect(slice?.annualFee).toBe(0);
+    expect(slice?.forexMarkup).toBe(0.0);
+    expect(slice?.network).toBe('RuPay');
+    expect(slice?.cashbackRate).toContain('3%');
+    expect(slice?.cashbackRate).toContain('Monies');
+    expect(slice?.cappingDetails).toContain('3.5%/mo');
+    expect(slice?.cappingDetails).toContain('2.5%');
+    expect(slice?.mitcUrl).toBe('https://slice.bank.in/cc-mitc/');
+    expect(slice?.officialCircularUrl).toBe('https://slice.bank.in/credit-card');
+    expect(slice?.benefitAudits?.length).toBeGreaterThanOrEqual(3);
+  });
 });

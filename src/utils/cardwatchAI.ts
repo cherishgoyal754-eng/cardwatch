@@ -92,6 +92,7 @@ export function identifyCardsInQuery(query: string, cards: CreditCard[] = CREDIT
     'onecard-metal': ['onecard', 'one card', 'bobcard onecard'],
     'au-zenith-plus': ['au zenith', 'zenith+', 'zenith plus', 'au zenith plus'],
     'au-ixigo': ['au ixigo', 'ixigo au', 'ixigo card'],
+    'slice-upi': ['slice', 'slice upi', 'slice card', 'slice credit card', 'super slicer', 'slice small finance', 'monies', 'slice in 3'],
   };
 
   for (const card of cards) {
@@ -545,6 +546,16 @@ export function calculateRewards(card: CreditCard, amount: number, category: str
     } else {
       const myCash = Math.round((amount / 200) * 1.25);
       text = `On spending ₹${amount.toLocaleString('en-IN')} with MakeMyTrip ICICI Signature, you will earn ${myCash.toLocaleString('en-IN')} myCash (worth ₹${myCash.toLocaleString('en-IN')} at 1 myCash = ₹1.00 on MMT).`;
+    }
+  } else if (card.id === 'slice-upi') {
+    if (lowerCat.includes('international') || lowerCat.includes('forex') || lowerCat.includes('abroad')) {
+      const savings = Math.round(amount * 0.035);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} internationally with your lifetime-free slice UPI Credit Card, you pay 0% forex markup (saving ~₹${savings.toLocaleString('en-IN')} vs typical 3.5% markup cards).`;
+    } else if (lowerCat.includes('fuel') || lowerCat.includes('education')) {
+      text = `On the slice UPI Credit Card, excluded categories such as fuel, rent, wallet loads, utilities, and education have specific limits or surcharges under slice Rates & Pricing (and bank transfers carry a 2.5% fee, min ₹25 + GST).`;
+    } else {
+      const upToCb = Math.round(amount * 0.03);
+      text = `On spending ₹${amount.toLocaleString('en-IN')} via UPI QR or card with your lifetime-free slice UPI Credit Card, you can earn up to ₹${upToCb.toLocaleString('en-IN')} (up to 3% cashback in Monies redeemable in the slice app) and split eligible spends across 3 months with "slice in 3" at no extra cost.`;
     }
   } else {
     const cb = Math.round(amount * 0.02);
