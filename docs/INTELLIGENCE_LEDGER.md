@@ -678,3 +678,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-27T18:22:33+05:30`
 - **Verification Note**: Verified daily cron and authenticated /api/radar-sync serverless extraction across Indian bank circulars.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-28 10:14:22] docs(ledger): finalize Slice Small Finance Bank super slicer card asset alignment
+- **Date**: `2026-11-28T10:14:22+05:30`
+- **Verification Note**: Standardized vertical 646x1024 full-bleed artwork (slice-upi-front.png) for interactive 3D card previews.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
