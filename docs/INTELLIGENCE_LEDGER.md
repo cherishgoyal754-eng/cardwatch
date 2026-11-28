@@ -683,3 +683,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-28T10:14:22+05:30`
 - **Verification Note**: Standardized vertical 646x1024 full-bleed artwork (slice-upi-front.png) for interactive 3D card previews.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-28 12:35:10] docs(ledger): add slice UPI Credit Card aliases and AI reward rules to CardWatch AI
+- **Date**: `2026-11-28T12:35:10+05:30`
+- **Verification Note**: Registered slice, super slicer, monies, and slice in 3 aliases with deterministic cashback & 0% forex responses.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
