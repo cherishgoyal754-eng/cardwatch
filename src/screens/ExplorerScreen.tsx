@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CreditCard, CardCategory } from '../types';
 import { getBankHelpline } from '../data/cards';
+import { prefetchCardVisuals } from '../components/Real3DCard';
 import { sound } from '../utils/audio';
 import {
   Search,
@@ -202,6 +203,7 @@ export const ExplorerScreen: React.FC<ExplorerScreenProps> = ({
           return (
             <div
               key={card.id}
+              onMouseEnter={() => prefetchCardVisuals(card)}
               className="rounded-3xl bg-white border border-emerald-200 hover:border-emerald-400 p-6 flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-lg group"
             >
               <div>

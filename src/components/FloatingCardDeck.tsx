@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { sound } from '../utils/audio';
-import { Real3DCard } from './Real3DCard';
-import { CREDIT_CARDS_DATA } from '../data/cards';
-import { ArrowRight, RotateCw, Sparkles, Layers } from 'lucide-react';
+import { Real3DCard, prefetchCardVisuals } from './Real3DCard';
+import { useCardData } from '../context/CardDataContext';
+import { ArrowRight } from 'lucide-react';
 
 interface FloatingCardDeckProps {
   onSelectCard?: (cardId: string) => void;
@@ -14,12 +14,14 @@ export const FloatingCardDeck: React.FC<FloatingCardDeckProps> = ({
   onSelectCard,
   onExploreChanges
 }) => {
+  const { cards } = useCardData();
   const [activeCardId, setActiveCardId] = useState<string>('amex-platinum');
 
-  const activeCard = CREDIT_CARDS_DATA.find(c => c.id === activeCardId) || CREDIT_CARDS_DATA[0];
+  const activeCard = cards.find(c => c.id === activeCardId) || cards[0];
 
   const showcaseCards = [
     { id: 'amex-platinum', label: 'Amex Platinum' },
+    { id: 'slice-upi', label: 'slice UPI' },
     { id: 'scapia-federal', label: 'Scapia Federal (Vertical)' },
     { id: 'flipkart-axis', label: 'Flipkart Axis' },
     { id: 'hdfc-infinia-metal', label: 'HDFC Infinia' },
@@ -34,6 +36,28 @@ export const FloatingCardDeck: React.FC<FloatingCardDeckProps> = ({
     { id: 'axis-atlas', label: 'Axis ATLAS' },
     { id: 'hdfc-diners-black', label: 'Diners Black' },
   ];
+
+  // Background idle prefetch for showcase cards (total ~320 KB across all 15 WebPs!)
+  useEffect(() => {
+    const warmAll = () => {
+      showcaseCards.forEach(sc => {
+        const card = cards.find(c => c.id === sc.id);
+        if (card) prefetchCardVisuals(card);
+      });
+    };
+
+    if (typeof window === 'undefined') return;
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (win.requestIdleCallback) {
+      const id = win.requestIdleCallback(warmAll, { timeout: 1200 });
+      return () => win.cancelIdleCallback?.(id);
+    }
+    const timer = globalThis.setTimeout(warmAll, 400);
+    return () => globalThis.clearTimeout(timer);
+  }, [cards]);
 
   const toggleDeck = () => {
     sound.playCardFlip();
@@ -78,6 +102,14 @@ export const FloatingCardDeck: React.FC<FloatingCardDeckProps> = ({
           {showcaseCards.map(sc => (
             <button
               key={sc.id}
+              onMouseEnter={() => {
+                const c = cards.find(item => item.id === sc.id);
+                if (c) prefetchCardVisuals(c);
+              }}
+              onFocus={() => {
+                const c = cards.find(item => item.id === sc.id);
+                if (c) prefetchCardVisuals(c);
+              }}
               onClick={() => {
                 sound.playCardFlip();
                 setActiveCardId(sc.id);

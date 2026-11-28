@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ALL_CREDIT_CARDS } from '../data/cards';
 import { ScreenType, CreditCard } from '../types';
+import { prefetchCardVisuals } from './Real3DCard';
 import { sound } from '../utils/audio';
 import { Search, X, ShieldAlert, ArrowRight, ArrowUpRight } from 'lucide-react';
 
@@ -101,6 +102,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             filteredCards.map(card => (
               <div
                 key={card.id}
+                onMouseEnter={() => prefetchCardVisuals(card)}
                 onClick={() => {
                   sound.playClick();
                   onSelectCard(card.id);
