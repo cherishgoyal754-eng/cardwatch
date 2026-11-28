@@ -688,3 +688,8 @@ Official tracking ledger for Indian credit card terms, MITC circulars, lounge th
 - **Date**: `2026-11-28T12:35:10+05:30`
 - **Verification Note**: Registered slice, super slicer, monies, and slice in 3 aliases with deterministic cashback & 0% forex responses.
 - **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
+
+### [2026-11-28 14:52:45] docs(ledger): integrate slice-upi into Travel Intent zero-forex comparison matrix
+- **Date**: `2026-11-28T14:52:45+05:30`
+- **Verification Note**: Added slice UPI Credit Card to Travel Intent 0% forex showcase alongside Scapia Federal.
+- **Audited By**: Cherish Goyal (`cherishgoyal754@gmail.com`)
